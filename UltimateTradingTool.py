@@ -5,6 +5,7 @@ from datetime import datetime
 
 DEBUG_MODE = 1
 
+os.system("mode con cols=250 lines=30")
 
 m = "morning"
 m2 = "morning2Two"
@@ -223,6 +224,7 @@ def realTimeSignalMoveForFL22SC():
 
     # FIXME 才意识到可以，选择数字之后，比如说2，就直接 nowTimeNode = m2 就可以很方便了。。。
     # FIXME 没有意识到一个信号拆分后可能是A有信号B是no信号！！
+    # FIXME 只要早上有一次 No morning, 那接着的每一次都将要复制一次
     # 选择实时信号
     while True:
         printYellowMsg("\n请确认实时信号节点？(1/2/3/4):\n1：morning; 2：morning2Two; 3：afternoon; 4：afternoon2Two\n")
@@ -258,8 +260,8 @@ def realTimeSignalMoveForFL22SC():
             divideAjrcc = rf"{divide_SCA}\{jrcc}FL22SCA{m2}_{today}.csv"
             divideBsell = rf"{divide_SCB}\{sell}FL22SCB{m2}_{today}.csv"
             divideBjrcc = rf"{divide_SCB}\{jrcc}FL22SCB{m2}_{today}.csv"
-            divideAno = rf"{divide_SCA}\{nom_}{today}.txt"
-            divideBno = rf"{divide_SCB}\{nom_}{today}.txt"
+            divideAno = rf"{divide_SCA}\{nom2_}{today}.txt"
+            divideBno = rf"{divide_SCB}\{nom2_}{today}.txt"
 
             oriAbuy = rf" "
             oriAsell = rf"{ori_SCA}\{sell}FL22SCA{m2}_{today}.csv"
@@ -279,8 +281,8 @@ def realTimeSignalMoveForFL22SC():
             divideAjrcc = rf"{divide_SCA}\{jrcc}FL22SCA{a}_{today}.csv"
             divideBsell = rf"{divide_SCB}\{sell}FL22SCB{a}_{today}.csv"
             divideBjrcc = rf"{divide_SCB}\{jrcc}FL22SCB{a}_{today}.csv"
-            divideAno = rf"{divide_SCA}\{nom_}{today}.txt"
-            divideBno = rf"{divide_SCB}\{nom_}{today}.txt"
+            divideAno = rf"{divide_SCA}\{noa_}{today}.txt"
+            divideBno = rf"{divide_SCB}\{noa_}{today}.txt"
 
             oriAbuy = rf" "
             oriAsell = rf"{ori_SCA}\{sell}FL22SCA{a}_{today}.csv"
@@ -301,13 +303,13 @@ def realTimeSignalMoveForFL22SC():
             divideAjrcc = rf"{divide_SCA}\{jrcc}FL22SCA{a2}_{today}.csv"
             divideBbuy =  rf"{divide_SCB}\{buy}FL22SCB{a2}_{today}.csv"
             divideBjrcc = rf"{divide_SCB}\{jrcc}FL22SCB{a2}_{today}.csv"
-            divideAno = rf"{divide_SCA}\{nom_}{today}.txt"
-            divideBno = rf"{divide_SCB}\{nom_}{today}.txt"
+            divideAno = rf"{divide_SCA}\{noa2_}{today}.txt"
+            divideBno = rf"{divide_SCB}\{noa2_}{today}.txt"
 
-            oriAbuy = rf"{ori_SCB}\{buy}FL22SCA{a2}_{today}.csv"
+            oriAbuy = rf"{ori_SCA}\{buy}FL22SCA{a2}_{today}.csv"
             oriAsell = rf" "
-            oriAjrcc = rf"{ori_SCB}\{jrcc}FL22SCA{a2}_{today}.csv"
-            oriAno = rf"{ori_SCB}\{noa2_}{today}.txt"
+            oriAjrcc = rf"{ori_SCA}\{jrcc}FL22SCA{a2}_{today}.csv"
+            oriAno = rf"{ori_SCA}\{noa2_}{today}.txt"
 
             oriBbuy = rf"{ori_SCB}\{buy}FL22SCB{a2}_{today}.csv"
             oriBjrcc = rf"{ori_SCB}\{jrcc}FL22SCB{a2}_{today}.csv"
