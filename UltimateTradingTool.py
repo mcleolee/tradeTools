@@ -5,19 +5,28 @@ from datetime import datetime
 
 DEBUG_MODE = 1
 
-testFile = r"C:\Users\progene12\Desktop\A\api key.txt"
-testPathA = r"C:\Users\progene12\Desktop\A"
-testPathB = r"C:\Users\progene12\Desktop\B"
 
 m = "morning"
 m2 = "morning2Two"
 a = "afternoon"
 a2 = "afternoon2Two"
+
+nom_ = "NoSellingMorning_"
+nom2_ = "NoSellingMorning2Two_"
+noa_ = "NoSellingAfternoon_"
+noa2_ = "NoSellingAfternoon2Two_"
 underline = "_"
 
 sell = "SellOrderList"
 buy = "BuyOrderList"
 jrcc = "JinRiChiCang"
+
+divide_SC  = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCA\Sell_Buy_List_FL22SC"
+divide_SCA = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCA\Sell_Buy_List_FL22SCA"
+divide_SCB = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCB\Sell_Buy_List_FL22SCB"
+ori_SC  = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SC\Sell_Buy_List_FL22SC"
+ori_SCA = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCA\Sell_Buy_List_FL22SCA"
+ori_SCB = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCB\Sell_Buy_List_FL22SCB"
 
 
 def init():
@@ -37,8 +46,9 @@ def file_exists(file_path):
 
 def copy_file(original_path, target_path):
     try:
-        shutil.copy(original_path, target_path)
+        ret = shutil.copy(original_path, target_path)
         print(f"文件已从 {original_path} 复制到 {target_path}")
+        return ret
     except IOError as e:
         print(f"无法复制文件: {e}")
 
@@ -90,6 +100,10 @@ def printYellowMsg(text):
     print(f"\033[33m{text}\033[0m\n")
     return f"\033[33m{text}\033[0m"
 
+def printBlueMsg(text):
+    print(f"\033[34m{text}\033[0m\n")
+    return f"\033[34m{text}\033[0m"
+
 def before0920processFL22SC():
     oriFl22 = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SC\Sell_Buy_List_FL22SC"
     os.system("cls")
@@ -135,10 +149,7 @@ def before0920processFL22SC():
 
 
     # 检测拆分是否成功
-    divide_SCA = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCA\Sell_Buy_List_FL22SCA"
-    divide_SCB = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCB\Sell_Buy_List_FL22SCB"
-    ori_SCA = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCA\Sell_Buy_List_FL22SCA"
-    ori_SCB = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCB\Sell_Buy_List_FL22SCB"
+
 
         # divide 文件夹下的三个文件
         # A
@@ -202,8 +213,212 @@ def before0920processFL22SC():
 
 
 def realTimeSignalMoveForFL22SC():
-    print("这是功能二！")
+    os.system("cls")
+    # 先定义一下, 实时信号是直接传到 ori 文件夹的
+    today = getToday()
+    nom =  rf"{ori_SC}\{nom_}{today}.txt"
+    nom2 = rf"{ori_SC}\{nom2_}{today}.txt"
+    noa =  rf"{ori_SC}\{noa_}{today}.txt"
+    noa2 = rf"{ori_SC}\{noa2_}{today}.txt"
 
+    # FIXME 才意识到可以，选择数字之后，比如说2，就直接 nowTimeNode = m2 就可以很方便了。。。
+    # FIXME 没有意识到一个信号拆分后可能是A有信号B是no信号！！
+    # 选择实时信号
+    while True:
+        printYellowMsg("\n请确认实时信号节点？(1/2/3/4):\n1：morning; 2：morning2Two; 3：afternoon; 4：afternoon2Two\n")
+        choice = input("")
+        if choice == "1":
+            rtsBuy = ""
+            rtsSell = rf"{ori_SC}\{sell}FL22SC{m}_{today}.csv"
+            rtsJRCC = rf"{ori_SC}\{jrcc}FL22SC{m}_{today}.csv"
+            rtsNoSignal = nom
+            divideAsell = rf"{divide_SCA}\{sell}FL22SCA{m}_{today}.csv"
+            divideAjrcc = rf"{divide_SCA}\{jrcc}FL22SCA{m}_{today}.csv"
+            divideBsell = rf"{divide_SCB}\{sell}FL22SCB{m}_{today}.csv"
+            divideBjrcc = rf"{divide_SCB}\{jrcc}FL22SCB{m}_{today}.csv"
+            divideAno = rf"{divide_SCA}\{nom_}{today}.txt"
+            divideBno = rf"{divide_SCB}\{nom_}{today}.txt"
+
+            oriAbuy = rf" "
+            oriAsell = rf"{ori_SCA}\{sell}FL22SCA{m}_{today}.csv"
+            oriAjrcc = rf"{ori_SCA}\{jrcc}FL22SCA{m}_{today}.csv"
+            oriAno = rf"{ori_SCA}\{nom_}{today}.txt"
+
+            oriBsell = rf"{ori_SCB}\{sell}FL22SCB{m}_{today}.csv"
+            oriBjrcc = rf"{ori_SCB}\{jrcc}FL22SCB{m}_{today}.csv"
+            oriBno =   rf"{ori_SCB}\{nom_}{today}.txt"
+
+            break
+        elif choice == "2":
+            rtsBuy = ""
+            rtsSell = rf"{ori_SC}\{sell}FL22SC{m2}_{today}.csv"
+            rtsJRCC = rf"{ori_SC}\{jrcc}FL22SC{m2}_{today}.csv"
+            rtsNoSignal = nom2
+            divideAsell = rf"{divide_SCA}\{sell}FL22SCA{m2}_{today}.csv"
+            divideAjrcc = rf"{divide_SCA}\{jrcc}FL22SCA{m2}_{today}.csv"
+            divideBsell = rf"{divide_SCB}\{sell}FL22SCB{m2}_{today}.csv"
+            divideBjrcc = rf"{divide_SCB}\{jrcc}FL22SCB{m2}_{today}.csv"
+            divideAno = rf"{divide_SCA}\{nom_}{today}.txt"
+            divideBno = rf"{divide_SCB}\{nom_}{today}.txt"
+
+            oriAbuy = rf" "
+            oriAsell = rf"{ori_SCA}\{sell}FL22SCA{m2}_{today}.csv"
+            oriAjrcc = rf"{ori_SCA}\{jrcc}FL22SCA{m2}_{today}.csv"
+            oriAno = rf"{ori_SCA}\{nom2_}{today}.txt"
+
+            oriBsell = rf"{ori_SCB}\{sell}FL22SCB{m2}_{today}.csv"
+            oriBjrcc = rf"{ori_SCB}\{jrcc}FL22SCB{m2}_{today}.csv"
+            oriBno =   rf"{ori_SCB}\{nom2_}{today}.txt"
+            break
+        elif choice == "3":
+            rtsBuy = ""
+            rtsSell = rf"{ori_SC}\{sell}FL22SC{a}_{today}.csv"
+            rtsJRCC = rf"{ori_SC}\{jrcc}FL22SC{a}_{today}.csv"
+            rtsNoSignal = noa
+            divideAsell = rf"{divide_SCA}\{sell}FL22SCA{a}_{today}.csv"
+            divideAjrcc = rf"{divide_SCA}\{jrcc}FL22SCA{a}_{today}.csv"
+            divideBsell = rf"{divide_SCB}\{sell}FL22SCB{a}_{today}.csv"
+            divideBjrcc = rf"{divide_SCB}\{jrcc}FL22SCB{a}_{today}.csv"
+            divideAno = rf"{divide_SCA}\{nom_}{today}.txt"
+            divideBno = rf"{divide_SCB}\{nom_}{today}.txt"
+
+            oriAbuy = rf" "
+            oriAsell = rf"{ori_SCA}\{sell}FL22SCA{a}_{today}.csv"
+            oriAjrcc = rf"{ori_SCA}\{jrcc}FL22SCA{a}_{today}.csv"
+            oriAno = rf"{ori_SCA}\{noa_}{today}.txt"
+
+            oriBsell = rf"{ori_SCB}\{sell}FL22SCB{a}_{today}.csv"
+            oriBjrcc = rf"{ori_SCB}\{jrcc}FL22SCB{a}_{today}.csv"
+            oriBno =   rf"{ori_SCB}\{noa_}{today}.txt"
+
+            break
+        elif choice == "4":
+            rtsSell = ""
+            rtsBuy = rf"{ori_SC}\{buy}FL22SC{a2}_{today}.csv"
+            rtsJRCC = rf"{ori_SC}\{jrcc}FL22SC{a2}_{today}.csv"
+            rtsNoSignal = noa2
+            divideAbuy =  rf"{divide_SCA}\{buy}FL22SCA{a2}_{today}.csv"
+            divideAjrcc = rf"{divide_SCA}\{jrcc}FL22SCA{a2}_{today}.csv"
+            divideBbuy =  rf"{divide_SCB}\{buy}FL22SCB{a2}_{today}.csv"
+            divideBjrcc = rf"{divide_SCB}\{jrcc}FL22SCB{a2}_{today}.csv"
+            divideAno = rf"{divide_SCA}\{nom_}{today}.txt"
+            divideBno = rf"{divide_SCB}\{nom_}{today}.txt"
+
+            oriAbuy = rf"{ori_SCB}\{buy}FL22SCA{a2}_{today}.csv"
+            oriAsell = rf" "
+            oriAjrcc = rf"{ori_SCB}\{jrcc}FL22SCA{a2}_{today}.csv"
+            oriAno = rf"{ori_SCB}\{noa2_}{today}.txt"
+
+            oriBbuy = rf"{ori_SCB}\{buy}FL22SCB{a2}_{today}.csv"
+            oriBjrcc = rf"{ori_SCB}\{jrcc}FL22SCB{a2}_{today}.csv"
+            oriBno = rf"{ori_SCB}\{noa2_}{today}.txt"
+            break
+        elif choice == "quit":
+            printBlueMsg("returning to main menu...\n")
+            input("")
+            return
+        else:
+            printRedMsg("无效的选项，请重新输入！")
+
+    # 检查实时信号到了没有
+    printYellowMsg("checking whether the real time signals are arrive...")
+    isNoSignal = ifExist(rtsNoSignal)
+    isRealTimeSignal = (ifExist(rtsSell) or ifExist(rtsBuy) and ifExist(rtsJRCC))
+    isRealTimeSignalExist = isNoSignal or isRealTimeSignal
+    if not isRealTimeSignalExist:
+        printRedMsg("real time signals are NOT arrive!!!\nreturning...")
+        input("")
+        return
+    else:
+        printGreenMsg("real time signals ARE arrive.")
+        input(" ")
+
+    # # 复制文件进入 divide 文件
+    # if isNoSignal:
+    #     # 如果是no信号
+    #     copy_file(rtsNoSignal, ori_SC)
+    # elif isRealTimeSignal:
+    #     if choice == "4":
+    #         copy_file(rtsBuy, ori_SC)
+    #         copy_file(rtsJRCC, ori_SC)
+    #     copy_file(rtsSell, ori_SC)
+    #     copy_file(rtsJRCC, ori_SC)
+
+    # TODO 等待 30s 让程序拆分文件
+    # TODO 检测信号是否复制成功
+
+    # 检测信号是否拆分成功
+    if choice == "4":
+        isNoDivide = ifExist(divideAno) and ifExist(divideBno)
+        isSignalDivide = ifExist(divideAbuy) and ifExist(divideAjrcc) and ifExist(divideBbuy) and ifExist(divideBjrcc)
+        isDivide = (isNoDivide) or (isSignalDivide)
+        if not isDivide:
+            printRedMsg("afternoon2Two signal is not divided!!!\nreturning...")
+            input("")
+            return
+        else:
+            printGreenMsg("signal is divided.")
+            input(" ")
+
+    else:
+        # choice == 1 2 3
+        isNoDivide = ifExist(divideAno) and ifExist(divideBno)
+        isSignalDivide = ifExist(divideAsell) and ifExist(divideAjrcc) and ifExist(divideBsell) and ifExist(divideBjrcc)
+        isDivide = (isNoDivide) or (isSignalDivide)
+        if not isDivide:
+            printRedMsg("signal is not divided!!!\nreturning...")
+            input("")
+            return
+        else:
+            printGreenMsg("signal is divided.")
+            input(" ")
+
+    # 把拆分好的信号复制回来
+    if choice == "4":
+        copy_file(divideAno, ori_SCA)
+        copy_file(divideAbuy, ori_SCA)
+        copy_file(divideAjrcc, ori_SCA)
+        copy_file(divideBbuy, ori_SCB)
+        copy_file(divideBjrcc, ori_SCB)
+        copy_file(divideBno, ori_SCB)
+    else:
+        copy_file(divideAsell, ori_SCA)
+        copy_file(divideAno, ori_SCA)
+        copy_file(divideAjrcc, ori_SCA)
+        copy_file(divideBsell, ori_SCB)
+        copy_file(divideBjrcc, ori_SCB)
+        copy_file(divideBno, ori_SCB)
+
+    # 验证复制回来的信号
+    # A
+    if choice == "4":
+        isNoOri = ifExist(oriAno) and ifExist(oriBno)
+        isSignalOri = ifExist(oriAbuy) and ifExist(oriAjrcc) and ifExist(oriBbuy) and ifExist(oriBjrcc)
+        isOri = (isNoOri) or (isSignalOri)
+        if not isOri:
+            printRedMsg("divided afternoon2Two signal is not copy well!!!\nreturning...")
+            input("")
+            return
+        else:
+            printGreenMsg("signal is copied")
+            input(" ")
+
+    else:
+        # choice == 1 2 3
+        isNoOri = ifExist(oriAno) and ifExist(oriBno)
+        isSignalOri = ifExist(oriAsell) and ifExist(oriAjrcc) and ifExist(oriBsell) and ifExist(oriBjrcc)
+        isOri = (isNoOri) or (isSignalOri)
+        if not isOri:
+            printRedMsg(f"divided signal is not copy well!!!\nreturning...")
+            input("")
+            return
+        else:
+            printGreenMsg("signal is copied")
+            input(" ")
+
+        # 完成
+        printGreenMsg("Action done, returning to main menu...")
+        input(" ")
 
 def function_three():
     print("这是功能三！")
@@ -235,10 +450,15 @@ def menu():
     print("Welcome to the ultimate trading tool ever.")
     print("1. 拆分 FL22SC 并移回源路径")
     print("2. 移动拆分后的 FL22SC 的实时信号到源路径")
-    print("3. 功能三")
+    print("3. 整理数据分析的数据")
     print("0. 退出")
+    printYellowMsg("\n功能 1、2 在阿里云 61 上适配")
+    printYellowMsg("功能 3 只在数据分析 40 上适配")
     print("----------------------------------------------")
 
 
 if __name__ == "__main__":
+    os.system("cls")
     main()
+
+
