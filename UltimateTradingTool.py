@@ -105,6 +105,12 @@ def printBlueMsg(text):
     print(f"\033[34m{text}\033[0m\n")
     return f"\033[34m{text}\033[0m"
 
+def ifContain(text, targetText):
+    return targetText in text
+
+
+
+
 def before0920processFL22SC():
     oriFl22 = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SC\Sell_Buy_List_FL22SC"
     os.system("cls")
@@ -224,7 +230,7 @@ def realTimeSignalMoveForFL22SC():
 
     # FIXME 才意识到可以，选择数字之后，比如说2，就直接 nowTimeNode = m2 就可以很方便了。。。
     # FIXME 没有意识到一个信号拆分后可能是A有信号B是no信号！！
-    # FIXME 只要早上有一次 No morning, 那接着的每一次都将要复制一次
+    # FIXMED 只要早上有一次 No morning, 那接着的每一次都将要复制一次
     # 选择实时信号
     while True:
         printYellowMsg("\n请确认实时信号节点？(1/2/3/4):\n1：morning; 2：morning2Two; 3：afternoon; 4：afternoon2Two\n")
@@ -325,7 +331,7 @@ def realTimeSignalMoveForFL22SC():
     # 检查实时信号到了没有
     printYellowMsg("checking whether the real time signals are arrive...")
     isNoSignal = ifExist(rtsNoSignal)
-    isRealTimeSignal = (ifExist(rtsSell) or ifExist(rtsBuy) and ifExist(rtsJRCC))
+    isRealTimeSignal = ((ifExist(rtsSell) or ifExist(rtsBuy)) and ifExist(rtsJRCC))
     isRealTimeSignalExist = isNoSignal or isRealTimeSignal
     if not isRealTimeSignalExist:
         printRedMsg("real time signals are NOT arrive!!!\nreturning...")
@@ -422,7 +428,7 @@ def realTimeSignalMoveForFL22SC():
         printGreenMsg("Action done, returning to main menu...")
         input(" ")
 
-def function_three():
+def dataCollectorOn61():
     print("这是功能三！")
 
 
@@ -437,7 +443,7 @@ def main():
         elif choice == "2":
             realTimeSignalMoveForFL22SC()
         elif choice == "3":
-            function_three()
+            dataCollectorOn61()
         elif choice == "0":
             os.system("cls")
             print("See you tmr.\n")
