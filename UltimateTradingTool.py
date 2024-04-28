@@ -54,14 +54,14 @@ def copy_file(original_path, target_path):
         print(f"无法复制文件: {e}")
 
 
-def copy_latest_files(source_folder, destination_folder):
+def copy_latest_files(source_folder, destination_folder, fileNumber):
     try:
         # 获取源文件夹中按时间排序的文件列表
         files = sorted(os.listdir(source_folder), key=lambda x: os.path.getmtime(os.path.join(source_folder, x)),
                        reverse=True)
 
         # 仅复制最新的四个文件
-        for file in files[:4]:
+        for file in files[:fileNumber]:
             source_file = os.path.join(source_folder, file)
             destination_file = os.path.join(destination_folder, file)
 
@@ -69,8 +69,52 @@ def copy_latest_files(source_folder, destination_folder):
             shutil.copy2(source_file, destination_folder)
             print(f"Copied: {source_file} to {destination_file}")
     except Exception as e:
+        printRedMsg(f"Failed to copy files. Error: {e}")
+
+def copy_files_with_string(source_folder, destination_folder, string_to_check, fileNumber):
+    try:
+        # 获取源文件夹中按时间排序的文件列表
+        files = sorted(os.listdir(source_folder), key=lambda x: os.path.getmtime(os.path.join(source_folder, x)),
+                       reverse=True)
+
+        # 计数器，用于记录已复制的文件数量
+        copied_files = 0
+
+        # 遍历文件列表
+        for file in files:
+            if copied_files >= fileNumber:
+                break
+
+            source_file = os.path.join(source_folder, file)
+
+            # 检查文件名是否包含特定字符串
+            if string_to_check in file:
+                destination_file = os.path.join(destination_folder, file)
+
+                # 复制文件
+                shutil.copy2(source_file, destination_folder)
+                print(f"Copied: {source_file} to {destination_file}")
+
+                # 增加已复制文件数量
+                copied_files += 1
+
+    except Exception as e:
         print(f"Failed to copy files. Error: {e}")
 
+
+
+def erase_folder_contents(folder_path):
+    try:
+        # 获取文件夹中的所有文件
+        files = os.listdir(folder_path)
+
+        # 删除每个文件
+        for filename in files:
+            file_path = os.path.join(folder_path, filename)
+            os.remove(file_path)
+            printYellowMsg(f"Deleted file: {file_path}")
+    except Exception as e:
+        printRedMsg(f"Failed to erase folder contents. Error: {e}")
 
 def ifExist(path):
     # today = getToday()
@@ -428,9 +472,32 @@ def realTimeSignalMoveForFL22SC():
         printGreenMsg("Action done, returning to main menu...")
         input(" ")
 
-def dataCollectorOn61():
-    print("这是功能三！")
+def dataCollectorOn40():
+    printYellowMsg("PLZ CHECK THIS FUNCTION IS ONLY WORKING ON 40")
+    printYellowMsg("\nDeleting data in folder toLZY")
+    input("press any key to excute.")
+    destinationPath = r"C:\Users\progene014\Desktop\toLZY\data"
+    erase_folder_contents(destinationPath)
 
+    # limit_price_file
+    limitPricePath = r"D:\limit_price_projects\limit_price_file"
+    # copy_file(limitPricePath, destinationPath)
+
+    # data
+    oriDataA = r"D:\hutao\projects\数据分析\FL22SC\data_FL22SCA"
+    oriDataB = r"D:\hutao\projects\数据分析\FL22SC\data_FL22SCB"
+    desDataA = r"C:\Users\progene014\Desktop\toLZY\data\A_data"
+    desDataB = r"C:\Users\progene014\Desktop\toLZY\data\B_data"
+    # copy_latest_files(oriDataA, desDataA, 3)
+    # copy_latest_files(oriDataB, desDataB, 3)
+
+    # format data
+    oriDataFormat = r"D:\hutao\projects\数据分析\FL22SC\format_data"
+
+
+# 收盘拆分的导出数据的检查
+def checkExportData():
+    ...
 
 def main():
     # init()
@@ -443,7 +510,9 @@ def main():
         elif choice == "2":
             realTimeSignalMoveForFL22SC()
         elif choice == "3":
-            dataCollectorOn61()
+            dataCollectorOn40()
+        elif choice == "4":
+            checkExportData()
         elif choice == "0":
             os.system("cls")
             print("See you tmr.\n")
@@ -459,6 +528,7 @@ def menu():
     print("1. 拆分 FL22SC 并移回源路径")
     print("2. 移动拆分后的 FL22SC 的实时信号到源路径")
     print("3. 整理数据分析的数据")
+    print("4. 收盘拆分的导出数据的检查")
     print("0. 退出")
     printYellowMsg("\n功能 1、2 在阿里云 61 上适配")
     printYellowMsg("功能 3 只在数据分析 40 上适配")
