@@ -1,4 +1,7 @@
-# TODO
+# TODO 每个函数完了之后clr
+# TODO 自动识别IP
+# TODO 交易成功之后有没有记录，这个也自动化
+# TODO 获取终端的宽度（虽然已经有了）
 import os
 import shutil
 from datetime import datetime
@@ -35,6 +38,9 @@ ori_SC  = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SC\Se
 ori_SCA = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCA\Sell_Buy_List_FL22SCA"
 ori_SCB = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCB\Sell_Buy_List_FL22SCB"
 
+# ====================================================================================================================
+# ================================================ 工具函数 ============================================================
+# ====================================================================================================================
 
 def init():
     print("starting init")
@@ -76,6 +82,21 @@ def copy_latest_files(source_folder, destination_folder, fileNumber):
             print(f"Copied: {source_file} to {destination_file}")
     except Exception as e:
         printRedMsg(f"Failed to copy files. Error: {e}")
+
+
+def print_latest_files(source_folder, fileNumber):
+    # 打印最新的 fileNumber 个文件名
+    try:
+        # 获取源文件夹中按时间排序的文件列表
+        files = sorted(os.listdir(source_folder), key=lambda x: os.path.getmtime(os.path.join(source_folder, x)),
+                       reverse=True)
+
+        # 获取最新的fileNumber个文件名并打印
+        for filename in files[:fileNumber]:
+            print(filename)
+    except Exception as e:
+        printRedMsg(f"Failed to print latest files. Error: {e}")
+
 
 def copy_files_with_string(source_folder, destination_folder, string_to_check, fileNumber):
     try:
@@ -129,6 +150,28 @@ def erase_folder_contents(folder_path):
         printRedMsg(f"Failed to erase folder contents. Error: {e}")
         return False
 
+
+def move_files(source_folder, destination_folder):
+    try:
+        # 移动文件夹中的所有文件到目标文件夹
+        shutil.move(source_folder, destination_folder)
+        printGreenMsg(f"All files moved from {source_folder} to {destination_folder}")
+    except Exception as e:
+        printRedMsg(f"Failed to move files. Error: {e}")
+
+def copy_files_in_folder(source_folder, destination_folder):
+    try:
+        # 遍历源文件夹中的所有文件
+        for filename in os.listdir(source_folder):
+            source_file_path = os.path.join(source_folder, filename)
+            destination_file_path = os.path.join(destination_folder, filename)
+            # 如果是文件则复制
+            if os.path.isfile(source_file_path):
+                shutil.copy2(source_file_path, destination_file_path)
+                print(f"Copied file: {source_file_path} to {destination_file_path}")
+    except Exception as e:
+        printRedMsg(f"Failed to copy files. Error: {e}")
+
 def zip_folder(folder_path, zip_path):
     try:
         # 创建一个zip文件
@@ -144,6 +187,25 @@ def zip_folder(folder_path, zip_path):
     except Exception as e:
         printRedMsg(f"Failed to zip folder. Error: {e}")
 
+
+def unzip_file(zip_path, extract_to):
+    try:
+        # 创建一个ZipFile对象
+        with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+            # 解压缩所有文件到指定目标文件夹
+            zip_ref.extractall(extract_to)
+
+        printGreenMsg(f"Successfully extracted {zip_path} to {extract_to}")
+    except Exception as e:
+        printRedMsg(f"Failed to unzip file. Error: {e}")
+
+def create_folder(folder_path):
+    try:
+        # 创建文件夹
+        os.mkdir(folder_path)
+        print(f"Folder created at {folder_path}")
+    except Exception as e:
+        printRedMsg(f"Failed to create folder. Error: {e}")
 
 def ifExist(path):
     # today = getToday()
@@ -181,46 +243,100 @@ def printBlueMsg(text):
 def ifContain(text, targetText):
     return targetText in text
 
+def count_files_with_target_field(folder_path, target_field):
+    try:
+        # 初始化计数器
+        count = 0
+        # 遍历目标文件夹中的所有文件
+        for filename in os.listdir(folder_path):
+            # 如果目标字段在文件名中，则计数加一
+            if target_field in filename:
+                count += 1
+        return count
+    except Exception as e:
+        printRedMsg(f"Failed to count files. Error: {e}")
+
+def printName():
+    logo1 = """
+          _____                    _____                    _____                    _____                    _____          
+         /\    \                  /\    \                  /\    \                  /\    \                  /\    \         
+        /::\    \                /::\    \                /::\____\                /::\    \                /::\____\        
+       /::::\    \              /::::\    \              /:::/    /               /::::\    \              /::::|   |        
+      /::::::\    \            /::::::\    \            /:::/    /               /::::::\    \            /:::::|   |        
+     /:::/\:::\    \          /:::/\:::\    \          /:::/    /               /:::/\:::\    \          /::::::|   |        
+    /:::/__\:::\    \        /:::/__\:::\    \        /:::/____/               /:::/__\:::\    \        /:::/|::|   |        
+   /::::\   \:::\    \      /::::\   \:::\    \       |::|    |               /::::\   \:::\    \      /:::/ |::|   |        
+  /::::::\   \:::\    \    /::::::\   \:::\    \      |::|    |     _____    /::::::\   \:::\    \    /:::/  |::|   | _____  
+ /:::/\:::\   \:::\____\  /:::/\:::\   \:::\    \     |::|    |    /\    \  /:::/\:::\   \:::\    \  /:::/   |::|   |/\    \ 
+/:::/  \:::\   \:::|    |/:::/  \:::\   \:::\____\    |::|    |   /::\____\/:::/__\:::\   \:::\____\/:: /    |::|   /::\____\\
+\::/   |::::\  /:::|____|\::/    \:::\  /:::/    /    |::|    |  /:::/    /\:::\   \:::\   \::/    /\::/    /|::|  /:::/    /
+ \/____|:::::\/:::/    /  \/____/ \:::\/:::/    /     |::|    | /:::/    /  \:::\   \:::\   \/____/  \/____/ |::| /:::/    / 
+       |:::::::::/    /            \::::::/    /      |::|____|/:::/    /    \:::\   \:::\    \              |::|/:::/    /  
+       |::|\::::/    /              \::::/    /       |:::::::::::/    /      \:::\   \:::\____\             |::::::/    /   
+       |::| \::/____/               /:::/    /        \::::::::::/____/        \:::\   \::/    /             |:::::/    /    
+       |::|  ~|                    /:::/    /          ~~~~~~~~~~               \:::\   \/____/              |::::/    /     
+       |::|   |                   /:::/    /                                     \:::\    \                  /:::/    /      
+       \::|   |                  /:::/    /                                       \:::\____\                /:::/    /       
+        \:|   |                  \::/    /                                         \::/    /                \::/    /        
+         \|___|                   \/____/                                           \/____/                  \/____/         
+                                                                                                                             
+    """
+
+    logo2="""
+    __________                               
+    \______   \_____  ___  __  ____    ____  
+     |       _/\__  \ \  \/ /_/ __ \  /    \ 
+     |    |   \ / __ \_\   / \  ___/ |   |  \\
+     |____|_  /(____  / \_/   \___  >|___|  /
+            \/      \/            \/      \/ 
+
+    """
+    print(logo1)
+
+
 if HTTP_SERVER:
-    def fetchDataFromHttpServer(server_url):
-        try:
-            response = requests.get(server_url)
-            if response.status_code == 200:
-                printGreenMsg("Data fetched successfully:")
-                # print(response.text)
-                return response.text
-            else:
-                printRedMsg(f"Failed to fetch data. Status code: {response.status_code}")
-        except Exception as e:
-            printRedMsg(f"An error occurred: {e}")
+    ...
+    # def fetchDataFromHttpServer(server_url):
+    #     try:
+    #         response = requests.get(server_url)
+    #         if response.status_code == 200:
+    #             printGreenMsg("Data fetched successfully:")
+    #             # print(response.text)
+    #             return response.text
+    #         else:
+    #             printRedMsg(f"Failed to fetch data. Status code: {response.status_code}")
+    #     except Exception as e:
+    #         printRedMsg(f"An error occurred: {e}")
+    #
+    #
+    # def download_files_from_html(html_content, server_url, download_dir):
+    #     try:
+    #         soup = BeautifulSoup(html_content, 'html.parser')
+    #         links = soup.find_all('a')
+    #
+    #         for link in links:
+    #             href = link.get('href')
+    #             # 如果链接是相对路径，拼接成绝对路径
+    #             if not href.startswith('http'):
+    #                 href = server_url + '/' + href
+    #
+    #             filename = href.split('/')[-1]
+    #             file_path = os.path.join(download_dir, filename)
+    #
+    #             printBlueMsg(f"Downloading {filename}...")
+    #             r = requests.get(href, stream=True)
+    #             with open(file_path, 'wb') as f:
+    #                 for chunk in r.iter_content(chunk_size=8192):
+    #                     if chunk:
+    #                         f.write(chunk)
+    #             printGreenMsg(f"{filename} downloaded successfully.")
+    #
+    #     except Exception as e:
+    #         printRedMsg(f"An error occurred: {e}")
 
-
-    def download_files_from_html(html_content, server_url, download_dir):
-        try:
-            soup = BeautifulSoup(html_content, 'html.parser')
-            links = soup.find_all('a')
-
-            for link in links:
-                href = link.get('href')
-                # 如果链接是相对路径，拼接成绝对路径
-                if not href.startswith('http'):
-                    href = server_url + '/' + href
-
-                filename = href.split('/')[-1]
-                file_path = os.path.join(download_dir, filename)
-
-                printBlueMsg(f"Downloading {filename}...")
-                r = requests.get(href, stream=True)
-                with open(file_path, 'wb') as f:
-                    for chunk in r.iter_content(chunk_size=8192):
-                        if chunk:
-                            f.write(chunk)
-                printGreenMsg(f"{filename} downloaded successfully.")
-
-        except Exception as e:
-            printRedMsg(f"An error occurred: {e}")
-
-# ==========================================================================================
+# ====================================================================================================================
+# ============================================ 主要函数     ===========================================================
+# ====================================================================================================================
 
 def before0920processFL22SC():
     oriFl22 = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SC\Sell_Buy_List_FL22SC"
@@ -585,23 +701,124 @@ def dataCollectorOn40():
 # 收盘拆分的导出数据的检查
 def checkExportData():
     ...
+    today = getToday()
+    # 检查有没有导出数据
+    printYellowMsg("now checking if smt_data exist...")
+    input("")
+    smtData = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\smt_data"
+    asset = rf"{smtData}\asset_{today}.csv"
+    trans = rf"{smtData}\transaction_{today}.csv"
+    order = rf"{smtData}\order_{today}.csv"
+    holdin= rf"{smtData}\holding_{today}.csv"
+    smtDataExist = ifExist(asset) and ifExist(trans) and ifExist(order) and ifExist(holdin)
+    if not smtDataExist:
+        printRedMsg("smtData is NOT exist, returning to main menu...")
+        input("")
+        return
+    else:
+        printGreenMsg("smtData is exist.")
+        input("")
+
+    printYellowMsg("you can run smart_data_divide.py now, press any key when done.")
+    input("")
+
+    # 检查是否拆分完毕
+    cf15 = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\CF15\data", today)
+    fl18 = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL18\data", today)
+    ht02zs =  count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\HT02XY\data" , today)
+    fl22sc = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SC\data" , today)
+    fl22xz = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22XZ\data" , today)
+    print(cf15, fl18, ht02zs, fl22sc, fl22xz)
+
+    # 完成
+    printGreenMsg("process done, returning to main menu")
+    input("")
 
 
 def downloadDataFromServer40():
+    ...
     # TODO 未完成，又找不到本地文件夹的错误，而且会下载分享的所有文件。
-    download_dir = r"C:\Users\progene12\Desktop\Start Trading\FL22SC数据分析"
-    html_content = fetchDataFromHttpServer(server40addr)
-    if html_content:
-        if not os.path.exists(download_dir):
-            os.makedirs(download_dir)
+    # download_dir = r"C:\Users\progene12\Desktop\Start Trading\FL22SC数据分析"
+    # html_content = fetchDataFromHttpServer(server40addr)
+    # if html_content:
+    #     if not os.path.exists(download_dir):
+    #         os.makedirs(download_dir)
+    #
+    #     # 下载文件
+    #     download_files_from_html(html_content, server40addr, download_dir)
 
-        # 下载文件
-        download_files_from_html(html_content, server40addr, download_dir)
 
+def copYesterdayData():
+    ...
+    # 解压zip文件夹
+    startTradePath = r"C:\Users\Administrator\Desktop\startTrade"
+    temp           = rf"{startTradePath}\data\temp"
+    today = getToday()
+    zipPath = rf"{startTradePath}\data{today}.zip"
+    if not ifExist(zipPath):
+        printRedMsg(f"data{today}.zip is NOT here, returning to main menu...")
+        return
+
+    input("")
+    # create_folder(temp)
+    unzip_file(zipPath, temp)
+
+    # 移动文件
+    # test = rf"{temp}\test"
+    des_A_data       = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCA\data"
+    des_A_FormatData = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCA\format_data"
+    des_B_data       = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCB\data"
+    des_B_FormatData = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCB\format_data"
+    des_limit_price  = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\limit_price"
+    copy_files_in_folder(rf"{temp}\A_data", des_A_data)
+    copy_files_in_folder(rf"{temp}\A_format_data", des_A_FormatData)
+    copy_files_in_folder(rf"{temp}\B_data", des_B_data)
+    copy_files_in_folder(rf"{temp}\B_format_data", des_B_FormatData)
+    copy_file(rf"{temp}\{today}_limit_price.csv", des_limit_price)
+
+    # 检验文件是否传输
+    if count_files_with_target_field(des_A_data       , today) == 3:
+        printGreenMsg(f"today's data copied to {des_A_data}")
+    else:
+        printRedMsg("Data corrupt! returning to main menu...")
+        input("")
+
+    if count_files_with_target_field(des_A_FormatData , today) == 3:
+        printGreenMsg(f"today's data copied to {des_A_FormatData}")
+    else:
+        printRedMsg("Data corrupt! returning to main menu...")
+        input("")
+
+    if count_files_with_target_field(des_B_data       , today) == 3:
+        printGreenMsg(f"today's data copied to {des_B_data}")
+    else:
+        printRedMsg("Data corrupt! returning to main menu...")
+        input("")
+
+    if count_files_with_target_field(des_B_FormatData , today) == 3:
+        printGreenMsg(f"today's data copied to {des_B_FormatData}")
+    else:
+        printRedMsg("Data corrupt! returning to main menu...")
+        input("")
+
+    if not ifExist(des_limit_price):
+        printRedMsg("limit price file is NOT copied")
+    else:
+        ...
+
+
+    # 操作完之后清空temp文件夹
+    printYellowMsg("Deleting temp path...")
+    input("")
+    erase_folder_contents(temp)
+
+    printGreenMsg("process done, returning to main menu...")
+    input("")
 
 def main():
     # init()
     while True:
+
         menu()
         choice = input("请输入选项数字：")
 
@@ -616,26 +833,33 @@ def main():
         elif choice == "5":
             ...
             # downloadDataFromServer40()
+        elif choice == "6":
+            copYesterdayData()
         elif choice == "0":
             os.system("cls")
             print("See you tmr.\n")
+            print("\n")
+            printName()
             x = input("")
             break
         else:
-            print("无效的选项，请重新输入！")
+            printRedMsg("无效的选项，请重新输入！")
+            os.system("cls")
 
 
 def menu():
     print("----------------------------------------------")
-    print("Welcome to the ultimate trading tool ever.")
-    print("1. 拆分 FL22SC 并移回源路径")
-    print("2. 移动拆分后的 FL22SC 的实时信号到源路径")
-    print("3. 整理数据分析的数据")
-    print("4. 收盘拆分的导出数据的检查")
-    print("5. 测试：从另一台机器上的 HTTP 服务器上 fetch 文件(已删除)")
+    print(f"\t\t  \033[1\033[42;3;31m MAIN MENU \033[0m")
+    print("1. 拆分 FL22SC 并移回源路径                              ")
+    print("2. 移动拆分后的 FL22SC 的实时信号                        ")
+    print("3. 自动整理数据分析的数据                                ")
+    print("4. 收盘拆分导出数据的检查                                ")
+    print("5. 从另一台机器上的 HTTP 服务器上 fetch 文件(已删除)         ")
+    print("6. 把昨日数据分析的数据移动到分单路径                        ")
     print("0. 退出")
-    printYellowMsg("\n功能 1、2 在阿里云 61 上适配")
-    printYellowMsg("功能 3 只在数据分析 40 上适配")
+    printYellowMsg("\n适用于 61 的功能: 1, 2, 4, 6")
+    printYellowMsg("适用于 40 的功能: 3")
+    printYellowMsg("适用于本机的功能: 5")
     print("----------------------------------------------")
 
 
