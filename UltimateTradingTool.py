@@ -2,8 +2,14 @@
 import os
 import shutil
 from datetime import datetime
+import zipfile
+# import requests                   # 这个不注释，在 61 上跑不了
+# from bs4 import BeautifulSoup     # 这个不注释，在 40 上跑不了
 
 DEBUG_MODE = 1
+# 1表示启用，但这部分代码未完成
+HTTP_SERVER = 0
+server40addr = "http://192.168.1.40:8000/"
 
 os.system("mode con cols=250 lines=30")
 
@@ -99,22 +105,45 @@ def copy_files_with_string(source_folder, destination_folder, string_to_check, f
                 copied_files += 1
 
     except Exception as e:
-        print(f"Failed to copy files. Error: {e}")
+        printRedMsg(f"Failed to copy files. Error: {e}")
 
 
 
 def erase_folder_contents(folder_path):
     try:
-        # 获取文件夹中的所有文件
-        files = os.listdir(folder_path)
+        # 获取文件夹中的所有文件和文件夹
+        items = os.listdir(folder_path)
 
-        # 删除每个文件
-        for filename in files:
-            file_path = os.path.join(folder_path, filename)
-            os.remove(file_path)
-            printYellowMsg(f"Deleted file: {file_path}")
+        # 删除每个文件和清空文件夹
+        for item in items:
+            item_path = os.path.join(folder_path, item)
+            if os.path.isfile(item_path):
+                os.remove(item_path)
+                print(f"Deleted file: {item_path}")
+            elif os.path.isdir(item_path):
+                # 清空文件夹中的内容
+                erase_folder_contents(item_path)
+                print(f"Emptied folder: {item_path}")
+        return True
     except Exception as e:
         printRedMsg(f"Failed to erase folder contents. Error: {e}")
+        return False
+
+def zip_folder(folder_path, zip_path):
+    try:
+        # 创建一个zip文件
+        with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+            # 遍历文件夹中的所有文件和子文件夹
+            for root, dirs, files in os.walk(folder_path):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    # 将文件添加到zip文件中
+                    zipf.write(file_path, os.path.relpath(file_path, folder_path))
+
+        printGreenMsg(f"Folder {folder_path} successfully zipped to {zip_path}")
+    except Exception as e:
+        printRedMsg(f"Failed to zip folder. Error: {e}")
+
 
 def ifExist(path):
     # today = getToday()
@@ -152,8 +181,46 @@ def printBlueMsg(text):
 def ifContain(text, targetText):
     return targetText in text
 
+if HTTP_SERVER:
+    def fetchDataFromHttpServer(server_url):
+        try:
+            response = requests.get(server_url)
+            if response.status_code == 200:
+                printGreenMsg("Data fetched successfully:")
+                # print(response.text)
+                return response.text
+            else:
+                printRedMsg(f"Failed to fetch data. Status code: {response.status_code}")
+        except Exception as e:
+            printRedMsg(f"An error occurred: {e}")
 
 
+    def download_files_from_html(html_content, server_url, download_dir):
+        try:
+            soup = BeautifulSoup(html_content, 'html.parser')
+            links = soup.find_all('a')
+
+            for link in links:
+                href = link.get('href')
+                # 如果链接是相对路径，拼接成绝对路径
+                if not href.startswith('http'):
+                    href = server_url + '/' + href
+
+                filename = href.split('/')[-1]
+                file_path = os.path.join(download_dir, filename)
+
+                printBlueMsg(f"Downloading {filename}...")
+                r = requests.get(href, stream=True)
+                with open(file_path, 'wb') as f:
+                    for chunk in r.iter_content(chunk_size=8192):
+                        if chunk:
+                            f.write(chunk)
+                printGreenMsg(f"{filename} downloaded successfully.")
+
+        except Exception as e:
+            printRedMsg(f"An error occurred: {e}")
+
+# ==========================================================================================
 
 def before0920processFL22SC():
     oriFl22 = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SC\Sell_Buy_List_FL22SC"
@@ -473,31 +540,64 @@ def realTimeSignalMoveForFL22SC():
         input(" ")
 
 def dataCollectorOn40():
+    today = getToday()
     printYellowMsg("PLZ CHECK THIS FUNCTION IS ONLY WORKING ON 40")
-    printYellowMsg("\nDeleting data in folder toLZY")
+    printYellowMsg("Deleting data in folder toLZY")
     input("press any key to excute.")
     destinationPath = r"C:\Users\progene014\Desktop\toLZY\data"
-    erase_folder_contents(destinationPath)
+    # os.chmod(destinationPath, 0o777)
+    if erase_folder_contents(destinationPath):
+        printGreenMsg("Data has been deleted.")
+        input("")
+    else:
+        printRedMsg("Data has NOT been deleted, returning to main menu...")
+        input(" ")
+        return
+
 
     # limit_price_file
     limitPricePath = r"D:\limit_price_projects\limit_price_file"
-    # copy_file(limitPricePath, destinationPath)
+    copy_latest_files(limitPricePath, destinationPath, 1)
 
     # data
     oriDataA = r"D:\hutao\projects\数据分析\FL22SC\data_FL22SCA"
     oriDataB = r"D:\hutao\projects\数据分析\FL22SC\data_FL22SCB"
     desDataA = r"C:\Users\progene014\Desktop\toLZY\data\A_data"
     desDataB = r"C:\Users\progene014\Desktop\toLZY\data\B_data"
-    # copy_latest_files(oriDataA, desDataA, 3)
-    # copy_latest_files(oriDataB, desDataB, 3)
+    copy_latest_files(oriDataA, desDataA, 3)
+    copy_latest_files(oriDataB, desDataB, 3)
 
     # format data
     oriDataFormat = r"D:\hutao\projects\数据分析\FL22SC\format_data"
+    desDataAF = r"C:\Users\progene014\Desktop\toLZY\data\A_format_data"
+    desDataBF = r"C:\Users\progene014\Desktop\toLZY\data\B_format_data"
+    copy_files_with_string(oriDataFormat, desDataAF, "SCA", 3)
+    copy_files_with_string(oriDataFormat, desDataBF, "SCB", 3)
 
+    printYellowMsg("check if files are lastest, making ZIP file now")
+    # NQ 修改这个参数以把 zip 文件放到你想要的位置
+    whereToZip = rf"C:\Users\progene014\Desktop\toLZY\data{today}.zip"
+    zip_folder(destinationPath, whereToZip)
+    ifExist(whereToZip)
+    printGreenMsg("function ending, returning to main menu...")
+    input(" ")
 
 # 收盘拆分的导出数据的检查
 def checkExportData():
     ...
+
+
+def downloadDataFromServer40():
+    # TODO 未完成，又找不到本地文件夹的错误，而且会下载分享的所有文件。
+    download_dir = r"C:\Users\progene12\Desktop\Start Trading\FL22SC数据分析"
+    html_content = fetchDataFromHttpServer(server40addr)
+    if html_content:
+        if not os.path.exists(download_dir):
+            os.makedirs(download_dir)
+
+        # 下载文件
+        download_files_from_html(html_content, server40addr, download_dir)
+
 
 def main():
     # init()
@@ -513,6 +613,9 @@ def main():
             dataCollectorOn40()
         elif choice == "4":
             checkExportData()
+        elif choice == "5":
+            ...
+            # downloadDataFromServer40()
         elif choice == "0":
             os.system("cls")
             print("See you tmr.\n")
@@ -529,6 +632,7 @@ def menu():
     print("2. 移动拆分后的 FL22SC 的实时信号到源路径")
     print("3. 整理数据分析的数据")
     print("4. 收盘拆分的导出数据的检查")
+    print("5. 测试：从另一台机器上的 HTTP 服务器上 fetch 文件(已删除)")
     print("0. 退出")
     printYellowMsg("\n功能 1、2 在阿里云 61 上适配")
     printYellowMsg("功能 3 只在数据分析 40 上适配")
