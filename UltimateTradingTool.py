@@ -2,12 +2,17 @@
 # TODO 自动识别IP
 # TODO 交易成功之后有没有记录，这个也自动化
 # TODO 获取终端的宽度（虽然已经有了）
+# TODO 自动显示当时时间和交易阶段，提示应该做怎么操作
+# TODO 写一个便捷查询持仓的函数
+# TODO 写 def pressAnyKeyToContinue(): 然后替换所有
 import os
 import shutil
-from datetime import datetime
+from datetime import datetime, timedelta
 import zipfile
 # import requests                   # 这个不注释，在 61 上跑不了
 # from bs4 import BeautifulSoup     # 这个不注释，在 40 上跑不了
+import urllib.request
+import csv
 
 DEBUG_MODE = 1
 # 1表示启用，但这部分代码未完成
@@ -51,6 +56,13 @@ def getToday():
     today = currentDatetime.strftime("%Y%m%d")
     print(f"today is {today}\n")
     return today
+
+def getYesterday():
+    currentDatetime = datetime.now()
+    yesterday = currentDatetime - timedelta(days=1)
+    yesterday_str = yesterday.strftime("%Y%m%d")
+    print(f"yesterday was {yesterday_str}\n")
+    return yesterday_str
 
 
 def file_exists(file_path):
@@ -334,6 +346,35 @@ if HTTP_SERVER:
     #     except Exception as e:
     #         printRedMsg(f"An error occurred: {e}")
 
+
+def get_public_ip():
+    try:
+        ip_data = urllib.request.urlopen('https://api.ipify.org').read().decode('utf-8')
+        return ip_data
+    except Exception as e:
+        return "Error occurred: {}".format(str(e))
+
+
+def find_stock_data(file_path, stock_code):
+    with open(file_path, 'r', newline='') as csvfile:
+        reader = csv.reader(csvfile)
+        header = next(reader)  # 读取表头
+        print("表头:", end=" ")
+        for item in header:
+            print(item.ljust(15), end=" ")  # 对齐表头内容
+        print()  # 换行
+
+        for row in reader:
+            if any(cell.startswith(stock_code) for cell in row):
+                print("找到匹配的行：", end=" ")
+                for item in row:
+                    print(item.ljust(15), end=" ")  # 对齐每一列的内容
+                print()  # 换行
+                return
+        printRedMsg("未找到匹配的股票代码")
+
+
+
 # ====================================================================================================================
 # ============================================ 主要函数     ===========================================================
 # ====================================================================================================================
@@ -444,6 +485,7 @@ def before0920processFL22SC():
         input(" ")
 
     printGreenMsg("function before0920processFL22SC is ending, press any key to continue...")
+    input("")
 
 
 def realTimeSignalMoveForFL22SC():
@@ -456,7 +498,7 @@ def realTimeSignalMoveForFL22SC():
     noa2 = rf"{ori_SC}\{noa2_}{today}.txt"
 
     # FIXME 才意识到可以，选择数字之后，比如说2，就直接 nowTimeNode = m2 就可以很方便了。。。
-    # FIXME 没有意识到一个信号拆分后可能是A有信号B是no信号！！
+    # FIXME 没有意识到一个信号拆分后可能是A有信号B是no信号！！ 20240430 出现了这个问题，直接爆红，只能手动复制
     # FIXMED 只要早上有一次 No morning, 那接着的每一次都将要复制一次
     # 选择实时信号
     while True:
@@ -473,6 +515,7 @@ def realTimeSignalMoveForFL22SC():
             divideBjrcc = rf"{divide_SCB}\{jrcc}FL22SCB{m}_{today}.csv"
             divideAno = rf"{divide_SCA}\{nom_}{today}.txt"
             divideBno = rf"{divide_SCB}\{nom_}{today}.txt"
+
 
             oriAbuy = rf" "
             oriAsell = rf"{ori_SCA}\{sell}FL22SCA{m}_{today}.csv"
@@ -754,9 +797,10 @@ def copYesterdayData():
     startTradePath = r"C:\Users\Administrator\Desktop\startTrade"
     temp           = rf"{startTradePath}\data\temp"
     today = getToday()
-    zipPath = rf"{startTradePath}\data{today}.zip"
+    yesterday = getYesterday()
+    zipPath = rf"{startTradePath}\data{yesterday}.zip"
     if not ifExist(zipPath):
-        printRedMsg(f"data{today}.zip is NOT here, returning to main menu...")
+        printRedMsg(f"data{yesterday}.zip is NOT here, returning to main menu...")
         return
 
     input("")
@@ -777,29 +821,33 @@ def copYesterdayData():
     copy_file(rf"{temp}\{today}_limit_price.csv", des_limit_price)
 
     # 检验文件是否传输
-    if count_files_with_target_field(des_A_data       , today) == 3:
-        printGreenMsg(f"today's data copied to {des_A_data}")
+    if count_files_with_target_field(des_A_data       , yesterday) == 3:
+        printGreenMsg(f"yesterday's data copied to {des_A_data}")
     else:
         printRedMsg("Data corrupt! returning to main menu...")
         input("")
+        return
 
-    if count_files_with_target_field(des_A_FormatData , today) == 3:
-        printGreenMsg(f"today's data copied to {des_A_FormatData}")
+    if count_files_with_target_field(des_A_FormatData , yesterday) == 3:
+        printGreenMsg(f"yesterday's data copied to {des_A_FormatData}")
     else:
         printRedMsg("Data corrupt! returning to main menu...")
         input("")
+        return
 
-    if count_files_with_target_field(des_B_data       , today) == 3:
-        printGreenMsg(f"today's data copied to {des_B_data}")
+    if count_files_with_target_field(des_B_data       , yesterday) == 3:
+        printGreenMsg(f"yesterday's data copied to {des_B_data}")
     else:
         printRedMsg("Data corrupt! returning to main menu...")
         input("")
+        return
 
-    if count_files_with_target_field(des_B_FormatData , today) == 3:
-        printGreenMsg(f"today's data copied to {des_B_FormatData}")
+    if count_files_with_target_field(des_B_FormatData , yesterday) == 3:
+        printGreenMsg(f"yesterday's data copied to {des_B_FormatData}")
     else:
         printRedMsg("Data corrupt! returning to main menu...")
         input("")
+        return
 
     if not ifExist(des_limit_price):
         printRedMsg("limit price file is NOT copied")
@@ -808,32 +856,63 @@ def copYesterdayData():
 
 
     # 操作完之后清空temp文件夹
-    printYellowMsg("Deleting temp path...")
+    printYellowMsg("Deleting temp path and archiving zip file...")
     input("")
     erase_folder_contents(temp)
+    move_files(zipPath, r"C:\Users\Administrator\Desktop\startTrade\data")
 
     printGreenMsg("process done, returning to main menu...")
     input("")
 
+
+def findData():
+    os.system("clr")
+    while True:
+        print("FIND DATA MODE\n请选择功能：")
+        print("1. 查找股票代码")
+        print("输入 'quit' 退出")
+
+        choice = input("请输入选项：")
+
+        if choice == '1':
+            file_path = input("请输入 CSV 文件的路径：")
+            if file_path.lower() == 'quit':
+                print("返回主界面")
+                return
+            stock_code = input("请输入股票代码：")
+            find_stock_data(file_path, stock_code)
+        elif choice.lower() == 'quit':
+            print("返回主界面")
+            return
+        else:
+            print("无效选项，请重新输入")
+
+
+
 def main():
     # init()
+
+
+
     while True:
 
         menu()
         choice = input("请输入选项数字：")
 
-        if choice == "1":
+        if choice == "3":
             before0920processFL22SC()
         elif choice == "2":
             realTimeSignalMoveForFL22SC()
-        elif choice == "3":
+        elif choice == "5":
             dataCollectorOn40()
         elif choice == "4":
             checkExportData()
-        elif choice == "5":
+        elif choice == "6":
+            findData()
+        elif choice == "9":
             ...
             # downloadDataFromServer40()
-        elif choice == "6":
+        elif choice == "1":
             copYesterdayData()
         elif choice == "0":
             os.system("cls")
@@ -848,18 +927,26 @@ def main():
 
 
 def menu():
+    # TODO 写一个可以便捷查询真实持仓的小程序
+    # ipAddr = get_public_ip()
+
     print("----------------------------------------------")
     print(f"\t\t  \033[1\033[42;3;31m MAIN MENU \033[0m")
-    print("1. 拆分 FL22SC 并移回源路径                              ")
+
+    print("1. 把昨日数据分析的数据移动到分单路径                        ")
     print("2. 移动拆分后的 FL22SC 的实时信号                        ")
-    print("3. 自动整理数据分析的数据                                ")
+    print("3. 拆分 FL22SC 并移回源路径                              ")
     print("4. 收盘拆分导出数据的检查                                ")
-    print("5. 从另一台机器上的 HTTP 服务器上 fetch 文件(已删除)         ")
-    print("6. 把昨日数据分析的数据移动到分单路径                        ")
+
+    print("5. 自动整理数据分析的数据                                ")
+    print("6. 查询数据                                ")
+
+    print("9. 从另一台机器上的 HTTP 服务器上 fetch 文件(已删除)         ")
     print("0. 退出")
-    printYellowMsg("\n适用于 61 的功能: 1, 2, 4, 6")
-    printYellowMsg("适用于 40 的功能: 3")
-    printYellowMsg("适用于本机的功能: 5")
+    # printGreenMsg(f"\n这台机器的 IP 地址是： {ipAddr}")
+    printYellowMsg("\n适用于 61 的功能: 1, 2, 3, 4")
+    printYellowMsg("适用于 40 的功能: 5")
+    printYellowMsg("适用于本机的功能: 9")
     print("----------------------------------------------")
 
 
