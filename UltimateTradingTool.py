@@ -14,6 +14,8 @@ import zipfile
 # from bs4 import BeautifulSoup     # 这个不注释，在 40 上跑不了
 import urllib.request
 import csv
+import tkinter as tk
+from tkinter import messagebox
 
 DEBUG_MODE = 1
 # 1表示启用，但这部分代码未完成
@@ -1153,13 +1155,7 @@ def simpleRiseTopTxt():
 
     input("return to main menu...")
 
-
-
-def main():
-    # init()
-
-
-
+def afterMain():
     while True:
         os.system("cls")
         menu()
@@ -1195,6 +1191,24 @@ def main():
             printRedMsg("无效的选项，请重新输入！")
             input("\n")
             os.system("cls")
+
+def main():
+    # global root
+    # root = tk.Tk()
+    # root.title("Ultimate Trading Tool")
+    #
+    # # 创建菜单按钮
+    # menu_btn = tk.Button(root, text="打开主菜单", command=afterMain)
+    # menu_btn.pack(pady=20)
+    #
+    # output_text = tk.Text(root, height=10, width=50)
+    # output_text.pack(padx=10, pady=10)
+    #
+    # root.mainloop()
+    afterMain()
+
+
+
 
 
 def menu():
