@@ -5,6 +5,7 @@
 # TODO 自动显示当时时间和交易阶段，提示应该做怎么操作
 # TODO 写一个便捷查询持仓的函数
 # TODO 写 def pressAnyKeyToContinue(): 然后替换所有
+# TODO 写出 UI
 import os
 import shutil
 from datetime import datetime, timedelta
@@ -20,6 +21,14 @@ HTTP_SERVER = 0
 server40addr = "http://192.168.1.40:8000/"
 
 os.system("mode con cols=250 lines=30")
+
+product_fund_dict = {
+    "CF15": "480151137",
+    "FL18": "480149909",
+    "HT02XY": "480167623",
+    "FL18SCA": "480160777",
+    "FL22SCB": "3050003937"
+}
 
 m = "morning"
 m2 = "morning2Two"
@@ -359,24 +368,196 @@ def find_stock_data(file_path, stock_code):
     with open(file_path, 'r', newline='') as csvfile:
         reader = csv.reader(csvfile)
         header = next(reader)  # 读取表头
-        print("表头:", end=" ")
+        # print("表头:", end=" ")
+        printGreenMsg("\n--------------------------------------------------")
         for item in header:
             print(item.ljust(15), end=" ")  # 对齐表头内容
         print()  # 换行
 
+        isFound = False
         for row in reader:
-            if any(cell.startswith(stock_code) for cell in row):
-                print("找到匹配的行：", end=" ")
+            if any(stock_code in cell for cell in row):
+                # print("找到匹配的行：", end=" ")
                 for item in row:
                     print(item.ljust(15), end=" ")  # 对齐每一列的内容
                 print()  # 换行
-                return
-        printRedMsg("未找到匹配的股票代码")
+        printGreenMsg("\n--------------------------------------------------\n")
+        input("press any key to return FIND DATA mode")
+        isFound = True
 
+        if not isFound:
+            printRedMsg("未找到匹配的股票代码")
+            input("press any key to continue...")
+
+
+# 这个函数接受文件名和产品号与资金账号的字典作为参数。它首先在文件名中查找包含的关键字，然后根据找到的关键字获取对应的产品号。
+# 最后，根据产品号在字典中查找对应的资金账号并输出。
+def getInfoFromFileName(file_name, product_fund_dict_):
+    keywords = ["CF15", "FL18", "HT02XY", "FL18SCA", "FL22SCB"]
+
+
+    # 查找文件名中包含的关键字
+    found_keyword = None
+    for keyword in keywords:
+        if keyword in file_name:
+            found_keyword = keyword
+            break
+
+    if found_keyword is None:
+        printRedMsg("未找到匹配的关键字")
+        input("")
+        return
+
+    # 根据关键字获取对应的产品号
+    product_number = None
+    if found_keyword in product_fund_dict_:
+        product_number = product_fund_dict_[found_keyword]
+
+    if product_number is None:
+        printRedMsg("未找到对应的产品号")
+        input("")
+        return
+
+    print(f"\nYou are using \033[33m{found_keyword}\033[0m and the account number is \033[33m{product_number}\033[0m")
+
+    # 根据产品号获取对应的资金账号
+    # if product_number in product_fund_dict_:
+    #     fund_account = product_fund_dict_[product_number]
+    #     printGreenMsg(f"\nYou are using \033[33m{found_keyword}\033[0m and the account number is \033[33m{product_number}\033[0m\n")
+    # else:
+    #     printRedMsg("未找到对应的产品号")
+
+
+def printAccountInfo():
+    ...
+
+def printAllAccountInfo():
+    os.system("cls")
+    isCorrect = enterPasswordToContinue()
+    if not isCorrect:
+        printRedMsg("Wrong password, contact with Admin")
+        input("")
+        return
+    if isCorrect:
+        printGreenMsg("password Correct.")
+        input("")
+    # 五个产品名
+    product_names = ["CF15", "FL18", "HT02XY", "FL18SCA", "FL22SCB"]
+    # 五个产品号
+    product_numbers = ["480151137", "480149909", "480167623", "480160777", "3050003937"]
+    # 五个密码
+    passwords = ["297725", "230577", "890898", "123321", "123321"]
+    printGreenMsg("\n--------------------------------------------------")
+
+    print("产品名\t\t产品账号\t\t密码")
+    for name, number, password in zip(product_names, product_numbers, passwords):
+        print(f"{name}\t\t{number}\t\t{password}")
+    printGreenMsg("\n--------------------------------------------------\n")
+
+    input("press any key to quit")
+
+def enterPasswordToContinue():
+    cp = "147258"
+    while True:
+        p = input("Enter the password to unlock\n")
+        if p == cp:
+            return True
+        else:
+            return False
+
+
+def list_files_with_numbers(path, n):
+    files = os.listdir(path)
+    files = [f for f in files if os.path.isfile(os.path.join(path, f))]  # 过滤出文件
+    files.sort()  # 排序文件列表
+
+    for i, file in enumerate(files[:n]):
+        print(f"{i+1}: {file}")
+
+    choice = int(input("请选择文件序号（输入数字 1 到 n）: "))
+    if choice < 1 or choice > n:
+        print("无效的选择")
+        return None
+
+    selected_file = os.path.join(path, files[choice-1])
+    return selected_file
+
+
+def list_files_with_numbers(path, n):
+    files = os.listdir(path)
+    files = [f for f in files if os.path.isfile(os.path.join(path, f))]  # 过滤出文件
+    files.sort()  # 排序文件列表
+
+    for i, file in enumerate(files[:n]):
+        print(f"{i+1}: {file}")
+
+    choice = int(input(f"请选择文件序号（输入数字 1 到 {n}）: "))
+    if choice < 1 or choice > n:
+        printRedMsg("无效的选择")
+        return None
+
+    selected_file = os.path.join(path, files[choice-1])
+    return selected_file
+
+
+def quickLookUpSellBuyList(product_choice):
+    product_names = ["CF15", "FL18", "HT02XY", "FL18SC", "FL18SCA", "FL22SCB"]
+    productName = product_names[product_choice-1]
+    rootPath = r"C:\Users\Administrator\Desktop\兴业证券多账户交易"
+    BSLpath = rf"{rootPath}\{productName}\Sell_Buy_List_{productName}"
+
+    fullPath = list_files_with_numbers(BSLpath, 15)
+    # print(fullPath)
+    # TODO 还没写完
+
+
+# def remove_lines_with_character(file_path, target_character):
+#     printGreenMsg("正在处理中...")
+#     # 打开文件并逐行读取内容
+#     with open(file_path, 'r') as file:
+#         lines = file.readlines()
+#
+#     # 过滤掉包含特定字符的行
+#     filtered_lines = [line for line in lines if target_character not in line]
+#
+#     # 将剩余的行重新写入文件
+#     with open(file_path, 'w') as file:
+#         file.writelines(filtered_lines)
+#
+#     printGreenMsg("处理完成")
+#     input("")
+
+
+
+# 如果文件可能很大，我们可以采用逐行读取和写入的方式来处理文件，以避免一次性加载整个文件到内存中
+def remove_lines_with_character(file_path, target_character):
+    try:
+        print(f"正在处理 {target_character} 中...", end=" ")
+        # 将目标字符转换为字节对象
+        target_byte = target_character.encode()
+        temp_file_path = file_path + '.tmp' # 创建临时文件路径
+        # 逐行读取原文件，并过滤掉包含特定字符的行，写入临时文件
+        with open(file_path, 'rb') as input_file, open(temp_file_path, 'wb') as output_file:
+            for line in input_file:
+                if target_byte not in line:
+                    output_file.write(line)
+        # printGreenMsg("正在逐行读取原文件，并过滤掉包含特定字符的行，写入临时文件中...")
+        # 替换原文件
+
+        os.remove(file_path)
+        # printGreenMsg("正在替换原文件中...")
+        os.rename(temp_file_path, file_path)
+
+        printGreenMsg("处理完成")
+
+    except Exception as e:
+        # 如果发生异常，打印错误消息
+        printRedMsg(f"处理文件时出现错误：{e}")
+        input("")
 
 
 # ====================================================================================================================
-# ============================================ 主要函数     ===========================================================
+# ============================================   主要函数   ===========================================================
 # ====================================================================================================================
 
 def before0920processFL22SC():
@@ -866,26 +1047,111 @@ def copYesterdayData():
 
 
 def findData():
-    os.system("clr")
+    # TODO 搞format data好像会炸
     while True:
-        print("FIND DATA MODE\n请选择功能：")
-        print("1. 查找股票代码")
-        print("输入 'quit' 退出")
+        os.system("cls")
+        print(f"\n\t\t  \033[1\033[42;3;31m FIND DATA MODE \033[0m\n")
+        # print("请选择功能：")
+        print("\n\t1. 查询单个文件")
+        print("\t2. 快速查询 Sell_Buy_List")
+        # print("quit. 退出")
 
-        choice = input("请输入选项：")
+        choice = input("\n\n\n\n\nEnter the function you want:\n")
 
         if choice == '1':
-            file_path = input("请输入 CSV 文件的路径：")
+            os.system("cls")
+
+            file_path = input("请拖入 CSV 文件：")
             if file_path.lower() == 'quit':
                 print("返回主界面")
                 return
+
             stock_code = input("请输入股票代码：")
+            getInfoFromFileName(file_path, product_fund_dict)
             find_stock_data(file_path, stock_code)
+        elif choice == "2":
+            # TODO finish!
+
+
+            print("1. CF15")
+            print("2. FL18")
+            print("3. HT02XY")
+            print("4. FL18SC")
+            print("5. FL18SCA")
+            print("6. FL22SCB")
+            productChoice = input("input the product you want.")
+            if productChoice == "1":
+                quickLookUpSellBuyList(1)
+            elif productChoice == "2":
+                ...
+            elif productChoice == "3":
+                ...
+            elif productChoice == "4":
+                ...
+            elif productChoice == "5":
+                ...
+            elif productChoice == "6":
+                ...
+
+
+
+
+
+        elif choice == "test":
+            printYellowMsg("testing for def getInfoFromFileName(file_name, product_fund_dict):")
+            x = input()
+            getInfoFromFileName(x, product_fund_dict)
+
+            input("press any key to quit testing")
         elif choice.lower() == 'quit':
             print("返回主界面")
             return
         else:
-            print("无效选项，请重新输入")
+            input("无效选项，请重新输入")
+
+
+def simpleRiseTopTxt():
+    os.system("cls")
+    printYellowMsg("这个程序不会备份源文件，修改是不可逆的\n")
+    file_path = input("请拖入 CSV 文件：")
+    if file_path.lower() == 'quit':
+        print("返回主界面")
+        return
+
+    printYellowMsg("Auto set the filename with date, if not intend to do so, type no.")
+    isSetName = input("")
+    if not isSetName == "no":
+        try:
+            today = getToday()
+            directory = os.path.dirname(file_path)
+            new_path = os.path.join(directory, today+".txt")
+            os.rename(file_path, new_path)
+            printYellowMsg(rf"set the filename to {today}")
+            file_path = new_path
+        except Exception as e:
+            # 如果发生异常，打印错误消息
+            printRedMsg(f"重命名错误：{e}")
+            input("")
+        # print(file_path)
+        # input("")
+    if not file_path:
+        printRedMsg("file_path is bad, return to main menu...")
+        input("")
+        return
+
+    printGreenMsg("backup the log file...")
+    originalLogPath = r"C:\Users\Administrator\Desktop\startTrade\RiseTopLog\originalLog"
+    # shutil.move(file_path, originalLogPath, copy_function=shutil.copy2)
+    shutil.copy(file_path, originalLogPath)
+
+    remove_lines_with_character(file_path, "nowtime")
+    remove_lines_with_character(file_path, "没有一字涨停")
+    remove_lines_with_character(file_path, "****************")
+    remove_lines_with_character(file_path, "还未到达")
+    remove_lines_with_character(file_path, "已到达")
+    remove_lines_with_character(file_path, "cb_error <class 'int'>")
+
+    input("return to main menu...")
 
 
 
@@ -895,7 +1161,7 @@ def main():
 
 
     while True:
-
+        os.system("cls")
         menu()
         choice = input("请输入选项数字：")
 
@@ -909,6 +1175,10 @@ def main():
             checkExportData()
         elif choice == "6":
             findData()
+        elif choice == "7":
+            printAllAccountInfo()
+        elif choice == "8":
+            simpleRiseTopTxt()
         elif choice == "9":
             ...
             # downloadDataFromServer40()
@@ -923,6 +1193,7 @@ def main():
             break
         else:
             printRedMsg("无效的选项，请重新输入！")
+            input("\n")
             os.system("cls")
 
 
@@ -940,6 +1211,8 @@ def menu():
 
     print("5. 自动整理数据分析的数据                                ")
     print("6. 查询数据                                ")
+    print("7. 查看各个账号密码")
+    print("8. 简化涨跌停的记录")
 
     print("9. 从另一台机器上的 HTTP 服务器上 fetch 文件(已删除)         ")
     print("0. 退出")
