@@ -16,6 +16,8 @@ import urllib.request
 import csv
 import tkinter as tk
 from tkinter import messagebox
+import sv_ttk
+import re
 
 DEBUG_MODE = 1
 # 1表示启用，但这部分代码未完成
@@ -53,6 +55,30 @@ divide_SCB = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCB\Sell_
 ori_SC  = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SC\Sell_Buy_List_FL22SC"
 ori_SCA = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCA\Sell_Buy_List_FL22SCA"
 ori_SCB = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCB\Sell_Buy_List_FL22SCB"
+
+# ====================================================================================================================
+# ================================================ TKINTER ============================================================
+# ====================================================================================================================
+
+# def display_message_label():
+#     message = "Hello, this is a message using Label."
+#     label.config(text=message)
+#
+# def display_message_text():
+#     message = "Hello, this is a message using Text."
+#     text.delete(1.0, tk.END)  # 清空Text组件中的内容
+#     text.insert(tk.END, message)
+#
+# def display_message_text():
+#     message = "Hello, this is a message using Text."
+#     text.delete(1.0, tk.END)  # 清空Text组件中的内容
+#     text.insert(tk.END, message)
+
+
+
+def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
+    ...
+
 
 # ====================================================================================================================
 # ================================================ 工具函数 ============================================================
@@ -314,7 +340,7 @@ def printName():
             \/      \/            \/      \/ 
 
     """
-    print(logo1)
+    print(logo2)
 
 
 if HTTP_SERVER:
@@ -557,6 +583,79 @@ def remove_lines_with_character(file_path, target_character):
         printRedMsg(f"处理文件时出现错误：{e}")
         input("")
 
+
+def rename_all_py_files_and_return_paths(folder_path, new_fund_name):
+    file_paths = []
+
+    # 遍历文件夹中的所有文件
+    for root, dirs, files in os.walk(folder_path):
+        for file in files:
+            if file.endswith(".py"):  # 确保只处理.py文件
+                file_path = os.path.join(root, file)
+                file_paths.append(file_path)
+
+                # 读取文件内容
+                with open(file_path, "r") as f:
+                    content = f.read()
+
+                # 使用正则表达式替换文件中的字符串
+                new_content = re.sub(r'fund_name=\w+', 'fund_name=' + new_fund_name, content)
+
+                # 将替换后的内容写回文件
+                with open(file_path, "w") as f:
+                    f.write(new_content)
+
+                # 生成新的文件名（可选）
+                new_file_name = file.replace("old_fund_name", new_fund_name)
+                new_file_path = os.path.join(root, new_file_name)
+
+                # 重命名文件
+                os.rename(file_path, new_file_path)
+
+    return file_paths
+
+def rename_py_files(directory_path, new_extension=".new"):
+    """
+    :brief 传入一个路径，遍历这个路径下所有py文件，对每个文件进行重命名操作
+    Function to rename all .py files in a given directory.
+    :param directory_path: Path to the directory containing .py files.
+    :param new_extension: New extension for renamed files (default: ".new").
+    """
+    today = getToday()
+    files = os.listdir(directory_path)
+    for filename in files:
+        if filename.endswith(".py"):
+            old_path = os.path.join(directory_path, filename)
+            productName = find_fund_name(old_path)
+            if productName:
+                new_filename = f"{productName}_{today}{new_extension}"
+                new_path = os.path.join(directory_path, new_filename)
+                os.rename(old_path, new_path)
+
+
+def find_fund_name(filepath):
+    """
+    传入一个文件路径，找到文件里含有fund_name=的一行，返回等号后面的字符串
+    Function to find and return the string after "fund_name=" in a specified file.
+    :param filepath: Path to the file.
+    :return: String after "fund_name=" if found, otherwise None.
+    """
+    with open(filepath, 'r', encoding='utf-8') as file:
+        for line in file:
+            match = re.search(r'fund_name=(.*)', line)
+            if match:
+                return match.group(1).strip()
+
+# Example usage:
+# 1. Rename all .py files in the directory "my_directory" with extension ".new"
+# rename_py_files("my_directory", ".new")
+
+# 2. Find and return the string after "fund_name=" in the file "example_file.txt"
+# fund_name_value = find_fund_name("example_file.txt")
+# print(fund_name_value)
+
+def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
+    ...
 
 # ====================================================================================================================
 # ============================================   主要函数   ===========================================================
@@ -1114,47 +1213,152 @@ def findData():
 
 def simpleRiseTopTxt():
     os.system("cls")
-    printYellowMsg("这个程序不会备份源文件，修改是不可逆的\n")
-    file_path = input("请拖入 CSV 文件：")
+    printYellowMsg("\n这个程序不会备份源文件，修改是不可逆的\n")
+
+
+
+    file_path = input("请拖入要分析的文件：\n")
     if file_path.lower() == 'quit':
         print("返回主界面")
         return
 
-    printYellowMsg("Auto set the filename with date, if not intend to do so, type no.")
-    isSetName = input("")
-    if not isSetName == "no":
-        try:
-            today = getToday()
-            directory = os.path.dirname(file_path)
-            new_path = os.path.join(directory, today+".txt")
-            os.rename(file_path, new_path)
-            printYellowMsg(rf"set the filename to {today}")
-            file_path = new_path
-        except Exception as e:
-            # 如果发生异常，打印错误消息
-            printRedMsg(f"重命名错误：{e}")
+    print("1. 监控涨跌停")
+    print("2. 订单异常监控")
+    print("3. Order 程序文件")
+    print("0. 自定义模式")
+    # print("4. ")
+
+    choice = input("\n输入要进行的操作的文件类型: \n")
+
+    if choice == "1":
+        printYellowMsg("Auto set the filename with date and file type, \nif not intend to do so, type no.\n")
+        isSetName = input("")
+        if not isSetName == "no":
+            try:
+                today = getToday()
+                directory = os.path.dirname(file_path)
+                new_path = os.path.join(directory, today+"_risestop.log")
+                os.rename(file_path, new_path)
+                # printYellowMsg(rf"set the filename to {today}")
+                file_path = new_path
+            except Exception as e:
+                # 如果发生异常，打印错误消息
+                printRedMsg(f"重命名错误：{e}")
+                input("")
+            # print(file_path)
+            # input("")
+        if not file_path:
+            printRedMsg("file_path is bad, return to main menu...")
             input("")
-        # print(file_path)
-        # input("")
-    if not file_path:
-        printRedMsg("file_path is bad, return to main menu...")
+            return
+
+        printGreenMsg("backup the log file...")
+        originalLogPath = r"C:\Users\Administrator\Desktop\startTrade\Log\Risestop\originalLog"
+        # shutil.move(file_path, originalLogPath, copy_function=shutil.copy2)
+        shutil.copy(file_path, originalLogPath)
+
+        remove_lines_with_character(file_path, "Python")
+        remove_lines_with_character(file_path, "for more information")
+        remove_lines_with_character(file_path, "nowtime")
+        remove_lines_with_character(file_path, "没有一字涨停")
+        remove_lines_with_character(file_path, "****************")
+        remove_lines_with_character(file_path, "还未到达")
+        remove_lines_with_character(file_path, "已到达")
+        remove_lines_with_character(file_path, "cb_error <class 'int'>")
+        remove_lines_with_character(file_path, "                        ")
+
+        input("return to main menu...")
+    elif choice == "2":
+        printYellowMsg("Auto set the filename with date and file type, \nif not intend to do so, type no.\n")
+        isSetName = input("")
+        if not isSetName == "no":
+            try:
+                today = getToday()
+                directory = os.path.dirname(file_path)
+                new_path = os.path.join(directory, today + "_unusual.log")
+                os.rename(file_path, new_path)
+                printYellowMsg(rf"set the filename to {today}")
+                file_path = new_path
+            except Exception as e:
+                # 如果发生异常，打印错误消息
+                printRedMsg(f"重命名错误：{e}")
+                input("")
+            # print(file_path)
+            # input("")
+        if not file_path:
+            printRedMsg("file_path is bad, return to main menu...")
+            input("")
+            return
+
+        printGreenMsg("backup the log file...")
+        originalLogPath = r"C:\Users\Administrator\Desktop\startTrade\Log\Unusual\originalLog"
+        # shutil.move(file_path, originalLogPath, copy_function=shutil.copy2)
+        shutil.copy(file_path, originalLogPath)
+
+        remove_lines_with_character(file_path, "无异常订单情况")
+        remove_lines_with_character(file_path, "现在在")
+        remove_lines_with_character(file_path, "now time")
+        remove_lines_with_character(file_path, "Python")
+        remove_lines_with_character(file_path, "for more information")
+
+        input("return to main menu...")
+    elif choice == "3":
+        printYellowMsg("!在这个模式下，拖入文件的同文件夹下所有文件将会被处理!\n")
+        printYellowMsg("Auto set the filename with date and file type, \nif not intend to do so, type no.\n")
+        isSetName = input("")
+        if not isSetName == "no":
+            try:
+                # 重命名
+                rename_py_files(file_path+r"\..", ".log")
+            except Exception as e:
+                # 如果发生异常，打印错误消息
+                printRedMsg(f"重命名错误：{e}")
+                input("")
+            # print(file_path)
+            # input("")
+        if not file_path:
+            printRedMsg("file_path is bad, return to main menu...")
+            input("")
+            return
+
+        files = os.listdir(file_path+r"\..")
+        for filename in files:
+            if filename.endswith(".py"):
+                ...
+
+        # printGreenMsg("backup the log file...")
+        # originalLogPath = r"C:\Users\Administrator\Desktop\startTrade\Log\Unusual\originalLog"
+        # # shutil.move(file_path, originalLogPath, copy_function=shutil.copy2)
+        # shutil.copy(file_path, originalLogPath)
+
+        # remove_lines_with_character(file_path, "无异常订单情况")
+        # remove_lines_with_character(file_path, "现在在")
+        # remove_lines_with_character(file_path, "now time")
+        # remove_lines_with_character(file_path, "Python")
+        # remove_lines_with_character(file_path, "for more information")
+
+        input("return to main menu...")
+
+    elif choice == "0":
+        printYellowMsg("!在这个模式下，源文件将会被处理!请备份好文件\n")
+        printYellowMsg("自定义模式\n")
         input("")
-        return
 
-    printGreenMsg("backup the log file...")
-    originalLogPath = r"C:\Users\Administrator\Desktop\startTrade\RiseTopLog\originalLog"
-    # shutil.move(file_path, originalLogPath, copy_function=shutil.copy2)
-    shutil.copy(file_path, originalLogPath)
+        if not file_path:
+            printRedMsg("file_path is bad, return to main menu...")
+            input("")
+            return
+        flag = False
+        while not flag:
+            x = input("输入要删除的行")
+            if x == "quit":
+                printYellowMsg("returning to main menu...")
+                input("")
+                return
+            else:
+                remove_lines_with_character(file_path, x)
 
-    remove_lines_with_character(file_path, "nowtime")
-    remove_lines_with_character(file_path, "没有一字涨停")
-    remove_lines_with_character(file_path, "****************")
-    remove_lines_with_character(file_path, "还未到达")
-    remove_lines_with_character(file_path, "已到达")
-    remove_lines_with_character(file_path, "cb_error <class 'int'>")
-
-    input("return to main menu...")
-
+        input("return to main menu...")
 def afterMain():
     while True:
         os.system("cls")
@@ -1176,6 +1380,8 @@ def afterMain():
         elif choice == "8":
             simpleRiseTopTxt()
         elif choice == "9":
+            ...
+        elif choice == "10":
             ...
             # downloadDataFromServer40()
         elif choice == "1":
@@ -1226,9 +1432,10 @@ def menu():
     print("5. 自动整理数据分析的数据                                ")
     print("6. 查询数据                                ")
     print("7. 查看各个账号密码")
-    print("8. 简化涨跌停的记录")
+    print("8. 存档并简化所有记录  简化涨跌停的记录")
+    # print("9. ")
 
-    print("9. 从另一台机器上的 HTTP 服务器上 fetch 文件(已删除)         ")
+    print("10. 从另一台机器上的 HTTP 服务器上 fetch 文件(已删除)         ")
     print("0. 退出")
     # printGreenMsg(f"\n这台机器的 IP 地址是： {ipAddr}")
     printYellowMsg("\n适用于 61 的功能: 1, 2, 3, 4")
