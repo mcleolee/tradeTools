@@ -42,7 +42,7 @@ a2 = "afternoon2Two"
 nom_ = "NoSellingMorning_"
 nom2_ = "NoSellingMorning2Two_"
 noa_ = "NoSellingAfternoon_"
-noa2_ = "NoSellingAfternoon2Two_"
+noa2_ = "NoBuyingAfternoon2Two_"
 underline = "_"
 
 sell = "SellOrderList"
@@ -1261,7 +1261,7 @@ def simpleRiseTopTxt():
         remove_lines_with_character(file_path, "for more information")
         remove_lines_with_character(file_path, "nowtime")
         remove_lines_with_character(file_path, "没有一字涨停")
-        remove_lines_with_character(file_path, "****************")
+        remove_lines_with_character(file_path, "*******************")
         remove_lines_with_character(file_path, "还未到达")
         remove_lines_with_character(file_path, "已到达")
         remove_lines_with_character(file_path, "cb_error <class 'int'>")
