@@ -49,12 +49,13 @@ sell = "SellOrderList"
 buy = "BuyOrderList"
 jrcc = "JinRiChiCang"
 
-divide_SC  = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCA\Sell_Buy_List_FL22SC"
+divide_SC = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCA\Sell_Buy_List_FL22SC"
 divide_SCA = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCA\Sell_Buy_List_FL22SCA"
 divide_SCB = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCB\Sell_Buy_List_FL22SCB"
-ori_SC  = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SC\Sell_Buy_List_FL22SC"
+ori_SC = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SC\Sell_Buy_List_FL22SC"
 ori_SCA = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCA\Sell_Buy_List_FL22SCA"
 ori_SCB = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCB\Sell_Buy_List_FL22SCB"
+
 
 # ====================================================================================================================
 # ================================================ TKINTER ============================================================
@@ -75,7 +76,6 @@ ori_SCB = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCB\S
 #     text.insert(tk.END, message)
 
 
-
 def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
     ...
 
@@ -93,6 +93,7 @@ def getToday():
     today = currentDatetime.strftime("%Y%m%d")
     print(f"today is {today}\n")
     return today
+
 
 def getYesterday():
     currentDatetime = datetime.now()
@@ -178,7 +179,6 @@ def copy_files_with_string(source_folder, destination_folder, string_to_check, f
         printRedMsg(f"Failed to copy files. Error: {e}")
 
 
-
 def erase_folder_contents(folder_path):
     try:
         # 获取文件夹中的所有文件和文件夹
@@ -208,6 +208,7 @@ def move_files(source_folder, destination_folder):
     except Exception as e:
         printRedMsg(f"Failed to move files. Error: {e}")
 
+
 def copy_files_in_folder(source_folder, destination_folder):
     try:
         # 遍历源文件夹中的所有文件
@@ -220,6 +221,7 @@ def copy_files_in_folder(source_folder, destination_folder):
                 print(f"Copied file: {source_file_path} to {destination_file_path}")
     except Exception as e:
         printRedMsg(f"Failed to copy files. Error: {e}")
+
 
 def zip_folder(folder_path, zip_path):
     try:
@@ -248,6 +250,7 @@ def unzip_file(zip_path, extract_to):
     except Exception as e:
         printRedMsg(f"Failed to unzip file. Error: {e}")
 
+
 def create_folder(folder_path):
     try:
         # 创建文件夹
@@ -255,6 +258,7 @@ def create_folder(folder_path):
         print(f"Folder created at {folder_path}")
     except Exception as e:
         printRedMsg(f"Failed to create folder. Error: {e}")
+
 
 def ifExist(path):
     # today = getToday()
@@ -266,6 +270,7 @@ def ifExist(path):
         print(f"The file {path} does \033[33m{notExist}\033[0m.")
         return False
 
+
 def printColorMsg(text, color_code):
     print(f"\033[{color_code}m{text}\033[0m\n")
     return f"\033[{color_code}m{text}\033[0m"
@@ -273,24 +278,30 @@ def printColorMsg(text, color_code):
     # print(colorize_text("Hello, world!", "31"))  # 红色文本
     # print(colorize_text("Hello, world!", "1;32"))  # 绿色粗体文本
 
+
 def printRedMsg(text):
     print(f"\033[31m{text}\033[0m\n")
     return f"\033[31m{text}\033[0m"
+
 
 def printGreenMsg(text):
     print(f"\033[32m{text}\033[0m\n")
     return f"\033[32m{text}\033[0m"
 
+
 def printYellowMsg(text):
     print(f"\033[33m{text}\033[0m\n")
     return f"\033[33m{text}\033[0m"
+
 
 def printBlueMsg(text):
     print(f"\033[34m{text}\033[0m\n")
     return f"\033[34m{text}\033[0m"
 
+
 def ifContain(text, targetText):
     return targetText in text
+
 
 def count_files_with_target_field(folder_path, target_field):
     try:
@@ -304,6 +315,7 @@ def count_files_with_target_field(folder_path, target_field):
         return count
     except Exception as e:
         printRedMsg(f"Failed to count files. Error: {e}")
+
 
 def printName():
     logo1 = """
@@ -331,7 +343,7 @@ def printName():
                                                                                                                              
     """
 
-    logo2="""
+    logo2 = """
     __________                               
     \______   \_____  ___  __  ____    ____  
      |       _/\__  \ \  \/ /_/ __ \  /    \ 
@@ -423,7 +435,6 @@ def find_stock_data(file_path, stock_code):
 def getInfoFromFileName(file_name, product_fund_dict_):
     keywords = ["CF15", "FL18", "HT02XY", "FL18SCA", "FL22SCB"]
 
-
     # 查找文件名中包含的关键字
     found_keyword = None
     for keyword in keywords:
@@ -459,6 +470,7 @@ def getInfoFromFileName(file_name, product_fund_dict_):
 def printAccountInfo():
     ...
 
+
 def printAllAccountInfo():
     os.system("cls")
     isCorrect = enterPasswordToContinue()
@@ -484,6 +496,7 @@ def printAllAccountInfo():
 
     input("press any key to quit")
 
+
 def enterPasswordToContinue():
     cp = "147258"
     while True:
@@ -500,14 +513,14 @@ def list_files_with_numbers(path, n):
     files.sort()  # 排序文件列表
 
     for i, file in enumerate(files[:n]):
-        print(f"{i+1}: {file}")
+        print(f"{i + 1}: {file}")
 
     choice = int(input("请选择文件序号（输入数字 1 到 n）: "))
     if choice < 1 or choice > n:
         print("无效的选择")
         return None
 
-    selected_file = os.path.join(path, files[choice-1])
+    selected_file = os.path.join(path, files[choice - 1])
     return selected_file
 
 
@@ -517,20 +530,20 @@ def list_files_with_numbers(path, n):
     files.sort()  # 排序文件列表
 
     for i, file in enumerate(files[:n]):
-        print(f"{i+1}: {file}")
+        print(f"{i + 1}: {file}")
 
     choice = int(input(f"请选择文件序号（输入数字 1 到 {n}）: "))
     if choice < 1 or choice > n:
         printRedMsg("无效的选择")
         return None
 
-    selected_file = os.path.join(path, files[choice-1])
+    selected_file = os.path.join(path, files[choice - 1])
     return selected_file
 
 
 def quickLookUpSellBuyList(product_choice):
     product_names = ["CF15", "FL18", "HT02XY", "FL18SC", "FL18SCA", "FL22SCB"]
-    productName = product_names[product_choice-1]
+    productName = product_names[product_choice - 1]
     rootPath = r"C:\Users\Administrator\Desktop\兴业证券多账户交易"
     BSLpath = rf"{rootPath}\{productName}\Sell_Buy_List_{productName}"
 
@@ -556,14 +569,13 @@ def quickLookUpSellBuyList(product_choice):
 #     input("")
 
 
-
 # 如果文件可能很大，我们可以采用逐行读取和写入的方式来处理文件，以避免一次性加载整个文件到内存中
 def remove_lines_with_character(file_path, target_character):
     try:
         print(f"正在处理 {target_character} 中...", end=" ")
         # 将目标字符转换为字节对象
         target_byte = target_character.encode()
-        temp_file_path = file_path + '.tmp' # 创建临时文件路径
+        temp_file_path = file_path + '.tmp'  # 创建临时文件路径
         # 逐行读取原文件，并过滤掉包含特定字符的行，写入临时文件
         with open(file_path, 'rb') as input_file, open(temp_file_path, 'wb') as output_file:
             for line in input_file:
@@ -614,6 +626,7 @@ def rename_all_py_files_and_return_paths(folder_path, new_fund_name):
 
     return file_paths
 
+
 def rename_py_files(directory_path, new_extension=".new"):
     """
     :brief 传入一个路径，遍历这个路径下所有py文件，对每个文件进行重命名操作
@@ -646,6 +659,7 @@ def find_fund_name(filepath):
             if match:
                 return match.group(1).strip()
 
+
 # Example usage:
 # 1. Rename all .py files in the directory "my_directory" with extension ".new"
 # rename_py_files("my_directory", ".new")
@@ -654,8 +668,57 @@ def find_fund_name(filepath):
 # fund_name_value = find_fund_name("example_file.txt")
 # print(fund_name_value)
 
+
+
+# 总是删掉错误的行！！！
+def remove_lines_time_in_range_for_order_log(file_path):
+    printYellowMsg("in func remove_lines_time_in_range_for_order_log")
+    try:
+        # 读取文件内容
+        with open(file_path, 'r', encoding='utf-8') as file:
+            lines = file.readlines()
+
+        # 用于匹配时间格式的正则表达式
+        import re
+        time_pattern = re.compile(r'^\d{2}:\d{2}:\d{2}$')
+
+        # 初始化开始索引和结束索引
+        start_index = None
+        end_index = None
+
+        # 逐行遍历文件内容
+        for i, line in enumerate(lines):
+            # 判断是否为时间行且不包含其他字符
+            if time_pattern.match(line.strip()) and len(line.strip()) == 8:
+                if start_index is None:
+                    start_index = i
+                else:
+                    # 发现一个新的时间行，删除上一个时间段的内容
+                    if end_index is not None:
+                        del lines[start_index + 1:end_index]
+                    start_index = i
+                end_index = None
+            elif start_index is not None:
+                # 找到非时间行，更新结束索引
+                end_index = i
+
+        # 如果文件末尾存在时间段，则删除最后一个时间段的内容
+        if end_index is not None:
+            del lines[start_index + 1:end_index]
+
+        # 将处理后的内容写回文件
+        with open(file_path, 'w', encoding='uft-8') as file:
+            file.writelines(lines)
+    except Exception as e:
+        # 如果发生异常，打印错误消息
+        printRedMsg(f"删除order文件的一系列时间行错误：{e}")
+        input("")
+
+
+
 def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
     ...
+
 
 # ====================================================================================================================
 # ============================================   主要函数   ===========================================================
@@ -704,16 +767,14 @@ def before0920processFL22SC():
     printYellowMsg("Plz run the 1、盘前订单拆分.py by hand, press any key to continue after finishing running...")
     input(" ")
 
-
     # 检测拆分是否成功
 
-
-        # divide 文件夹下的三个文件
-        # A
+    # divide 文件夹下的三个文件
+    # A
     divideSCAbuy = rf"{divide_SCA}\{buy}FL22SCA_{today}.csv"
     divideSCAsell = rf"{divide_SCA}\{sell}FL22SCA_{today}.csv"
     divideSCAjrcc = rf"{divide_SCA}\{jrcc}FL22SCA_{today}.csv"
-        # B
+    # B
     divideSCBbuy = rf"{divide_SCB}\{buy}FL22SCB_{today}.csv"
     divideSCBsell = rf"{divide_SCB}\{sell}FL22SCB_{today}.csv"
     divideSCBjrcc = rf"{divide_SCB}\{jrcc}FL22SCB_{today}.csv"
@@ -721,7 +782,7 @@ def before0920processFL22SC():
     isDivideSCBExist = ifExist(divideSCBbuy) and ifExist(divideSCBsell) and ifExist(divideSCBjrcc)
     isDivideSCABExist = isDivideSCAExist and isDivideSCBExist
 
-    if not ( isDivideSCABExist ):
+    if not (isDivideSCABExist):
         printRedMsg("signal dividing fail!!!\nreturning...")
         input("")
         return
@@ -733,24 +794,23 @@ def before0920processFL22SC():
     # 传回文件
     # TODO 这里直接
     # TODO testing
-        # SCA
+    # SCA
     copy_file(divideSCAbuy, ori_SCA)
     copy_file(divideSCAsell, ori_SCA)
     copy_file(divideSCAjrcc, ori_SCA)
-        # SCB
+    # SCB
     copy_file(divideSCBbuy, ori_SCB)
     copy_file(divideSCBsell, ori_SCB)
     copy_file(divideSCBjrcc, ori_SCB)
     printYellowMsg("Copying finished, examine required...")
 
-
     # 检查文件是否复制成功
-        # 原始信号文件夹的三个文件
-        # A
+    # 原始信号文件夹的三个文件
+    # A
     oriSCAbuy = rf"{ori_SCA}\{buy}FL22SCA_{today}.csv"
     oriSCAsell = rf"{ori_SCA}\{sell}FL22SCA_{today}.csv"
     oriSCAjrcc = rf"{ori_SCA}\{jrcc}FL22SCA_{today}.csv"
-        # B
+    # B
     oriSCBbuy = rf"{ori_SCB}\{buy}FL22SCB_{today}.csv"
     oriSCBsell = rf"{ori_SCB}\{sell}FL22SCB_{today}.csv"
     oriSCBjrcc = rf"{ori_SCB}\{jrcc}FL22SCB_{today}.csv"
@@ -774,9 +834,9 @@ def realTimeSignalMoveForFL22SC():
     os.system("cls")
     # 先定义一下, 实时信号是直接传到 ori 文件夹的
     today = getToday()
-    nom =  rf"{ori_SC}\{nom_}{today}.txt"
+    nom = rf"{ori_SC}\{nom_}{today}.txt"
     nom2 = rf"{ori_SC}\{nom2_}{today}.txt"
-    noa =  rf"{ori_SC}\{noa_}{today}.txt"
+    noa = rf"{ori_SC}\{noa_}{today}.txt"
     noa2 = rf"{ori_SC}\{noa2_}{today}.txt"
 
     # FIXME 才意识到可以，选择数字之后，比如说2，就直接 nowTimeNode = m2 就可以很方便了。。。
@@ -798,7 +858,6 @@ def realTimeSignalMoveForFL22SC():
             divideAno = rf"{divide_SCA}\{nom_}{today}.txt"
             divideBno = rf"{divide_SCB}\{nom_}{today}.txt"
 
-
             oriAbuy = rf" "
             oriAsell = rf"{ori_SCA}\{sell}FL22SCA{m}_{today}.csv"
             oriAjrcc = rf"{ori_SCA}\{jrcc}FL22SCA{m}_{today}.csv"
@@ -806,7 +865,7 @@ def realTimeSignalMoveForFL22SC():
 
             oriBsell = rf"{ori_SCB}\{sell}FL22SCB{m}_{today}.csv"
             oriBjrcc = rf"{ori_SCB}\{jrcc}FL22SCB{m}_{today}.csv"
-            oriBno =   rf"{ori_SCB}\{nom_}{today}.txt"
+            oriBno = rf"{ori_SCB}\{nom_}{today}.txt"
 
             break
         elif choice == "2":
@@ -828,7 +887,7 @@ def realTimeSignalMoveForFL22SC():
 
             oriBsell = rf"{ori_SCB}\{sell}FL22SCB{m2}_{today}.csv"
             oriBjrcc = rf"{ori_SCB}\{jrcc}FL22SCB{m2}_{today}.csv"
-            oriBno =   rf"{ori_SCB}\{nom2_}{today}.txt"
+            oriBno = rf"{ori_SCB}\{nom2_}{today}.txt"
             break
         elif choice == "3":
             rtsBuy = ""
@@ -849,7 +908,7 @@ def realTimeSignalMoveForFL22SC():
 
             oriBsell = rf"{ori_SCB}\{sell}FL22SCB{a}_{today}.csv"
             oriBjrcc = rf"{ori_SCB}\{jrcc}FL22SCB{a}_{today}.csv"
-            oriBno =   rf"{ori_SCB}\{noa_}{today}.txt"
+            oriBno = rf"{ori_SCB}\{noa_}{today}.txt"
 
             break
         elif choice == "4":
@@ -857,9 +916,9 @@ def realTimeSignalMoveForFL22SC():
             rtsBuy = rf"{ori_SC}\{buy}FL22SC{a2}_{today}.csv"
             rtsJRCC = rf"{ori_SC}\{jrcc}FL22SC{a2}_{today}.csv"
             rtsNoSignal = noa2
-            divideAbuy =  rf"{divide_SCA}\{buy}FL22SCA{a2}_{today}.csv"
+            divideAbuy = rf"{divide_SCA}\{buy}FL22SCA{a2}_{today}.csv"
             divideAjrcc = rf"{divide_SCA}\{jrcc}FL22SCA{a2}_{today}.csv"
-            divideBbuy =  rf"{divide_SCB}\{buy}FL22SCB{a2}_{today}.csv"
+            divideBbuy = rf"{divide_SCB}\{buy}FL22SCB{a2}_{today}.csv"
             divideBjrcc = rf"{divide_SCB}\{jrcc}FL22SCB{a2}_{today}.csv"
             divideAno = rf"{divide_SCA}\{noa2_}{today}.txt"
             divideBno = rf"{divide_SCB}\{noa2_}{today}.txt"
@@ -980,6 +1039,7 @@ def realTimeSignalMoveForFL22SC():
         printGreenMsg("Action done, returning to main menu...")
         input(" ")
 
+
 def dataCollectorOn40():
     today = getToday()
     printYellowMsg("PLZ CHECK THIS FUNCTION IS ONLY WORKING ON 40")
@@ -994,7 +1054,6 @@ def dataCollectorOn40():
         printRedMsg("Data has NOT been deleted, returning to main menu...")
         input(" ")
         return
-
 
     # limit_price_file
     limitPricePath = r"D:\limit_price_projects\limit_price_file"
@@ -1023,6 +1082,7 @@ def dataCollectorOn40():
     printGreenMsg("function ending, returning to main menu...")
     input(" ")
 
+
 # 收盘拆分的导出数据的检查
 def checkExportData():
     ...
@@ -1034,7 +1094,7 @@ def checkExportData():
     asset = rf"{smtData}\asset_{today}.csv"
     trans = rf"{smtData}\transaction_{today}.csv"
     order = rf"{smtData}\order_{today}.csv"
-    holdin= rf"{smtData}\holding_{today}.csv"
+    holdin = rf"{smtData}\holding_{today}.csv"
     smtDataExist = ifExist(asset) and ifExist(trans) and ifExist(order) and ifExist(holdin)
     if not smtDataExist:
         printRedMsg("smtData is NOT exist, returning to main menu...")
@@ -1050,9 +1110,9 @@ def checkExportData():
     # 检查是否拆分完毕
     cf15 = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\CF15\data", today)
     fl18 = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL18\data", today)
-    ht02zs =  count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\HT02XY\data" , today)
-    fl22sc = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SC\data" , today)
-    fl22xz = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22XZ\data" , today)
+    ht02zs = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\HT02XY\data", today)
+    fl22sc = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SC\data", today)
+    fl22xz = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22XZ\data", today)
     print(cf15, fl18, ht02zs, fl22sc, fl22xz)
 
     # 完成
@@ -1077,7 +1137,7 @@ def copYesterdayData():
     ...
     # 解压zip文件夹
     startTradePath = r"C:\Users\Administrator\Desktop\startTrade"
-    temp           = rf"{startTradePath}\data\temp"
+    temp = rf"{startTradePath}\data\temp"
     today = getToday()
     yesterday = getYesterday()
     zipPath = rf"{startTradePath}\data{yesterday}.zip"
@@ -1089,13 +1149,13 @@ def copYesterdayData():
     # create_folder(temp)
     unzip_file(zipPath, temp)
 
-    # 移动文件
+    # 移动文件到 divide 文件夹
     # test = rf"{temp}\test"
-    des_A_data       = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCA\data"
+    des_A_data = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCA\data"
     des_A_FormatData = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCA\format_data"
-    des_B_data       = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCB\data"
+    des_B_data = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCB\data"
     des_B_FormatData = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCB\format_data"
-    des_limit_price  = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\limit_price"
+    des_limit_price = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\limit_price"
     copy_files_in_folder(rf"{temp}\A_data", des_A_data)
     copy_files_in_folder(rf"{temp}\A_format_data", des_A_FormatData)
     copy_files_in_folder(rf"{temp}\B_data", des_B_data)
@@ -1103,28 +1163,28 @@ def copYesterdayData():
     copy_file(rf"{temp}\{today}_limit_price.csv", des_limit_price)
 
     # 检验文件是否传输
-    if count_files_with_target_field(des_A_data       , yesterday) == 3:
+    if count_files_with_target_field(des_A_data, yesterday) == 3:
         printGreenMsg(f"yesterday's data copied to {des_A_data}")
     else:
         printRedMsg("Data corrupt! returning to main menu...")
         input("")
         return
 
-    if count_files_with_target_field(des_A_FormatData , yesterday) == 3:
+    if count_files_with_target_field(des_A_FormatData, yesterday) == 3:
         printGreenMsg(f"yesterday's data copied to {des_A_FormatData}")
     else:
         printRedMsg("Data corrupt! returning to main menu...")
         input("")
         return
 
-    if count_files_with_target_field(des_B_data       , yesterday) == 3:
+    if count_files_with_target_field(des_B_data, yesterday) == 3:
         printGreenMsg(f"yesterday's data copied to {des_B_data}")
     else:
         printRedMsg("Data corrupt! returning to main menu...")
         input("")
         return
 
-    if count_files_with_target_field(des_B_FormatData , yesterday) == 3:
+    if count_files_with_target_field(des_B_FormatData, yesterday) == 3:
         printGreenMsg(f"yesterday's data copied to {des_B_FormatData}")
     else:
         printRedMsg("Data corrupt! returning to main menu...")
@@ -1136,6 +1196,44 @@ def copYesterdayData():
     else:
         ...
 
+    # 移动文件夹到 兴业扫单文件夹 C:\Users\Administrator\Desktop\兴业证券多账户交易
+    des2_A_data = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCA\data"
+    des2_A_FormatData = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCA\format_data"
+    des2_B_data = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCB\data"
+    des2_B_FormatData = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCB\format_data"
+    copy_files_in_folder(rf"{temp}\A_data", des2_A_data)
+    copy_files_in_folder(rf"{temp}\A_format_data", des2_A_FormatData)
+    copy_files_in_folder(rf"{temp}\B_data", des2_B_data)
+    copy_files_in_folder(rf"{temp}\B_format_data", des2_B_FormatData)
+
+    # 检验文件是否传输
+    if count_files_with_target_field(des2_A_data, yesterday) == 3:
+        printGreenMsg(f"yesterday's data copied to {des2_A_data}")
+    else:
+        printRedMsg("Data corrupt! returning to main menu...")
+        input("")
+        return
+
+    if count_files_with_target_field(des2_A_FormatData, yesterday) == 3:
+        printGreenMsg(f"yesterday's data copied to {des2_A_FormatData}")
+    else:
+        printRedMsg("Data corrupt! returning to main menu...")
+        input("")
+        return
+
+    if count_files_with_target_field(des2_B_data, yesterday) == 3:
+        printGreenMsg(f"yesterday's data copied to {des2_B_data}")
+    else:
+        printRedMsg("Data corrupt! returning to main menu...")
+        input("")
+        return
+
+    if count_files_with_target_field(des2_B_FormatData, yesterday) == 3:
+        printGreenMsg(f"yesterday's data copied to {des2_B_FormatData}")
+    else:
+        printRedMsg("Data corrupt! returning to main menu...")
+        input("")
+        return
 
     # 操作完之后清空temp文件夹
     printYellowMsg("Deleting temp path and archiving zip file...")
@@ -1172,7 +1270,6 @@ def findData():
             find_stock_data(file_path, stock_code)
         elif choice == "2":
             # TODO finish!
-
 
             print("1. CF15")
             print("2. FL18")
@@ -1215,16 +1312,14 @@ def simpleRiseTopTxt():
     os.system("cls")
     printYellowMsg("\n这个程序不会备份源文件，修改是不可逆的\n")
 
-
-
     file_path = input("请拖入要分析的文件：\n")
     if file_path.lower() == 'quit':
         print("返回主界面")
         return
 
-    print("1. 监控涨跌停")
-    print("2. 订单异常监控")
-    print("3. Order 程序文件")
+    print("1. Risestop ----- 监控涨跌停")
+    print("2. Unusual ------ 订单异常监控")
+    print("3. Order -------- 程序文件")
     print("0. 自定义模式")
     # print("4. ")
 
@@ -1237,7 +1332,7 @@ def simpleRiseTopTxt():
             try:
                 today = getToday()
                 directory = os.path.dirname(file_path)
-                new_path = os.path.join(directory, today+"_risestop.log")
+                new_path = os.path.join(directory, today + "_risestop.log")
                 os.rename(file_path, new_path)
                 # printYellowMsg(rf"set the filename to {today}")
                 file_path = new_path
@@ -1253,13 +1348,14 @@ def simpleRiseTopTxt():
             return
 
         printGreenMsg("backup the log file...")
-        originalLogPath = r"C:\Users\Administrator\Desktop\startTrade\Log\Risestop\originalLog"
+        originalLogPath = rf"{file_path}\..\originalLog"
+        # C:\Users\Administrator\Desktop\startTrade\Log\Risestop\originalLog
         # shutil.move(file_path, originalLogPath, copy_function=shutil.copy2)
         shutil.copy(file_path, originalLogPath)
 
         remove_lines_with_character(file_path, "Python")
         remove_lines_with_character(file_path, "for more information")
-        remove_lines_with_character(file_path, "nowtime")
+        remove_lines_with_character(file_path, "now_time")
         remove_lines_with_character(file_path, "没有一字涨停")
         remove_lines_with_character(file_path, "*******************")
         remove_lines_with_character(file_path, "还未到达")
@@ -1268,6 +1364,7 @@ def simpleRiseTopTxt():
         remove_lines_with_character(file_path, "                        ")
 
         input("return to main menu...")
+        input("")
     elif choice == "2":
         printYellowMsg("Auto set the filename with date and file type, \nif not intend to do so, type no.\n")
         isSetName = input("")
@@ -1291,7 +1388,8 @@ def simpleRiseTopTxt():
             return
 
         printGreenMsg("backup the log file...")
-        originalLogPath = r"C:\Users\Administrator\Desktop\startTrade\Log\Unusual\originalLog"
+        # originalLogPath = r"C:\Users\Administrator\Desktop\startTrade\Log\Unusual\originalLog"
+        originalLogPath = rf"{file_path}\..\originalLog"
         # shutil.move(file_path, originalLogPath, copy_function=shutil.copy2)
         shutil.copy(file_path, originalLogPath)
 
@@ -1302,42 +1400,57 @@ def simpleRiseTopTxt():
         remove_lines_with_character(file_path, "for more information")
 
         input("return to main menu...")
+        input("")
     elif choice == "3":
+        # order
         printYellowMsg("!在这个模式下，拖入文件的同文件夹下所有文件将会被处理!\n")
         printYellowMsg("Auto set the filename with date and file type, \nif not intend to do so, type no.\n")
+
+        # 重命名
         isSetName = input("")
         if not isSetName == "no":
             try:
+                printBlueMsg("rename now")
                 # 重命名
-                rename_py_files(file_path+r"\..", ".log")
+                rename_py_files(file_path + r"\..", ".log")
+                printBlueMsg("rename done")
             except Exception as e:
                 # 如果发生异常，打印错误消息
                 printRedMsg(f"重命名错误：{e}")
                 input("")
             # print(file_path)
             # input("")
+        # 如果 file_path是空的，就返回
         if not file_path:
             printRedMsg("file_path is bad, return to main menu...")
             input("")
             return
 
-        files = os.listdir(file_path+r"\..")
+        # 对这个文件夹下的所有 py 文件进行操作
+        files = os.listdir(file_path + r"\..")
+        today = getToday()
         for filename in files:
-            if filename.endswith(".py"):
-                ...
+            if today in filename:
+                # print(filename)
+                orderPath = rf"C:\Users\Administrator\Desktop\startTrade\Log\Order\{filename}"
+                printGreenMsg(f"backup the log file {filename}...")
+                # originalLogPath = r"C:\Users\Administrator\Desktop\startTrade\Log\Unusual\originalLog"
+                originalLogPath = rf"{orderPath}\..\originalLog"
+                # print(originalLogPath)
+                # print(orderPath)
+                # shutil.move(file_path, originalLogPath, copy_function=shutil.copy2)
+                try:
+                    shutil.copy(orderPath, originalLogPath)
+                except Exception as e:
+                    # 如果发生异常，打印错误消息
+                    printRedMsg(f"移动错误：{e}")
+                    input("")
 
-        # printGreenMsg("backup the log file...")
-        # originalLogPath = r"C:\Users\Administrator\Desktop\startTrade\Log\Unusual\originalLog"
-        # # shutil.move(file_path, originalLogPath, copy_function=shutil.copy2)
-        # shutil.copy(file_path, originalLogPath)
-
-        # remove_lines_with_character(file_path, "无异常订单情况")
-        # remove_lines_with_character(file_path, "现在在")
-        # remove_lines_with_character(file_path, "now time")
-        # remove_lines_with_character(file_path, "Python")
-        # remove_lines_with_character(file_path, "for more information")
+                remove_lines_with_character(orderPath, "交易信号还未到达")
+                remove_lines_with_character(orderPath, "Not Trading Time")
 
         input("return to main menu...")
+        input("")
 
     elif choice == "0":
         printYellowMsg("!在这个模式下，源文件将会被处理!请备份好文件\n")
@@ -1359,6 +1472,9 @@ def simpleRiseTopTxt():
                 remove_lines_with_character(file_path, x)
 
         input("return to main menu...")
+        input("")
+
+
 def afterMain():
     while True:
         os.system("cls")
@@ -1393,10 +1509,15 @@ def afterMain():
             printName()
             x = input("")
             break
+        elif choice == "test":
+            x = input("file")
+            remove_lines_time_in_range_for_order_log(x)
+            input("")
         else:
             printRedMsg("无效的选项，请重新输入！")
             input("\n")
             os.system("cls")
+
 
 def main():
     # global root
@@ -1412,9 +1533,6 @@ def main():
     #
     # root.mainloop()
     afterMain()
-
-
-
 
 
 def menu():
@@ -1447,5 +1565,3 @@ def menu():
 if __name__ == "__main__":
     os.system("cls")
     main()
-
-
