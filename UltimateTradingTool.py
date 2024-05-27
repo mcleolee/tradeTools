@@ -6,6 +6,9 @@
 # TODO 写一个便捷查询持仓的函数
 # TODO 写 def pressAnyKeyToContinue(): 然后替换所有
 # TODO 写出 UI
+
+# TODO 在主页打印出实时信号节点和时间！！！
+# TODO 把昨日的 ZS 的 format_data 通过 18 复制到浙商的服务器
 import os
 import shutil
 from datetime import datetime, timedelta
@@ -18,6 +21,8 @@ import tkinter as tk
 from tkinter import messagebox
 import sv_ttk
 import re
+import time
+# import datetime
 
 DEBUG_MODE = 1
 # 1表示启用，但这部分代码未完成
@@ -55,6 +60,10 @@ divide_SCB = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCB\Sell_
 ori_SC = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SC\Sell_Buy_List_FL22SC"
 ori_SCA = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCA\Sell_Buy_List_FL22SCA"
 ori_SCB = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCB\Sell_Buy_List_FL22SCB"
+
+g_yesterday = None
+
+g_realTimeNode = 0
 
 
 # ====================================================================================================================
@@ -148,7 +157,8 @@ def print_latest_files(source_folder, fileNumber):
         printRedMsg(f"Failed to print latest files. Error: {e}")
 
 
-def copy_files_with_string(source_folder, destination_folder, string_to_check, fileNumber):
+# 复制按时间顺序排列的，有指定字符的前 fileNumber 个文件
+def copy_files_with_string_limited(source_folder, destination_folder, string_to_check, fileNumber):
     try:
         # 获取源文件夹中按时间排序的文件列表
         files = sorted(os.listdir(source_folder), key=lambda x: os.path.getmtime(os.path.join(source_folder, x)),
@@ -179,6 +189,52 @@ def copy_files_with_string(source_folder, destination_folder, string_to_check, f
         printRedMsg(f"Failed to copy files. Error: {e}")
 
 
+
+# 复制所有含指定字符的文件
+def copy_files_with_string_no_limited(source_folder, destination_folder, string_to_check):
+    try:
+        # 获取源文件夹中按时间排序的文件列表
+        files = sorted(os.listdir(source_folder), key=lambda x: os.path.getmtime(os.path.join(source_folder, x)),
+                       reverse=True)
+
+        # 遍历文件列表
+        for file in files:
+            source_file = os.path.join(source_folder, file)
+
+            # 检查文件名是否包含特定字符串
+            if string_to_check in file:
+                destination_file = os.path.join(destination_folder, file)
+
+                # 复制文件 覆盖目标文件夹中的同名文件
+                shutil.copy2(source_file, destination_folder)
+                print(f"Copied: {source_file} to {destination_file}")
+
+    except Exception as e:
+        printRedMsg(f"Failed to copy files. Error: {e}")
+
+
+# 复制所有含指定字符的文件的测试函数
+def test_copy_files_with_string_no_limited(source_folder, destination_folder, string_to_check):
+    try:
+        # 获取源文件夹中按时间排序的文件列表
+        files = sorted(os.listdir(source_folder), key=lambda x: os.path.getmtime(os.path.join(source_folder, x)),
+                       reverse=True)
+
+        # 遍历文件列表
+        for file in files:
+            source_file = os.path.join(source_folder, file)
+
+            # 检查文件名是否包含特定字符串
+            if string_to_check in file:
+                destination_file = os.path.join(destination_folder, file)
+
+                # 复制文件
+                shutil.copy2(source_file, destination_folder)
+                print(f"Copied: {source_file} to {destination_file}")
+
+    except Exception as e:
+        print(f"Failed to copy files. Error: {e}")
+
 def erase_folder_contents(folder_path):
     try:
         # 获取文件夹中的所有文件和文件夹
@@ -208,6 +264,29 @@ def move_files(source_folder, destination_folder):
     except Exception as e:
         printRedMsg(f"Failed to move files. Error: {e}")
 
+
+def move_all_files_with_string(source_folder, destination_folder, string_to_check):
+    try:
+        # 确保目标文件夹存在
+        if not os.path.exists(destination_folder):
+            os.makedirs(destination_folder)
+
+        # 遍历源文件夹中的所有文件
+        for filename in os.listdir(source_folder):
+            source_file = os.path.join(source_folder, filename)
+
+            # 检查是否是文件且文件名包含特定字符串
+            if os.path.isfile(source_file) and string_to_check in filename:
+                destination_file = os.path.join(destination_folder, filename)
+
+                # 移动文件，如果目标文件已存在则覆盖
+                shutil.move(source_file, destination_file)
+                print(f"Moved: {source_file} to {destination_file}")
+
+        print(f"All files containing '{string_to_check}' moved from {source_folder} to {destination_folder}")
+
+    except Exception as e:
+        print(f"Failed to move files. Error: {e}")
 
 def copy_files_in_folder(source_folder, destination_folder):
     try:
@@ -669,7 +748,6 @@ def find_fund_name(filepath):
 # print(fund_name_value)
 
 
-
 # 总是删掉错误的行！！！
 def remove_lines_time_in_range_for_order_log(file_path):
     printYellowMsg("in func remove_lines_time_in_range_for_order_log")
@@ -715,6 +793,29 @@ def remove_lines_time_in_range_for_order_log(file_path):
         input("")
 
 
+def modifyNamePAtoPAHF(path):
+    try:
+        # 遍历指定目录中的所有 CSV 文件
+        for filename in os.listdir(path):
+            if filename.endswith(".csv") and "PA" in filename:
+                # 构造旧文件路径
+                old_file = os.path.join(path, filename)
+
+                # 替换文件名中的 "PA" 为 "PAHF"
+                new_filename = filename.replace("PA", "PAHF")
+
+                # 构造新文件路径
+                new_file = os.path.join(path, new_filename)
+
+                # 重命名文件
+                os.rename(old_file, new_file)
+                print(f"Renamed: {old_file} to {new_file}")
+
+        printGreenMsg("Files renamed successfully.")
+
+    except Exception as e:
+        printRedMsg(f"Failed to rename files. Error: {e}")
+
 
 def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
     ...
@@ -733,39 +834,41 @@ def before0920processFL22SC():
     oriSell = rf"{oriFl22}\{sell}FL22SC_{today}.csv"
     oriJrcc = rf"{oriFl22}\{jrcc}FL22SC_{today}.csv"
 
-    # 检查原始信号在不在，不在直接退
-    print("checking if the original signals are exist...")
-    if ((ifExist(oriBuy) and ifExist(oriSell) and ifExist(oriJrcc)) == False):
-        printRedMsg("There are no original signal!!!\nreturning...")
-        input("")
-        return
-    else:
-        printGreenMsg("original signal EXIST")
-        input("press any key to continue...")
+    # 20240524 百度网盘同步空间移动到了 37，分单程序都自动运行了
+    while False:
+        # 检查原始信号在不在，不在直接退
+        print("checking if the original signals are exist...")
+        if ((ifExist(oriBuy) and ifExist(oriSell) and ifExist(oriJrcc)) == False):
+            printRedMsg("There are no original signal!!!\nreturning...")
+            input("")
+            return
+        else:
+            printGreenMsg("original signal EXIST")
+            input("press any key to continue...")
 
-    # 然后移动到目标文件夹
-    printYellowMsg("\nMoving original signals to the divide_order_account path...")
-    divideFl22 = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SC\Sell_Buy_List_FL22SC"
-    # TODO testing
-    copy_file(oriBuy, divideFl22)
-    copy_file(oriSell, divideFl22)
-    copy_file(oriJrcc, divideFl22)
-    printYellowMsg("Move done, now checking if moving is complete...")
-    if not (ifExist(rf"{divideFl22}\{buy}FL22SC_{today}.csv") and ifExist(
-            rf"{divideFl22}\{sell}FL22SC_{today}.csv") and ifExist(rf"{divideFl22}\{jrcc}FL22SC_{today}.csv")):
-        printRedMsg("Moving is not complete!!!\nreturning...")
-        input("")
-        return
-    else:
-        printGreenMsg("Moving is complete, press any key to run the 1、盘前订单拆分.py...")
+        # 然后移动到目标文件夹
+        printYellowMsg("\nMoving original signals to the divide_order_account path...")
+        divideFl22 = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SC\Sell_Buy_List_FL22SC"
+        # TODO testing
+        copy_file(oriBuy, divideFl22)
+        copy_file(oriSell, divideFl22)
+        copy_file(oriJrcc, divideFl22)
+        printYellowMsg("Move done, now checking if moving is complete...")
+        if not (ifExist(rf"{divideFl22}\{buy}FL22SC_{today}.csv") and ifExist(
+                rf"{divideFl22}\{sell}FL22SC_{today}.csv") and ifExist(rf"{divideFl22}\{jrcc}FL22SC_{today}.csv")):
+            printRedMsg("Moving is not complete!!!\nreturning...")
+            input("")
+            return
+        else:
+            printGreenMsg("Moving is complete, press any key to run the 1、盘前订单拆分.py...")
+            input(" ")
+
+        # 运行分单脚本
+        # FIXME 这个功能不能正常运行 用多线程
+        # os.system(r"C:\PROGRA~1\Python36\python.exe" r"C:\Users\Administrator\Desktop\divide_order_account\projects\1、盘前订单拆分.py")
+        # input("1、盘前订单拆分.py is ending, press any key to continue...")
+        printYellowMsg("Plz run the 1、盘前订单拆分.py by hand, press any key to continue after finishing running...")
         input(" ")
-
-    # 运行分单脚本
-    # FIXME 这个功能不能正常运行
-    # os.system(r"C:\PROGRA~1\Python36\python.exe" r"C:\Users\Administrator\Desktop\divide_order_account\projects\1、盘前订单拆分.py")
-    # input("1、盘前订单拆分.py is ending, press any key to continue...")
-    printYellowMsg("Plz run the 1、盘前订单拆分.py by hand, press any key to continue after finishing running...")
-    input(" ")
 
     # 检测拆分是否成功
 
@@ -845,8 +948,9 @@ def realTimeSignalMoveForFL22SC():
     # 选择实时信号
     while True:
         printYellowMsg("\n请确认实时信号节点？(1/2/3/4):\n1：morning; 2：morning2Two; 3：afternoon; 4：afternoon2Two\n")
-        choice = input("")
-        if choice == "1":
+        global g_realTimeNode
+        g_realTimeNode = input("")
+        if g_realTimeNode == "1":
             rtsBuy = ""
             rtsSell = rf"{ori_SC}\{sell}FL22SC{m}_{today}.csv"
             rtsJRCC = rf"{ori_SC}\{jrcc}FL22SC{m}_{today}.csv"
@@ -868,7 +972,7 @@ def realTimeSignalMoveForFL22SC():
             oriBno = rf"{ori_SCB}\{nom_}{today}.txt"
 
             break
-        elif choice == "2":
+        elif g_realTimeNode == "2":
             rtsBuy = ""
             rtsSell = rf"{ori_SC}\{sell}FL22SC{m2}_{today}.csv"
             rtsJRCC = rf"{ori_SC}\{jrcc}FL22SC{m2}_{today}.csv"
@@ -889,7 +993,7 @@ def realTimeSignalMoveForFL22SC():
             oriBjrcc = rf"{ori_SCB}\{jrcc}FL22SCB{m2}_{today}.csv"
             oriBno = rf"{ori_SCB}\{nom2_}{today}.txt"
             break
-        elif choice == "3":
+        elif g_realTimeNode == "3":
             rtsBuy = ""
             rtsSell = rf"{ori_SC}\{sell}FL22SC{a}_{today}.csv"
             rtsJRCC = rf"{ori_SC}\{jrcc}FL22SC{a}_{today}.csv"
@@ -911,7 +1015,7 @@ def realTimeSignalMoveForFL22SC():
             oriBno = rf"{ori_SCB}\{noa_}{today}.txt"
 
             break
-        elif choice == "4":
+        elif g_realTimeNode == "4":
             rtsSell = ""
             rtsBuy = rf"{ori_SC}\{buy}FL22SC{a2}_{today}.csv"
             rtsJRCC = rf"{ori_SC}\{jrcc}FL22SC{a2}_{today}.csv"
@@ -932,7 +1036,7 @@ def realTimeSignalMoveForFL22SC():
             oriBjrcc = rf"{ori_SCB}\{jrcc}FL22SCB{a2}_{today}.csv"
             oriBno = rf"{ori_SCB}\{noa2_}{today}.txt"
             break
-        elif choice == "quit":
+        elif g_realTimeNode == "quit":
             printBlueMsg("returning to main menu...\n")
             input("")
             return
@@ -967,7 +1071,7 @@ def realTimeSignalMoveForFL22SC():
     # TODO 检测信号是否复制成功
 
     # 检测信号是否拆分成功
-    if choice == "4":
+    if g_realTimeNode == "4":
         isNoDivide = ifExist(divideAno) and ifExist(divideBno)
         isSignalDivide = ifExist(divideAbuy) and ifExist(divideAjrcc) and ifExist(divideBbuy) and ifExist(divideBjrcc)
         isDivide = (isNoDivide) or (isSignalDivide)
@@ -993,7 +1097,7 @@ def realTimeSignalMoveForFL22SC():
             input(" ")
 
     # 把拆分好的信号复制回来
-    if choice == "4":
+    if g_realTimeNode == "4":
         copy_file(divideAno, ori_SCA)
         copy_file(divideAbuy, ori_SCA)
         copy_file(divideAjrcc, ori_SCA)
@@ -1010,7 +1114,7 @@ def realTimeSignalMoveForFL22SC():
 
     # 验证复制回来的信号
     # A
-    if choice == "4":
+    if g_realTimeNode == "4":
         isNoOri = ifExist(oriAno) and ifExist(oriBno)
         isSignalOri = ifExist(oriAbuy) and ifExist(oriAjrcc) and ifExist(oriBbuy) and ifExist(oriBjrcc)
         isOri = (isNoOri) or (isSignalOri)
@@ -1040,12 +1144,100 @@ def realTimeSignalMoveForFL22SC():
         input(" ")
 
 
+
+def realTimeSignalMoveForHT02():
+    # 包含原始信号和实时信号
+    os.system("cls")
+    input("Now processing HT02XY")
+    today = getToday()
+    divide_HT = r"C:\Users\Administrator\Desktop\divide_order_account\HT02XY\Sell_Buy_List_HT02XY"
+    ori_HT = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\HT02XY\Sell_Buy_List_HT02XY"
+
+    nom =  rf"{divide_HT}\{nom_}{today}.txt"
+    nom2 = rf"{divide_HT}\{nom2_}{today}.txt"
+    noa =  rf"{divide_HT}\{noa_}{today}.txt"
+    noa2 = rf"{divide_HT}\{noa2_}{today}.txt"
+    # HT02XYsell,HT02XYjrcc,HT02XYbuy,HT02XYno = None
+    # 原始信号
+    originalSignalBuy = rf"{divide_HT}\{buy}HT02XY_{today}.csv"
+    originalSignalSell = rf"{divide_HT}\{sell}HT02XY_{today}.csv"
+    originalSignalJrcc = rf"{divide_HT}\{jrcc}HT02XY_{today}.csv"
+
+    print(g_realTimeNode)
+    input("")
+
+    while True:
+        # printYellowMsg("\n请确认实时信号节点？(1/2/3/4):\n1：morning; 2：morning2Two; 3：afternoon; 4：afternoon2Two\n")
+        # g_realTimeNode = input("")
+        if g_realTimeNode == "1":
+            HT02XYsell = rf"{divide_HT}\{sell}HT02XY{m}_{today}.csv"
+            HT02XYjrcc = rf"{divide_HT}\{jrcc}HT02XY{m}_{today}.csv"
+            HT02XYbuy = ""
+            HT02XYno = nom
+            break
+        elif g_realTimeNode == "2":
+            HT02XYsell = rf"{divide_HT}\{sell}HT02XY{m2}_{today}.csv"
+            HT02XYjrcc = rf"{divide_HT}\{jrcc}HT02XY{m2}_{today}.csv"
+            HT02XYbuy = ""
+            HT02XYno = nom2
+            break
+        elif g_realTimeNode == "3":
+            HT02XYsell = rf"{divide_HT}\{sell}HT02XY{a}_{today}.csv"
+            HT02XYjrcc = rf"{divide_HT}\{jrcc}HT02XY{a}_{today}.csv"
+            HT02XYbuy = ""
+            HT02XYno = noa
+            break
+        elif g_realTimeNode == "4":
+            HT02XYjrcc = rf"{divide_HT}\{jrcc}HT02XY{a2}_{today}.csv"
+            HT02XYsell = ""
+            HT02XYbuy = rf"{divide_HT}\{buy}HT02XY{a2}_{today}.csv"
+            HT02XYno = noa2
+            break
+        elif g_realTimeNode == "quit":
+            printBlueMsg("returning to main menu...\n")
+            input("")
+            return
+        else:
+            printRedMsg("无效的选项，请重新输入！")
+
+    # 检查 HT02XY 拆分了没有
+    printYellowMsg("checking whether the real time signals are arrive...")
+    isNoSignal = ifExist(HT02XYno)
+    isRealTimeSignal = ((ifExist(HT02XYsell) or ifExist(HT02XYbuy)) and ifExist(HT02XYjrcc))
+    isHT02XYsignalExist = isNoSignal or isRealTimeSignal
+    if not isHT02XYsignalExist:
+        printRedMsg("HT02XY signal is not exist!\nreturning...")
+        input("")
+        return
+    else:
+        printGreenMsg("HT02XY signals ARE arrive.")
+        input("")
+
+    # 复制到扫单文件夹
+    if g_realTimeNode == "4":
+        copy_file(HT02XYbuy, ori_HT)
+        copy_file(HT02XYjrcc, ori_HT)
+        copy_file(HT02XYno, ori_HT)
+    else:
+        copy_file(HT02XYsell, ori_HT)
+        copy_file(HT02XYjrcc, ori_HT)
+        copy_file(HT02XYno, ori_HT)
+
+    # 验证复制回来的信号
+    printYellowMsg("省略验证，请自行检查\n")
+    printGreenMsg("Action done, returning to main menu...")
+    input(" ")
+
+
 def dataCollectorOn40():
     today = getToday()
+    global g_yesterday
+    if g_yesterday == None:
+        g_yesterday = input("请输入上一个交易日的日期")
     printYellowMsg("PLZ CHECK THIS FUNCTION IS ONLY WORKING ON 40")
     printYellowMsg("Deleting data in folder toLZY")
-    input("press any key to excute.")
     destinationPath = r"C:\Users\progene014\Desktop\toLZY\data"
+
     # os.chmod(destinationPath, 0o777)
     if erase_folder_contents(destinationPath):
         printGreenMsg("Data has been deleted.")
@@ -1060,23 +1252,30 @@ def dataCollectorOn40():
     copy_latest_files(limitPricePath, destinationPath, 1)
 
     # data
-    oriDataA = r"D:\hutao\projects\数据分析\FL22SC\data_FL22SCA"
-    oriDataB = r"D:\hutao\projects\数据分析\FL22SC\data_FL22SCB"
-    desDataA = r"C:\Users\progene014\Desktop\toLZY\data\A_data"
-    desDataB = r"C:\Users\progene014\Desktop\toLZY\data\B_data"
-    copy_latest_files(oriDataA, desDataA, 3)
-    copy_latest_files(oriDataB, desDataB, 3)
+    oriDataSCA = r"D:\hutao\projects\数据分析\FL22SC\data_FL22SCA"
+    oriDataSCB = r"D:\hutao\projects\数据分析\FL22SC\data_FL22SCB"
+    desDataSCA = r"C:\Users\progene014\Desktop\toLZY\data\A_data"
+    desDataSCB = r"C:\Users\progene014\Desktop\toLZY\data\B_data"
+    copy_latest_files(oriDataSCA, desDataSCA, 3)
+    copy_latest_files(oriDataSCB, desDataSCB, 3)
 
-    # format data
-    oriDataFormat = r"D:\hutao\projects\数据分析\FL22SC\format_data"
-    desDataAF = r"C:\Users\progene014\Desktop\toLZY\data\A_format_data"
-    desDataBF = r"C:\Users\progene014\Desktop\toLZY\data\B_format_data"
-    copy_files_with_string(oriDataFormat, desDataAF, "SCA", 3)
-    copy_files_with_string(oriDataFormat, desDataBF, "SCB", 3)
+    # fl22sc 的 format data
+    oriDataSC_format = r"D:\hutao\projects\数据分析\FL22SC\format_data"
+    desDataA_format = r"C:\Users\progene014\Desktop\toLZY\data\A_format_data"
+    desDataB_format = r"C:\Users\progene014\Desktop\toLZY\data\B_format_data"
+    copy_files_with_string_limited(oriDataSC_format, desDataA_format, "SCA", 3)
+    copy_files_with_string_limited(oriDataSC_format, desDataB_format, "SCB", 3)
+
+    # ht02zs 的 format data
+    oriDataHT02_format = r"D:\hutao\projects\数据分析\HT02\format_data"
+    desDataHT02ZS_format = r"C:\Users\progene014\Desktop\toLZY\data\HT02ZS_format_data"
+    desDataHT02XY_format = r"C:\Users\progene014\Desktop\toLZY\data\HT02XY_format_data"
+    copy_files_with_string_limited(oriDataHT02_format, desDataHT02ZS_format, "HT02ZS", 3)
+    copy_files_with_string_limited(oriDataHT02_format, desDataHT02XY_format, "HT02XY", 3)
 
     printYellowMsg("check if files are lastest, making ZIP file now")
     # NQ 修改这个参数以把 zip 文件放到你想要的位置
-    whereToZip = rf"C:\Users\progene014\Desktop\toLZY\data{today}.zip"
+    whereToZip = rf"C:\Users\progene014\Desktop\toLZY\data{g_yesterday}.zip"
     zip_folder(destinationPath, whereToZip)
     ifExist(whereToZip)
     printGreenMsg("function ending, returning to main menu...")
@@ -1133,23 +1332,33 @@ def downloadDataFromServer40():
     #     download_files_from_html(html_content, server40addr, download_dir)
 
 
+# TODO 转移到37上之后需要改一切! 疯狂！
 def copYesterdayData():
-    ...
+    printYellowMsg("接下来将依次进行：\n\tFL22SC -> format_data\n\tFL22SC -> data\n\tHT02 -> format_data")
     # 解压zip文件夹
     startTradePath = r"C:\Users\Administrator\Desktop\startTrade"
     temp = rf"{startTradePath}\data\temp"
     today = getToday()
-    yesterday = getYesterday()
-    zipPath = rf"{startTradePath}\data{yesterday}.zip"
+    global g_yesterday
+    if g_yesterday == None:
+        g_yesterday = input("enter yesterday's date")
+    zipPath = rf"{startTradePath}\data{g_yesterday}.zip"
     if not ifExist(zipPath):
-        printRedMsg(f"data{yesterday}.zip is NOT here, returning to main menu...")
-        return
+        printRedMsg(f"data{g_yesterday}.zip is NOT here, do you want to enter a valid date? y/n")
+        wantTo = input("")
+        if wantTo == "y" or "Y":
+            manualDate = input("Enter the date that is last trade day or the date you want for the zip file.")
+
+        elif wantTo == "n":
+            printRedMsg(f"data{g_yesterday}.zip is NOT here, returning to main menu...")
+            return
 
     input("")
     # create_folder(temp)
     unzip_file(zipPath, temp)
 
-    # 移动文件到 divide 文件夹
+    printBlueMsg("FL22SCA -> format_data")
+    # ! 移动 FL22SC 文件到 divide 文件夹
     # test = rf"{temp}\test"
     des_A_data = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCA\data"
     des_A_FormatData = r"C:\Users\Administrator\Desktop\divide_order_account\FL22SCA\format_data"
@@ -1162,40 +1371,45 @@ def copYesterdayData():
     copy_files_in_folder(rf"{temp}\B_format_data", des_B_FormatData)
     copy_file(rf"{temp}\{today}_limit_price.csv", des_limit_price)
 
+    # TODoo yesterday 不是上一个交易日就没法运行了啊啊啊
+
     # 检验文件是否传输
-    if count_files_with_target_field(des_A_data, yesterday) == 3:
-        printGreenMsg(f"yesterday's data copied to {des_A_data}")
-    else:
-        printRedMsg("Data corrupt! returning to main menu...")
-        input("")
-        return
+    #FIXME 220240527 先注释，判断昨日有问题，下面也是
 
-    if count_files_with_target_field(des_A_FormatData, yesterday) == 3:
-        printGreenMsg(f"yesterday's data copied to {des_A_FormatData}")
-    else:
-        printRedMsg("Data corrupt! returning to main menu...")
-        input("")
-        return
-
-    if count_files_with_target_field(des_B_data, yesterday) == 3:
-        printGreenMsg(f"yesterday's data copied to {des_B_data}")
-    else:
-        printRedMsg("Data corrupt! returning to main menu...")
-        input("")
-        return
-
-    if count_files_with_target_field(des_B_FormatData, yesterday) == 3:
-        printGreenMsg(f"yesterday's data copied to {des_B_FormatData}")
-    else:
-        printRedMsg("Data corrupt! returning to main menu...")
-        input("")
-        return
+    # if count_files_with_target_field(des_A_data, g_yesterday) == 3:
+    #     printGreenMsg(f"yesterday's data copied to {des_A_data}")
+    # else:
+    #     printRedMsg("Data corrupt! returning to main menu...")
+    #     input("")
+    #     return
+    #
+    # if count_files_with_target_field(des_A_FormatData, g_yesterday) == 3:
+    #     printGreenMsg(f"yesterday's data copied to {des_A_FormatData}")
+    # else:
+    #     printRedMsg("Data corrupt! returning to main menu...")
+    #     input("")
+    #     return
+    #
+    # if count_files_with_target_field(des_B_data, g_yesterday) == 3:
+    #     printGreenMsg(f"yesterday's data copied to {des_B_data}")
+    # else:
+    #     printRedMsg("Data corrupt! returning to main menu...")
+    #     input("")
+    #     return
+    #
+    # if count_files_with_target_field(des_B_FormatData, g_yesterday) == 3:
+    #     printGreenMsg(f"yesterday's data copied to {des_B_FormatData}")
+    # else:
+    #     printRedMsg("Data corrupt! returning to main menu...")
+    #     input("")
+    #     return
 
     if not ifExist(des_limit_price):
         printRedMsg("limit price file is NOT copied")
     else:
         ...
 
+    printBlueMsg("FL22SCB -> format_data")
     # 移动文件夹到 兴业扫单文件夹 C:\Users\Administrator\Desktop\兴业证券多账户交易
     des2_A_data = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCA\data"
     des2_A_FormatData = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCA\format_data"
@@ -1207,33 +1421,58 @@ def copYesterdayData():
     copy_files_in_folder(rf"{temp}\B_format_data", des2_B_FormatData)
 
     # 检验文件是否传输
-    if count_files_with_target_field(des2_A_data, yesterday) == 3:
-        printGreenMsg(f"yesterday's data copied to {des2_A_data}")
-    else:
-        printRedMsg("Data corrupt! returning to main menu...")
-        input("")
-        return
+    # if count_files_with_target_field(des2_A_data, g_yesterday) == 3:
+    #     printGreenMsg(f"yesterday's data copied to {des2_A_data}")
+    # else:
+    #     printRedMsg("Data corrupt! returning to main menu...")
+    #     input("")
+    #     return
+    #
+    # if count_files_with_target_field(des2_A_FormatData, g_yesterday) == 3:
+    #     printGreenMsg(f"yesterday's data copied to {des2_A_FormatData}")
+    # else:
+    #     printRedMsg("Data corrupt! returning to main menu...")
+    #     input("")
+    #     return
+    #
+    # if count_files_with_target_field(des2_B_data, g_yesterday) == 3:
+    #     printGreenMsg(f"yesterday's data copied to {des2_B_data}")
+    # else:
+    #     printRedMsg("Data corrupt! returning to main menu...")
+    #     input("")
+    #     return
+    #
+    # if count_files_with_target_field(des2_B_FormatData, g_yesterday) == 3:
+    #     printGreenMsg(f"yesterday's data copied to {des2_B_FormatData}")
+    # else:
+    #     printRedMsg("Data corrupt! returning to main menu...")
+    #     input("")
+    #     return
 
-    if count_files_with_target_field(des2_A_FormatData, yesterday) == 3:
-        printGreenMsg(f"yesterday's data copied to {des2_A_FormatData}")
-    else:
-        printRedMsg("Data corrupt! returning to main menu...")
-        input("")
-        return
+    printBlueMsg("HT02XY -> format_data\nHT02ZS -> format_data")
+    # 移动 ht02 的 format_data 到兴业扫单文件夹 C:\Users\Administrator\Desktop\divide
+    des_ht02xy_FormatData = r"C:\Users\Administrator\Desktop\divide_order_account\HT02XY\format_data"
+    des_ht02zs_FormatData = r"C:\Users\Administrator\Desktop\divide_order_account\HT02ZS\format_data"
+    copy_files_in_folder(rf"{temp}\HT02XY_format_data", des_ht02xy_FormatData)
+    copy_files_in_folder(rf"{temp}\HT02ZS_format_data", des_ht02zs_FormatData)
 
-    if count_files_with_target_field(des2_B_data, yesterday) == 3:
-        printGreenMsg(f"yesterday's data copied to {des2_B_data}")
-    else:
-        printRedMsg("Data corrupt! returning to main menu...")
-        input("")
-        return
+    # 检验文件是否传输
+    # if count_files_with_target_field(des_ht02xy_FormatData, g_yesterday) == 3:
+    #     printGreenMsg(f"yesterday's data copied to {des_ht02xy_FormatData}")
+    # else:
+    #     printRedMsg("Data corrupt! returning to main menu...")
+    #     input("")
+    #     return
+    #
+    # if count_files_with_target_field(des_ht02zs_FormatData, g_yesterday) == 3:
+    #     printGreenMsg(f"yesterday's data copied to {des_ht02zs_FormatData}")
+    # else:
+    #     printRedMsg("Data corrupt! returning to main menu...")
+    #     input("")
+    #     return
 
-    if count_files_with_target_field(des2_B_FormatData, yesterday) == 3:
-        printGreenMsg(f"yesterday's data copied to {des2_B_FormatData}")
-    else:
-        printRedMsg("Data corrupt! returning to main menu...")
-        input("")
-        return
+
+
 
     # 操作完之后清空temp文件夹
     printYellowMsg("Deleting temp path and archiving zip file...")
@@ -1349,6 +1588,11 @@ def simpleRiseTopTxt():
 
         printGreenMsg("backup the log file...")
         originalLogPath = rf"{file_path}\..\originalLog"
+        if not os.path.exists(originalLogPath):
+            os.makedirs(originalLogPath)
+            printGreenMsg(f"路径 {originalLogPath} 创建成功")
+        else:
+            print(f"路径 {originalLogPath} 已存在，跳过")
         # C:\Users\Administrator\Desktop\startTrade\Log\Risestop\originalLog
         # shutil.move(file_path, originalLogPath, copy_function=shutil.copy2)
         shutil.copy(file_path, originalLogPath)
@@ -1356,6 +1600,7 @@ def simpleRiseTopTxt():
         remove_lines_with_character(file_path, "Python")
         remove_lines_with_character(file_path, "for more information")
         remove_lines_with_character(file_path, "now_time")
+        remove_lines_with_character(file_path, "nowtime")
         remove_lines_with_character(file_path, "没有一字涨停")
         remove_lines_with_character(file_path, "*******************")
         remove_lines_with_character(file_path, "还未到达")
@@ -1390,6 +1635,11 @@ def simpleRiseTopTxt():
         printGreenMsg("backup the log file...")
         # originalLogPath = r"C:\Users\Administrator\Desktop\startTrade\Log\Unusual\originalLog"
         originalLogPath = rf"{file_path}\..\originalLog"
+        if not os.path.exists(originalLogPath):
+            os.makedirs(originalLogPath)
+            printGreenMsg(f"路径 {originalLogPath} 创建成功")
+        else:
+            print(f"路径 {originalLogPath} 已存在，跳过")
         # shutil.move(file_path, originalLogPath, copy_function=shutil.copy2)
         shutil.copy(file_path, originalLogPath)
 
@@ -1436,6 +1686,11 @@ def simpleRiseTopTxt():
                 printGreenMsg(f"backup the log file {filename}...")
                 # originalLogPath = r"C:\Users\Administrator\Desktop\startTrade\Log\Unusual\originalLog"
                 originalLogPath = rf"{orderPath}\..\originalLog"
+                if not os.path.exists(originalLogPath):
+                    os.makedirs(originalLogPath)
+                    printGreenMsg(f"路径 {originalLogPath} 创建成功")
+                else:
+                    print(f"路径 {originalLogPath} 已存在，跳过")
                 # print(originalLogPath)
                 # print(orderPath)
                 # shutil.move(file_path, originalLogPath, copy_function=shutil.copy2)
@@ -1475,6 +1730,106 @@ def simpleRiseTopTxt():
         input("")
 
 
+def baiduToScan():
+    today = getToday()
+    baiduSyncdiskPath = r"E:\BaiduSyncdisk"
+    scanPath = rf"C:\Users\Administrator\Desktop\兴业证券多账户交易"
+
+
+    fundListInBaidu = ['FL18', 'CF15', 'FL', 'PA', 'HT02', 'FL22SC']
+    fundListInScan = ['FL18', 'CF15', 'FL', 'PA', 'HT02', 'FL22SC', 'HT02XY', 'FL22SCA', 'FL22SCB']
+    fundListInDivide = ['HT02XY', 'FL22SCA', 'FL22SCB']
+    fundListInBaiduAvaliable = ['FL18', 'CF15', 'FL', 'PA']
+
+    # 先把所有信号复制到扫单文件夹
+    for fund in fundListInBaiduAvaliable:
+        origin = rf"{baiduSyncdiskPath}/Sell_Buy_List_{fund}"
+        if fund == "PA":
+            target = r"D:\Trade\scan_trade_xt\PAHF"
+            # testTarget = r"C:\Users\Administrator\Desktop\startTrade\test_delete_later\pa"
+        else:
+            target = rf"{scanPath}/{fund}/Sell_Buy_List_{fund}"
+            # testTarget = rf"C:\Users\Administrator\Desktop\startTrade\test_delete_later\{fund}/Sell_Buy_List_{fund}"
+        copy_files_with_string_no_limited(origin, target, today)
+        # 只有在处理 PA 时才会改名
+        if fund == "PA":
+            modifyNamePAtoPAHF(target)
+            move_all_files_with_string(target, r"D:\Trade\scan_trade_xt\PAHF\Sell_Buy_List_PAHF", today)
+            # move_all_files_with_string(testTarget, r"C:\Users\Administrator\Desktop\startTrade\test_delete_later\pa\q", "PAHF")
+
+
+
+    input("press enter to exit")
+
+
+def paToPahf():
+    today = getToday()
+    baiduSyncdiskPath = r"E:\BaiduSyncdisk"
+
+    fundPA = 'PA'
+
+    # 先把所有信号复制到扫单文件夹
+    origin = rf"{baiduSyncdiskPath}/Sell_Buy_List_{fundPA}"
+    target = r"D:\Trade\scan_trade_xt\PAHF"
+
+    copy_files_with_string_no_limited(origin, target, today)
+    modifyNamePAtoPAHF(target)
+    move_all_files_with_string(target, r"D:\Trade\scan_trade_xt\PAHF\Sell_Buy_List_PAHF", today)
+    # move_all_files_with_string(testTarget, r"C:\Users\Administrator\Desktop\startTrade\test_delete_later\pa\q", "PAHF")
+
+    input("press enter to exit")
+
+
+
+# def display_current_time():
+#     # os.system("cls")
+#     os.system('cls' if os.name == 'nt' else 'clear')
+#     try:
+#         # Define the specific time ranges and their corresponding messages
+#         special_time_ranges = [
+#             ("00:00", "00:01", "Midnight check!"),
+#             ("08:40", "09:20", "Good morning! Time to start your day!"),
+#             ("09:20", "09:30", "Real time Signal arrived"),
+#             ("09:30", "09:50", "TWAP 1"),
+#             ("09:50", "10:10", " - "),
+#             ("10:10", "10:30", "TWAP 2 & Morning 1"),
+#             ("10:30", "10:50", " - "),
+#             ("10:50", "11:00", " - "),
+#             ("11:00", "11:20", "TWAP 3 & Morning 2"),
+#             ("11:20", "13:30", "Noon break"),
+#             ("13:30", "13:40", "TWAP 4"),
+#             ("13:40", "14:00", " - "),
+#             ("14:00", "14:20", "TWAP 5 & Afternoon 1"),
+#             ("14:20", "14:30", " - "),
+#             ("14:30", "15:00", "TWAP 6 & Afternoon 2"),
+#             ("15:00", "15:30", "Reverse repo"),
+#             ("15:30", "17:40", "Wrap up the day!")
+#         ]
+#
+#         while True:
+#             now = datetime.now()
+#             current_time = now.strftime("%H:%M:%S")
+#             current_time_short = now.strftime("%H:%M")
+#
+#             # Clear the console
+#             os.system('cls' if os.name == 'nt' else 'clear')
+#
+#             # Print the current time
+#             print("Current Time:", current_time)
+#
+#             # Check if current time (HH:MM) is within any of the special time ranges
+#             for start, end, message in special_time_ranges:
+#                 if start <= current_time_short <= end:
+#                     print(f"Special Time Range {start} - {end}: {message}")
+#
+#             # Wait for 1 second before updating
+#             time.sleep(1)
+#     except KeyboardInterrupt:
+#         ...
+#         # 捕捉到键盘中断 (Ctrl+C)，退出循环
+#         # print("\n程序已退出")
+
+
 def afterMain():
     while True:
         os.system("cls")
@@ -1485,6 +1840,7 @@ def afterMain():
             before0920processFL22SC()
         elif choice == "2":
             realTimeSignalMoveForFL22SC()
+            realTimeSignalMoveForHT02()
         elif choice == "5":
             dataCollectorOn40()
         elif choice == "4":
@@ -1497,11 +1853,16 @@ def afterMain():
             simpleRiseTopTxt()
         elif choice == "9":
             ...
-        elif choice == "10":
+            # display_current_time()
+        elif choice == "99":
             ...
             # downloadDataFromServer40()
         elif choice == "1":
             copYesterdayData()
+        elif choice == "10":
+
+        elif choice == "11":
+            baiduToScan()
         elif choice == "0":
             os.system("cls")
             print("See you tmr.\n")
@@ -1532,33 +1893,47 @@ def main():
     # output_text.pack(padx=10, pady=10)
     #
     # root.mainloop()
+    global g_yesterday
+    temp = getYesterday()
+    while True:
+        x = input("Wrong or Right? y/n")
+        if x == "y" or " ":
+            g_yesterday = temp
+            break
+        elif x == "n":
+            g_yesterday = input("enter yesterday's date")
+            break
+        else:
+            print("enter the right choice")
     afterMain()
 
 
 def menu():
-    # TODO 写一个可以便捷查询真实持仓的小程序
+    # TODOed 写一个可以便捷查询真实持仓的小程序
     # ipAddr = get_public_ip()
 
     print("----------------------------------------------")
     print(f"\t\t  \033[1\033[42;3;31m MAIN MENU \033[0m")
 
     print("1. 把昨日数据分析的数据移动到分单路径                        ")
-    print("2. 移动拆分后的 FL22SC 的实时信号                        ")
-    print("3. 拆分 FL22SC 并移回源路径                              ")
+    print("2. 移动拆分后的 FL22SC, HT02 的实时信号                    ")
+    print("3. 拆分 FL22SC, HT02 的原始信号并移回源路径                              ")
     print("4. 收盘拆分导出数据的检查                                ")
 
     print("5. 自动整理数据分析的数据                                ")
     print("6. 查询数据                                ")
     print("7. 查看各个账号密码")
     print("8. 存档并简化所有记录  简化涨跌停的记录")
-    # print("9. ")
+    print("9. 时钟")
+    print("10.PA -> PAHF -> Move")
+    print("11.百度网盘同步空间 -> 扫单文件夹 *已停用*")
 
-    print("10. 从另一台机器上的 HTTP 服务器上 fetch 文件(已删除)         ")
+    # print("10. 从另一台机器上的 HTTP 服务器上 fetch 文件(已删除)         ")
     print("0. 退出")
     # printGreenMsg(f"\n这台机器的 IP 地址是： {ipAddr}")
-    printYellowMsg("\n适用于 61 的功能: 1, 2, 3, 4")
-    printYellowMsg("适用于 40 的功能: 5")
-    printYellowMsg("适用于本机的功能: 9")
+    # printYellowMsg("\n适用于 61 的功能: 1, 2, 3, 4")
+    # printYellowMsg("适用于 40 的功能: 5")
+    # printYellowMsg("适用于本机的功能: 9")
     print("----------------------------------------------")
 
 
