@@ -9,6 +9,8 @@
 
 # TODO 在主页打印出实时信号节点和时间！！！
 # TODO 把昨日的 ZS 的 format_data 通过 18 复制到浙商的服务器
+
+# TODo 判断今天是不是周一，比如用处在：checkYesterdayDataTo37()，要是周一运行程序就会炸
 import os
 import shutil
 from datetime import datetime, timedelta
@@ -283,10 +285,10 @@ def move_all_files_with_string(source_folder, destination_folder, string_to_chec
                 shutil.move(source_file, destination_file)
                 print(f"Moved: {source_file} to {destination_file}")
 
-        print(f"All files containing '{string_to_check}' moved from {source_folder} to {destination_folder}")
+        printGreenMsg(f"All files containing '{string_to_check}' moved from {source_folder} to {destination_folder}")
 
     except Exception as e:
-        print(f"Failed to move files. Error: {e}")
+        printRedMsg(f"Failed to move files. Error: {e}")
 
 def copy_files_in_folder(source_folder, destination_folder):
     try:
@@ -1310,8 +1312,8 @@ def checkExportData():
     cf15 = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\CF15\data", today)
     fl18 = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL18\data", today)
     ht02zs = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\HT02XY\data", today)
-    fl22sc = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SC\data", today)
-    fl22xz = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22XZ\data", today)
+    fl22sc = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCA\data", today)
+    fl22xz = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCB\data", today)
     print(cf15, fl18, ht02zs, fl22sc, fl22xz)
 
     # 完成
@@ -1780,6 +1782,27 @@ def paToPahf():
     input("press enter to exit")
 
 
+def checkYesterdayDataTo37():
+    today = getToday()
+    print(rf"yesterday was {g_yesterday}")
+    checkDataList = []
+    checkFormatDataList = ['FL22SCA', 'FL22SCB', "HT02XY", 'HT02ZS']
+    limitPricePath = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\limit_price"
+
+    for fundname in checkFormatDataList:
+        path = rf"C:\Users\Administrator\Desktop\divide_order_account\{fundname}\format_data"
+        count = count_files_with_target_field(path, g_yesterday)
+        if count == 3:
+            printGreenMsg(f"{fundname}'s format data is prepared.")
+        else:
+            printRedMsg(f"{fundname}'s format data is NOT prepared, the count is {count}")
+    if count_files_with_target_field(limitPricePath, today) == 1:
+        printGreenMsg(f"{today}'s limit price data is prepared.")
+    else:
+        printRedMsg(f"{today}'s limit price data is NOT prepared.")
+    input("press enter to return to main menu")
+
+
 
 # def display_current_time():
 #     # os.system("cls")
@@ -1836,31 +1859,33 @@ def afterMain():
         menu()
         choice = input("请输入选项数字：")
 
-        if choice == "3":
+        if choice == "9":
             before0920processFL22SC()
-        elif choice == "2":
+        elif choice == "1":
+            checkYesterdayDataTo37()
+        elif choice == "10":
             realTimeSignalMoveForFL22SC()
             realTimeSignalMoveForHT02()
         elif choice == "5":
             dataCollectorOn40()
-        elif choice == "4":
+        elif choice == "3":
             checkExportData()
         elif choice == "6":
             findData()
         elif choice == "7":
             printAllAccountInfo()
-        elif choice == "8":
+        elif choice == "4":
             simpleRiseTopTxt()
-        elif choice == "9":
+        elif choice == "8":
             ...
             # display_current_time()
         elif choice == "99":
             ...
             # downloadDataFromServer40()
-        elif choice == "1":
+        elif choice == "12":
             copYesterdayData()
-        elif choice == "10":
-
+        elif choice == "2":
+            paToPahf()
         elif choice == "11":
             baiduToScan()
         elif choice == "0":
@@ -1915,18 +1940,19 @@ def menu():
     print("----------------------------------------------")
     print(f"\t\t  \033[1\033[42;3;31m MAIN MENU \033[0m")
 
-    print("1. 把昨日数据分析的数据移动到分单路径                        ")
-    print("2. 移动拆分后的 FL22SC, HT02 的实时信号                    ")
-    print("3. 拆分 FL22SC, HT02 的原始信号并移回源路径                              ")
-    print("4. 收盘拆分导出数据的检查                                ")
+    print("1.  检查 昨日数据分析的数据 -> Server 37")
+    print("2.  PA -> PAHF -> Move")
+    print("3.  收盘拆分导出数据的检查 ")
+    print("4.  存档并简化 LOG 记录")
+    print("5.  自动整理数据分析的数据                                ")
+    print("6.  查询数据                                ")
+    print("7.  查看各个账号密码")
 
-    print("5. 自动整理数据分析的数据                                ")
-    print("6. 查询数据                                ")
-    print("7. 查看各个账号密码")
-    print("8. 存档并简化所有记录  简化涨跌停的记录")
-    print("9. 时钟")
-    print("10.PA -> PAHF -> Move")
-    print("11.百度网盘同步空间 -> 扫单文件夹 *已停用*")
+    print("8.  时钟")
+    print("9.  拆分 FL22SC, HT02 的原始信号并移回源路径 *已停用*")
+    print("10. 移动拆分后的 FL22SC, HT02 的实时信号 *已停用*")
+    print("11. 百度网盘同步空间 -> 扫单文件夹 *已停用*")
+    print("12.  昨日数据分析的数据 -> 分单文件夹 ")
 
     # print("10. 从另一台机器上的 HTTP 服务器上 fetch 文件(已删除)         ")
     print("0. 退出")
