@@ -11,6 +11,9 @@
 # TODO 把昨日的 ZS 的 format_data 通过 18 复制到浙商的服务器
 
 # TODo 判断今天是不是周一，比如用处在：checkYesterdayDataTo37()，要是周一运行程序就会炸
+
+# TODO 增加功能：Python HTTPS server | use muti thread!
+
 import os
 import shutil
 from datetime import datetime, timedelta
@@ -2024,13 +2027,13 @@ def main():
     # root.mainloop()
     global g_yesterday
     temp = getYesterday()
-    while True:
-        x = input("Wrong or Right? y/n")
-        if x == "y" or " ":
+    while 0:
+        x = input("Wrong or Right? y/n \n")
+        if x == "y" or "":
             g_yesterday = temp
             break
         elif x == "n":
-            g_yesterday = input("enter yesterday's date")
+            g_yesterday = input("enter yesterday's date (format: YYYYMMDD):")
             break
         else:
             print("enter the right choice")
@@ -2049,11 +2052,12 @@ def menu():
     print("3.  收盘拆分导出数据的拆分和检查 ")
     print("4.  Diff 持仓差异分析并查看")
     print("5.  存档并简化 LOG 记录")
-
     print("6.  查询数据                                ")
     print("7.  查看各个账号密码")
-
     print("8.  时钟")
+    print("0. 退出")
+    print("")
+    print(f"\033[33m已停用功能: \033[0m")
     print("9.  拆分 FL22SC, HT02 的原始信号并移回源路径 *已停用*")
     print("10. 移动拆分后的 FL22SC, HT02 的实时信号 *已停用*")
     print("11. 百度网盘同步空间 -> 扫单文件夹 *已停用*")
@@ -2061,7 +2065,7 @@ def menu():
     print("13. 自动整理数据分析的数据 *已停用*")
 
     # print("10. 从另一台机器上的 HTTP 服务器上 fetch 文件(已删除)         ")
-    print("0. 退出")
+
     # printGreenMsg(f"\n这台机器的 IP 地址是： {ipAddr}")
     # printYellowMsg("\n适用于 61 的功能: 1, 2, 3, 4")
     # printYellowMsg("适用于 40 的功能: 5")
