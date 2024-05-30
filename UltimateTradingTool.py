@@ -25,13 +25,20 @@ import sv_ttk
 import re
 import time
 # import datetime
+import threading
+import xlrd
+import openpyxl
+import prettytable
+from prettytable import PrettyTable
 
 DEBUG_MODE = 1
 # 1表示启用，但这部分代码未完成
 HTTP_SERVER = 0
 server40addr = "http://192.168.1.40:8000/"
+smart_divide_path = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\projects\smart_data_divide.py"
+diff_excel_path = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\projects\持仓差异自动化_v1.2.py"
 
-os.system("mode con cols=250 lines=30")
+os.system("mode con cols=200 lines=30")
 
 product_fund_dict = {
     "CF15": "480151137",
@@ -819,6 +826,69 @@ def modifyNamePAtoPAHF(path):
         printRedMsg(f"Failed to rename files. Error: {e}")
 
 
+def run_python_file(path):
+    os.system(fr"D:\software\python3.6.6\python.exe {path}")
+
+
+# 如果表头中有重复的字段名称，PrettyTable 会抛出 Field names must be unique 错误。
+# 为了解决这个问题，可以在读取表头时检查并处理重复字段名称。例如，可以在字段名称后面添加编号使其唯一。
+# 以下是一个改进后的示例
+def make_unique(field_names):
+    """
+    确保字段名称唯一。
+    """
+    seen = {}
+    unique_field_names = []
+    for name in field_names:
+        if name in seen:
+            seen[name] += 1
+            unique_field_names.append(f"{name}_{seen[name]}")
+        else:
+            seen[name] = 0
+            unique_field_names.append(name)
+    return unique_field_names
+
+def replace_none_with_empty_string(row):
+    """
+    将行中的 None 替换为空字符串。
+    """
+    return ['' if cell is None else cell for cell in row]
+
+
+def read_and_print_xlsx(file_path):
+    """
+    读取并打印 .xlsx 文件的内容
+
+    参数:
+    file_path (str): .xlsx 文件的路径
+    """
+    printYellowMsg(f"now printing excel: {file_path}")
+    try:
+        # 尝试加载工作簿
+        wb = openpyxl.load_workbook(file_path)
+        sheet = wb.active
+
+        # 创建 PrettyTable 对象
+        table = PrettyTable()
+
+        # 获取表头
+        headers = [cell.value for cell in sheet[1]]
+        unique_headers = make_unique(headers)
+        table.field_names = replace_none_with_empty_string(unique_headers)
+
+        # 添加表格行
+        for row in sheet.iter_rows(min_row=2, values_only=True):
+            table.add_row(replace_none_with_empty_string(row))
+
+        # 打印表格内容
+        print(table)
+    except FileNotFoundError:
+        printRedMsg(f"File not found: {file_path}. Please check the file path.")
+    except Exception as e:
+        printRedMsg(f"An error occurred while reading the file: {e}")
+
+
+
 def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
     ...
 
@@ -1305,7 +1375,16 @@ def checkExportData():
         printGreenMsg("smtData is exist.")
         input("")
 
-    printYellowMsg("you can run smart_data_divide.py now, press any key when done.")
+    printYellowMsg(f"NOW RUNNING {smart_divide_path}...")
+
+
+    thread = threading.Thread(target=run_python_file, args=(smart_divide_path,))
+    thread.start()
+    # 等待线程结束
+    thread.join()
+    printGreenMsg("Data divide program is finished.")
+
+
     input("")
 
     # 检查是否拆分完毕
@@ -1796,13 +1875,36 @@ def checkYesterdayDataTo37():
             printGreenMsg(f"{fundname}'s format data is prepared.")
         else:
             printRedMsg(f"{fundname}'s format data is NOT prepared, the count is {count}")
+
     if count_files_with_target_field(limitPricePath, today) == 1:
         printGreenMsg(f"{today}'s limit price data is prepared.")
     else:
         printRedMsg(f"{today}'s limit price data is NOT prepared.")
+
+    format_today = f"{today[:4]}-{today[4:6]}-{today[6:]}"
+    if count_files_with_target_field(r"E:\BaiduSyncdisk\Sell_Buy_List_PA", format_today):
+        printGreenMsg(f"{today}'s DataCorrect file is generated.")
+    else:
+        printRedMsg(f"{today}'s DataCorrect file is NOT generated!")
+
     input("press enter to return to main menu")
 
+def diffGenerateAndCheck():
+    today = getToday()
+    printYellowMsg(f"NOW RUNNING {diff_excel_path}")
+    input("Press enter to continue...")
 
+    thread = threading.Thread(target=run_python_file, args=(diff_excel_path,))
+    thread.start()
+
+    thread.join()
+    printGreenMsg("diff excel done generating.")
+
+    # 查看表格
+    todayTotalDiffPath = rf"C:\Users\Administrator\Desktop\兴业证券多账户交易\totalDiff\持仓差异整合_{today}.xlsx"
+    read_and_print_xlsx(todayTotalDiffPath)
+
+    input("press enter to exit")
 
 # def display_current_time():
 #     # os.system("cls")
@@ -1866,7 +1968,7 @@ def afterMain():
         elif choice == "10":
             realTimeSignalMoveForFL22SC()
             realTimeSignalMoveForHT02()
-        elif choice == "5":
+        elif choice == "13":
             dataCollectorOn40()
         elif choice == "3":
             checkExportData()
@@ -1874,7 +1976,7 @@ def afterMain():
             findData()
         elif choice == "7":
             printAllAccountInfo()
-        elif choice == "4":
+        elif choice == "5":
             simpleRiseTopTxt()
         elif choice == "8":
             ...
@@ -1888,6 +1990,8 @@ def afterMain():
             paToPahf()
         elif choice == "11":
             baiduToScan()
+        elif choice == "4":
+            diffGenerateAndCheck()
         elif choice == "0":
             os.system("cls")
             print("See you tmr.\n")
@@ -1940,11 +2044,12 @@ def menu():
     print("----------------------------------------------")
     print(f"\t\t  \033[1\033[42;3;31m MAIN MENU \033[0m")
 
-    print("1.  检查 昨日数据分析的数据 -> Server 37")
+    print("1.  检查 昨日数据分析的数据 & 云盘是否正常工作")
     print("2.  PA -> PAHF -> Move")
-    print("3.  收盘拆分导出数据的检查 ")
-    print("4.  存档并简化 LOG 记录")
-    print("5.  自动整理数据分析的数据                                ")
+    print("3.  收盘拆分导出数据的拆分和检查 ")
+    print("4.  Diff 持仓差异分析并查看")
+    print("5.  存档并简化 LOG 记录")
+
     print("6.  查询数据                                ")
     print("7.  查看各个账号密码")
 
@@ -1952,7 +2057,8 @@ def menu():
     print("9.  拆分 FL22SC, HT02 的原始信号并移回源路径 *已停用*")
     print("10. 移动拆分后的 FL22SC, HT02 的实时信号 *已停用*")
     print("11. 百度网盘同步空间 -> 扫单文件夹 *已停用*")
-    print("12.  昨日数据分析的数据 -> 分单文件夹 ")
+    print("12. 昨日数据分析的数据 -> 分单文件夹 *已停用* ")
+    print("13. 自动整理数据分析的数据 *已停用*")
 
     # print("10. 从另一台机器上的 HTTP 服务器上 fetch 文件(已删除)         ")
     print("0. 退出")
