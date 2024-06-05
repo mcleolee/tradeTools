@@ -34,7 +34,15 @@ import openpyxl
 import prettytable
 from prettytable import PrettyTable
 
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# import seaborn as sns
+
+import tushare as ts
+
 DEBUG_MODE = 1
+
 # 1表示启用，但这部分代码未完成
 HTTP_SERVER = 0
 server40addr = "http://192.168.1.40:8000/"
@@ -48,7 +56,9 @@ product_fund_dict = {
     "FL18": "480149909",
     "HT02XY": "480167623",
     "FL18SCA": "480160777",
-    "FL22SCB": "3050003937"
+    "FL22SCB": "3050003937",
+    "FL": "1260016888",
+    "PAHF": "320300010625"
 }
 
 m = "morning"
@@ -97,7 +107,7 @@ g_realTimeNode = 0
 #     text.insert(tk.END, message)
 
 
-def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
+def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
     ...
 
 
@@ -201,7 +211,6 @@ def copy_files_with_string_limited(source_folder, destination_folder, string_to_
         printRedMsg(f"Failed to copy files. Error: {e}")
 
 
-
 # 复制所有含指定字符的文件
 def copy_files_with_string_no_limited(source_folder, destination_folder, string_to_check):
     try:
@@ -246,6 +255,7 @@ def test_copy_files_with_string_no_limited(source_folder, destination_folder, st
 
     except Exception as e:
         print(f"Failed to copy files. Error: {e}")
+
 
 def erase_folder_contents(folder_path):
     try:
@@ -299,6 +309,7 @@ def move_all_files_with_string(source_folder, destination_folder, string_to_chec
 
     except Exception as e:
         printRedMsg(f"Failed to move files. Error: {e}")
+
 
 def copy_files_in_folder(source_folder, destination_folder):
     try:
@@ -598,66 +609,22 @@ def enterPasswordToContinue():
             return False
 
 
-def list_files_with_numbers(path, n):
-    files = os.listdir(path)
-    files = [f for f in files if os.path.isfile(os.path.join(path, f))]  # 过滤出文件
-    files.sort()  # 排序文件列表
-
-    for i, file in enumerate(files[:n]):
-        print(f"{i + 1}: {file}")
-
-    choice = int(input("请选择文件序号（输入数字 1 到 n）: "))
-    if choice < 1 or choice > n:
-        print("无效的选择")
-        return None
-
-    selected_file = os.path.join(path, files[choice - 1])
-    return selected_file
-
-
-def list_files_with_numbers(path, n):
-    files = os.listdir(path)
-    files = [f for f in files if os.path.isfile(os.path.join(path, f))]  # 过滤出文件
-    files.sort()  # 排序文件列表
-
-    for i, file in enumerate(files[:n]):
-        print(f"{i + 1}: {file}")
-
-    choice = int(input(f"请选择文件序号（输入数字 1 到 {n}）: "))
-    if choice < 1 or choice > n:
-        printRedMsg("无效的选择")
-        return None
-
-    selected_file = os.path.join(path, files[choice - 1])
-    return selected_file
-
-
-def quickLookUpSellBuyList(product_choice):
-    product_names = ["CF15", "FL18", "HT02XY", "FL18SC", "FL18SCA", "FL22SCB"]
-    productName = product_names[product_choice - 1]
-    rootPath = r"C:\Users\Administrator\Desktop\兴业证券多账户交易"
-    BSLpath = rf"{rootPath}\{productName}\Sell_Buy_List_{productName}"
-
-    fullPath = list_files_with_numbers(BSLpath, 15)
-    # print(fullPath)
-    # TODO 还没写完
-
-
-# def remove_lines_with_character(file_path, target_character):
-#     printGreenMsg("正在处理中...")
-#     # 打开文件并逐行读取内容
-#     with open(file_path, 'r') as file:
-#         lines = file.readlines()
+# 和下面的函数好像一样
+# def list_files_with_numbers(path, n):
+#     files = os.listdir(path)
+#     files = [f for f in files if os.path.isfile(os.path.join(path, f))]  # 过滤出文件
+#     files.sort()  # 排序文件列表
 #
-#     # 过滤掉包含特定字符的行
-#     filtered_lines = [line for line in lines if target_character not in line]
+#     for i, file in enumerate(files[:n]):
+#         print(f"{i + 1}: {file}")
 #
-#     # 将剩余的行重新写入文件
-#     with open(file_path, 'w') as file:
-#         file.writelines(filtered_lines)
+#     choice = int(input("请选择文件序号（输入数字 1 到 n）: "))
+#     if choice < 1 or choice > n:
+#         print("无效的选择")
+#         return None
 #
-#     printGreenMsg("处理完成")
-#     input("")
+#     selected_file = os.path.join(path, files[choice - 1])
+#     return selected_file
 
 
 # 如果文件可能很大，我们可以采用逐行读取和写入的方式来处理文件，以避免一次性加载整个文件到内存中
@@ -851,6 +818,7 @@ def make_unique(field_names):
             unique_field_names.append(name)
     return unique_field_names
 
+
 def replace_none_with_empty_string(row):
     """
     将行中的 None 替换为空字符串。
@@ -891,8 +859,337 @@ def read_and_print_xlsx(file_path):
         printRedMsg(f"An error occurred while reading the file: {e}")
 
 
+class prt:
+    @staticmethod
+    def printDataFrameWithMaxRows(df):
+        # 设置显示所有行
+        # pd.set_option('display.max_rows', None)  # 显示所有行
+        # pd.set_option('display.max_columns', None)  # 显示所有列
+        # pd.set_option('display.max_colwidth', None)  # 显示所有列宽
+        # pd.set_option('display.width', 1000)  # 调整宽度
+        pd.set_option('display.max_rows', None)
+        pd.set_option('display.max_columns', None)
+        # 设置显示宽度
+        pd.set_option('display.width', 1000)  # 设置为适当的值，以便显示足够的列
 
-def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
+        printYellowMsg(f"Printing dataframe with max rows")
+        print(df)
+
+    @staticmethod
+    def printAllColumns(df):
+        print(f"Printing all columns in dataframe {df}")
+        for col in df.columns:
+            print(col)
+
+
+
+class data:
+    @staticmethod
+    def drop_stock_codes(df, deleted_stock):
+        """
+        删除DataFrame中特定股票代码的行。
+
+        参数:
+        df (pd.DataFrame): 包含股票数据的DataFrame。
+        deleted_stock (list): 要删除的股票代码列表。
+
+        返回:
+        pd.DataFrame: 已删除特定股票代码的DataFrame。
+        """
+        # 确保删除的股票代码列表是字符串类型
+        deleted_stock = [str(code) for code in deleted_stock]
+
+        # 使用isin函数检查股票代码是否在列表中，并返回一个布尔索引
+        # 然后使用~（取反）来选择不在列表中的行
+        mask = ~df['stock_code'].isin(deleted_stock)
+
+        # 返回过滤后的DataFrame
+        return df.loc[mask]
+
+    @staticmethod
+    def drop_is_grid_is_0(df):
+        # 检查 is_grid 是否为列名
+        if "is_grid" not in df.columns:
+            raise ValueError(f"is_grid is not a column in the DataFrame")
+
+        # 使用布尔索引来找到 is_grid 列中值为 0 的行，并删除这些行
+        df_dropped = df[df["is_grid"] != 0]
+
+        return df_dropped
+
+    @staticmethod
+    def drop_targetPositionIsNone(df):
+        # 检查 is_grid 是否为列名
+        if "target_position_dict" not in df.columns:
+            raise ValueError(f"target_position_dict is not a column in the DataFrame")
+
+        # 使用布尔索引来找到 is_grid 列中值为 0 的行，并删除这些行
+        df_dropped = df[df["target_position_dict"] != "None"]
+
+        return df_dropped
+
+    @staticmethod
+    def drop_columns(df, columns_to_drop):
+        """
+        删除指定的列
+
+        参数:
+        df: pandas.DataFrame
+            需要删除列的 DataFrame
+        columns_to_drop: list
+            需要删除的列名列表
+
+        返回:
+        pandas.DataFrame
+            删除指定列后的 DataFrame
+        """
+        return df.drop(columns=columns_to_drop)
+
+    @staticmethod
+    def keepColumnsDeleteOthers(df, columns_to_keep):
+        """
+        保留DataFrame中指定的列，并删除其他所有列。
+
+        参数:
+        df (pd.DataFrame): 输入的DataFrame。
+        columns_to_keep (list): 需要保留的列名列表。
+
+        返回:
+        pd.DataFrame: 只包含指定列的新DataFrame。
+        """
+        # 检查columns_to_keep中的列是否都在df中
+        if not set(columns_to_keep).issubset(df.columns):
+            raise ValueError("列名列表中包含不存在于DataFrame中的列")
+
+        # 返回只包含指定列的新DataFrame
+        return df[columns_to_keep]
+
+    @staticmethod
+    def rename_headers(df, new_headers):
+        """
+        Rename the headers of a DataFrame.
+
+        Parameters:
+        df (pd.DataFrame): The DataFrame whose headers need to be renamed.
+        new_headers (list): The list of new header names.
+
+        Returns:
+        pd.DataFrame: The DataFrame with renamed headers.
+        """
+        if len(new_headers) != len(df.columns):
+            raise ValueError("The length of new_headers must match the number of columns in the DataFrame.")
+
+        df.columns = new_headers
+        return df
+
+    @staticmethod
+    def get_df_from_csv(file_path):
+        """
+        读取CSV文件并转换为DataFrame。
+
+        :param file_path: CSV文件的路径
+        :return: 包含CSV数据的DataFrame
+        """
+        df = pd.read_csv(file_path)
+        return df
+
+    @staticmethod
+    def read_excel_to_df(file_path, sheet_num):
+        """
+        读取指定路径和工作表编号的Excel文件，并将其转换为DataFrame。
+
+        参数:
+        file_path (str): Excel文件的路径。
+        sheet_num (int): 工作表编号，从0开始。
+
+        返回:
+        DataFrame: 指定工作表的数据。
+        """
+        df = pd.read_excel(file_path, sheet_name=sheet_num)
+        return df
+
+    @staticmethod
+    def getElementFromCol(df, column_name):
+        column_values = df[f'{column_name}'].values  # 获取所有元素作为 NumPy 数组
+        column_values_list = df[f'{column_name}'].tolist()  # 获取所有元素作为列表
+        return column_values_list
+
+    @staticmethod
+    def common_stocks(df1, df2):
+        """
+        比较两个DataFrame，返回它们共同拥有的股票列表。
+
+        参数:
+        df1: 第一个DataFrame，必须包含 'stock_code' 列。
+        df2: 第二个DataFrame，必须包含 'stock_code' 列。
+
+        返回:
+        List: 共同拥有的股票列表。
+        """
+        # 提取两个DataFrame中的股票代码
+        stocks1 = set(df1['stock_code'])
+        stocks2 = set(df2['stock_code'])
+
+        # 找到共同拥有的股票
+        common = stocks1.intersection(stocks2)
+
+        # 将集合转换为列表返回
+        return list(common)
+
+class plot:
+    @staticmethod
+    def parse_details(details):
+        """
+        解析GRID_DETAIL字段，提取价格和数量对。
+        :param details: 包含价格和数量对的字符串，格式为 '价格:数量;价格:数量;...'
+        :return: 价格和数量对的列表
+        """
+        price_quantity_pairs = []
+        for item in details.split(';'):
+            if item:  # 确保每个对不是空的
+                price_quantity_pairs.append(item)
+        return price_quantity_pairs
+
+    @staticmethod
+    def plot_data_grid_paras_txt(df):
+        """
+        为每个股票ID绘制价格和数量图。
+        :param df: 包含股票数据的DataFrame
+        """
+        num_stocks = len(df)  # 获取股票ID的数量
+        # 创建子图，每个子图宽度为2.08英寸（200像素），高度为6英寸，子图之间间隔1英寸
+        fig, axs = plt.subplots(1, num_stocks, figsize=(num_stocks * (200 / 96 + 1), 6), sharey=False)
+        fig.subplots_adjust(wspace=1, bottom=0.2)  # 设置子图之间的间隔为1英寸
+
+        for ax, stock_id in zip(axs, df['STOCK_ID']):
+            # 找到与当前股票ID对应的行
+            row = df[df['STOCK_ID'] == stock_id]
+            if not row.empty:
+                details = row.iloc[0]['GRID_DETAIL']  # 提取GRID_DETAIL字段
+                marker_value = int(row.iloc[0]['HOLDING'])  # 提取HOLDING字段
+
+                price_quantity_pairs = plot.parse_details(details)  # 解析价格和数量对
+                prices, quantities = zip(*[pair.split(':') for pair in price_quantity_pairs])  # 拆分为价格和数量
+                quantities = list(map(int, quantities))  # 将数量转换为整数
+
+                ax.plot(prices, quantities, marker='o', linestyle='')  # 绘制价格和数量的散点图
+
+                # 标记特定的点
+                if marker_value in quantities:
+                    marker_index = quantities.index(marker_value)  # 找到marker_value在数量列表中的索引
+                    ax.scatter(prices[marker_index], quantities[marker_index], color='red', zorder=5)  # 标记红色点
+                    ax.text(prices[marker_index], quantities[marker_index],
+                            f' {prices[marker_index]}:{quantities[marker_index]}', fontsize=12, color='red')  # 添加文本标签
+
+                # 检查HOLDING值是否在GRID_DETAIL的数量范围内
+                if marker_value <= min(quantities) or marker_value >= max(quantities):
+                    ax.text(0.5, -0.2, 'BREACHED!!!', color='red', fontsize=15, transform=ax.transAxes, ha='center')
+
+                ax.set_title(f'STOCK ID: {stock_id}')  # 设置子图标题为股票ID
+                ax.set_xlabel('Price')  # 设置x轴标签为Price
+                ax.set_ylabel('Quantity')  # 设置y轴标签为Quantity
+                ax.grid(True)  # 显示网格线
+        # 绘制完所有子图后，添加大标题
+        plt.suptitle('GRID PARAS', fontsize=16)
+
+        plt.show()  # 显示绘图
+
+    @staticmethod
+    def stock_min_max_latest(stock_min_max_latest):
+        # 创建子图
+        num_stocks = len(stock_min_max_latest)
+        fig, axes = plt.subplots(nrows=1, ncols=num_stocks, figsize=(8, 6), sharey=False)
+        fig.subplots_adjust(wspace=0.5, top=0.912, right=0.974)  # 设置子图之间的间隔为1英寸
+        # 绘制每个子图
+        # 这一行遍历了stock_min_max_latest DataFrame 中的每一行，并返回行索引（index）和行数据（row）。enumerate() 函数用于同时获得行索引和行数据，并在每次循环中增加计数器 i。
+        for i, (index, row) in enumerate(stock_min_max_latest.iterrows()):
+            ax = axes[i]  # 根据当前迭代的计数器 i，选择了对应的子图 ax，以便对其进行操作。
+            # 这一行绘制了一个水平区间，水平轴表示价格范围，竖直轴为零。row['min_price'] 和 row['max_price'] 分别表示当前股票的最低价和最高价。
+            ax.plot([0, 0], [row['min_price'], row['max_price']], color='gray', linestyle='-', linewidth=2)
+            # 根据最新价在价格区间内外使用绿色或红色绘制了一个点。如果最新价在最低价和最高价之间，则使用绿色表示，否则使用红色。
+            ax.scatter(0, row['latest_price'],
+                       color='green' if row['min_price'] <= row['latest_price'] <= row['max_price'] else 'red')
+
+            # 在最新价格点旁边添加对应的数值
+            ax.text(0.05, row['latest_price'], f"{row['latest_price']:.2f}", verticalalignment='center', fontsize=10,
+                    color='black')
+
+            ax.set_aspect('auto')
+            ax.set_ylim(row['min_price'] - 1, row['max_price'] + 1)  # 设置了竖直轴的范围，确保价格区间的可视化合理。
+            ax.set_xlim(-1, 1)  # 设置了水平轴的范围，在这里固定为 (-1, 1)。
+            # ax.set_title(row['stock_code']) # 设置了子图的标题，即当前股票的股票代码。
+            ax.set_xlabel(row['stock_code'])  # 将股票代码作为 x 轴标签
+            ax.set_yticks([row['min_price'], row['max_price']])  # 设置了竖直轴上的刻度，这里是最低价和最高价。
+            ax.set_xticks([])  # 由于水平轴的范围已经设置为 (-1, 1)，因此我们在竖直轴上不显示刻度
+
+        # 调整子图之间的间距
+        plt.tight_layout()
+
+        # 绘制完所有子图后，添加大标题
+        fig.suptitle('MONITOR ON TRADING STOCK', fontsize=16)
+
+        # 显示图表
+        plt.show()
+
+    @staticmethod
+    def create_holding(df):
+        # 创建子图
+        num_stocks = len(df)
+        fig, axes = plt.subplots(nrows=1, ncols=num_stocks, figsize=(6, 6), sharey=False)
+        fig.subplots_adjust(wspace=0.5, top=0.912, right=0.974)  # 设置子图之间的间隔为1英寸
+        # 绘制每个子图
+        # 这一行遍历了stock_min_max_latest DataFrame 中的每一行，并返回行索引（index）和行数据（row）。enumerate() 函数用于同时获得行索引和行数据，并在每次循环中增加计数器 i。
+        for i, (index, row) in enumerate(df.iterrows()):
+            ax = axes[i]  # 根据当前迭代的计数器 i，选择了对应的子图 ax，以便对其进行操作。
+            # 这一行绘制了一个水平区间，水平轴表示价格范围，竖直轴为零。row['min_price'] 和 row['max_price'] 分别表示当前股票的最低价和最高价。
+            ax.plot([0, 0], [row['min_price'], row['max_price']], color='gray', linestyle='-', linewidth=2)
+            ax.plot([0, 0], [row['ten_percent'], row['thirty_percent']], color='green', linestyle='-', linewidth=3)
+            # 根据最新价在价格区间内外使用绿色或红色绘制了一个点。如果最新价在最低价和最高价之间，则使用绿色表示，否则使用红色。
+            ax.scatter(0, row['latest_price'],
+                       color='green' if row['min_price'] <= row['latest_price'] <= row['max_price'] else 'red')
+
+            # 在最新价格点旁边添加对应的数值
+            ax.text(0.05, row['latest_price'], f"{row['latest_price']:.2f}", verticalalignment='center',
+                    fontsize=10,
+                    color='black')
+
+            ax.set_aspect('auto')
+            ax.set_ylim(row['min_price'] - 1, row['max_price'] + 1)  # 设置了竖直轴的范围，确保价格区间的可视化合理。
+            ax.set_xlim(-1, 1)  # 设置了水平轴的范围，在这里固定为 (-1, 1)。
+            # ax.set_title(row['stock_code']) # 设置了子图的标题，即当前股票的股票代码。
+            ax.set_xlabel(row['stock_code'])  # 将股票代码作为 x 轴标签
+            ax.set_yticks([row['min_price'], row['max_price']])  # 设置了竖直轴上的刻度，这里是最低价和最高价。
+            ax.set_xticks([])  # 由于水平轴的范围已经设置为 (-1, 1)，因此我们在竖直轴上不显示刻度
+
+        # 调整子图之间的间距
+        plt.tight_layout()
+
+        # 绘制完所有子图后，添加大标题
+        fig.suptitle('MONITOR ON TRADING STOCK', fontsize=16)
+
+        # 显示图表
+        plt.show()
+
+
+class grid:
+    @staticmethod
+    def grid_paras_txt_to_dataframe(file_path):
+        data = []
+
+        with open(file_path, 'r') as file:
+            for line in file:
+                parts = line.strip().split('=')
+                if len(parts) >= 3 and parts[2]:  # 确保第二个等号后面有内容
+                    record_id = parts[0]
+                    value = parts[1]
+                    details = parts[2]
+                    data.append([record_id, value, details])
+
+        df = pd.DataFrame(data, columns=['STOCK_ID', 'HOLDING', 'GRID_DETAIL'])
+        return df
+
+
+def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
     ...
 
 
@@ -1219,7 +1516,6 @@ def realTimeSignalMoveForFL22SC():
         input(" ")
 
 
-
 def realTimeSignalMoveForHT02():
     # 包含原始信号和实时信号
     os.system("cls")
@@ -1228,9 +1524,9 @@ def realTimeSignalMoveForHT02():
     divide_HT = r"C:\Users\Administrator\Desktop\divide_order_account\HT02XY\Sell_Buy_List_HT02XY"
     ori_HT = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\HT02XY\Sell_Buy_List_HT02XY"
 
-    nom =  rf"{divide_HT}\{nom_}{today}.txt"
+    nom = rf"{divide_HT}\{nom_}{today}.txt"
     nom2 = rf"{divide_HT}\{nom2_}{today}.txt"
-    noa =  rf"{divide_HT}\{noa_}{today}.txt"
+    noa = rf"{divide_HT}\{noa_}{today}.txt"
     noa2 = rf"{divide_HT}\{noa2_}{today}.txt"
     # HT02XYsell,HT02XYjrcc,HT02XYbuy,HT02XYno = None
     # 原始信号
@@ -1380,13 +1676,11 @@ def checkExportData():
 
     printYellowMsg(f"NOW RUNNING {smart_divide_path}...")
 
-
     thread = threading.Thread(target=run_python_file, args=(smart_divide_path,))
     thread.start()
     # 等待线程结束
     thread.join()
     printGreenMsg("Data divide program is finished.")
-
 
     input("")
 
@@ -1458,7 +1752,7 @@ def copYesterdayData():
     # TODoo yesterday 不是上一个交易日就没法运行了啊啊啊
 
     # 检验文件是否传输
-    #FIXME 220240527 先注释，判断昨日有问题，下面也是
+    # FIXME 220240527 先注释，判断昨日有问题，下面也是
 
     # if count_files_with_target_field(des_A_data, g_yesterday) == 3:
     #     printGreenMsg(f"yesterday's data copied to {des_A_data}")
@@ -1555,9 +1849,6 @@ def copYesterdayData():
     #     input("")
     #     return
 
-
-
-
     # 操作完之后清空temp文件夹
     printYellowMsg("Deleting temp path and archiving zip file...")
     input("")
@@ -1569,6 +1860,41 @@ def copYesterdayData():
 
 
 def findData():
+    def list_files_with_numbers(path, n):
+        files = os.listdir(path)
+        files = [f for f in files if os.path.isfile(os.path.join(path, f))]  # 过滤出文件
+        files.sort(key=lambda x: os.path.getmtime(os.path.join(path, x)), reverse=True)  # 按更新时间排序，最新的在最前
+
+        for i, file in enumerate(files[:n]):
+            print(f"{i + 1}: {file}")
+
+        choice = int(input(f"请选择文件序号（输入数字 1 到 {n}）: "))
+        if choice < 1 or choice > n:
+            printRedMsg("无效的选择")
+            return None
+
+        selected_file = os.path.join(path, files[choice - 1])
+        return selected_file
+
+    def quickLookUpSellBuyList(product_choice):
+        os.system("cls")
+        product_names = ["CF15", "FL18", "HT02XY", "FL18SC", "FL18SCA", "FL22SCB", "FL", "PAHF"]
+        productName = product_names[product_choice - 1]
+        rootPath = r"C:\Users\Administrator\Desktop\兴业证券多账户交易"
+        BSLpath = rf"{rootPath}\{productName}\Sell_Buy_List_{productName}"
+
+        fullPath = list_files_with_numbers(BSLpath, 15)
+
+        if product_choice == "8":
+            fullPath = r"D:\Trade\scan_trade_xt\PAHF\Sell_Buy_List_PAHF"
+        print(fullPath)
+
+        stock_code = input("请输入你要查询的股票代码：")
+        getInfoFromFileName(fullPath, product_fund_dict)
+        find_stock_data(fullPath, stock_code)
+
+        # TODO 还没写完
+
     # TODO 搞format data好像会炸
     while True:
         os.system("cls")
@@ -1578,7 +1904,7 @@ def findData():
         print("\t2. 快速查询 Sell_Buy_List")
         # print("quit. 退出")
 
-        choice = input("\n\n\n\n\nEnter the function you want:\n")
+        choice = input("\n\n\n\n\nEnter the function you want:  ")
 
         if choice == '1':
             os.system("cls")
@@ -1588,7 +1914,7 @@ def findData():
                 print("返回主界面")
                 return
 
-            stock_code = input("请输入股票代码：")
+            stock_code = input("请输入你要查询的股票代码：")
             getInfoFromFileName(file_path, product_fund_dict)
             find_stock_data(file_path, stock_code)
         elif choice == "2":
@@ -1600,19 +1926,25 @@ def findData():
             print("4. FL18SC")
             print("5. FL18SCA")
             print("6. FL22SCB")
+            print("7. FL")
+            print("8. PAHF")
             productChoice = input("input the product you want.")
             if productChoice == "1":
                 quickLookUpSellBuyList(1)
             elif productChoice == "2":
-                ...
+                quickLookUpSellBuyList(2)
             elif productChoice == "3":
-                ...
+                quickLookUpSellBuyList(3)
             elif productChoice == "4":
-                ...
+                quickLookUpSellBuyList(4)
             elif productChoice == "5":
-                ...
+                quickLookUpSellBuyList(5)
             elif productChoice == "6":
-                ...
+                quickLookUpSellBuyList(6)
+            elif productChoice == "7":
+                quickLookUpSellBuyList(7)
+            elif productChoice == "8":
+                quickLookUpSellBuyList(8)
 
 
 
@@ -1819,7 +2151,6 @@ def baiduToScan():
     baiduSyncdiskPath = r"E:\BaiduSyncdisk"
     scanPath = rf"C:\Users\Administrator\Desktop\兴业证券多账户交易"
 
-
     fundListInBaidu = ['FL18', 'CF15', 'FL', 'PA', 'HT02', 'FL22SC']
     fundListInScan = ['FL18', 'CF15', 'FL', 'PA', 'HT02', 'FL22SC', 'HT02XY', 'FL22SCA', 'FL22SCB']
     fundListInDivide = ['HT02XY', 'FL22SCA', 'FL22SCB']
@@ -1840,8 +2171,6 @@ def baiduToScan():
             modifyNamePAtoPAHF(target)
             move_all_files_with_string(target, r"D:\Trade\scan_trade_xt\PAHF\Sell_Buy_List_PAHF", today)
             # move_all_files_with_string(testTarget, r"C:\Users\Administrator\Desktop\startTrade\test_delete_later\pa\q", "PAHF")
-
-
 
     input("press enter to exit")
 
@@ -1866,6 +2195,7 @@ def paToPahf():
 
 def checkYesterdayDataTo37():
     today = getToday()
+    g_yesterday = getYesterday()
     print(rf"yesterday was {g_yesterday}")
     checkDataList = []
     checkFormatDataList = ['FL22SCA', 'FL22SCB', "HT02XY", 'HT02ZS']
@@ -1892,6 +2222,7 @@ def checkYesterdayDataTo37():
 
     input("press enter to return to main menu")
 
+
 def diffGenerateAndCheck():
     today = getToday()
     printYellowMsg(f"NOW RUNNING {diff_excel_path}")
@@ -1908,6 +2239,23 @@ def diffGenerateAndCheck():
     read_and_print_xlsx(todayTotalDiffPath)
 
     input("press enter to exit")
+
+
+# def remove_lines_with_character(file_path, target_character):
+#     printGreenMsg("正在处理中...")
+#     # 打开文件并逐行读取内容
+#     with open(file_path, 'r') as file:
+#         lines = file.readlines()
+#
+#     # 过滤掉包含特定字符的行
+#     filtered_lines = [line for line in lines if target_character not in line]
+#
+#     # 将剩余的行重新写入文件
+#     with open(file_path, 'w') as file:
+#         file.writelines(filtered_lines)
+#
+#     printGreenMsg("处理完成")
+#     input("")
 
 # def display_current_time():
 #     # os.system("cls")
@@ -1958,6 +2306,132 @@ def diffGenerateAndCheck():
 #         # print("\n程序已退出")
 
 
+def gridDataInsight():
+    today = getToday()
+    today = "20240603"  # 调试用，上线后删除
+    deleted_stock = ["601669.SH", "301336.SZ"]
+    printYellowMsg(f"目前剔除的股票为： {deleted_stock}, 这些股票将暂时剔除")
+
+    # 判断清仓要用的数据
+    stock_min_max = None
+    holding_latest_price = None
+
+    # 判断建仓要用的数据
+
+
+    def process_Paras():
+        # grid_paras.txt
+        gridTradePath = r""  # 修改路径
+        gridTradePath = r"D:\TRADE\grid_trade"  # 调试用，上线后删除
+        todayGridParaPath = rf"{gridTradePath}/trade_before_order/{today}_grid_paras.txt"
+        todayTradeBeforeOrderPath = rf"{gridTradePath}/trade_before_order/{today}_trade_before_order.csv"
+
+        todayGridPara = grid.grid_paras_txt_to_dataframe(todayGridParaPath)
+        prt.printDataFrameWithMaxRows(todayGridPara)
+
+        # 可视化示例
+        plot.plot_data_grid_paras_txt(todayGridPara)
+
+    def process_StockInfo():
+        # grid_stock_info.csv
+        gridStockInfoPath = r"C:\Users\Administrator\Desktop\grid_trade\grid_info\grid_stock_info.csv"
+        gridStockInfoPath = r"D:\TRADE\grid_trade\grid_info\grid_stock_info.csv"  # 调试用，上线后删除
+        stockInfo = data.get_df_from_csv(gridStockInfoPath)
+
+        nonlocal stock_min_max, deleted_stock
+        stock_min_max = stockInfo[['stock_code', 'min_price', 'max_price', 'is_grid']]
+        stock_min_max = data.drop_stock_codes(stock_min_max, deleted_stock)  # 删除掉有持仓但是不交易的股票
+        # print(stock_min_max)
+
+
+    def process_DataAnalysis():
+        # 数据分析结果
+        dataAnalysisPath = rf"C:\Users\Administrator\Desktop\网格数据分析\data_analysis\{today}网格交易数据分析.xlsx"
+        dataAnalysisPath = r"D:\TRADE\网格数据分析\data_analysis\20240603网格交易数据分析.xlsx"  # 调试用，上线后删除
+        dataAnalysis_AssetInfo = data.read_excel_to_df(dataAnalysisPath, 0)
+        dataAnalysis_HoldingAfterClose = data.read_excel_to_df(dataAnalysisPath, 1)
+        dataAnalysis_GridParas = data.read_excel_to_df(dataAnalysisPath, 4)
+
+        nonlocal holding_latest_price
+        holding_latest_price = dataAnalysis_HoldingAfterClose[['股票代码', '最新价']]
+        # print(holding_latest_price)
+
+    process_Paras()
+    process_StockInfo()
+    process_DataAnalysis()
+
+    # 清仓逻辑 ==========================================================================================================
+    # 提取股票代码前六位
+    stock_min_max['stock_code_prefix'] = stock_min_max['stock_code'].astype(str).str.zfill(6).str[:6]
+    holding_latest_price['股票代码_prefix'] = holding_latest_price['股票代码'].astype(str).str.zfill(6).str[:6]
+
+    # 合并两个DataFrame
+    stock_min_max_latest = pd.merge(stock_min_max, holding_latest_price, left_on='stock_code_prefix',
+                                    right_on='股票代码_prefix')
+
+    # 保留所需列
+    stock_min_max_latest = stock_min_max_latest[['stock_code', 'min_price', 'max_price', '最新价']]
+    data.rename_headers(stock_min_max_latest, ['stock_code', 'min_price', 'max_price', 'latest_price'])
+    tradingStockList = data.getElementFromCol(stock_min_max_latest, "stock_code")
+
+    # 输出结果
+    # print(stock_min_max_latest)
+    plot.stock_min_max_latest(stock_min_max_latest)
+
+
+    # 建仓逻辑 ==========================================================================================================
+    stock_min_max_10percent_30percent = stock_min_max.assign(
+        ten_percent=lambda df: (df['max_price'] - df["min_price"]) * 0.1 + df["min_price"],
+        thirty_percent=lambda df: (df['max_price'] - df["min_price"]) * 0.3 + df["min_price"]
+    )
+
+    # 然后剔除掉正在交易的股票，剩下的就是再观察池中的股票拉！
+    stock_min_max_10percent_30percent = data.drop_stock_codes(stock_min_max_10percent_30percent, tradingStockList)
+    stock_min_max_10percent_30percent = data.drop_is_grid_is_0(stock_min_max_10percent_30percent)
+    print(stock_min_max_10percent_30percent)
+    # plot.create_holding(stock_min_max_10percent_30percent)
+
+    input("")
+
+
+def getMonitorGridStockInfo():
+    today = getToday()
+    yesterday = getYesterday()
+    # today = "20240604"  # 调试用，上线后删除
+    def getMonitorStockList():
+        # 先获取要查询的股票列表！！
+        deleted_stock = ["601669.SH", "301336.SZ"]
+        printYellowMsg(f"目前剔除的股票为： {deleted_stock}, 这些股票将暂时剔除")
+        # info的文件路径
+        info = data.get_df_from_csv(r'D:\TRADE\grid_trade\grid_info\grid_stock_info.csv')
+        info_isGrid_1 = data.drop_is_grid_is_0(info)
+        info_tradingStock = data.drop_targetPositionIsNone(info_isGrid_1)
+        return data.getElementFromCol(info_tradingStock, 'stock_code')
+
+    df_total = None
+    monitorList = getMonitorStockList()
+    print(f"需要监控建仓的股票为: \n {monitorList}")
+    for index, stock in enumerate(monitorList, start=1):
+        df_single = ts.pro_bar(ts_code=stock, adj='qfq', start_date=yesterday, end_date=yesterday)
+        df_total = pd.concat([df_total, df_single], ignore_index=True) # 合并到这里
+        print(f"FETCHING DATA --- \033[33m {index} / {len(monitorList)} \033[0m")
+        # df = data.keepColumnsDeleteOthers(df, '')
+    printGreenMsg("FETCHING COMPLETE!")
+
+    try:
+        df_total.to_csv("./stockData", index=False)
+    except Exception as e:
+        printRedMsg(f"Failed to save info:{e}")
+
+    time.sleep(1.5)
+    # print(df_total)
+    input("press enter to return to main menu\n")
+    return df_total
+
+def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
+    ...
+
+
 def afterMain():
     while True:
         os.system("cls")
@@ -2002,6 +2476,10 @@ def afterMain():
             printName()
             x = input("")
             break
+        elif choice == "g":
+            gridDataInsight()
+        elif choice == "ts":
+            getMonitorGridStockInfo()
         elif choice == "test":
             x = input("file")
             remove_lines_time_in_range_for_order_log(x)
@@ -2063,6 +2541,9 @@ def menu():
     print("11. 百度网盘同步空间 -> 扫单文件夹 *已停用*")
     print("12. 昨日数据分析的数据 -> 分单文件夹 *已停用* ")
     print("13. 自动整理数据分析的数据 *已停用*")
+
+    print("g.  网格数据分析")
+    print("ts. 获取今日网格备选池股票收盘价")
 
     # print("10. 从另一台机器上的 HTTP 服务器上 fetch 文件(已删除)         ")
 
