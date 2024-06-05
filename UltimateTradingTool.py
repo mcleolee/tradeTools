@@ -43,6 +43,9 @@ import matplotlib.pyplot as plt
 # import seaborn as sns
 
 import tushare as ts
+TUSHARE_TOKEN = "f97ee1a5df15bdae70f2af28909205889b4a62885208a8569ce041ef"
+ts.set_token(TUSHARE_TOKEN)
+pro = ts.pro_api()
 
 DEBUG_MODE = 1
 
@@ -52,7 +55,7 @@ server40addr = "http://192.168.1.40:8000/"
 smart_divide_path = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\projects\smart_data_divide.py"
 diff_excel_path = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\projects\持仓差异自动化_v1.2.py"
 
-os.system("mode con cols=200 lines=30")
+os.system("mode con cols=200 lines=70")
 
 product_fund_dict = {
     "CF15": "480151137",
@@ -135,6 +138,11 @@ def getYesterday():
     yesterday_str = yesterday.strftime("%Y%m%d")
     print(f"yesterday was {yesterday_str}\n")
     return yesterday_str
+
+def get_the_date_before_20_days():
+    today = datetime.now()
+    the_date_before_20_days = today - timedelta(days=20)
+    return the_date_before_20_days.strftime('%Y-%m-%d')
 
 
 def file_exists(file_path):
@@ -927,7 +935,7 @@ class data:
             raise ValueError(f"target_position_dict is not a column in the DataFrame")
 
         # 使用布尔索引来找到 is_grid 列中值为 0 的行，并删除这些行
-        df_dropped = df[df["target_position_dict"] != "None"]
+        df_dropped = df[df["target_position_dict"] == "None"]
 
         return df_dropped
 
@@ -1138,7 +1146,10 @@ class plot:
     def create_holding(df):
         # 创建子图
         num_stocks = len(df)
-        fig, axes = plt.subplots(nrows=1, ncols=num_stocks, figsize=(6, 6), sharey=False)
+        if num_stocks == 0:
+            printRedMsg("NO DATA TO DRAW, RETURNING...\n")
+            return
+        fig, axes = plt.subplots(nrows=1, ncols=num_stocks, figsize=(8, 6), sharey=False)
         fig.subplots_adjust(wspace=0.5, top=0.912, right=0.974)  # 设置子图之间的间隔为1英寸
         # 绘制每个子图
         # 这一行遍历了stock_min_max_latest DataFrame 中的每一行，并返回行索引（index）和行数据（row）。enumerate() 函数用于同时获得行索引和行数据，并在每次循环中增加计数器 i。
@@ -1148,11 +1159,11 @@ class plot:
             ax.plot([0, 0], [row['min_price'], row['max_price']], color='gray', linestyle='-', linewidth=2)
             ax.plot([0, 0], [row['ten_percent'], row['thirty_percent']], color='green', linestyle='-', linewidth=3)
             # 根据最新价在价格区间内外使用绿色或红色绘制了一个点。如果最新价在最低价和最高价之间，则使用绿色表示，否则使用红色。
-            ax.scatter(0, row['latest_price'],
-                       color='green' if row['min_price'] <= row['latest_price'] <= row['max_price'] else 'red')
+            ax.scatter(0, row['close'],
+                       color='green' if row['ten_percent'] <= row['close'] <= row['thirty_percent'] else 'red')
 
             # 在最新价格点旁边添加对应的数值
-            ax.text(0.05, row['latest_price'], f"{row['latest_price']:.2f}", verticalalignment='center',
+            ax.text(0.05, row['close'], f"{row['close']:.2f}", verticalalignment='center',
                     fontsize=10,
                     color='black')
 
@@ -1161,7 +1172,7 @@ class plot:
             ax.set_xlim(-1, 1)  # 设置了水平轴的范围，在这里固定为 (-1, 1)。
             # ax.set_title(row['stock_code']) # 设置了子图的标题，即当前股票的股票代码。
             ax.set_xlabel(row['stock_code'])  # 将股票代码作为 x 轴标签
-            ax.set_yticks([row['min_price'], row['max_price']])  # 设置了竖直轴上的刻度，这里是最低价和最高价。
+            ax.set_yticks([row['min_price'], row['max_price'], row['ten_percent'], row['thirty_percent']])  # 设置了竖直轴上的刻度，这里是最低价和最高价。
             ax.set_xticks([])  # 由于水平轴的范围已经设置为 (-1, 1)，因此我们在竖直轴上不显示刻度
 
         # 调整子图之间的间距
@@ -2311,7 +2322,7 @@ def diffGenerateAndCheck():
 
 def gridDataInsight():
     today = getToday()
-    today = "20240603"  # 调试用，上线后删除
+    # today = "20240604"  # 调试用，上线后删除
     deleted_stock = ["601669.SH", "301336.SZ"]
     printYellowMsg(f"目前剔除的股票为： {deleted_stock}, 这些股票将暂时剔除")
 
@@ -2319,13 +2330,15 @@ def gridDataInsight():
     stock_min_max = None
     holding_latest_price = None
 
+    done_data_analysis_today = 1
+
     # 判断建仓要用的数据
 
 
     def process_Paras():
         # grid_paras.txt
-        gridTradePath = r""  # 修改路径
-        gridTradePath = r"D:\TRADE\grid_trade"  # 调试用，上线后删除
+        gridTradePath = r"C:\Users\Administrator\Desktop\grid_trade"  # 修改路径
+        # gridTradePath = r"D:\TRADE\grid_trade"  # 调试用，上线后删除
         todayGridParaPath = rf"{gridTradePath}/trade_before_order/{today}_grid_paras.txt"
         todayTradeBeforeOrderPath = rf"{gridTradePath}/trade_before_order/{today}_trade_before_order.csv"
 
@@ -2338,7 +2351,7 @@ def gridDataInsight():
     def process_StockInfo():
         # grid_stock_info.csv
         gridStockInfoPath = r"C:\Users\Administrator\Desktop\grid_trade\grid_info\grid_stock_info.csv"
-        gridStockInfoPath = r"D:\TRADE\grid_trade\grid_info\grid_stock_info.csv"  # 调试用，上线后删除
+        # gridStockInfoPath = r"D:\TRADE\grid_trade\grid_info\grid_stock_info.csv"  # 调试用，上线后删除
         stockInfo = data.get_df_from_csv(gridStockInfoPath)
 
         nonlocal stock_min_max, deleted_stock
@@ -2350,18 +2363,30 @@ def gridDataInsight():
     def process_DataAnalysis():
         # 数据分析结果
         dataAnalysisPath = rf"C:\Users\Administrator\Desktop\网格数据分析\data_analysis\{today}网格交易数据分析.xlsx"
-        dataAnalysisPath = r"D:\TRADE\网格数据分析\data_analysis\20240603网格交易数据分析.xlsx"  # 调试用，上线后删除
-        dataAnalysis_AssetInfo = data.read_excel_to_df(dataAnalysisPath, 0)
-        dataAnalysis_HoldingAfterClose = data.read_excel_to_df(dataAnalysisPath, 1)
-        dataAnalysis_GridParas = data.read_excel_to_df(dataAnalysisPath, 4)
+        # dataAnalysisPath = r"D:\TRADE\网格数据分析\data_analysis\20240603网格交易数据分析.xlsx"  # 调试用，上线后删除
+        try:
+            dataAnalysis_AssetInfo = data.read_excel_to_df(dataAnalysisPath, 0)
+            dataAnalysis_HoldingAfterClose = data.read_excel_to_df(dataAnalysisPath, 1)
+            dataAnalysis_GridParas = data.read_excel_to_df(dataAnalysisPath, 4)
+        except Exception as e:
+            printRedMsg(f'read excel failed, maybe you havent done data analysis today?\n{e}')
+            input("press enter to return to main menu")
+            nonlocal done_data_analysis_today
+            done_data_analysis_today = 0
+            return
 
         nonlocal holding_latest_price
         holding_latest_price = dataAnalysis_HoldingAfterClose[['股票代码', '最新价']]
         # print(holding_latest_price)
 
+    
+
     process_Paras()
     process_StockInfo()
     process_DataAnalysis()
+    
+    if done_data_analysis_today == 0:
+        return
 
     # 清仓逻辑 ==========================================================================================================
     # 提取股票代码前六位
@@ -2391,12 +2416,44 @@ def gridDataInsight():
     # 然后剔除掉正在交易的股票，剩下的就是再观察池中的股票拉！
     stock_min_max_10percent_30percent = data.drop_stock_codes(stock_min_max_10percent_30percent, tradingStockList)
     stock_min_max_10percent_30percent = data.drop_is_grid_is_0(stock_min_max_10percent_30percent)
-    print(stock_min_max_10percent_30percent)
-    # plot.create_holding(stock_min_max_10percent_30percent)
+    # print(stock_min_max_10percent_30percent)
 
+    stock_closePrice = getMonitorGridStockInfo()
+    stock_closePrice = stock_closePrice.rename(columns={'ts_code':'stock_code'})
+    stock_closePrice = data.keepColumnsDeleteOthers(stock_closePrice, ['stock_code', 'close'])
+
+    df_total = pd.merge(stock_closePrice, stock_min_max_10percent_30percent, on='stock_code', how='inner')
+    print(df_total)
+    plot.create_holding(df_total)
+
+    # 再次挑选出在建仓区间的股票
+    stock_in_the_range = []
+    for stock in data.getElementFromCol(df_total, 'stock_code'):
+        stock_row = df_total[df_total['stock_code'] == stock]
+        close_value = stock_row['close'].values[0]
+        ten_percent = stock_row['ten_percent'].values[0]
+        thirty_percent = stock_row['thirty_percent'].values[0]
+
+        if ten_percent < close_value < thirty_percent:
+            stock_in_the_range.append(stock)
+
+    print(stock_in_the_range)
+    the_date_before_20_days = get_the_date_before_20_days()
+    df_stock_in_range = []
+    # 获取这些股票的14日收盘价并绘图
+    print(f"需要监控建仓的股票为: \n {stock_in_the_range}")
+    for index, stock in enumerate(stock_in_the_range, start=1):
+        df_single = ts.pro_bar(ts_code=stock, adj='qfq', start_date=the_date_before_20_days, end_date=today)
+        df_total = pd.concat([df_total, df_single], ignore_index=True)  # 合并到这里
+        print(f"FETCHING DATA --- \033[33m {index:2} / {len(stock_in_the_range)} \033[0m")
+        # df = data.keepColumnsDeleteOthers(df, '')
+    printGreenMsg("FETCHING COMPLETE!")
+    print(stock_in_the_range)
     input("")
 
 
+
+# 用来获取备选股票池的当天收盘价
 def getMonitorGridStockInfo():
     today = getToday()
     yesterday = getYesterday()
@@ -2405,8 +2462,8 @@ def getMonitorGridStockInfo():
         # 先获取要查询的股票列表！！
         deleted_stock = ["601669.SH", "301336.SZ"]
         printYellowMsg(f"目前剔除的股票为： {deleted_stock}, 这些股票将暂时剔除")
-        # info的文件路径
-        info = data.get_df_from_csv(r'D:\TRADE\grid_trade\grid_info\grid_stock_info.csv')
+        # info的文件路径 SETPARAS
+        info = data.get_df_from_csv(r'C:\Users\Administrator\Desktop\grid_trade\grid_info\grid_stock_info.csv')
         info_isGrid_1 = data.drop_is_grid_is_0(info)
         info_tradingStock = data.drop_targetPositionIsNone(info_isGrid_1)
         return data.getElementFromCol(info_tradingStock, 'stock_code')
@@ -2415,28 +2472,36 @@ def getMonitorGridStockInfo():
     monitorList = getMonitorStockList()
     print(f"需要监控建仓的股票为: \n {monitorList}")
     for index, stock in enumerate(monitorList, start=1):
-        df_single = ts.pro_bar(ts_code=stock, adj='qfq', start_date=yesterday, end_date=yesterday)
+        df_single = ts.pro_bar(ts_code=stock, adj='qfq', start_date=today, end_date=today)
         df_total = pd.concat([df_total, df_single], ignore_index=True) # 合并到这里
         print(f"FETCHING DATA --- \033[33m {index:2} / {len(monitorList)} \033[0m")
         # df = data.keepColumnsDeleteOthers(df, '')
     printGreenMsg("FETCHING COMPLETE!")
+    if df_total.empty:
+        printRedMsg(f"The DataFrame is empty\nPlease wait for the data update...")
+        input("press ENTER to return")
+    else:
+        print(df_total)
 
-    try:
-        # SETPARAS
-        savePath = f"./stockData/{today}_Monitor_Grid_Info.csv"
-        df_total.to_csv(savePath, index=False)
-        printGreenMsg("File Saved.")
-    except Exception as e:
-        printRedMsg(f"Failed to save info:{e}")
+
+
+    # 存储当天的info
+    # try:
+    #     # SETPARAS
+    #     savePath = f"./stockData/{today}_Monitor_Grid_Info.csv"
+    #     df_total.to_csv(savePath, index=False)
+    #     printGreenMsg("File Saved.")
+    # except Exception as e:
+    #     printRedMsg(f"Failed to save info:{e}")
 
     time.sleep(1.5)
-    # print(df_total)
-    input("press enter to continue\n")
+
+    # input("press enter to continue\n")
     return df_total
 
 
 def getAllStockInfo():
-
+    ...
 
 
 def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
