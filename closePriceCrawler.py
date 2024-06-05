@@ -16,7 +16,9 @@ import tushare as ts
 # print(stock_list_all)
 
 
-df = ts.pro_bar(ts_code='000001.SZ', adj='qfq', start_date='20180101', end_date='20181011')
+# df = ts.pro_bar(ts_code='000001.SZ', adj='qfq', start_date='20180101', end_date='20181011')
 
-print(df)
+# print(df)
+
+
 

@@ -14,6 +14,8 @@
 
 # TODO 增加功能：Python HTTPS server | use muti thread!
 
+# 输入 SETPARAS 来查询需要修改参数的地方
+
 import os
 import shutil
 from datetime import datetime, timedelta
@@ -33,6 +35,7 @@ import xlrd
 import openpyxl
 import prettytable
 from prettytable import PrettyTable
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -2414,19 +2417,27 @@ def getMonitorGridStockInfo():
     for index, stock in enumerate(monitorList, start=1):
         df_single = ts.pro_bar(ts_code=stock, adj='qfq', start_date=yesterday, end_date=yesterday)
         df_total = pd.concat([df_total, df_single], ignore_index=True) # 合并到这里
-        print(f"FETCHING DATA --- \033[33m {index} / {len(monitorList)} \033[0m")
+        print(f"FETCHING DATA --- \033[33m {index:2} / {len(monitorList)} \033[0m")
         # df = data.keepColumnsDeleteOthers(df, '')
     printGreenMsg("FETCHING COMPLETE!")
 
     try:
-        df_total.to_csv("./stockData", index=False)
+        # SETPARAS
+        savePath = f"./stockData/{today}_Monitor_Grid_Info.csv"
+        df_total.to_csv(savePath, index=False)
+        printGreenMsg("File Saved.")
     except Exception as e:
         printRedMsg(f"Failed to save info:{e}")
 
     time.sleep(1.5)
     # print(df_total)
-    input("press enter to return to main menu\n")
+    input("press enter to continue\n")
     return df_total
+
+
+def getAllStockInfo():
+
+
 
 def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
     ...
@@ -2480,6 +2491,8 @@ def afterMain():
             gridDataInsight()
         elif choice == "ts":
             getMonitorGridStockInfo()
+        elif choice == "ga":
+            getAllStockInfo()
         elif choice == "test":
             x = input("file")
             remove_lines_time_in_range_for_order_log(x)
@@ -2544,6 +2557,7 @@ def menu():
 
     print("g.  网格数据分析")
     print("ts. 获取今日网格备选池股票收盘价")
+    print("ga. 获取全市场今日收盘价")
 
     # print("10. 从另一台机器上的 HTTP 服务器上 fetch 文件(已删除)         ")
 
