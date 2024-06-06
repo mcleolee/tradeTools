@@ -13,7 +13,7 @@
 # TODo 判断今天是不是周一，比如用处在：checkYesterdayDataTo37()，要是周一运行程序就会炸
 
 # TODO 增加功能：Python HTTPS server | use muti thread!
-
+# TODO 增加改变窗口大小的功能
 # 输入 SETPARAS 来查询需要修改参数的地方
 
 import os
@@ -2413,7 +2413,6 @@ def gridDataInsight():
 
         nonlocal holding_latest_price
         holding_latest_price = dataAnalysis_HoldingAfterClose[['股票代码', '最新价']]
-        print(holding_latest_price)
 
     # 先判断今天做数据分析了没有
     if ifExist(dataAnalysisPath) == False:
@@ -2515,7 +2514,7 @@ def gridDataInsight():
         [['stock_code', 'ten_percent', 'thirty_percent']]
 
     plot.create_holding_2(df_part2_total, part2_stock_10percent_30percent)
-    input("")
+    input("PRESS ENTER TO RETURN TO MAIN MENU...")
 
 
 # 用来获取备选股票池的当天收盘价
@@ -2712,17 +2711,22 @@ def menu():
     # ipAddr = get_public_ip()
 
     print("----------------------------------------------")
-    print(f"\t\t  \033[1\033[42;3;31m MAIN MENU \033[0m")
+    print(f"\t\t  \033[1;42;31m MAIN MENU \033[0m")
 
-    print("1. 检查 昨日数据分析的数据 & 云盘是否正常工作")
-    print("2. PA -> PAHF -> Move")
-    print("3. 收盘拆分导出数据的拆分和检查 ")
-    print("4. Diff 持仓差异分析并查看")
-    print("5. 存档并简化 LOG 记录")
-    print("6. 查询数据")
-    print("7. 查看各个账号密码")
-    print("8. 时钟")
-    print("0. 退出")
+    print("1.  检查 昨日数据分析的数据 & 云盘是否正常工作")
+    print("2.  PA -> PAHF -> Move")
+    print("3.  收盘拆分导出数据的拆分和检查 ")
+    print("4.  Diff 持仓差异分析并查看")
+    print("5.  存档并简化 LOG 记录")
+    print("6.  查询数据")
+    print("7.  查看各个账号密码")
+    print("8.  时钟")
+    print("0.  退出")
+    print("")
+    print("g.  网格数据分析")
+    print("ts. 获取今日网格备选池股票收盘价")
+    print("ga. 获取全市场今日收盘价")
+    print("rs. 重新调整窗口大小")
     print("")
     print(f"\033[33m已停用功能: \033[0m")
     print("9.  拆分 FL22SC, HT02 的原始信号并移回源路径 *已停用*")
@@ -2731,10 +2735,7 @@ def menu():
     print("12. 昨日数据分析的数据 -> 分单文件夹 *已停用* ")
     print("13. 自动整理数据分析的数据 *已停用*")
 
-    print("g.  网格数据分析")
-    print("ts. 获取今日网格备选池股票收盘价")
-    print("ga. 获取全市场今日收盘价")
-    print("rs. 重新调整窗口大小")
+
 
     # print("10. 从另一台机器上的 HTTP 服务器上 fetch 文件(已删除)         ")
 
