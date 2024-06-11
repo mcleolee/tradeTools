@@ -55,6 +55,7 @@ HTTP_SERVER = 0
 server40addr = "http://192.168.1.40:8000/"
 smart_divide_path = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\projects\smart_data_divide.py"
 diff_excel_path = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\projects\持仓差异自动化_v1.2.py"
+grid_data_analysis_path = r'C:\Users\Administrator\Desktop\网格数据分析\grid_data_analysis_v1.1.py'
 
 os.system("mode con cols=200 lines=70")
 
@@ -2417,8 +2418,8 @@ def gridDataInsight():
     # 先判断今天做数据分析了没有
     if ifExist(dataAnalysisPath) == False:
         printRedMsg(f'File is not exist, maybe you havent done data analysis today?\n')
-        x = input(
-            "\nIf you want to return to main menu,    press 1,\nif you want to check yesterday's data, press 2.\n")
+        x = input("\nIf you want to return to main menu,        press 1,\nif you want to check yesterday's data,     press 2.\nif you want to run grid data analysis now, press 3.\n\n")
+
         if x == "1":
             # done_data_analysis_today = 0
             return
@@ -2611,6 +2612,50 @@ def getMonitorGridStockInfo_yesterday():
 def getAllStockInfo():
     ...
 
+def getGridStockPool():
+    os.system("cls")
+    infoPath = r"C:\Users\Administrator\Desktop\grid_trade\grid_info\grid_stock_info.csv"
+    df = pd.read_csv(infoPath)
+
+    df = data.drop_columns(df, ['grid_list','test_ret','judge_grid_end', 'judge_grid_start','test_start_date','test_end_date'])
+
+    df_0 = df[df['is_grid'] == 0]
+    df_1 = df[df['is_grid'] == 1]
+    df_2 = df[df['is_grid'] == 2]
+    df_1_None = df[(df['is_grid'] == 1) & (df['target_position_dict'] == "None")]
+    df_1_NotNone = df[(df['is_grid'] == 1) & (df['target_position_dict'] != "None")]
+
+    allDf = [df_0, df_1, df_2, df_1_None, df_1_NotNone]
+    for df in allDf:
+        df = data.drop_columns(df, ['target_position_dict', 'is_grid'])
+
+
+    # 打印三个 DataFrame
+    printGreenMsg("\n\t\t\t不交易股票的备份池")
+    printYellowMsg(df_0)
+    # print("\nDataFrame with is_grid == 1")
+    # print(df_1)
+    printGreenMsg("\n\t\t\t不交易股票池")
+    printYellowMsg(df_2)
+    printGreenMsg("\n\t\t\t备选观察股票池")
+    printYellowMsg(df_1_None)
+    printGreenMsg("\n\t\t\t正常进行网格交易的股票池")
+    printYellowMsg(df_1_NotNone)
+
+    input("")
+
+def gridDataAnalysis():
+    today = getToday()
+    printYellowMsg(f"NOW RUNNING {grid_data_analysis_path}")
+    input("Press enter to continue...")
+
+    thread = threading.Thread(target=run_python_file, args=(grid_data_analysis_path,))
+    thread.start()
+
+    thread.join()
+    printGreenMsg("Grid data analysis done generating.")
+
+    input("press enter to exit")
 
 def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
     ...
@@ -2668,6 +2713,10 @@ def afterMain():
             getAllStockInfo()
         elif choice == 'rs':
             ...
+        elif choice == 'gsp':
+            getGridStockPool()
+        elif choice == 'gda':
+            gridDataAnalysis()
         elif choice == "test":
             x = input("file")
             remove_lines_time_in_range_for_order_log(x)
@@ -2711,29 +2760,31 @@ def menu():
     # ipAddr = get_public_ip()
 
     print("----------------------------------------------")
-    print(f"\t\t  \033[1;42;31m MAIN MENU \033[0m")
+    print(f"\t\t\t  \033[1;42;31m MAIN MENU \033[0m")
 
-    print("1.  检查 昨日数据分析的数据 & 云盘是否正常工作")
-    print("2.  PA -> PAHF -> Move")
-    print("3.  收盘拆分导出数据的拆分和检查 ")
-    print("4.  Diff 持仓差异分析并查看")
-    print("5.  存档并简化 LOG 记录")
-    print("6.  查询数据")
-    print("7.  查看各个账号密码")
-    print("8.  时钟")
-    print("0.  退出")
-    print("")
-    print("g.  网格数据分析")
-    print("ts. 获取今日网格备选池股票收盘价")
-    print("ga. 获取全市场今日收盘价")
-    print("rs. 重新调整窗口大小")
+    print("  1. 检查 昨日数据分析的数据 & 云盘是否正常工作")
+    print("  2. PA -> PAHF -> Move")
+    print("  3. 收盘拆分导出数据的拆分和检查 ")
+    print("  4. Diff 持仓差异分析并查看")
+    print("  5. 存档并简化 LOG 记录")
+    print("  6. 查询数据")
+    print("  7. 查看各个账号密码")
+    print("  8. 时钟")
+    print("  0. 退出")
+    print(" ")
+    print("  g. 网格数据分析")
+    print(" ts. 获取今日网格备选池股票收盘价")
+    print(" ga. 获取全市场今日收盘价")
+    print(" rs. 重新调整窗口大小")
+    print("gsp. 输出当前股票池")
+    print("gda. 网格数据分析")
     print("")
     print(f"\033[33m已停用功能: \033[0m")
-    print("9.  拆分 FL22SC, HT02 的原始信号并移回源路径 *已停用*")
-    print("10. 移动拆分后的 FL22SC, HT02 的实时信号 *已停用*")
-    print("11. 百度网盘同步空间 -> 扫单文件夹 *已停用*")
-    print("12. 昨日数据分析的数据 -> 分单文件夹 *已停用* ")
-    print("13. 自动整理数据分析的数据 *已停用*")
+    print("  9. 拆分 FL22SC, HT02 的原始信号并移回源路径 *已停用*")
+    print(" 10. 移动拆分后的 FL22SC, HT02 的实时信号 *已停用*")
+    print(" 11. 百度网盘同步空间 -> 扫单文件夹 *已停用*")
+    print(" 12. 昨日数据分析的数据 -> 分单文件夹 *已停用* ")
+    print(" 13. 自动整理数据分析的数据 *已停用*")
 
 
 
