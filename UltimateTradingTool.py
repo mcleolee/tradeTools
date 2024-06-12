@@ -6,7 +6,7 @@
 # TODO 写一个便捷查询持仓的函数
 # TODO 写 def pressAnyKeyToContinue(): 然后替换所有
 # TODO 写出 UI
-
+import ast
 # TODO 在主页打印出实时信号节点和时间！！！
 # TODO 把昨日的 ZS 的 format_data 通过 18 复制到浙商的服务器
 
@@ -43,6 +43,7 @@ import matplotlib.pyplot as plt
 # import seaborn as sns
 
 import tushare as ts
+import numpy as np
 
 TUSHARE_TOKEN = "f97ee1a5df15bdae70f2af28909205889b4a62885208a8569ce041ef"
 ts.set_token(TUSHARE_TOKEN)
@@ -1113,7 +1114,7 @@ class plot:
         # 创建子图
         num_stocks = len(stock_min_max_latest)
         fig, axes = plt.subplots(nrows=1, ncols=num_stocks, figsize=(8, 6), sharey=False)
-        fig.subplots_adjust(wspace=0.5, top=0.912, right=0.974)  # 设置子图之间的间隔为1英寸
+        fig.subplots_adjust(wspace=0.5, top=0.912, right=0.974, bottom=0.1)  # 设置子图之间的间隔为1英寸
         # 绘制每个子图
         # 这一行遍历了stock_min_max_latest DataFrame 中的每一行，并返回行索引（index）和行数据（row）。enumerate() 函数用于同时获得行索引和行数据，并在每次循环中增加计数器 i。
         for i, (index, row) in enumerate(stock_min_max_latest.iterrows()):
@@ -1137,7 +1138,7 @@ class plot:
             ax.set_xticks([])  # 由于水平轴的范围已经设置为 (-1, 1)，因此我们在竖直轴上不显示刻度
 
         # 调整子图之间的间距
-        plt.tight_layout()
+        # plt.tight_layout()
 
         # 绘制完所有子图后，添加大标题
         fig.suptitle('MONITOR ON TRADING STOCK', fontsize=16)
@@ -1190,11 +1191,24 @@ class plot:
 
     @staticmethod
     def create_holding_2(df, part2_stock_10percent_30percent):
+        # Check if df is None
+        if df is None:
+            printGreenMsg("NO STOCK IS IN THE PRICE RANGE OF CREATING HOLDING")
+            return
         # 获取所有唯一的ts_code
         ts_codes = df['ts_code'].unique()
 
+        # 检查是否有ts_code
+        if len(ts_codes) == 0:
+            printGreenMsg("NO STOCK IS IN THE PRICE RANGE OF CREATING HOLDING")
+            return
+
         # 创建子图
         fig, axes = plt.subplots(len(ts_codes), 1, figsize=(12, 8), sharex=False)
+
+        # 检查 axes 是否为单个 AxesSubplot 对象，如果是，将其转换为数组
+        if not isinstance(axes, (np.ndarray, list)):
+            axes = [axes]
 
         # 画图
         for i, ts_code in enumerate(ts_codes):
@@ -1218,7 +1232,7 @@ class plot:
         plt.xlabel('Trade Date (MMDD)')
 
         # 调整布局
-        plt.tight_layout()
+        # plt.tight_layout()
         plt.show()
 
 
@@ -2359,6 +2373,7 @@ def diffGenerateAndCheck():
 
 def gridDataInsight():
     today = getToday()
+    yesterday = getYesterday()
     # today = "20240604"  # 调试用，上线后删除
     deleted_stock = ["601669.SH", "301336.SZ"]
     printYellowMsg(f"目前剔除的股票为： {deleted_stock}, 这些股票将暂时剔除")
@@ -2366,9 +2381,11 @@ def gridDataInsight():
     # 判断清仓要用的数据
     stock_min_max = None
     holding_latest_price = None
+    stock_min_max_gmin_gmax = None # min就是最低价，gmin就是grid min：网格的最低格的价格
 
     done_data_analysis_today = 1
     today_or_yesterday = 1  # 1: today   2: yesterday
+
 
     # SETPARAS 网格数据分析的文件
     dataAnalysisPath = rf"C:\Users\Administrator\Desktop\网格数据分析\data_analysis\{today}网格交易数据分析.xlsx"
@@ -2395,9 +2412,12 @@ def gridDataInsight():
         stockInfo = data.get_df_from_csv(gridStockInfoPath)
 
         nonlocal stock_min_max, deleted_stock
-        stock_min_max = stockInfo[['stock_code', 'min_price', 'max_price', 'is_grid']]
+        # print(f'printing stockInfo : \n{stockInfo}')
+        stock_min_max = stockInfo[['stock_code', 'min_price', 'max_price', 'is_grid', 'grid_list']]
         stock_min_max = data.drop_stock_codes(stock_min_max, deleted_stock)  # 删除掉有持仓但是不交易的股票
-        # print(stock_min_max)
+        # print(f'printing stock_min_max : \n{stock_min_max}')
+
+
 
     def process_DataAnalysis():
         nonlocal today, dataAnalysisPath
@@ -2417,8 +2437,11 @@ def gridDataInsight():
 
     # 先判断今天做数据分析了没有
     if ifExist(dataAnalysisPath) == False:
-        printRedMsg(f'File is not exist, maybe you havent done data analysis today?\n')
-        x = input("\nIf you want to return to main menu,        press 1,\nif you want to check yesterday's data,     press 2.\nif you want to run grid data analysis now, press 3.\n\n")
+        printRedMsg(f'File is not exist, maybe you havent done data analysis today??\n')
+        x = input("\nIf you want to return to main menu,        press 1,\
+                   \nif you want to check yesterday's data,     press 2.\
+                   \nif you want to run grid data analysis now, press 3.\
+                   \nif you want to manually enter date,      , press 4.\n\n")
 
         if x == "1":
             # done_data_analysis_today = 0
@@ -2429,6 +2452,16 @@ def gridDataInsight():
             today = getYesterday()
             # SETPARAS 更新为昨天的路径
             dataAnalysisPath = rf"C:\Users\Administrator\Desktop\网格数据分析\data_analysis\{today}网格交易数据分析.xlsx"
+            print(f'reading file: {dataAnalysisPath}')
+        elif x == '3':
+            ...
+        elif x == '4':
+            # nonlocal today
+            today_or_yesterday = 2
+            today = input("enter the date\n")
+            # SETPARAS 更新为昨天的路径
+            dataAnalysisPath = rf"C:\Users\Administrator\Desktop\网格数据分析\data_analysis\{today}网格交易数据分析.xlsx"
+            print(f'reading file: {dataAnalysisPath}')
 
     process_Paras()
     process_StockInfo()
@@ -2457,9 +2490,45 @@ def gridDataInsight():
     plot.stock_min_max_latest(stock_min_max_latest)
 
     # 建仓逻辑 ==========================================================================================================
-    stock_min_max_10percent_30percent = stock_min_max.assign(
-        ten_percent=lambda df: (df['max_price'] - df["min_price"]) * 0.1 + df["min_price"],
-        thirty_percent=lambda df: (df['max_price'] - df["min_price"]) * 0.3 + df["min_price"]
+    # print(f'printing stock_min_max : \n{stock_min_max}')
+    # 这里是加入了网格的grid_list,提取 grid_list 列中的最小值和最大值，并将它们分别添加为 gmin 和 gmax 列
+    def add_gmin_gmax(df):
+        # 检查 grid_list 列的类型
+        if 'grid_list' not in df.columns:
+            raise ValueError("DataFrame must contain 'grid_list' column.")
+
+        # 定义一个辅助函数来处理每个元素
+        def parse_and_get_min(x):
+            try:
+                # 将字符串解析为列表
+                parsed_list = ast.literal_eval(x)
+                if isinstance(parsed_list, list) and parsed_list:  # 确保解析结果是列表且非空
+                    return min(parsed_list)
+            except (ValueError, SyntaxError):
+                pass
+            return None
+
+        def parse_and_get_max(x):
+            try:
+                # 将字符串解析为列表
+                parsed_list = ast.literal_eval(x)
+                if isinstance(parsed_list, list) and parsed_list:  # 确保解析结果是列表且非空
+                    return max(parsed_list)
+            except (ValueError, SyntaxError):
+                pass
+            return None
+
+        # 应用辅助函数
+        df['gmin'] = df['grid_list'].apply(parse_and_get_min)
+        df['gmax'] = df['grid_list'].apply(parse_and_get_max)
+
+        return df
+
+    stock_min_max_10percent_30percent = add_gmin_gmax(stock_min_max)
+    # print(f'printing stock_min_max_10percent_30percent: \n{stock_min_max_10percent_30percent}')
+    stock_min_max_10percent_30percent = stock_min_max_10percent_30percent.assign(
+        ten_percent=lambda df: (df['gmax'] - df["gmin"]) * 0.1 + df["gmin"],
+        thirty_percent=lambda df: (df['gmax'] - df["gmin"]) * 0.3 + df["gmin"]
     )
     # print(f"\nprinting 1st stock_min_max_10percent_30percent:\n{stock_min_max_10percent_30percent}")
 
@@ -2471,7 +2540,8 @@ def gridDataInsight():
     if today_or_yesterday == 1:
         stock_closePrice = getMonitorGridStockInfo()
     elif today_or_yesterday == 2:
-        stock_closePrice = getMonitorGridStockInfo_yesterday()
+
+        stock_closePrice = getMonitorGridStockInfo_yesterday(today)
 
     stock_closePrice = stock_closePrice.rename(columns={'ts_code': 'stock_code'})  # 更改股票的列名
     stock_closePrice = data.keepColumnsDeleteOthers(stock_closePrice, ['stock_code', 'close'])  # 只保留两列
@@ -2564,9 +2634,14 @@ def getMonitorGridStockInfo():
 
 
 # 用来获取备选股票池的昨天收盘价
-def getMonitorGridStockInfo_yesterday():
+def getMonitorGridStockInfo_yesterday(today_or_yesterday=1):
     today = getToday()
     yesterday = getYesterday()
+
+    # 如果昨天不是昨天，就直接拿输入的日期来当成昨天
+    if today_or_yesterday != 1:
+        today = today_or_yesterday
+        yesterday = today_or_yesterday
 
     # today = "20240604"  # 调试用，上线后删除
     def getMonitorStockList():
@@ -2657,6 +2732,10 @@ def gridDataAnalysis():
 
     input("press enter to exit")
 
+def gridDataModify():
+
+
+
 def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
     ...
 
@@ -2706,6 +2785,7 @@ def afterMain():
             x = input("")
             break
         elif choice == "g":
+            os.system("cls")
             gridDataInsight()
         elif choice == "ts":
             getMonitorGridStockInfo()
@@ -2717,6 +2797,10 @@ def afterMain():
             getGridStockPool()
         elif choice == 'gda':
             gridDataAnalysis()
+        elif choice == 'gdm':
+            os.system("cls")
+            gridDataModify()
+
         elif choice == "test":
             x = input("file")
             remove_lines_time_in_range_for_order_log(x)
@@ -2759,7 +2843,7 @@ def menu():
     # TODOed 写一个可以便捷查询真实持仓的小程序
     # ipAddr = get_public_ip()
 
-    print("----------------------------------------------")
+    print("--------------------------------------------------------------")
     print(f"\t\t\t  \033[1;42;31m MAIN MENU \033[0m")
 
     print("  1. 检查 昨日数据分析的数据 & 云盘是否正常工作")
@@ -2769,22 +2853,59 @@ def menu():
     print("  5. 存档并简化 LOG 记录")
     print("  6. 查询数据")
     print("  7. 查看各个账号密码")
-    print("  8. 时钟")
+
     print("  0. 退出")
     print(" ")
     print("  g. 网格数据分析")
     print(" ts. 获取今日网格备选池股票收盘价")
     print(" ga. 获取全市场今日收盘价")
-    print(" rs. 重新调整窗口大小")
+
     print("gsp. 输出当前股票池")
     print("gda. 网格数据分析")
+    print("gdm. 网格数据修改")
+    print("")
+
     print("")
     print(f"\033[33m已停用功能: \033[0m")
+    print(" rs. 重新调整窗口大小")
+    print("  8. 时钟")
     print("  9. 拆分 FL22SC, HT02 的原始信号并移回源路径 *已停用*")
     print(" 10. 移动拆分后的 FL22SC, HT02 的实时信号 *已停用*")
     print(" 11. 百度网盘同步空间 -> 扫单文件夹 *已停用*")
     print(" 12. 昨日数据分析的数据 -> 分单文件夹 *已停用* ")
     print(" 13. 自动整理数据分析的数据 *已停用*")
+
+    # colorful version
+    # printGreenMsg  ("  1. 检查 昨日数据分析的数据 & 云盘是否正常工作")
+    # printGreenMsg  ("  2. PA -> PAHF -> Move")
+    # printGreenMsg  ("  3. 收盘拆分导出数据的拆分和检查 ")
+    # printGreenMsg  ("  4. Diff 持仓差异分析并查看")
+    # printGreenMsg  ("  5. 存档并简化 LOG 记录")
+    # printYellowMsg ("  6. 查询数据")
+    # printGreenMsg  ("  7. 查看各个账号密码")
+    #
+    # printGreenMsg  ("  0. 退出")
+    # print(" ")
+    #
+    # printGreenMsg  ("  g. 网格数据分析")
+    # printYellowMsg (" ts. 获取今日网格备选池股票收盘价")
+    # printYellowMsg (" ga. 获取全市场今日收盘价")
+    # printGreenMsg  ("gsp. 输出当前股票池")
+    # printYellowMsg ("gda. 网格数据分析")
+    # print("gdm. 网格数据修改")
+    #
+    # print("")
+    #
+    # print("")
+    # print(f"\033[33m已停用功能: \033[0m")
+    # printRedMsg    (" rs. 重新调整窗口大小")
+    #
+    # printRedMsg    ("  8. 时钟")
+    # printRedMsg("  9. 拆分 FL22SC, HT02 的原始信号并移回源路径 *已停用*")
+    # printRedMsg(" 10. 移动拆分后的 FL22SC, HT02 的实时信号 *已停用*")
+    # printRedMsg(" 11. 百度网盘同步空间 -> 扫单文件夹 *已停用*")
+    # printRedMsg(" 12. 昨日数据分析的数据 -> 分单文件夹 *已停用* ")
+    # printRedMsg(" 13. 自动整理数据分析的数据 *已停用*")
 
 
 
@@ -2794,7 +2915,7 @@ def menu():
     # printYellowMsg("\n适用于 61 的功能: 1, 2, 3, 4")
     # printYellowMsg("适用于 40 的功能: 5")
     # printYellowMsg("适用于本机的功能: 9")
-    print("----------------------------------------------")
+    print("--------------------------------------------------------------")
 
 
 if __name__ == "__main__":
