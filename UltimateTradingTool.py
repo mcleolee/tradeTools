@@ -96,6 +96,11 @@ g_yesterday = None
 
 g_realTimeNode = 0
 
+# SETPARAS
+# GRID PARAS
+grid_info_path = r'C:\Users\Administrator\Desktop\grid_trade\grid_info'
+grid_info_file_path = rf'{grid_info_path}/grid_stock_info.csv'
+
 
 # ====================================================================================================================
 # ================================================ TKINTER ============================================================
@@ -874,6 +879,52 @@ def read_and_print_xlsx(file_path):
         printRedMsg(f"An error occurred while reading the file: {e}")
 
 
+def backup_file(file_path):
+    """
+    Copy a file to the same directory with a new name appended with .backup{today}.
+    If a file with that name already exists, append _1, _2, etc. to avoid duplication.
+
+    :param file_path: str, path to the original file
+    """
+    # Get the directory and the original file name
+    dir_path, original_file_name = os.path.split(file_path)
+    base_name, ext = os.path.splitext(original_file_name)
+
+    # Get today's date
+    today = datetime.now().strftime('%Y%m%d')
+
+    # Construct the new file name
+    new_file_name = f"{base_name}.backup{today}{ext}"
+    new_file_path = os.path.join(dir_path, new_file_name)
+
+    # Check if the new file name already exists and add a suffix if necessary
+    counter = 1
+    while os.path.exists(new_file_path):
+        new_file_name = f"{base_name}.backup{today}_{counter}{ext}"
+        new_file_path = os.path.join(dir_path, new_file_name)
+        counter += 1
+
+    # Copy the file
+    shutil.copy2(file_path, new_file_path)
+    printGreenMsg(f"Backup created: {new_file_path}")
+
+
+def get_input(prompt, default=None):
+    """
+    Get user input with a prompt. If no input is provided, return the default value.
+
+    :param prompt: str, the input prompt to display
+    :param default: the default value to return if no input is given
+    :return: the user input or the default value
+    """
+    user_input = input(prompt)
+    if user_input.strip() == "":
+        return default
+    return user_input
+
+def getFileName(filePath):
+    return os.path.basename(filePath)
+
 class prt:
     @staticmethod
     def printDataFrameWithMaxRows(df):
@@ -1050,6 +1101,87 @@ class data:
         # 将集合转换为列表返回
         return list(common)
 
+    @staticmethod
+    def append_row_to_grid_info_csv(file_path):
+        """
+        没用！
+        Append a row to the end of a CSV file with user input and preset defaults.
+
+        :param file_path: str, path to the CSV file
+        """
+        # Collect data from the user with defaults where applicable
+        new_row = {
+            'stock_code': get_input("Enter stock code: ", "AAPL"),
+            'judge_grid_start': get_input("Enter judge grid start date (YYYY-MM-DD): ", "2024-01-01"),
+            'judge_grid_end': get_input("Enter judge grid end date (YYYY-MM-DD): ", "2024-06-30"),
+            'is_grid': get_input("Is grid (yes/no): ", "yes"),
+            'test_start_date': get_input("Enter test start date (YYYY-MM-DD): ", "2024-07-01"),
+            'test_end_date': get_input("Enter test end date (YYYY-MM-DD): ", "2024-12-31"),
+            'best_grid_n': int(get_input("Enter best grid number: ", "10")),
+            'min_price': float(get_input("Enter minimum price: ", "120.0")),
+            'max_price': float(get_input("Enter maximum price: ", "150.0")),
+            'grid_list': get_input("Enter grid list (e.g., [120, 125, 130, 135, 140, 145, 150]): ",
+                                   "[120, 125, 130, 135, 140, 145, 150]"),
+            'test_ret': float(get_input("Enter test return: ", "0.15")),
+            'target_position_dict': get_input(
+                "Enter target position dictionary (e.g., {\"2024-07-01\": 100, \"2024-07-02\": 200}): ",
+                "{\"2024-07-01\": 100, \"2024-07-02\": 200}")
+        }
+
+        # Append the new row to the CSV file
+        with open(file_path, mode='a', newline='', encoding='utf-8') as file:
+            writer = csv.DictWriter(file, fieldnames=new_row.keys())
+            # If the file is empty, write the header
+            if file.tell() == 0:
+                writer.writeheader()
+            writer.writerow(new_row)
+
+    @staticmethod
+    def add_row_to_grid_info_csv(csv_path):
+        try:
+            # 从CSV文件中读取数据
+            csv_df = pd.read_csv(csv_path)
+
+            excelFilePath = input("请拖入回测结果文件\n")
+            # 从Excel文件中读取数据
+            excel_df = pd.read_excel(excelFilePath)
+            stock_code = os.path.basename(excelFilePath)[:9].replace('_', '.')
+            # print(stock_code)
+
+            grid_n = int(input("请输入股票格子数"))
+            # 匹配特定的grid_n行数据
+            matched_row = excel_df[excel_df['Grid_N'] == grid_n]
+
+            if matched_row.empty:
+                raise ValueError(f"No matching row found for Grid_N={grid_n}")
+
+            # 获取匹配行的字典
+            new_row_dict = matched_row.to_dict(orient='records')[0]
+
+
+            new_row_dict['test_start_date'] = matched_row['start_date']
+            new_row_dict['test_end_date'] = matched_row['end_date']
+            new_row_dict['grid_list'] = matched_row['Grid_List']
+            new_row_dict['best_grid_n'] = grid_n
+            new_row_dict['stock_code'] = stock_code
+            # 预设is_grid为1，target_position_dict为None
+            new_row_dict['is_grid'] = 1
+            new_row_dict['target_position_dict'] = None
+
+            # 检查新行数据是否与CSV文件的表头一致
+            for column in csv_df.columns:
+                if column not in new_row_dict:
+                    new_row_dict[column] = input(f"Please enter value for {column}: ")
+
+            # 将新行数据插入到CSV文件中
+            csv_df = csv_df.append(new_row_dict, ignore_index=True)
+            csv_df.to_csv(csv_path, index=False)
+
+            print("New row added successfully!")
+        except Exception as e:
+            print(f"error when adding row to grid info csv:{e}")
+            input("")
+            return
 
 class plot:
     @staticmethod
@@ -2734,8 +2866,46 @@ def gridDataAnalysis():
 
 def gridDataModify():
 
+    while True:
+        printYellowMsg("\n这是修改网格文件参数的功能，请慎重修改，修改后将会有完备的备份\n通过主菜单的 gsp 功能来查看 info 信息\n")
+        print("1. 添加一只股票到备选股票池")
+        print("2. 添加一条股票建仓信息")
+        print("3. 删除一条股票建仓信息")
+        print("4. 添加一条股票清仓信息")
+        print("5. 删除一条股票清仓信息")
+        x = input("\nEnter the operation you want:\n")
+
+        if x == '1':
+            print("添加一只股票到备选股票池") 
+            printYellowMsg(f'>{grid_info_file_path}< is being modify.')
+            testpath = r'D:\lzy\temp\grid_stock_info.csv'
+            data.add_row_to_grid_info_csv(testpath)
 
 
+            # backup_file(grid_info_file_path)
+
+            input("")
+
+        elif x == '2':
+            print("添加一条股票建仓信息")
+
+            input("")
+        elif x == '3':
+            print("删除一条股票建仓信息")
+
+            input("")
+        elif x == '4':
+            print("添加一条股票清仓信息")
+
+            input("")
+        elif x == '5':
+            print("删除一条股票清仓信息")
+
+            input("")
+        elif x == 'quit':
+            break
+
+    input("Press Enter to return to main menu.")
 def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
     ...
 
@@ -2800,6 +2970,8 @@ def afterMain():
         elif choice == 'gdm':
             os.system("cls")
             gridDataModify()
+        elif choice == 'gc':
+            ...
 
         elif choice == "test":
             x = input("file")
@@ -2863,6 +3035,7 @@ def menu():
     print("gsp. 输出当前股票池")
     print("gda. 网格数据分析")
     print("gdm. 网格数据修改")
+    print(" gc. 网格持股计算和格子计算")
     print("")
 
     print("")
@@ -2892,6 +3065,7 @@ def menu():
     # printYellowMsg (" ga. 获取全市场今日收盘价")
     # printGreenMsg  ("gsp. 输出当前股票池")
     # printYellowMsg ("gda. 网格数据分析")
+    # print(" gc. 网格持股计算和格子计算")
     # print("gdm. 网格数据修改")
     #
     # print("")
