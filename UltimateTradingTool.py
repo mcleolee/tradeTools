@@ -7,6 +7,7 @@
 # TODO 写 def pressAnyKeyToContinue(): 然后替换所有
 # TODO 写出 UI
 import ast
+import math
 # TODO 在主页打印出实时信号节点和时间！！！
 # TODO 把昨日的 ZS 的 format_data 通过 18 复制到浙商的服务器
 
@@ -44,12 +45,15 @@ import matplotlib.pyplot as plt
 
 import tushare as ts
 import numpy as np
+import cx_Oracle as co
 
-TUSHARE_TOKEN = "f97ee1a5df15bdae70f2af28909205889b4a62885208a8569ce041ef"
+TUSHARE_TOKEN = "7abbcd3db74f84a4a3229fb5c24414491f8fa520516e09d8e6136ed3"
 ts.set_token(TUSHARE_TOKEN)
 pro = ts.pro_api()
 
 DEBUG_MODE = 1
+
+is_oracle_init = 0
 
 # 1表示启用，但这部分代码未完成
 HTTP_SERVER = 0
@@ -925,6 +929,127 @@ def get_input(prompt, default=None):
 def getFileName(filePath):
     return os.path.basename(filePath)
 
+
+def get_days_between_date(start_date, end_date):
+    """
+    计算两个日期之间的天数间隔。
+
+    参数:
+    start_date (str): 起始日期，格式为 'YYYY-MM-DD'
+    end_date (str): 结束日期，格式为 'YYYY-MM-DD'
+
+    返回:
+    int: 两个日期之间的天数间隔
+    """
+    date_format = "%Y-%m-%d"
+
+    # 将日期字符串解析为 datetime 对象
+    start_date_obj = datetime.strptime(start_date, date_format)
+    end_date_obj = datetime.strptime(end_date, date_format)
+
+    # 计算日期差
+    delta = end_date_obj - start_date_obj
+
+    return delta.days
+
+
+def get_testReturn(ret, start_date, end_date):
+    '''
+    计算 info 文件中的 test_return
+    需要回测文件里的Ret、start_date和end_date
+    :return:
+    '''
+    delta_days = get_days_between_date(start_date, end_date)
+    print(f"From {start_date} to {end_date}, there are {delta_days} days.")
+    return (ret/delta_days)*365
+
+def get_min_max_price_from_backtesting_daily_data(STOCK_CODE, start_date, end_date, file_or_fetch=1):
+    '''
+    :param start_date, end_date: 时间段
+    :param file_or_fetch: 从文件读取(0)还是从在线数据库(1)读取，默认为在线数据库
+    :return: 返回股价最小值和最大值
+    '''
+    global is_oracle_init
+    if is_oracle_init == 0:
+        co.init_oracle_client(lib_dir=r"C:\software\oracle\instantclient_21_14") # SETPARAS
+        is_oracle_init = is_oracle_init+1
+    else:
+        ...
+    if file_or_fetch == 1:
+        # 连接到Oracle数据库，需用户名、密码、ip、端口和数据库名
+        conn = co.connect('jg_user08', 'ZDbR@#Zxsj@#sg2y', '109.244.130.220:20000/wind')
+
+        # 创建游标 cursor
+        cursor = conn.cursor()
+        printGreenMsg("successful connecting to database!")
+        def queryTable_FilterBy_S_INFO_WINDCODE(tableName, S_INFO_WINDCODE, cursor):
+
+            if cursor is None:
+                raise Exception("Cursor has not been initialized.")
+
+            colName = "S_INFO_WINDCODE"
+            tableName = (tableName).upper()
+            # 查询表内容
+            query = f"""
+                SELECT *
+                FROM (
+                    SELECT *
+                    FROM (
+                        SELECT *
+                        FROM {tableName}
+                        WHERE S_INFO_WINDCODE = '{S_INFO_WINDCODE}'
+                        ORDER BY TRADE_DT DESC
+                    )
+                    -- WHERE ROWNUM <= 10
+                )
+                ORDER BY TRADE_DT ASC
+                        """
+            cursor.execute(query)
+            data = cursor.fetchall()
+
+            # 获取列名
+            colnames = [desc[0] for desc in cursor.description]
+
+            # 转换为Pandas DataFrame
+            df = pd.DataFrame(data, columns=colnames)
+
+            # save_query_to_csv(df, f"{S_INFO_WINDCODE[:6]}_DAILY_RAW_DATA.csv", f"{raw_data_path}\DAILY")
+
+            return df
+            # print(df)
+
+
+        printBlueMsg(f">>>   Starting to download and process daily data for {STOCK_CODE}...  ")
+        RAW_DATA_DAILY = queryTable_FilterBy_S_INFO_WINDCODE("AShareEODPrices", STOCK_CODE, cursor)
+        KEEP_COL_FOR_DAILY_BACKTEST = ['TRADE_DT', 'S_DQ_PRECLOSE', 'S_DQ_OPEN', 'S_DQ_HIGH', 'S_DQ_LOW', 'S_DQ_CLOSE',
+                                       'S_DQ_VOLUME', 'S_DQ_ADJFACTOR']
+        RAW_DATA_DAILY_KEEP = RAW_DATA_DAILY[KEEP_COL_FOR_DAILY_BACKTEST]
+
+        # 转换日期列为datetime格式
+        RAW_DATA_DAILY_KEEP.loc[:, 'TRADE_DT'] = pd.to_datetime(RAW_DATA_DAILY_KEEP['TRADE_DT'], format='%Y%m%d')
+
+        # 过滤指定时间段的数据
+        filtered_data = RAW_DATA_DAILY_KEEP[(RAW_DATA_DAILY_KEEP['TRADE_DT'] >= start_date) & (RAW_DATA_DAILY_KEEP['TRADE_DT'] <= end_date)]
+
+        # 计算最小值和最大值
+        min_price = filtered_data[['S_DQ_OPEN']].min().values[0]
+        max_price = filtered_data[['S_DQ_OPEN']].max().values[0]
+
+        printBlueMsg(f">>>   Finish processing daily data for {STOCK_CODE}...  ")
+
+        # 关闭游标和 ORACLE 数据库
+        cursor.close()
+        conn.close()
+        # print(min_price, max_price)
+        return min_price, max_price
+
+    elif file_or_fetch == 0:
+        ...
+    else:
+        printRedMsg("that's a wrong para.")
+        input("")
+        return
+
 class prt:
     @staticmethod
     def printDataFrameWithMaxRows(df):
@@ -947,6 +1072,52 @@ class prt:
         for col in df.columns:
             print(col)
 
+    @staticmethod
+    def print_dict(dictionary):
+        for key, value in dictionary.items():
+            print(f"{key}: {value}")
+
+    @staticmethod
+    def aligned_dict_vertical(d):
+        # 计算键和值的最大长度
+        max_key_len = max(len(str(key)) for key in d.keys())
+        max_value_len = max(len(str(value)) for value in d.values())
+
+        # 生成对齐格式的字符串
+        key_format = f"{{:<{max_key_len}}}"
+        value_format = f"{{:<{max_value_len}}}"
+        row_format = f"{key_format} : {value_format}"
+
+        # 打印标题行
+        print(row_format.format("Key", "Value"))
+        print("-" * (max_key_len + 3 + max_value_len))
+
+        # 打印字典的键和值
+        for key, value in d.items():
+            print(row_format.format(key, value))
+
+    @staticmethod
+    def aligned_dict_horizontal(d):
+        # 计算键和值的最大长度
+        max_key_len = max(len(str(key)) for key in d.keys())
+        max_value_len = max(len(str(value)) for value in d.values())
+        column_width = max(max_key_len, max_value_len)
+
+        # 生成对齐格式的字符串
+        key_format = f"{{:<{column_width}}}"
+        value_format = f"{{:<{column_width}}}"
+
+        # 打印键作为列标题
+        keys_row = " | ".join(key_format.format(key) for key in d.keys())
+        print(keys_row)
+
+        # 打印分隔线
+        # print("-" * len(keys_row))
+
+        # 打印值
+        values_row = " | ".join(value_format.format(value) for value in d.values())
+        print(values_row)
+        print("")
 
 class data:
     @staticmethod
@@ -1142,13 +1313,15 @@ class data:
             # 从CSV文件中读取数据
             csv_df = pd.read_csv(csv_path)
 
+            # 提示用户输入Excel文件路径
             excelFilePath = input("请拖入回测结果文件\n")
             # 从Excel文件中读取数据
             excel_df = pd.read_excel(excelFilePath)
             stock_code = os.path.basename(excelFilePath)[:9].replace('_', '.')
             # print(stock_code)
 
-            grid_n = int(input("请输入股票格子数"))
+            # 提示用户输入需要的Grid_N值
+            grid_n = int(input("请输入股票格子数: \n"))
             # 匹配特定的grid_n行数据
             matched_row = excel_df[excel_df['Grid_N'] == grid_n]
 
@@ -1156,32 +1329,112 @@ class data:
                 raise ValueError(f"No matching row found for Grid_N={grid_n}")
 
             # 获取匹配行的字典
-            new_row_dict = matched_row.to_dict(orient='records')[0]
+            matched_row_dict = matched_row.to_dict(orient='records')[0]
 
+            # 创建新的行字典
+            new_row_dict = {
+                'stock_code': stock_code,
+                'judge_grid_start' : 'None',
+                'judge_grid_end' : 'None',
+                'is_grid' : '1',
+                'test_start_date': matched_row_dict.get('start_date'),
+                'test_end_date': matched_row_dict.get('end_date')
+            }
 
-            new_row_dict['test_start_date'] = matched_row['start_date']
-            new_row_dict['test_end_date'] = matched_row['end_date']
-            new_row_dict['grid_list'] = matched_row['Grid_List']
             new_row_dict['best_grid_n'] = grid_n
-            new_row_dict['stock_code'] = stock_code
-            # 预设is_grid为1，target_position_dict为None
-            new_row_dict['is_grid'] = 1
-            new_row_dict['target_position_dict'] = None
 
-            # 检查新行数据是否与CSV文件的表头一致
+            # 去 data 里面找数据文件来计算最小值和最大值
+            min_price, max_price = get_min_max_price_from_backtesting_daily_data(stock_code, matched_row_dict['start_date'], matched_row_dict['end_date'])
+            new_row_dict['min_price'] = min_price
+            new_row_dict['max_price'] = max_price
+            print(f"min price: {min_price}, max price: {max_price}")
+
+            new_row_dict['target_position_dict'] = 'None'
+            new_row_dict['grid_list'] = matched_row_dict['Grid_List']
+
+            # 计算ret
+            start_date_str = matched_row_dict['start_date']
+            end_date_str = matched_row_dict['end_date']
+            ret_series = matched_row['Ret'].iloc[0]  # 获取'Ret'列的第一个值
+            test_return = get_testReturn(ret_series, start_date_str, end_date_str)
+            new_row_dict['test_ret'] = test_return
+            print(f"test ret: {test_return:.4f}")
+
+            new_row_dict['target_position_dict']= "None"
+
+            # 确保新行数据与CSV文件的列标题一致
             for column in csv_df.columns:
                 if column not in new_row_dict:
                     new_row_dict[column] = input(f"Please enter value for {column}: ")
 
-            # 将新行数据插入到CSV文件中
-            csv_df = csv_df.append(new_row_dict, ignore_index=True)
-            csv_df.to_csv(csv_path, index=False)
+            # 对比新行数据字典和CSV文件的列名，确保一致
+            # csv_columns = set(csv_df.columns)
+            # new_row_keys = set(new_row_dict.keys())
 
-            print("New row added successfully!")
+            # if csv_columns != new_row_keys:
+            #     missing_columns = csv_columns - new_row_keys
+            #     for column in missing_columns:
+            #         new_row_dict[column] = input(f"Please enter value for {column}: ")
+
+            # # 处理未指定的CSV列
+            # for column in csv_df.columns: # 这个循环遍历了CSV文件中的每一列。
+            #     if column not in new_row_dict: # 这个条件语句检查当前遍历到的列（column）是否已经在new_row_dict中存在。
+            #         new_row_dict[column] = input(f"Please enter value for {column}: ")
+
+
+            # 检查新行数据是否与CSV文件的表头一致
+            # for column in csv_df.columns:
+            #     if column not in new_row_dict:
+            #         new_row_dict[column] = input(f"Please enter value for {column}: ")
+
+            # 确认数据
+            printYellowMsg("\nCOMFIRM THE DATA:")
+            printYellowMsg("====================================")
+            prt.print_dict(new_row_dict)
+            printYellowMsg("\n====================================")
+            decision = input("\nenter \"insert\" to insert the data into info file, if not, enter anything else.")
+
+            if decision == "insert":
+                # 将新行数据插入到CSV文件中
+                csv_df = csv_df.append(new_row_dict, ignore_index=True)
+                csv_df.to_csv(csv_path, index=False)
+
+                print("New row added successfully!")
+                input("press enter to continue")
+            else:
+                input("returning to last menu...")
+                return
         except Exception as e:
-            print(f"error when adding row to grid info csv:{e}")
+            printRedMsg(f"error when adding row to grid info csv:{e}")
             input("")
             return
+
+    @staticmethod
+    def convert_date_format_at1stCol(df):
+        """
+        将日期列从YYYYMMDD或YYYY/MM/DD格式转换为YYYY-MM-DD格式,目前只适配YYYYMMDD
+        :param df: 输入的DataFrame
+        :return: 转换后的DataFrame
+        """
+        try:
+            # 假设日期总是在第一列
+            date_column = df.iloc[:, 0].astype(str)
+
+            # 处理YYYYMMDD格式
+            mask_yyyymmdd = date_column.str.match(r'^\d{8}$')
+            df.iloc[:, 0][mask_yyyymmdd] = pd.to_datetime(date_column[mask_yyyymmdd], format='%Y%m%d').dt.strftime(
+                '%Y-%m-%d')
+
+            # 处理YYYY/MM/DD格式
+            mask_yyyy_mm_dd = date_column.str.match(r'^\d{4}/\d{2}/\d{2}$')
+            df.iloc[:, 0][mask_yyyy_mm_dd] = pd.to_datetime(date_column[mask_yyyy_mm_dd],
+                                                                format='%Y/%m/%d').dt.strftime('%Y-%m-%d')
+
+        except Exception as e:
+            print(f"Error converting date format: {e}")
+            return None
+
+        return df
 
 class plot:
     @staticmethod
@@ -2594,6 +2847,8 @@ def gridDataInsight():
             # SETPARAS 更新为昨天的路径
             dataAnalysisPath = rf"C:\Users\Administrator\Desktop\网格数据分析\data_analysis\{today}网格交易数据分析.xlsx"
             print(f'reading file: {dataAnalysisPath}')
+        elif x == 'quit':
+            return
 
     process_Paras()
     process_StockInfo()
@@ -2679,7 +2934,7 @@ def gridDataInsight():
     stock_closePrice = data.keepColumnsDeleteOthers(stock_closePrice, ['stock_code', 'close'])  # 只保留两列
 
     # print(f"\nprinting stock_closePrice:\n{stock_closePrice}")
-    # print(f"\nprinting stock_min_max_10percent_30percent:\n{stock_min_max_10percent_30percent}")
+    # print(f"\nprinting stock_min_max_10percent_30p ercent:\n{stock_min_max_10percent_30percent}")
 
     df_total = pd.merge(stock_closePrice, stock_min_max_10percent_30percent, on='stock_code', how='inner')
 
@@ -2878,11 +3133,8 @@ def gridDataModify():
         if x == '1':
             print("添加一只股票到备选股票池") 
             printYellowMsg(f'>{grid_info_file_path}< is being modify.')
-            testpath = r'D:\lzy\temp\grid_stock_info.csv'
-            data.add_row_to_grid_info_csv(testpath)
-
-
-            # backup_file(grid_info_file_path)
+            backup_file(grid_info_file_path)
+            data.add_row_to_grid_info_csv(grid_info_file_path)
 
             input("")
 
@@ -2906,6 +3158,190 @@ def gridDataModify():
             break
 
     input("Press Enter to return to main menu.")
+
+
+def grid_holding_calculate():
+    def find_closest_smaller_with_index(arr, p):
+        low, high = 0, len(arr) - 1
+        closest_value = None
+        closest_index = -1
+
+        while low <= high:
+            mid = (low + high) // 2
+
+            if arr[mid] < p:
+                closest_value = arr[mid]  # 更新最接近且小于 p 的值
+                closest_index = mid  # 更新对应的索引
+                low = mid + 1  # 继续向右侧搜索
+            else:
+                high = mid - 1  # 向左侧搜索
+
+        return closest_value, closest_index
+
+    # 倪琴写的，很牛掰
+    def buy_stocks(prices, current_price, max_price):
+        grid_number = len(prices) - 1
+        # 创建持仓对应股数列表，初始均为0
+        quantity_list = [0] * grid_number
+        # n个档位对应n-1个格子
+        grid_number = grid_number - 1
+        # 计算现价下最大买入数量（100的整数倍）
+        max_quantity = math.floor(max_price / current_price) // 100 * 100
+        if max_quantity < grid_number * 100:
+            print("格子数过多，不能满足最低均分")
+
+        while True:
+            # 计算每档持仓差异
+            # 均分思想，先为每个格子均分，再将剩下的分配给中间的格子
+            aver_quantity = max_quantity // (grid_number * 100)
+            remain_quantity = max_quantity % (grid_number * 100)
+            remain_quantity_count = remain_quantity // 100
+            quantity_list[:-1] = [aver_quantity * 100] * (len(quantity_list) - 1)
+            middle_indices = []
+            if remain_quantity_count > 0:
+                middle_indices = [grid_number // 2] if grid_number % 2 != 0 else [grid_number // 2 - 1, grid_number // 2]
+
+            while len(middle_indices) < remain_quantity_count:
+                middle_indices.append(middle_indices[0] - 1)
+                middle_indices.sort()
+                if len(middle_indices) < remain_quantity_count:
+                    middle_indices.append(middle_indices[-1] + 1)
+                    middle_indices.sort()
+
+            for i in range(len(quantity_list)):
+                if i in middle_indices:
+                    quantity_list[i] += 100
+
+            # 计算每档对应持仓数量
+            quantity_sum = 0
+            reduce_list = quantity_list.copy()
+            for i in range(len(quantity_list) - 1):
+                type = quantity_list[i]
+                quantity_list[i] = max_quantity - quantity_sum
+                quantity_sum += type
+            # 获取最接近现价的那一档格子的价格及索引
+            close_price, close_index = find_closest_smaller_with_index(prices, current_price)
+            # 计算需要的花费 前n-1档和第n档分开计算
+            all_count = 0
+            for i in range(close_index):
+                all_count += reduce_list[i] * prices[i]
+            all_count += current_price * quantity_list[close_index]
+            if all_count < max_price:
+                break
+            else:
+                max_quantity -= 100
+
+        printGreenMsg(f'需要花的金额: {all_count}\n可买的总股数：{quantity_sum}\n可用最大金额：{max_price}\n网格格子数为：{grid_number}')
+        printGreenMsg(f"每档股票持仓差异分别为：{quantity_list}\n每格持仓差异：{reduce_list}")
+
+
+        quantity_dict = {}
+
+        for i in range(len(quantity_list)):
+            quantity_dict[prices[i]] = quantity_list[i]
+
+        return quantity_dict
+
+    # 我写的，很傻杯
+    def allocate_stocks(prices, max_price, current_price):
+        # Calculate maximum shares per grid (must be multiple of 100)
+        max_shares = (max_price // current_price) // 100 * 100
+
+        # Initialize result dictionary with each price having 0 shares initially
+        result = {price: 0 for price in prices}
+
+        # Find the index of the grid where current_price falls between
+        index = 0
+        while index < len(prices) - 1 and prices[index + 1] < current_price:
+            index += 1
+
+        # Set the middle grid's shares to half of max_shares
+        middle_index = len(prices) // 2
+        result[prices[middle_index]] = max_shares // 2
+
+        # Calculate shares for grids from middle towards lower prices
+        for i in range(middle_index - 1, -1, -1):
+            result[prices[i]] = min(result[prices[i + 1]] + 100, max_shares)
+
+        # Calculate shares for grids from middle towards higher prices
+        for i in range(middle_index + 1, len(prices)):
+            result[prices[i]] = min(result[prices[i - 1]] - 100, max_shares)
+
+        # Ensure minimum and maximum constraints
+        result[min(prices, key=lambda x: abs(x - current_price))] = max_shares
+        result[max_price] = 0
+
+        return result
+
+
+    # 用户输入股票代码
+    stock_code = input("enter the stock code:\n")
+    # 为了调试，这里直接将股票代码设置为"601688"
+    # stock_code = "601688"  # DEBUG!!!
+
+    # 定义CSV文件的路径，该文件包含网格信息
+    # grid_info_file_path = r'D:\lzy\temp\grid_stock_info.csv'  # DEBUG!!!
+
+    # 使用pandas的read_csv函数读取CSV文件，返回一个DataFrame对象
+    grid_info = pd.read_csv(grid_info_file_path)
+
+    # 确保DataFrame中的'stock_code'列中的数据是字符串格式
+    grid_info['stock_code'] = grid_info['stock_code'].astype(str)
+
+    # 截取'stock_code'列的前六位用于匹配，创建一个新的列'stock_code_prefix'
+    grid_info['stock_code_prefix'] = grid_info['stock_code'].str[:6]
+
+    # 在DataFrame中查找'stock_code_prefix'列等于用户输入的股票代码的行，
+    # 并选择这些行的'grid_list'列，返回一个Series对象
+    grid_prices = grid_info.loc[grid_info['stock_code_prefix'] == stock_code, 'grid_list']
+    # prt.printDataFrameWithMaxRows(grid_info)
+
+    # 检查是否找到了匹配的行
+    if not grid_prices.empty:
+    # 如果找到了匹配的行，选择第一行的'grid_list'值
+        grid_prices = grid_prices.iloc[0]
+        stock_code_long = grid_info.loc[grid_info['stock_code'].str.contains(stock_code), 'stock_code'].values[0]
+        print(stock_code_long)
+    else:
+    # 如果没有找到匹配的行，将'grid_prices'设置为空列表
+        printRedMsg("No grid prices found for the stock code.")
+        grid_prices = []
+        stock_code_long = None
+
+
+    # 将字符串形式的列表转换为实际的列表
+    grid_prices_list = ast.literal_eval(grid_prices)
+
+    printGreenMsg(f"\n格子获取成功: \n{grid_prices_list}")
+
+    # 在线获取当前价格
+    print("获取实时行情, 连接服务器中...", end="\t")
+
+    try:
+        # 东财数据
+        df_dc = ts.realtime_quote(ts_code='601688.SH', src='dc')
+        # sina数据  未启用
+        df_sina = ts.realtime_quote(ts_code='600000.SH,000001.SZ,000001.SH')
+        printGreenMsg("连接成功")
+
+        # prt.printDataFrameWithMaxRows(df_dc)
+        now_price = df_dc['PRICE'][0]
+        print(f"当前价格为: {now_price}")
+    except Exception as e:
+        printRedMsg(
+            f"获取当前价格失败: {e}\n本接口是tushare org版实时接口的顺延，数据来自网络，且不进入tushare服务器，属于爬虫接口，请将tushare升级到1.3.3版本以上。")
+        now_price = input("\n请输入当前价格: \n")
+
+    # final = allocate_stocks(grid_prices_list, 40000, 13.13)
+    # prt.print_dict(final)
+
+    final_ = buy_stocks(grid_prices_list, now_price, 40000)
+    prt.aligned_dict_horizontal(final_)
+    printGreenMsg(f'请复制目标持仓字典: \n\"{final_}\"')
+
+    input("press enter to return to main menu")
+
+
 def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
     ...
 
@@ -2971,11 +3407,29 @@ def afterMain():
             os.system("cls")
             gridDataModify()
         elif choice == 'gc':
-            ...
+            os.system("cls")
+            grid_holding_calculate()
 
         elif choice == "test":
-            x = input("file")
-            remove_lines_time_in_range_for_order_log(x)
+            # 在线获取当前价格
+            print("获取实时行情, 连接服务器中...")
+
+            try:
+                # 东财数据
+                df_dc = ts.realtime_quote(ts_code='601688.SH', src='dc')
+                # sina数据  未启用
+                df_sina = ts.realtime_quote(ts_code='600000.SH,000001.SZ,000001.SH')
+
+                # prt.printDataFrameWithMaxRows(df_dc)
+                now_price = df_dc['PRICE'][0]
+                print(f"当前价格为: {now_price}")
+            except Exception as e:
+                printRedMsg(
+                    f"\ngc获取当前价格失败: {e}\n"
+                    f"请检查此否开启了代理连接服务，如果有，请关闭后重试"
+                    f"本接口是tushare org版实时接口的顺延，数据来自网络，且不进入tushare服务器，属于爬虫接口，请将tushare升级到1.3.3版本以上。")
+                now_price = input("\n请输入当前价格: \n")
+
             input("")
         else:
             printRedMsg("无效的选项，请重新输入！")
