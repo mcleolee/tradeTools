@@ -47,6 +47,8 @@ import tushare as ts
 import numpy as np
 import cx_Oracle as co
 
+import chardet
+
 TUSHARE_TOKEN = "7abbcd3db74f84a4a3229fb5c24414491f8fa520516e09d8e6136ed3"
 ts.set_token(TUSHARE_TOKEN)
 pro = ts.pro_api()
@@ -1049,6 +1051,39 @@ def get_min_max_price_from_backtesting_daily_data(STOCK_CODE, start_date, end_da
         printRedMsg("that's a wrong para.")
         input("")
         return
+def append_new_element_to_line(line, new_element):
+    '''
+    按csv的格式在行后添加新元素
+    :param line:
+    :param new_element:
+    :return: new_line
+    '''
+    new_line = line + ',' + new_element
+    return new_line
+
+
+def append_new_line_to_csv(file_path, new_line):
+    """
+    将新行添加到 CSV 文件。
+
+    参数:
+    file_path (str): CSV 文件的路径。
+    new_line (list): 要添加的新行数据。
+     'a'（追加模式）和 'r+'（读写模式）
+    """
+    try:
+        # 检测文件编码
+        with open(file_path, 'rb') as file:
+            result = chardet.detect(file.read())
+        encoding = result['encoding']
+
+        # 打开 CSV 文件，使用 'a' 模式追加内容
+        with open(file_path, 'a', newline='',encoding=encoding) as file:
+            writer = csv.writer(file)
+            writer.writerow(new_line)
+        printGreenMsg("New line added successfully.")
+    except Exception as e:
+        printRedMsg(f"Failed to add new line. Error: {e}")
 
 class prt:
     @staticmethod
@@ -2645,15 +2680,15 @@ def paToPahf():
 
 def checkYesterdayDataTo37():
     today = getToday()
-    g_yesterday = getYesterday()
-    print(rf"yesterday was {g_yesterday}")
+    yesterday = getYesterday()
+    print(rf"yesterday was {yesterday}")
     checkDataList = []
     checkFormatDataList = ['FL22SCA', 'FL22SCB', "HT02XY", 'HT02ZS']
     limitPricePath = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\limit_price"
 
     for fundname in checkFormatDataList:
         path = rf"C:\Users\Administrator\Desktop\divide_order_account\{fundname}\format_data"
-        count = count_files_with_target_field(path, g_yesterday)
+        count = count_files_with_target_field(path, yesterday)
         if count == 3:
             printGreenMsg(f"{fundname}'s format data is prepared.")
         else:
@@ -3341,7 +3376,87 @@ def grid_holding_calculate():
 
     input("press enter to return to main menu")
 
+def reverseRepo():
+    asset_path = rf"D:\lzy\temp\asset.csv" # SETPARAS
+    task_path = rf"D:\lzy\temp\task.csv" # SETPARAS
 
+    with open(asset_path, 'rb') as f:
+        result = chardet.detect(f.read())
+        print(f"the asset encode is: {result}")
+    asset = pd.read_csv(asset_path, encoding=result['encoding'])
+    #
+    # with open(task_path, 'rb') as f:
+    #     result = chardet.detect(f.read())
+    #     print(f"the task encode is: {result}")
+    #
+    # task = pd.read_csv(task_path, encoding=result['encoding'])
+
+    products_for_xy_scan = ['CF15', 'FL18', 'HT02XY', 'FL22SCA', 'FL22SCB', 'FL']
+
+    today = getToday()
+    # 在 today 后面加上999990
+    today_order_number = today + '999990'
+
+
+    # prt.printDataFrameWithMaxRows(asset)
+    # 筛选出 资产类别 列为F的行
+    asset_filter = asset[asset['资产类别'] == 'F']
+    # 筛选出 S2 为 人民币 的行
+    asset_filter = asset_filter[asset_filter['S2'] == '人民币']
+    asset_filter = data.drop_columns(asset_filter, ['资产类别', '账户类型', 'S1', 'S2', 'S3', 'S5', 'S6', 'S7', 'S8', 'S9'])
+    # 去掉最后一列
+    asset_filter = asset_filter.iloc[:, :-1]
+    # 重命名列名  资金账户         S4        S10 为 资金账户    可用余额    当前时间
+    asset_filter.columns = ['资金账户', '可用余额', '当前时间']
+
+    # 添加一列 逆回购数量，是可用余额在百位向下取整再-300 再除以 100
+    asset_filter['逆回购数量'] = asset_filter['可用余额'].apply(lambda x: ((x // 100) * 100 - 300) / 100)
+    # 转成int类型
+    asset_filter['逆回购数量'] = asset_filter['逆回购数量'].astype(int)
+
+
+
+    print(asset_filter)
+    # 新建一个 task 的 DataFrame， 结构为#指令编号,下单指令,账户类型,资金账户,证券代码,市场,委托数量,买卖方向,委托价格,委托类别,委托属性,委托编号,本地报单时间
+    task = pd.DataFrame(columns=['#指令编号', '下单指令', '账户类型', '资金账户', '证券代码', '市场', '委托数量', '买卖方向', '委托价格', '委托类别', '委托属性', '委托编号', '本地报单时间'])
+    for product in products_for_xy_scan:
+        # 依次给每个产品添加一个订单号
+        today_order_number = str(int(today_order_number) + 1)
+        # print(f"{product}'s today_order_number: {today_order_number}")
+        pro_num = 0
+        if product in product_fund_dict:
+            pro_num = product_fund_dict[product]
+        entrust_num = asset_filter[asset_filter['资金账户'] == pro_num]['逆回购数量'].values[0]
+        # 依次给每个产品添加一个行，内容为空
+        task = task.append({'#指令编号': today_order_number, '下单指令': 'T', '账户类型': '0', '资金账户': pro_num, '证券代码': '204001', '市场': '1', '委托数量': entrust_num, '买卖方向': '2', '委托价格': '0.1', '委托类别': '0', '委托属性': '0', '委托编号': '0', '本地报单时间': '15:29:59'}, ignore_index=True)
+        # 如果 product 在 product_fund_dict 中，就把product_fund_dict对应账户号码填入task的资金账户
+
+
+
+
+    # 把asset_filter中的资金账户列tolist
+    asset_filter_list = asset_filter['资金账户'].tolist()
+    #
+
+
+        # 在task中添加对应的委托数量，对应sset_filter['逆回购数量']
+
+
+
+    prt.printDataFrameWithMaxRows(task)
+    # 把task中除了表头的数据追加到task_path中, 用逗号分隔
+    task.to_csv(task_path, mode='a', header=False, index=False, sep=',')
+    prt.printDataFrameWithMaxRows(asset_filter)
+
+
+
+
+    # print(asset)
+    # print(task)
+
+
+
+    input("press enter to return to main menu")
 def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
     ...
 
@@ -3369,8 +3484,6 @@ def afterMain():
             printAllAccountInfo()
         elif choice == "5":
             simpleRiseTopTxt()
-        elif choice == "8":
-            ...
             # display_current_time()
         elif choice == "99":
             ...
@@ -3409,7 +3522,8 @@ def afterMain():
         elif choice == 'gc':
             os.system("cls")
             grid_holding_calculate()
-
+        elif choice == '8':
+            reverseRepo()
         elif choice == "test":
             # 在线获取当前价格
             print("获取实时行情, 连接服务器中...")
@@ -3479,6 +3593,7 @@ def menu():
     print("  5. 存档并简化 LOG 记录")
     print("  6. 查询数据")
     print("  7. 查看各个账号密码")
+    print("  8. 逆回购下单")
 
     print("  0. 退出")
     print(" ")
@@ -3495,7 +3610,7 @@ def menu():
     print("")
     print(f"\033[33m已停用功能: \033[0m")
     print(" rs. 重新调整窗口大小")
-    print("  8. 时钟")
+    print("xxx. 时钟")
     print("  9. 拆分 FL22SC, HT02 的原始信号并移回源路径 *已停用*")
     print(" 10. 移动拆分后的 FL22SC, HT02 的实时信号 *已停用*")
     print(" 11. 百度网盘同步空间 -> 扫单文件夹 *已停用*")
