@@ -27,6 +27,8 @@ import urllib.request
 import csv
 import tkinter as tk
 from tkinter import messagebox
+
+import pandas
 import sv_ttk
 import re
 import time
@@ -71,6 +73,7 @@ product_fund_dict = {
     "FL18": "480149909",
     "HT02XY": "480167623",
     "FL18SCA": "480160777",
+    "FL22SCA": "480160777",
     "FL22SCB": "3050003937",
     "FL": "1260016888",
     "PAHF": "320300010625"
@@ -106,6 +109,8 @@ g_realTimeNode = 0
 # GRID PARAS
 grid_info_path = r'C:\Users\Administrator\Desktop\grid_trade\grid_info'
 grid_info_file_path = rf'{grid_info_path}/grid_stock_info.csv'
+create_holding_info_path = rf'C:\Users\Administrator\Desktop\网格数据分析\build_clear_info\20240617交易股票建仓信息.csv'
+clear_holding_info_path = rf'C:\Users\Administrator\Desktop\网格数据分析\build_clear_info\清仓信息.csv'
 
 
 # ====================================================================================================================
@@ -1084,6 +1089,38 @@ def append_new_line_to_csv(file_path, new_line):
         printGreenMsg("New line added successfully.")
     except Exception as e:
         printRedMsg(f"Failed to add new line. Error: {e}")
+
+
+def add_row_to_df_manually(df):
+    """
+    This function takes a DataFrame and prompts the user to input values for a new row.
+    It displays the current headers of the DataFrame and adds the new row to the DataFrame.
+    """
+    new_row = {}
+    print("Current DataFrame headers are: ", list(df.columns))
+    try:
+        for column in df.columns:
+            value = input(f"Enter the value for '{column}': ")
+            new_row[column] = value
+
+        # Convert the dictionary to a DataFrame row and append it
+        df = df.append(new_row, ignore_index=True)
+        printGreenMsg("New row added successfully.")
+    except Exception as e:
+        printRedMsg(f"Failed to add new row. Error: {e}")
+        return -1
+    return df
+
+def get_header(df):
+    """
+    打印 DataFrame 的表头。
+
+    参数:
+    df (pd.DataFrame): 要打印表头的 DataFrame。
+    """
+    # printGreenMsg("DataFrame headers:")
+    return(df.columns)
+
 
 class prt:
     @staticmethod
@@ -3156,6 +3193,10 @@ def gridDataAnalysis():
 
 def gridDataModify():
 
+    # DEBUG delete later
+    create_holding_info_path = rf'D:\lzy\temp\20240617交易股票建仓信息.csv'
+    clear_holding_info_path = rf'D:\lzy\temp\清仓信息.csv'
+
     while True:
         printYellowMsg("\n这是修改网格文件参数的功能，请慎重修改，修改后将会有完备的备份\n通过主菜单的 gsp 功能来查看 info 信息\n")
         print("1. 添加一只股票到备选股票池")
@@ -3175,6 +3216,39 @@ def gridDataModify():
 
         elif x == '2':
             print("添加一条股票建仓信息")
+            df = pandas.read_csv(create_holding_info_path)
+
+            stock_code = input("请输入股票代码全称：")
+            build_price = input("请输入建仓价格：")
+            build_quantity = input("请输入建仓数量：")
+            distribute_money = input("请输入分配资金：")
+            print("现在在 grid_info 文件中查找这只股票的信息")
+
+            # 获取 info 中的相关信息
+            df_info = pandas.read_csv(grid_info_file_path)
+
+            # 筛选出这只股票的信息
+            df_info = df_info[df_info['stock_code'] == stock_code]
+
+            # 把 stock_code,test_ret,grid_list,target_position_list,build_price,build_quantity,distribute_money,build_date 转换成变量
+            test_ret = df_info['test_ret'].values[0]
+            grid_list = df_info['grid_list'].values[0]
+            target_position_list = df_info['target_position_dict'].values[0]
+
+
+
+            # 添加这些列的信息 stock_code,test_ret,grid_list,target_position_list,build_price,build_quantity,distribute_money,build_date
+            df = df.append({'stock_code': stock_code,
+                            'test_ret': test_ret,
+                            'grid_list': grid_list,
+                            'target_position_list': target_position_list,
+                            'build_price': build_price,
+                            'build_quantity': build_quantity,
+                            'distribute_money': distribute_money,
+                            'build_date': getToday()},
+                           ignore_index=True)
+            # prt.printDataFrameWithMaxRows(df)
+            df.to_csv(create_holding_info_path, index=False)
 
             input("")
         elif x == '3':
@@ -3377,8 +3451,12 @@ def grid_holding_calculate():
     input("press enter to return to main menu")
 
 def reverseRepo():
-    asset_path = rf"D:\lzy\temp\asset.csv" # SETPARAS
-    task_path = rf"D:\lzy\temp\task.csv" # SETPARAS
+    print("逆回购下单程序开始")
+    asset_path = rf"C:\Program Files\SmartTrader-Max\InsOrder\asset.csv" # SETPARAS
+    task_path = rf"C:\Program Files\SmartTrader-Max\InsOrder\task.csv" # SETPARAS
+
+    # asset_path = rf"D:\lzy\temp\asset.csv" # SETPARAS DEBUG
+    # task_path = rf"D:\lzy\temp\task.csv" # SETPARAS DEBUG
 
     with open(asset_path, 'rb') as f:
         result = chardet.detect(f.read())
@@ -3409,11 +3487,10 @@ def reverseRepo():
     # 重命名列名  资金账户         S4        S10 为 资金账户    可用余额    当前时间
     asset_filter.columns = ['资金账户', '可用余额', '当前时间']
 
-    # 添加一列 逆回购数量，是可用余额在百位向下取整再-300 再除以 100
-    asset_filter['逆回购数量'] = asset_filter['可用余额'].apply(lambda x: ((x // 100) * 100 - 300) / 100)
+    # 添加一列 逆回购数量，是可用余额在千位向下取整再-300 再除以 100
+    asset_filter['逆回购数量'] = asset_filter['可用余额'].apply(lambda x: (((x // 100) * 100 - 300) / 100) // 10 * 10 - 300)
     # 转成int类型
     asset_filter['逆回购数量'] = asset_filter['逆回购数量'].astype(int)
-
 
 
     print(asset_filter)
@@ -3426,35 +3503,38 @@ def reverseRepo():
         pro_num = 0
         if product in product_fund_dict:
             pro_num = product_fund_dict[product]
-        entrust_num = asset_filter[asset_filter['资金账户'] == pro_num]['逆回购数量'].values[0]
+
+        # 确保'资金账户'列为整数类型
+        asset_filter['资金账户'] = asset_filter['资金账户'].astype(str)
+
+        # 在asset_filter中找到资金账户为pro_num的行，提取逆回购数量为entrust_num类型为int
+        filter_row_with_pro_num = asset_filter[asset_filter['资金账户'] == pro_num]
+        if not filter_row_with_pro_num.empty:
+            entrust_num = int(filter_row_with_pro_num['逆回购数量'].values[0])
+        else:
+            entrust_num = 0
+
         # 依次给每个产品添加一个行，内容为空
         task = task.append({'#指令编号': today_order_number, '下单指令': 'T', '账户类型': '0', '资金账户': pro_num, '证券代码': '204001', '市场': '1', '委托数量': entrust_num, '买卖方向': '2', '委托价格': '0.1', '委托类别': '0', '委托属性': '0', '委托编号': '0', '本地报单时间': '15:29:59'}, ignore_index=True)
+
         # 如果 product 在 product_fund_dict 中，就把product_fund_dict对应账户号码填入task的资金账户
 
-
-
-
-    # 把asset_filter中的资金账户列tolist
-    asset_filter_list = asset_filter['资金账户'].tolist()
-    #
-
-
-        # 在task中添加对应的委托数量，对应sset_filter['逆回购数量']
-
-
-
+    # 打印出完整的下单详情，用户确认后再写入task文件
+    printYellowMsg("下单详情如下：")
     prt.printDataFrameWithMaxRows(task)
+    printYellowMsg("请确认下单信息，确认无误后输入insert继续")
+    x = input("输入insert继续，输入其他任意字符退出\n")
+    if x != 'insert':
+        printRedMsg("退出下单程序")
+        input("")
+        return
+
     # 把task中除了表头的数据追加到task_path中, 用逗号分隔
     task.to_csv(task_path, mode='a', header=False, index=False, sep=',')
-    prt.printDataFrameWithMaxRows(asset_filter)
-
-
-
+    # prt.printDataFrameWithMaxRows(asset_filter)
 
     # print(asset)
     # print(task)
-
-
 
     input("press enter to return to main menu")
 def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
@@ -3523,6 +3603,7 @@ def afterMain():
             os.system("cls")
             grid_holding_calculate()
         elif choice == '8':
+            os.system('cls')
             reverseRepo()
         elif choice == "test":
             # 在线获取当前价格
@@ -3664,3 +3745,5 @@ def menu():
 if __name__ == "__main__":
     os.system("cls")
     main()
+
+
