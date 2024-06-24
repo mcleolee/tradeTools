@@ -3535,7 +3535,7 @@ def reverseRepo():
 
     # print(asset)
     # print(task)
-
+    printRedMsg(" HT02XT 一般无法通过程序下单，请自行逆回购")
     input("press enter to return to main menu")
 def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
     ...
