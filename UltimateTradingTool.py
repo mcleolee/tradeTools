@@ -6,8 +6,7 @@
 # TODO 写一个便捷查询持仓的函数
 # TODO 写 def pressAnyKeyToContinue(): 然后替换所有
 # TODO 写出 UI
-import ast
-import math
+
 # TODO 在主页打印出实时信号节点和时间！！！
 # TODO 把昨日的 ZS 的 format_data 通过 18 复制到浙商的服务器
 
@@ -16,9 +15,14 @@ import math
 # TODO 增加功能：Python HTTPS server | use muti thread!
 # TODO 增加改变窗口大小的功能
 # 输入 SETPARAS 来查询需要修改参数的地方
+import ast
+import glob
+import math
+import multiprocessing
 
 import os
 import shutil
+import subprocess
 from datetime import datetime, timedelta
 import zipfile
 # import requests                   # 这个不注释，在 61 上跑不了
@@ -37,6 +41,11 @@ import threading
 import xlrd
 import openpyxl
 import prettytable
+
+import glob
+from openpyxl import Workbook
+from openpyxl.utils.dataframe import dataframe_to_rows
+
 from prettytable import PrettyTable
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -50,14 +59,25 @@ import numpy as np
 import cx_Oracle as co
 
 import chardet
+from tqdm import tqdm
 
-TUSHARE_TOKEN = "7abbcd3db74f84a4a3229fb5c24414491f8fa520516e09d8e6136ed3"
+import baostock as bs
+
+import sys
+from contextlib import contextmanager
+from WindPy import w
+
+
+
+TUSHARE_TOKEN = "d5b0e880343ac5de428f0216b29739fd91174ab03a9e96c61e9c737f"
 ts.set_token(TUSHARE_TOKEN)
 pro = ts.pro_api()
 
 DEBUG_MODE = 1
 
 is_oracle_init = 0
+
+# isFirstLoginWind = True
 
 # 1表示启用，但这部分代码未完成
 HTTP_SERVER = 0
@@ -111,6 +131,9 @@ grid_info_path = r'C:\Users\Administrator\Desktop\grid_trade\grid_info'
 grid_info_file_path = rf'{grid_info_path}/grid_stock_info.csv'
 create_holding_info_path = rf'C:\Users\Administrator\Desktop\网格数据分析\build_clear_info\20240617交易股票建仓信息.csv'
 clear_holding_info_path = rf'C:\Users\Administrator\Desktop\网格数据分析\build_clear_info\清仓信息.csv'
+
+# 获取文档文件夹路径
+documents_path = os.path.join(os.environ['USERPROFILE'], 'Documents')
 
 
 # ====================================================================================================================
@@ -948,6 +971,10 @@ def get_days_between_date(start_date, end_date):
     返回:
     int: 两个日期之间的天数间隔
     """
+    # 先从YYYYMMDD转换到YYYY-MM-DD
+    start_date = start_date[:4] + '-' + start_date[4:6] + '-' + start_date[6:]
+    end_date = end_date[:4] + '-' + end_date[4:6] + '-' + end_date[6:]
+
     date_format = "%Y-%m-%d"
 
     # 将日期字符串解析为 datetime 对象
@@ -970,6 +997,98 @@ def get_testReturn(ret, start_date, end_date):
     print(f"From {start_date} to {end_date}, there are {delta_days} days.")
     return (ret/delta_days)*365
 
+def get_min_max_price_from_backtesting_daily_data_ADJ(STOCK_CODE, start_date, end_date, file_or_fetch=1):
+    '''
+    :param start_date, end_date: 时间段
+    :param file_or_fetch: 从文件读取(0)还是从在线数据库(1)读取，默认为在线数据库
+    :return: 返回股价最小值和最大值
+    '''
+    global is_oracle_init
+    if is_oracle_init == 0:
+        # co.init_oracle_client(lib_dir=r"C:\software\oracle\instantclient_21_14") # SETPARAS IDK on which pc
+        co.init_oracle_client(lib_dir=r"D:\softwares\oracle\instantclient_21_14") # SETPARAS ON MY PC
+        is_oracle_init = is_oracle_init+1
+    else:
+        ...
+    if file_or_fetch == 1:
+        # 连接到Oracle数据库，需用户名、密码、ip、端口和数据库名
+        conn = co.connect('jg_user08', 'ZDbR@#Zxsj@#sg2y', '109.244.130.220:20000/wind')
+
+        # 创建游标 cursor
+        cursor = conn.cursor()
+        printGreenMsg("successful connecting to database!")
+        def queryTable_FilterBy_S_INFO_WINDCODE(tableName, S_INFO_WINDCODE, cursor):
+
+            if cursor is None:
+                raise Exception("Cursor has not been initialized.")
+
+            colName = "S_INFO_WINDCODE"
+            tableName = (tableName).upper()
+            # 查询表内容
+            query = f"""
+                SELECT *
+                FROM (
+                    SELECT *
+                    FROM (
+                        SELECT *
+                        FROM {tableName}
+                        WHERE S_INFO_WINDCODE = '{S_INFO_WINDCODE}'
+                        ORDER BY TRADE_DT DESC
+                    )
+                    -- WHERE ROWNUM <= 10
+                )
+                ORDER BY TRADE_DT ASC
+                        """
+            cursor.execute(query)
+            data = cursor.fetchall()
+
+            # 获取列名
+            colnames = [desc[0] for desc in cursor.description]
+
+            # 转换为Pandas DataFrame
+            df = pd.DataFrame(data, columns=colnames)
+
+            # save_query_to_csv(df, f"{S_INFO_WINDCODE[:6]}_DAILY_RAW_DATA.csv", f"{raw_data_path}\DAILY")
+
+            return df
+            # print(df)
+
+
+        printBlueMsg(f">>>   Starting to download and process daily data for {STOCK_CODE}...  ")
+        RAW_DATA_DAILY = queryTable_FilterBy_S_INFO_WINDCODE("AShareEODPrices", STOCK_CODE, cursor)
+        KEEP_COL_FOR_DAILY_BACKTEST = ['TRADE_DT', 'S_DQ_PRECLOSE', 'S_DQ_OPEN', 'S_DQ_HIGH', 'S_DQ_LOW', 'S_DQ_CLOSE',
+                                       'S_DQ_VOLUME', 'S_DQ_ADJFACTOR', 'S_DQ_ADJCLOSE']
+        RAW_DATA_DAILY_KEEP = RAW_DATA_DAILY[KEEP_COL_FOR_DAILY_BACKTEST]
+
+        # 转换日期列为datetime格式
+        RAW_DATA_DAILY_KEEP.loc[:, 'TRADE_DT'] = pd.to_datetime(RAW_DATA_DAILY_KEEP['TRADE_DT'], format='%Y%m%d')
+
+        # 过滤指定时间段的数据
+        filtered_data = RAW_DATA_DAILY_KEEP[(RAW_DATA_DAILY_KEEP['TRADE_DT'] >= start_date) & (RAW_DATA_DAILY_KEEP['TRADE_DT'] <= end_date)]
+
+        # 计算最小值和最大值
+        # min_price = filtered_data[['S_DQ_OPEN']].min().values[0]
+        # max_price = filtered_data[['S_DQ_OPEN']].max().values[0]
+
+        min_price = filtered_data[['S_DQ_ADJCLOSE']].min().values[0]
+        max_price = filtered_data[['S_DQ_ADJCLOSE']].max().values[0]
+
+        printBlueMsg(f">>>   Finish processing daily data for {STOCK_CODE}...  ")
+
+        # 关闭游标和 ORACLE 数据库
+        cursor.close()
+        conn.close()
+        # print(min_price, max_price)
+        return min_price, max_price
+
+    elif file_or_fetch == 0:
+        ...
+    else:
+        printRedMsg("that's a wrong para.")
+        input("")
+        return
+
+
 def get_min_max_price_from_backtesting_daily_data(STOCK_CODE, start_date, end_date, file_or_fetch=1):
     '''
     :param start_date, end_date: 时间段
@@ -978,7 +1097,8 @@ def get_min_max_price_from_backtesting_daily_data(STOCK_CODE, start_date, end_da
     '''
     global is_oracle_init
     if is_oracle_init == 0:
-        co.init_oracle_client(lib_dir=r"C:\software\oracle\instantclient_21_14") # SETPARAS
+        # co.init_oracle_client(lib_dir=r"C:\software\oracle\instantclient_21_14") # SETPARAS IDK on which pc
+        co.init_oracle_client(lib_dir=r"D:\softwares\oracle\instantclient_21_14") # SETPARAS ON MY PC
         is_oracle_init = is_oracle_init+1
     else:
         ...
@@ -1039,8 +1159,11 @@ def get_min_max_price_from_backtesting_daily_data(STOCK_CODE, start_date, end_da
         filtered_data = RAW_DATA_DAILY_KEEP[(RAW_DATA_DAILY_KEEP['TRADE_DT'] >= start_date) & (RAW_DATA_DAILY_KEEP['TRADE_DT'] <= end_date)]
 
         # 计算最小值和最大值
-        min_price = filtered_data[['S_DQ_OPEN']].min().values[0]
-        max_price = filtered_data[['S_DQ_OPEN']].max().values[0]
+        # min_price = filtered_data[['S_DQ_OPEN']].min().values[0]
+        # max_price = filtered_data[['S_DQ_OPEN']].max().values[0]
+
+        min_price = filtered_data[['S_DQ_CLOSE']].min().values[0]
+        max_price = filtered_data[['S_DQ_CLOSE']].max().values[0]
 
         printBlueMsg(f">>>   Finish processing daily data for {STOCK_CODE}...  ")
 
@@ -1056,6 +1179,8 @@ def get_min_max_price_from_backtesting_daily_data(STOCK_CODE, start_date, end_da
         printRedMsg("that's a wrong para.")
         input("")
         return
+
+
 def append_new_element_to_line(line, new_element):
     '''
     按csv的格式在行后添加新元素
@@ -1114,13 +1239,60 @@ def add_row_to_df_manually(df):
 def get_header(df):
     """
     打印 DataFrame 的表头。
-
     参数:
     df (pd.DataFrame): 要打印表头的 DataFrame。
     """
     # printGreenMsg("DataFrame headers:")
     return(df.columns)
 
+def open_new_console(command):
+    if os.name == 'nt':  # 如果是Windows系统
+        subprocess.Popen(['start', 'cmd', '/k', command], shell=True)
+    else:
+        # 其他系统的实现
+        subprocess.Popen(['gnome-terminal', '--', 'bash', '-c', command])
+
+
+def clear_line():
+    print('\r', end='')
+
+def is8Digits(date):
+    return len(date) == 8
+
+# 上下文管理器
+# 用法：        with redirect_stdout(log):
+#
+#             from WindPy import w
+#             log("DOWNLOADING FROM WIND DATABASE...")
+#
+#             # 连接Wind数据库
+#             w.start()
+#             # 获取分钟行情数据
+#             wind_data = w.wsd(row.ticker,
+#                          "close",
+#                          str(row.start_date),
+#                          str(row.end_date),
+#                          PriceAdj='F')
+class StreamToLogger:
+    def __init__(self, log_func):
+        self.log_func = log_func
+
+    def write(self, message):
+        if message.strip():  # 忽略空行
+            self.log_func(message)
+
+    def flush(self):
+        pass
+
+@contextmanager
+def redirect_stdout(log_func):
+    logger = StreamToLogger(log_func)
+    old_stdout = sys.stdout
+    sys.stdout = logger
+    try:
+        yield
+    finally:
+        sys.stdout = old_stdout
 
 class prt:
     @staticmethod
@@ -1388,6 +1560,7 @@ class data:
             # 提示用户输入Excel文件路径
             excelFilePath = input("请拖入回测结果文件\n")
             # 从Excel文件中读取数据
+            # 指定表头在第二行（索引为1）
             excel_df = pd.read_excel(excelFilePath)
             stock_code = os.path.basename(excelFilePath)[:9].replace('_', '.')
             # print(stock_code)
@@ -1403,30 +1576,37 @@ class data:
             # 获取匹配行的字典
             matched_row_dict = matched_row.to_dict(orient='records')[0]
 
+            # YYYYMMDD
+            start_date_str = str(matched_row_dict['start_date'])
+            end_date_str = str(matched_row_dict['end_date'])
+
+            # 转换为 YYYY_MM_DD
+
+            start_date_format = start_date_str[:4] + '_' + start_date_str[4:6] + '_' + start_date_str[6:]
+            end_date_format = end_date_str[:4] + '_' + end_date_str[4:6] + '_' + end_date_str[6:]
             # 创建新的行字典
             new_row_dict = {
                 'stock_code': stock_code,
                 'judge_grid_start' : 'None',
                 'judge_grid_end' : 'None',
                 'is_grid' : '1',
-                'test_start_date': matched_row_dict.get('start_date'),
-                'test_end_date': matched_row_dict.get('end_date')
+                'test_start_date':start_date_format,
+                'test_end_date': end_date_format
             }
 
             new_row_dict['best_grid_n'] = grid_n
 
-            # 去 data 里面找数据文件来计算最小值和最大值
-            min_price, max_price = get_min_max_price_from_backtesting_daily_data(stock_code, matched_row_dict['start_date'], matched_row_dict['end_date'])
-            new_row_dict['min_price'] = min_price
-            new_row_dict['max_price'] = max_price
-            print(f"min price: {min_price}, max price: {max_price}")
+            # 去 data 里面找数据文件来计算最小值和最大值 20240627不用了，回测中已经包含
+            # min_price, max_price = get_min_max_price_from_backtesting_daily_data(stock_code, matched_row_dict['start_date'], matched_row_dict['end_date'])
+            new_row_dict['min_price'] = matched_row_dict['min_price']
+            new_row_dict['max_price'] = matched_row_dict['max_price']
+            print(f"min price: {matched_row_dict['min_price']}, max price: {matched_row_dict['max_price']}")
 
             new_row_dict['target_position_dict'] = 'None'
             new_row_dict['grid_list'] = matched_row_dict['Grid_List']
 
             # 计算ret
-            start_date_str = matched_row_dict['start_date']
-            end_date_str = matched_row_dict['end_date']
+
             ret_series = matched_row['Ret'].iloc[0]  # 获取'Ret'列的第一个值
             test_return = get_testReturn(ret_series, start_date_str, end_date_str)
             new_row_dict['test_ret'] = test_return
@@ -1439,32 +1619,14 @@ class data:
                 if column not in new_row_dict:
                     new_row_dict[column] = input(f"Please enter value for {column}: ")
 
-            # 对比新行数据字典和CSV文件的列名，确保一致
-            # csv_columns = set(csv_df.columns)
-            # new_row_keys = set(new_row_dict.keys())
 
-            # if csv_columns != new_row_keys:
-            #     missing_columns = csv_columns - new_row_keys
-            #     for column in missing_columns:
-            #         new_row_dict[column] = input(f"Please enter value for {column}: ")
-
-            # # 处理未指定的CSV列
-            # for column in csv_df.columns: # 这个循环遍历了CSV文件中的每一列。
-            #     if column not in new_row_dict: # 这个条件语句检查当前遍历到的列（column）是否已经在new_row_dict中存在。
-            #         new_row_dict[column] = input(f"Please enter value for {column}: ")
-
-
-            # 检查新行数据是否与CSV文件的表头一致
-            # for column in csv_df.columns:
-            #     if column not in new_row_dict:
-            #         new_row_dict[column] = input(f"Please enter value for {column}: ")
 
             # 确认数据
             printYellowMsg("\nCOMFIRM THE DATA:")
             printYellowMsg("====================================")
             prt.print_dict(new_row_dict)
             printYellowMsg("\n====================================")
-            decision = input("\nenter \"insert\" to insert the data into info file, if not, enter anything else.")
+            decision = input("\n\nenter \"insert\" to insert the data into info file, if not, enter anything else.\n\n")
 
             if decision == "insert":
                 # 将新行数据插入到CSV文件中
@@ -2736,7 +2898,7 @@ def checkYesterdayDataTo37():
     else:
         printRedMsg(f"{today}'s limit price data is NOT prepared.")
 
-    format_today = f"{today[:4]}-{today[4:6]}-{today[6:]}"
+    format_today = f"DataCorrect{today[:4]}-{today[4:6]}-{today[6:]}"
     if count_files_with_target_field(r"E:\BaiduSyncdisk\Sell_Buy_List_PA", format_today):
         printGreenMsg(f"{today}'s DataCorrect file is generated.")
     else:
@@ -3166,7 +3328,8 @@ def getGridStockPool():
 
     # 打印三个 DataFrame
     printGreenMsg("\n\t\t\t不交易股票的备份池")
-    printYellowMsg(df_0)
+    # printYellowMsg(df_0)
+    printYellowMsg("此处省略")
     # print("\nDataFrame with is_grid == 1")
     # print(df_1)
     printGreenMsg("\n\t\t\t不交易股票池")
@@ -3269,7 +3432,7 @@ def gridDataModify():
     input("Press Enter to return to main menu.")
 
 
-def grid_holding_calculate():
+def grid_holding_calculate(stock_code="69"):
     def find_closest_smaller_with_index(arr, p):
         low, high = 0, len(arr) - 1
         closest_value = None
@@ -3294,6 +3457,9 @@ def grid_holding_calculate():
         quantity_list = [0] * grid_number
         # n个档位对应n-1个格子
         grid_number = grid_number - 1
+
+        # 确保current_price为浮点数
+        current_price = float(current_price)
         # 计算现价下最大买入数量（100的整数倍）
         max_quantity = math.floor(max_price / current_price) // 100 * 100
         if max_quantity < grid_number * 100:
@@ -3382,11 +3548,15 @@ def grid_holding_calculate():
 
         return result
 
+    # 如果用户没有传入stock_code, 那么就让用户输入
+    if stock_code == "69":
+        # 用户输入股票代码
+        stock_code = input("enter the stock code:\n")
+        # 为了调试，这里直接将股票代码设置为"601688"
+        # stock_code = "601688"  # DEBUG!!!
+    else:
+        stock_code = stock_code[:6]
 
-    # 用户输入股票代码
-    stock_code = input("enter the stock code:\n")
-    # 为了调试，这里直接将股票代码设置为"601688"
-    # stock_code = "601688"  # DEBUG!!!
 
     # 定义CSV文件的路径，该文件包含网格信息
     # grid_info_file_path = r'D:\lzy\temp\grid_stock_info.csv'  # DEBUG!!!
@@ -3410,7 +3580,7 @@ def grid_holding_calculate():
     # 如果找到了匹配的行，选择第一行的'grid_list'值
         grid_prices = grid_prices.iloc[0]
         stock_code_long = grid_info.loc[grid_info['stock_code'].str.contains(stock_code), 'stock_code'].values[0]
-        print(stock_code_long)
+        # print(stock_code_long)
     else:
     # 如果没有找到匹配的行，将'grid_prices'设置为空列表
         printRedMsg("No grid prices found for the stock code.")
@@ -3428,7 +3598,7 @@ def grid_holding_calculate():
 
     try:
         # 东财数据
-        df_dc = ts.realtime_quote(ts_code='601688.SH', src='dc')
+        df_dc = ts.realtime_quote(ts_code=stock_code_long, src='dc')
         # sina数据  未启用
         df_sina = ts.realtime_quote(ts_code='600000.SH,000001.SZ,000001.SH')
         printGreenMsg("连接成功")
@@ -3438,15 +3608,18 @@ def grid_holding_calculate():
         print(f"当前价格为: {now_price}")
     except Exception as e:
         printRedMsg(
-            f"获取当前价格失败: {e}\n本接口是tushare org版实时接口的顺延，数据来自网络，且不进入tushare服务器，属于爬虫接口，请将tushare升级到1.3.3版本以上。")
+            f"\n获取当前价格失败: {e}\n本接口是tushare org版实时接口的顺延，数据来自网络，且不进入tushare服务器，属于爬虫接口，请将tushare升级到1.3.3版本以上。")
         now_price = input("\n请输入当前价格: \n")
 
     # final = allocate_stocks(grid_prices_list, 40000, 13.13)
     # prt.print_dict(final)
+    max_price_available = 40000
+    print(f"请确认最大可用金额为：{max_price_available}\n")
+    input("")
 
-    final_ = buy_stocks(grid_prices_list, now_price, 40000)
+    final_ = buy_stocks(grid_prices_list, now_price, max_price_available)
     prt.aligned_dict_horizontal(final_)
-    printGreenMsg(f'请复制目标持仓字典: \n\"{final_}\"')
+    printGreenMsg(f'\n请复制目标持仓字典: \n\"{final_}\"')
 
     input("press enter to return to main menu")
 
@@ -3492,7 +3665,7 @@ def reverseRepo():
     # 转成int类型
     asset_filter['逆回购数量'] = asset_filter['逆回购数量'].astype(int)
 
-
+    HT02XY_entrust_num = 0
     print(asset_filter)
     # 新建一个 task 的 DataFrame， 结构为#指令编号,下单指令,账户类型,资金账户,证券代码,市场,委托数量,买卖方向,委托价格,委托类别,委托属性,委托编号,本地报单时间
     task = pd.DataFrame(columns=['#指令编号', '下单指令', '账户类型', '资金账户', '证券代码', '市场', '委托数量', '买卖方向', '委托价格', '委托类别', '委托属性', '委托编号', '本地报单时间'])
@@ -3511,6 +3684,8 @@ def reverseRepo():
         filter_row_with_pro_num = asset_filter[asset_filter['资金账户'] == pro_num]
         if not filter_row_with_pro_num.empty:
             entrust_num = int(filter_row_with_pro_num['逆回购数量'].values[0])
+            if product == 'HT02XY':
+                HT02XY_entrust_num = entrust_num
         else:
             entrust_num = 0
 
@@ -3535,8 +3710,583 @@ def reverseRepo():
 
     # print(asset)
     # print(task)
-    printRedMsg(" HT02XT 一般无法通过程序下单，请自行逆回购")
+    printYellowMsg(f" HT02XT 一般无法通过程序下单，请自行逆回购，数量为{HT02XY_entrust_num}")
     input("press enter to return to main menu")
+
+def extremeValueCalculate():
+    def calculate_values(sequence):
+        # 找到序列中的最大值和最小值
+        max_value = max(sequence)
+        min_value = min(sequence)
+
+        # 计算 (max - min) * 10% + min 和 (max - min) * 30% + min
+        ten_percent_value = (max_value - min_value) * 0.1 + min_value
+        thirty_percent_value = (max_value - min_value) * 0.3 + min_value
+
+        # 打印结果
+        print(f"{ten_percent_value},{thirty_percent_value}")
+
+    while True:
+        # 从控制台输入字符串
+        input_string = input("请输入一个数字序列，以逗号分隔：")
+
+        if input_string == "quit":
+            print("程序结束")
+            input("")
+            return
+
+        # 去掉字符串中的方括号
+        input_string = input_string.strip('[]')
+
+        # 将输入字符串转换为列表
+        sequence = [float(x.strip()) for x in input_string.split(',')]
+
+        # 调用函数计算并打印结果
+        calculate_values(sequence)
+
+    input("press enter to return to main menu")
+
+def min_max_value_calculate():
+    # stock_code = '002984.SZ'
+
+    stock_codes = ['002138.SZ', '002156.SZ', '600104.SH',
+                   '600226.SH', '600529.SH', '600686.SH',
+                   '600741.SH', '603501.SH', '688025.SH']
+    start_date = '20230101'
+    end_date = '20240430'
+
+    for stock_code in stock_codes:
+        # 去 data 里面找数据文件来计算最小值和最大值
+        min_price, max_price = get_min_max_price_from_backtesting_daily_data(stock_code, start_date, end_date)
+        # print(f"min price: {min_price}, max price: {max_price}")
+        print(f"{min_price}, {max_price}")
+
+    input("press enter to return to main menu")
+
+def monitorFile():
+    file_path = input("Drag the file to monitor: ")
+    if not os.path.isfile(file_path):
+        print(f"The file {file_path} does not exist.")
+        return
+
+    try:
+        print(f"Monitoring changes in: {file_path}")
+        subprocess.run(["powershell", "Get-Content", "-Path", file_path, "-Wait"], check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"An error occurred: {e}")
+
+def summaryBacktestResults():
+    # 把回测完成的结果xlsx表格总结到一张表格里
+    # log("启用功能7: 把回测完成的结果xlsx表格总结到一张表格里")
+    try:
+        folder_name = input("请输入文件夹名称：")
+        # 获取所有CSV文件的文件名列表
+        csv_files = glob.glob(rf'D:\TRADE\backtesting\result\{folder_name}\grid_n_test_info_pt0/*.xlsx')
+        print(f"开始处理{csv_files}的数据")
+        wb = Workbook()
+
+        # 删除默认的sheet
+        default_sheet = wb['Sheet']
+        # wb.remove(default_sheet)
+        for csv_file in tqdm(csv_files): # TODO 改一下这个进度条
+            # print(csv_file)
+            df = pandas.read_excel(csv_file, sheet_name='Sheet1')
+            sheet_name = csv_file.split("pt0")[-1][1:7]  # 获取文件名作为sheet名称
+            # print(sheet_name)
+
+            # 创建一个新的sheet
+            ws = wb.create_sheet(title=sheet_name)
+
+            # 将DataFrame写入新的sheet
+            for r in dataframe_to_rows(df, index=False, header=True):
+                ws.append(r)
+            print(f"处理{csv_file}的数据结束")
+
+        # 保存Excel文件
+        wb.save(rf'D:\TRADE\backtesting\result\{folder_name}/total.xlsx')
+        printGreenMsg(rf"处理结束，保存到 D:\TRADE\backtesting\result\{folder_name}/total.xlsx")
+    except Exception as e:
+        printRedMsg(f"处理失败: {e}")
+        input("press enter to return to main menu")
+        return
+    input("Press Enter to continue...")
+
+def downloadLimitpriceData():
+
+
+    # bs.login()
+    # from WindPy import w
+
+
+
+    def get_code_list_from_csv():
+        # 获取当前项目所在目录
+        current_dir = os.path.dirname(__file__)
+
+        # CSV文件路径
+        csv_file_path = os.path.join(current_dir, 'stock_code_list.csv')
+
+        # 读取CSV文件并转换为列表
+        code_list = []
+        with open(csv_file_path, 'r', newline='', encoding='utf-8') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                code_list.append(row[0][:6])  # 假设CSV文件只有一列数据
+        # print(code_list)
+        return code_list
+
+    def get_stock_code_wind():
+        """
+        获取wind股票代码
+        """
+        from WindPy import w
+        w.start()
+        # 当日日期
+        m_today = datetime.now().strftime("%Y-%m-%d")
+
+        # 调用wind接口获取全部A股代码
+        result = w.wset("sectorconstituent", f"date={m_today};sectorid=a001010100000000")
+        stock_code_list = []
+        # 判断代码运行是否正常
+        if result.ErrorCode == 0:
+            # print(result)
+            data = result.Data
+            # print(data)
+            # print(data[1])
+            # 判断数据是否为空
+            if len(data) > 0:
+                for item in data[1]:
+                    # print(item)
+                    if item.find("SZ") != -1 or item.find("SH") != -1:
+                        stock_code_list.append(item)
+            else:
+                # print("len(result.Data) == 0")
+                return []
+
+        else:
+            print("get_stock_code_wind result.ErrorCode != 0, exist error")
+            return []
+
+        # 若未成功获取数据，则返回空列表
+        if len(stock_code_list) > 0:
+            return stock_code_list
+        else:
+            return []
+
+    def get_std_day(day_str: str) -> str:
+        """
+        day_str: "yyyymmdd"或者"yyyy/mm/dd"或者"yyyy-mm-dd"或者其它形式
+        处理过程：用正则筛选字符串中的全部数字，然后拼凑在一起，如果拼凑结果长度等8，则返回拼凑结果，否则返回""
+        """
+        num_regex = re.compile(r"\d+")
+        find_list = num_regex.findall(day_str)
+        # print(find_list)
+        ret = "".join(find_list)
+        # print(ret)
+        return ret
+
+    def Generate_Date(tradeDaysPath, today):
+        '''
+        tradeDaysPath: 记录当年交易日日期的xlsx
+        today: 订单日期，格式"yyyymmdd"
+        '''
+        # 交易日当天
+        try:
+            today_slope = today[:4] + "/" + today[4:6] + "/" + today[6:8]
+            today_line = today[:4] + "-" + today[4:6] + "-" + today[6:8]
+
+            # 前一个交易日
+            df_tradeDate = pd.read_excel(tradeDaysPath)
+            df_tradeDate["date"] = df_tradeDate.日期.apply(
+                lambda x: get_std_day(x) if type(x) == str else x.strftime("%Y%m%d"))
+
+            yesterday = df_tradeDate.date[df_tradeDate[df_tradeDate.date == today].index[0] - 1]
+            yes_slope = yesterday[:4] + "/" + yesterday[4:6] + "/" + yesterday[6:8]
+            yes_line = yesterday[:4] + "-" + yesterday[4:6] + "-" + yesterday[6:8]
+
+            print(f"Working on yesterday{yesterday} today{today}")
+
+            return today, today_slope, today_line, yesterday, yes_slope, yes_line
+        except Exception as e:
+            print(rf"Generate_Date Error: {e}\nMove 2024交易日 file to C:\Users\<USER>\Documents")
+            return None
+
+    def round_fixed(num, d):
+        """
+        浮点数的四舍五入
+        num: 浮点数
+        d: d>0，在小数点后面第几位四舍五入；
+           d<0，在整数部位四舍五入，d=-1表示将个位数四舍五入，以此类推
+        """
+        if num == 0:
+            a = 0
+        else:
+            a = round(num + 0.5 / 10 ** 7, d)  # +0.5/10**7是为了避免丢失的精度造成误差
+        return a
+
+    def disappear(*arg):
+        # 不对重定向的消息做任何事情
+        ...
+
+    def get_day_k_data_wind(code, start_date, end_date, price_adjust_type="F"):
+        """
+        # 获取wind日k线数据
+        :param code: 股票代码，比如601688.SH
+        :param start_date: 开始日期，比如2015-09-10
+        :param end_date: 结束日期，比如2022-12-31
+        :param price_adjust_type: 复权类型，"F"前复权，"B"后复权，"NA"不复权
+        :return:日数据的dataframe，列名有PRE_CLOSE,OPEN,HIGH,LOW,CLOSE,VOLUME,ADJFACTOR
+        """
+
+        if code.startswith("0") or code.startswith("3"):
+            code = code + ".SZ"
+        elif code.startswith("6"):
+            code = code + ".SH"
+
+        with redirect_stdout(disappear):
+            w.start()
+
+
+        result = w.wsd(f"{code}", "pre_close,open,high,low,close,volume,adjfactor",
+                       start_date, end_date, f"PriceAdj={price_adjust_type}")
+
+        datatime = [x.strftime('%Y-%m-%d') for x in result.Times]
+        data_columns = [x.upper() for x in result.Fields]
+        df = pd.DataFrame(result.Data, index=data_columns, columns=datatime)
+        data = df.T
+        # print(data)
+        data["PRE_CLOSE"] = data["PRE_CLOSE"].apply(lambda x: round_fixed(x, 2))
+        data["OPEN"] = data["OPEN"].apply(lambda x: round_fixed(x, 2))
+        data["HIGH"] = data["HIGH"].apply(lambda x: round_fixed(x, 2))
+        data["LOW"] = data["LOW"].apply(lambda x: round_fixed(x, 2))
+        data["CLOSE"] = data["CLOSE"].apply(lambda x: round_fixed(x, 2))
+        try:
+            data["VOLUME"] = data["VOLUME"].apply(lambda x: int(x))
+        except ValueError:  # VOLUME的值可能为空，int函数会报错
+            pass
+
+        # 等待3秒
+        # time.sleep(3)
+        return data
+
+    def get_day_k_data_bs(code, start_day, end_day):
+        """
+        code:"601998.SH"
+        start_day: "20220521"
+        end_day: "20220628"
+        """
+
+        if code.startswith("0") or code.startswith("3"):
+            code = "SZ." + code
+        elif code.startswith("6"):
+            code = "SH." + code
+
+        stock_code = code
+        start_date = start_day[:4] + "-" + start_day[4:6] + "-" + start_day[6:8]  # "2022-05-21"
+        end_date = end_day[:4] + "-" + end_day[4:6] + "-" + end_day[6:8]  # "2022-05-21"
+
+        data_fields = "date,preclose,open,high,low,close"
+        rs = bs.query_history_k_data_plus(stock_code,
+                                          data_fields,
+                                          start_date=start_date,
+                                          end_date=end_date,
+                                          frequency='d',
+                                          adjustflag="2")
+
+        # 一次性获取全部数据
+        # data = rs.get_data() # 获取全部数据 # 注意获取全部数据后，rs就为空了
+        # print(data)
+
+        # 一行一行获取数据
+        data_list = []
+        while (rs.error_code == '0') & rs.next():
+            # 获取一条记录，将记录合并在一起
+            # print(type(rs.get_row_data())) # list
+            line_list = rs.get_row_data()
+            temp_list = []
+            for item in line_list:
+                if item.find("-") == -1:
+                    temp_list.append(round(float(item), 2))
+                else:
+                    temp_list.append(item)
+            data_list.append(temp_list)
+        data = pd.DataFrame(data_list, columns=["DATE", "PRE_CLOSE", "OPEN", "HIGH", "LOW", "CLOSE"])
+        print(data)
+        return data
+
+    # 计算股票的涨跌停价
+    def get_rise_down_stop_price(code, last_close_price):
+        """
+        code:股票代码，形如"601998"或者"601998.SH"
+        last_close_price: 昨日收盘价
+        """
+        if code[:3] == "688" or code[:2] == "30":
+            rise_price = round(last_close_price * 1.2, 2)
+            down_price = round(last_close_price * 0.8, 2)
+        else:
+            rise_price = round(last_close_price * 1.1, 2)
+            down_price = round(last_close_price * 0.9, 2)
+        return rise_price, down_price
+
+    def get_all_stcok_from_wind():
+        from WindPy import w
+        import pandas as pd
+        # 初始化Wind接口
+        w.start()
+
+        # 获取全市场A股股票代码
+        data = w.wset("SectorConstituent", "sectorId=a001010100000000")
+
+        # 创建DataFrame存储股票代码
+        df = pd.DataFrame(data.Data[1])
+        df = df[0].str.slice(0, 6)
+
+        # 将DataFrame保存为CSV文件，不包含字段名
+        # df.to_csv("stock_code_list.csv", index=False, header=False)
+
+        print(f"已成功获取{len(df)}支股票")
+
+        # 关闭Wind接口
+        w.stop()
+        return df.to_list()
+
+    def get_next_trade_day(today):
+        # 读取 今年的交易日
+        df_tradeDate = pd.read_excel(tradeDaysPath)
+        # 转换为列表
+        tradeDate_list = df_tradeDate.日期.apply(lambda x: get_std_day(x) if type(x) == str else x.strftime("%Y%m%d")).tolist()
+        # print(tradeDate_list)
+        # 返回今天之后的那个日期
+        return tradeDate_list[tradeDate_list.index(today) + 1]
+
+
+
+
+    # 交易日期
+    year = str(datetime.now().year)
+    tradeDaysPath = rf"{documents_path}/{year}交易日.xlsx"
+
+    today = datetime.now().strftime('%Y%m%d')
+    tomorrow = (datetime.now() + timedelta(days=1)).strftime('%Y%m%d')
+    next_trade_day = get_next_trade_day(today)
+    # 如果是周五，那么下一个交易日是下周一
+
+    notToday = False
+
+    print("This program will use the WIND database, please log in to the WIND account before running the program.")
+    # print(fr"Move 2024交易日 file to C:\Users\<USER>\Documents")
+    print(f"\n\t         Today -> {today}\n\t      Tomorrow -> {tomorrow}\n\tNext trade day -> {next_trade_day}\n")
+    printYellowMsg(f"Auto download {next_trade_day} limit price data, please check if the date is correct")
+
+
+    input_1 = input("\nEnter \"run\" to run the program, "
+                    "\nEnter the date to run specific date,"
+                    "otherwise exit\n\n")
+
+    if is8Digits(input_1):
+        # 如果输入的是8位数字,那么就要运行这天的涨跌停
+        # 但是这个逻辑很奇怪，，？？？为什么是运行 today
+        # print("是八位数")
+        today = input_1
+        next_trade_day = get_next_trade_day(today)
+        notToday = True
+        # print(today)
+    elif input_1 == "run":
+        print("Starting program")
+        # 停留0.5s
+        time.sleep(1)
+    else:
+        input("returning to main menu")
+        return
+
+    w.start()
+    # date_select = input("是否自动生成当日日期？(y/n):")
+    # if date_select == "y":
+    #     today = datetime.now().strftime('%Y%m%d')
+    # else:
+    #     today = input("手动输入日期 yyyymmdd: ")
+
+    today, today_slope, today_line, yesterday, yes_slope, yes_line = Generate_Date(tradeDaysPath, today)
+    print("")
+    # print(today, today_slope, today_line, yesterday, yes_slope, yes_line)
+
+    # 1.获取所有买单股票代码
+    # stock_code_buy_list = get_code_list_from_csv()
+
+    stock_code_buy_list = get_all_stcok_from_wind()
+
+    # stock_code_buy_list = []
+    # print("股票个数：", len(stock_code_buy_list))
+
+    # 2.获取前收盘价和计算涨停价
+    # 这里的作用是为了保证不管这个文件里有没有东西，都要把交易程序跑起来的保证。特别是YH
+    if len(stock_code_buy_list) == 0:
+        stock_code_buy_list.append("601669.SH")
+    # print("get start")
+    start_time = time.time()
+
+    top_limit_price_dict = dict()
+
+    # 3.生成指定格式的文件A
+    save_dir = fr"{documents_path}/limit_price"
+    if not os.path.exists(save_dir):
+        os.makedirs(save_dir)
+
+    limit_price_path = f"{save_dir}/{next_trade_day}_limit_price.csv"
+
+    # 时间循环从这里开始：
+    target_time = datetime.now().replace(hour=18, minute=30, second=0, microsecond=0)
+    morning_start_time = datetime.now().replace(hour=9, minute=30, second=0, microsecond=0)
+    if datetime.now() < morning_start_time:
+        print("Good morning, forgot to run program yesterday?\nDont worry, I will run it for you\n")
+        print("havent done this part, just restart and enter yesterday's date")
+
+
+    if (datetime.now() < target_time) and not notToday:
+        while datetime.now() < target_time:
+            # printYellowMsg("It's not time yet")
+            # wait till target time
+            time.sleep(0.1)
+            print("\r", end="")
+            print(f"Now time: \033[33m{datetime.now()}\033[0m, Waiting for {target_time}...", end="")
+
+
+    if (datetime.now() > target_time) and not notToday:
+        # 检查数据源
+        while True:
+            # time.sleep(600) # 10分钟
+            time.sleep(3)  # 3s DEBUG
+            print(f"Now {datetime.now()}, checking data source:", end="")
+            try:
+
+                test_df = get_day_k_data_wind("000001", today, today)['VOLUME']
+                # 如果 VOLUME 列为 NaN，那么就是没有数据
+                if test_df.isnull().values.any():
+                    print(" \033[33mData is not updated yet\033[0m", end="")
+                else:
+                    print(" \033[32mData is updated\033[0m", end="")
+                    break
+                print("\r", end="")
+            except Exception as e:
+                print(f"\nFAILED checking data source: {e}")
+                continue
+    elif not notToday:
+        print("It's not time yet")
+        # wait till target time
+        while datetime.now() < target_time:
+            time.sleep(1)
+            print(f"Waiting for {target_time}...")
+
+    print("")
+
+
+    # 从 limit_price_path 读取数据，获取第一列，即所有已经下载的股票，转成liswt
+    if os.path.exists(limit_price_path):
+        try:
+            df = pd.read_csv(limit_price_path)
+            limit_price_file_already_exist_stock_list = df["证券代码"].tolist()
+            # 把每个元素后缀去掉，换句话说，只留前六位
+            limit_price_file_already_exist_stock_list = [x[:6] for x in limit_price_file_already_exist_stock_list]
+        except Exception as e:
+            print(f"FAILED reading {limit_price_path}: {e}\ncheck file plz, delete file if needed")
+            limit_price_file_already_exist_stock_list = []
+
+        # print(f"已经下载的股票代码：{stock_code_buy_list}")
+    else:
+        # 如果文件不存在，那么就。。什么也不做
+        limit_price_file_already_exist_stock_list = []
+        print(f"{limit_price_path} file is not exist")
+
+
+    ret_data = []
+    print("\n")
+    # 检查是否已经下载过了
+    if os.path.exists(limit_price_path):
+        if len(limit_price_file_already_exist_stock_list) == 0:
+            print("No stock code in limit price file, Will download all stock code")
+        elif len(limit_price_file_already_exist_stock_list) == len(stock_code_buy_list):
+            print("All stock code in limit price file, No need to download")
+            input("press enter to return to main menu")
+            return
+        elif len(limit_price_file_already_exist_stock_list) > 0:
+            print("Some stock code in limit price file, Will download the rest of stock code")
+            # 对比 limit_price_file_already_exist_stock_list 和 stock_code_buy_list，如果已经下载过了，就不再下载
+            stock_code_buy_list = list(set(stock_code_buy_list) - set(limit_price_file_already_exist_stock_list))
+            print(f"left {len(stock_code_buy_list)} left stock code to download")
+            print(f"already downloaded {len(limit_price_file_already_exist_stock_list)} stock code")
+    else:
+        print("No limit price file, Will download all stock code")
+
+    print(f'Downloading {today}\'s data')
+
+    subprocess.Popen([
+        "powershell",
+        "-Command",
+        f'Start-Process powershell -ArgumentList \'-NoExit -Command "Get-Content -Path \\"{limit_price_path}\\" -Wait"\''
+    ])
+
+    for index, stock_code in tqdm(enumerate(stock_code_buy_list),
+                                  desc="DOWNLOADING",
+                                  ncols=100,
+                                  bar_format="{l_bar}{bar} | {n_fmt}/{total_fmt} Stocks [Elapsed: {elapsed} | ETA: {remaining}]",
+                                  total=len(stock_code_buy_list)
+                                  ):
+
+        pre_close_data = get_day_k_data_wind(stock_code, today, today)["CLOSE"]
+        if pre_close_data.empty:
+            print(index, ":", stock_code, "FAILED DOWNLOADING LIMIT PRICE DATA.")
+            continue
+
+        # data=get_day_k_data_bs(stock_code, yesterday, yesterday)["CLOSE"]
+        # if len(data)>0:
+        #     pre_close = data[0]
+        # else:
+        #     pre_close = 50
+        pre_close = pre_close_data[0]
+        top_limit_price, down_limit_price = get_rise_down_stop_price(stock_code, pre_close)
+
+        if stock_code.startswith("0") or stock_code.startswith("3"):
+            stock_code = stock_code + ".SZ"
+        elif stock_code.startswith("6"):
+            stock_code = stock_code + ".SH"
+        elif stock_code.startswith("8"):
+            continue
+        # print(pre_close, top_limit_price, down_limit_price)
+
+        # 每获取一条数据就追加写入 CSV 文件
+        data_to_append = [[stock_code, pre_close, top_limit_price, down_limit_price]]
+        df_data = pd.DataFrame(data=data_to_append, columns=["证券代码", "昨日收盘价", "今日涨停价", "今日跌停价"])
+        df_data.to_csv(limit_price_path, mode='a', header=not os.path.exists(limit_price_path), index=False)
+
+        ret_data.append([stock_code, pre_close, top_limit_price, down_limit_price])
+        # if index % 1000 == 0:
+        #     print(index, ":", stock_code + ":  涨停价  " + str(top_limit_price) + "   跌停价  " + str(down_limit_price))
+    # 最终数据框的保存（可以根据需要保留或删除）
+    final_df_data = pd.DataFrame(data=ret_data, columns=["证券代码", "昨日收盘价", "今日涨停价", "今日跌停价"])
+    final_df_data.to_csv(limit_price_path, mode='a', header=not os.path.exists(limit_price_path), index=False)
+
+
+    # df_data = pd.DataFrame(data=ret_data, columns=["证券代码", "昨日收盘价", "今日涨停价", "今日跌停价"])
+    # df_data.to_csv(limit_price_path, index=False)
+
+    print("End getting limit price")
+    # print("获取前收盘价计算今涨停价和跌停价 结束")
+
+    print(f"file saved to {limit_price_path}")
+    end_time = time.time()
+    print("It takes: ", int(end_time - start_time) / 60, "min")  # 用时 2093 秒=30分钟
+
+    input("press enter to return to main menu")
+
+def pyinstaller():
+    path = input("请拖入需要打包的 py 文件")
+    subprocess.Popen([
+        "powershell",
+        "-Command",
+        f'Start-Process powershell -ArgumentList \'-NoExit -Command "pyinstaller \\"{path}\\" \''
+    ])
+
+
 def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
     ...
 
@@ -3605,25 +4355,32 @@ def afterMain():
         elif choice == '8':
             os.system('cls')
             reverseRepo()
+        elif choice == 'evc':
+            os.system('cls')
+            extremeValueCalculate()
+        elif choice == 'mmc':
+            os.system('cls')
+            min_max_value_calculate()
+        elif choice == 'mf':
+            monitorFile()
+        elif choice == 'sbr':
+            os.system('cls')
+            summaryBacktestResults()
+        elif choice == 'dld':
+            os.system('cls')
+            downloadLimitpriceData()
+        elif choice == 'pyi':
+            os.system('cls')
+            pyinstaller()
+
+
+
+
         elif choice == "test":
-            # 在线获取当前价格
-            print("获取实时行情, 连接服务器中...")
-
-            try:
-                # 东财数据
-                df_dc = ts.realtime_quote(ts_code='601688.SH', src='dc')
-                # sina数据  未启用
-                df_sina = ts.realtime_quote(ts_code='600000.SH,000001.SZ,000001.SH')
-
-                # prt.printDataFrameWithMaxRows(df_dc)
-                now_price = df_dc['PRICE'][0]
-                print(f"当前价格为: {now_price}")
-            except Exception as e:
-                printRedMsg(
-                    f"\ngc获取当前价格失败: {e}\n"
-                    f"请检查此否开启了代理连接服务，如果有，请关闭后重试"
-                    f"本接口是tushare org版实时接口的顺延，数据来自网络，且不进入tushare服务器，属于爬虫接口，请将tushare升级到1.3.3版本以上。")
-                now_price = input("\n请输入当前价格: \n")
+            command = 'python -c "print(\'hello\')"'
+            process = multiprocessing.Process(target=open_new_console, args=(command,))
+            process.start()
+            process.join()
 
             input("")
         else:
@@ -3686,6 +4443,12 @@ def menu():
     print("gda. 网格数据分析")
     print("gdm. 网格数据修改")
     print(" gc. 网格持股计算和格子计算")
+    print("evc. 极值计算")
+    print("mmc. 最大最小值计算")
+    print(" mf. 监控文件")
+    print("sbr. 汇总回测结果到一个表格")
+    print("dld. 下载涨跌停数据")
+    print("pyi. 一键生成pyinstaller可执行文件")
     print("")
 
     print("")
