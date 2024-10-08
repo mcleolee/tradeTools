@@ -16,58 +16,7 @@
 # TODO 增加功能：Python HTTPS server | use muti thread!
 # TODO 增加改变窗口大小的功能
 # 输入 SETPARAS 来查询需要修改参数的地方
-import ast
-import glob
-import math
-import multiprocessing
-
-import os
-import shutil
-import subprocess
-from datetime import datetime, timedelta
-import zipfile
-# import requests                   # 这个不注释，在 61 上跑不了
-# from bs4 import BeautifulSoup     # 这个不注释，在 40 上跑不了
-import urllib.request
-import csv
-import tkinter as tk
-from multiprocessing import Process
-from tkinter import messagebox
-
-import pandas
-import sv_ttk
-import re
-import time
-# import datetime
-import threading
-import xlrd
-import openpyxl
-import prettytable
-
-import glob
-from openpyxl import Workbook
-from openpyxl.utils.dataframe import dataframe_to_rows
-
-from prettytable import PrettyTable
-from concurrent.futures import ThreadPoolExecutor, as_completed
-
-import pandas as pd
-import matplotlib.pyplot as plt
-
-# import seaborn as sns
-
-import tushare as ts
-import numpy as np
-import cx_Oracle as co
-
-import chardet
-from tqdm import tqdm
-
-import baostock as bs
-
-import sys
-from contextlib import contextmanager
-from WindPy import w
+from generallib import *
 
 
 
@@ -85,7 +34,7 @@ is_oracle_init = 0
 HTTP_SERVER = 0
 server40addr = "http://192.168.1.40:8000/"
 smart_divide_path = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\projects\smart_data_divide.py"
-diff_excel_path = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\projects\mergeAllDiffIntoExcleFile.py"
+diff_excel_path = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\projects\mergeAllDiffIntoExcelFile.py"
 grid_data_analysis_path = r'C:\Users\Administrator\Desktop\网格数据分析\grid_data_analysis_v1.1.py'
 
 os.system("mode con cols=200 lines=70")
