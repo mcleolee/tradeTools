@@ -18,8 +18,60 @@
 # 输入 SETPARAS 来查询需要修改参数的地方
 from generallib import *
 
+import ast
+import glob
+import math
+import multiprocessing
 
+import os
+import shutil
+import subprocess
+from datetime import datetime, timedelta
+import zipfile
+# import requests                   # 这个不注释，在 61 上跑不了
+# from bs4 import BeautifulSoup     # 这个不注释，在 40 上跑不了
+import urllib.request
+import csv
+import tkinter as tk
+from multiprocessing import Process
+from tkinter import messagebox
 
+import pandas
+import sv_ttk
+import re
+import time
+# import datetime
+import threading
+import xlrd
+import openpyxl
+import prettytable
+
+import glob
+from openpyxl import Workbook
+from openpyxl.utils.dataframe import dataframe_to_rows
+
+from prettytable import PrettyTable
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# import seaborn as sns
+
+import tushare as ts
+import numpy as np
+import cx_Oracle as co
+
+import chardet
+from tqdm import tqdm
+
+import baostock as bs
+
+import sys
+from contextlib import contextmanager
+from WindPy import w
+
+from pathlib import Path
 TUSHARE_TOKEN = "d5b0e880343ac5de428f0216b29739fd91174ab03a9e96c61e9c737f"
 ts.set_token(TUSHARE_TOKEN)
 pro = ts.pro_api()
@@ -117,33 +169,22 @@ def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
 # ================================================ 工具函数 ============================================================
 # ====================================================================================================================
 
-def init():
-    print("starting init")
 
 
-def getToday():
-    currentDatetime = datetime.now()
-    today = currentDatetime.strftime("%Y%m%d")
-    print(f"today is {today}\n")
-    return today
 
-
-def getYesterday():
-    currentDatetime = datetime.now()
-    yesterday = currentDatetime - timedelta(days=1)
-    yesterday_str = yesterday.strftime("%Y%m%d")
-    print(f"yesterday was {yesterday_str}\n")
-    return yesterday_str
-
-
-def get_the_date_before_20_days():
-    today = datetime.now()
-    the_date_before_20_days = today - timedelta(days=20)
-    return the_date_before_20_days.strftime('%Y-%m-%d')
 
 
 def file_exists(file_path):
-    return os.path.exists(file_path)
+    """
+    @brief Checks if the given file exists.
+    @param file_path Path or string representing the file location.
+    @return True if the file exists, False otherwise.
+    """
+    try:
+        return Path(file_path).exists()
+    except Exception as e:
+        print(f"Error checking file existence: {e}")
+        return False
 
 
 def copy_file(original_path, target_path):
@@ -386,7 +427,6 @@ def create_folder(folder_path):
 
 
 def ifExist(path):
-    # today = getToday()
     if os.path.exists(path):
         print(f"The file {path} exists.")
         return True
@@ -396,48 +436,10 @@ def ifExist(path):
         return False
 
 
-def printColorMsg(text, color_code):
-    print(f"\033[{color_code}m{text}\033[0m\n")
-    return f"\033[{color_code}m{text}\033[0m"
-    # 示例用法
-    # print(colorize_text("Hello, world!", "31"))  # 红色文本
-    # print(colorize_text("Hello, world!", "1;32"))  # 绿色粗体文本
 
 
-def printRedMsg(text):
-    print(f"\033[31m{text}\033[0m\n")
-    return f"\033[31m{text}\033[0m"
 
 
-def printGreenMsg(text):
-    print(f"\033[32m{text}\033[0m\n")
-    return f"\033[32m{text}\033[0m"
-
-
-def printYellowMsg(text):
-    print(f"\033[33m{text}\033[0m\n")
-    return f"\033[33m{text}\033[0m"
-
-
-def printBlueMsg(text):
-    print(f"\033[34m{text}\033[0m\n")
-    return f"\033[34m{text}\033[0m"
-
-def printPurpleMsg(text):
-    print(f"\033[35m{text}\033[0m\n")
-    return f"\033[35m{text}\033[0m"
-
-def printCyanMsg(text):
-    print(f"\033[36m{text}\033[0m\n")
-    return f"\033[36m{text}\033[0m"
-
-def printWhiteMsg(text):
-    print(f"\033[37m{text}\033[0m\n")
-    return f"\033[37m{text}\033[0m"
-
-def printBoldMsg(text):
-    print(f"\033[1m{text}\033[0m\n")
-    return f"\033[1m{text}\033[0m"
 
 def ifContain(text, targetText):
     return targetText in text
@@ -731,7 +733,8 @@ def rename_py_files(directory_path, new_extension=".new"):
     :param directory_path: Path to the directory containing .py files.
     :param new_extension: New extension for renamed files (default: ".new").
     """
-    today = getToday()
+    today = getDate('')
+    print(f'today is {today}')
     files = os.listdir(directory_path)
     for filename in files:
         if filename.endswith(".py"):
@@ -2034,7 +2037,8 @@ def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
 def before0920processFL22SC():
     oriFl22 = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SC\Sell_Buy_List_FL22SC"
     os.system("cls")
-    today = getToday()
+    today = getDate('')
+    print(f'today is {today}')
 
     oriBuy = rf"{oriFl22}\{buy}FL22SC_{today}.csv"
     oriSell = rf"{oriFl22}\{sell}FL22SC_{today}.csv"
@@ -2142,7 +2146,8 @@ def before0920processFL22SC():
 def realTimeSignalMoveForFL22SC():
     os.system("cls")
     # 先定义一下, 实时信号是直接传到 ori 文件夹的
-    today = getToday()
+    today = getDate('')
+    print(f'today is {today}')
     nom = rf"{ori_SC}\{nom_}{today}.txt"
     nom2 = rf"{ori_SC}\{nom2_}{today}.txt"
     noa = rf"{ori_SC}\{noa_}{today}.txt"
@@ -2354,7 +2359,8 @@ def realTimeSignalMoveForHT02():
     # 包含原始信号和实时信号
     os.system("cls")
     input("Now processing HT02XY")
-    today = getToday()
+    today = getDate('')
+    print(f'today is {today}')
     divide_HT = r"C:\Users\Administrator\Desktop\divide_order_account\HT02XY\Sell_Buy_List_HT02XY"
     ori_HT = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\HT02XY\Sell_Buy_List_HT02XY"
 
@@ -2435,7 +2441,8 @@ def realTimeSignalMoveForHT02():
 
 
 def dataCollectorOn40():
-    today = getToday()
+    today = getDate('')
+    print(f'today is {today}')
     global g_yesterday
     if g_yesterday == None:
         g_yesterday = input("请输入上一个交易日的日期")
@@ -2490,7 +2497,8 @@ def dataCollectorOn40():
 # 收盘拆分的导出数据的检查
 def checkExportData():
     ...
-    today = getToday()
+    today = getDate('')
+    print(f'today is {today}')
     # 检查有没有导出数据
     printYellowMsg("now checking if smt_data exist...")
     # input("")
@@ -2550,7 +2558,8 @@ def copYesterdayData():
     # 解压zip文件夹
     startTradePath = r"C:\Users\Administrator\Desktop\startTrade"
     temp = rf"{startTradePath}\data\temp"
-    today = getToday()
+    today = getDate('')
+    print(f'today is {today}')
     global g_yesterday
     if g_yesterday == None:
         g_yesterday = input("enter yesterday's date")
@@ -2819,7 +2828,8 @@ def simpleRiseTopTxt():
         isSetName = input("")
         if not isSetName == "no":
             try:
-                today = getToday()
+                today = getDate('')
+                print(f'today is {today}')
                 directory = os.path.dirname(file_path)
                 new_path = os.path.join(directory, today + "_risestop.log")
                 os.rename(file_path, new_path)
@@ -2865,7 +2875,8 @@ def simpleRiseTopTxt():
         isSetName = input("")
         if not isSetName == "no":
             try:
-                today = getToday()
+                today = getDate('')
+                print(f'today is {today}')
                 directory = os.path.dirname(file_path)
                 new_path = os.path.join(directory, today + "_unusual.log")
                 os.rename(file_path, new_path)
@@ -2928,7 +2939,8 @@ def simpleRiseTopTxt():
 
         # 对这个文件夹下的所有 py 文件进行操作
         files = os.listdir(file_path + r"\..")
-        today = getToday()
+        today = getDate('')
+        print(f'today is {today}')
         for filename in files:
             if today in filename:
                 # print(filename)
@@ -2981,7 +2993,8 @@ def simpleRiseTopTxt():
 
 
 def baiduToScan():
-    today = getToday()
+    today = getDate('')
+    print(f'today is {today}')
     baiduSyncdiskPath = r"E:\BaiduSyncdisk"
     scanPath = rf"C:\Users\Administrator\Desktop\兴业证券多账户交易"
 
@@ -3010,7 +3023,8 @@ def baiduToScan():
 
 
 def paToPahf():
-    today = getToday()
+    today = getDate('')
+    print(f'today is {today}')
     baiduSyncdiskPath = r"E:\BaiduSyncdisk"
 
     fundPA = 'PA'
@@ -3027,7 +3041,8 @@ def paToPahf():
     input("press enter to exit")
 
 def ht02ToHt02xy():
-    today = getToday()
+    today = getDate('')
+    print(f'today is {today}')
     baiduSyncdiskPath = r"E:\BaiduSyncdisk"
 
     fundPA = 'HT02'
@@ -3045,8 +3060,9 @@ def ht02ToHt02xy():
 
 
 def checkYesterdayDataTo37():
-    today = getToday()
-    yesterday = getYesterday()
+    today = getDate('')
+    print(f'today is {today}')
+    yesterday = getDate('', -1)
     print(rf"yesterday was {yesterday}")
     checkDataList = []
     checkFormatDataList = ['FL22SCA', 'FL22SCB']
@@ -3076,7 +3092,8 @@ def checkYesterdayDataTo37():
 
 
 def diffGenerateAndCheck():
-    today = getToday()
+    today = getDate('')
+    print(f'today is {today}')
     printYellowMsg(f"NOW RUNNING {diff_excel_path}")
     input("Press enter to continue...")
 
@@ -3159,8 +3176,10 @@ def diffGenerateAndCheck():
 
 
 def gridDataInsight():
-    today = getToday()
-    yesterday = getYesterday()
+    today = getDate('')
+    print(f'today is {today}')
+    yesterday = getDate('', -1)
+    print(f'yesterday is {yesterday}')
     # today = "20240604"  # 调试用，上线后删除
     deleted_stock = ["601669.SH", "301336.SZ"]
     printYellowMsg(f"目前剔除的股票为： {deleted_stock}, 这些股票将暂时剔除")
@@ -3236,7 +3255,8 @@ def gridDataInsight():
         elif x == "2":
             # nonlocal today
             today_or_yesterday = 2
-            today = getYesterday()
+            today = getDate('', -1)
+            print(f'yesterday is {yesterday}')
             # SETPARAS 更新为昨天的路径
             dataAnalysisPath = rf"C:\Users\Administrator\Desktop\网格数据分析\data_analysis\{today}网格交易数据分析.xlsx"
             print(f'reading file: {dataAnalysisPath}')
@@ -3356,7 +3376,7 @@ def gridDataInsight():
             stock_in_the_range.append(stock)
 
     print(stock_in_the_range)
-    the_date_before_20_days = get_the_date_before_20_days()
+    the_date_before_20_days = getDate('-', -20)
     df_stock_in_range = []
     df_part2_total = None
     # 获取这些股票的14日收盘价并绘图
@@ -3379,8 +3399,10 @@ def gridDataInsight():
 
 # 用来获取备选股票池的当天收盘价
 def getMonitorGridStockInfo():
-    today = getToday()
-    yesterday = getYesterday()
+    today = getDate('')
+    print(f'today is {today}')
+    yesterday = getDate('', -1)
+    print(f'yesterday is {yesterday}')
 
     # today = "20240604"  # 调试用，上线后删除
     def getMonitorStockList():
@@ -3424,8 +3446,10 @@ def getMonitorGridStockInfo():
 
 # 用来获取备选股票池的昨天收盘价
 def getMonitorGridStockInfo_yesterday(today_or_yesterday=1):
-    today = getToday()
-    yesterday = getYesterday()
+    today = getDate('')
+    print(f'today is {today}')
+    yesterday = getDate('', -1)
+    print(f'yesterday is {yesterday}')
 
     # 如果昨天不是昨天，就直接拿输入的日期来当成昨天
     if today_or_yesterday != 1:
@@ -3510,7 +3534,8 @@ def getGridStockPool():
     input("")
 
 def gridDataAnalysis():
-    today = getToday()
+    today = getDate('')
+    print(f'today is {today}')
     printYellowMsg(f"NOW RUNNING {grid_data_analysis_path}")
     input("Press enter to continue...")
 
@@ -3576,7 +3601,7 @@ def gridDataModify():
                             'build_price': build_price,
                             'build_quantity': build_quantity,
                             'distribute_money': distribute_money,
-                            'build_date': getToday()},
+                            'build_date': getDate('')},
                            ignore_index=True)
             # prt.printDataFrameWithMaxRows(df)
             df.to_csv(create_holding_info_path, index=False)
@@ -3991,7 +4016,8 @@ def reverseRepo():
 
     products_for_xy_scan = ['CF15', 'FL18', 'HT02XY', 'FL22SCA', 'FL22SCB', 'FL']
 
-    today = getToday()
+    today = getDate('')
+    print(f'today is {today}')
     # 在 today 后面加上999990
     today_order_number = today + '999990'
 
@@ -5293,7 +5319,8 @@ def copyData():
 
     # 确认时间
     while True:
-        today = getToday()
+        today = getDate('')
+        print(f'today is {today}')
 
         # 读取 今年的交易日
         def get_std_day(day_str: str) -> str:
@@ -5516,66 +5543,88 @@ def futuresData():
     """
     这个功能帮助导出期货数据，
 
+    遍历产品列表，提示用户当前应该进行到哪个产品。一旦用户将文件导出到目标文件夹，程序就监控到这个文件，
+    然后根据文件的表头来判断是什么数据，然后将这个文件重命名为对应的文件名。
+    当导出了两个文件后，就生成asset文件，让用户粘贴相应文字进入，保存文件，然后重置count，继续下一个产品。
+
     :return:
     """
-    products = {
-        'CF15': 'D:\TRADE\FuturesData\CF15',
-        'HT02': 'D:\TRADE\FuturesData\HT02'
-    }
 
-    today = getToday()
-    print(f"Today is {today}")
+    def monitor_and_process_products(monitorPath, futuresProducts):
+        today = getDate('', -365)
+        known_files = set(os.listdir(monitorPath))  # 已知文件列表
 
-    # 循环每个产品
-    for product, path in products.items():
-        printPurpleMsg("-> " + product + " <-")
-        # 导出的文件应该是 report.csv report(1).csv 等等。
-        # 如果文件的表头有任何一个字段有’成交‘二字，那么就是把这个文件重命名为transaction_YYYYMMDD.csv
-        # 如果文件的表头有’持仓‘二字，那么就是把这个文件重命名为holding_YYYYMMDD.csv
-        # 如果文件的第一排前三个字符是‘===’,那么就是把这个文件重命名asset_YYYYMMDD.txt
+        for product in futuresProducts:
+            fileCount = 0  # 记录导出的文件数量
+            printPurpleMsg(f"-> NOW EXPORT {product} <-")
+            printYellowMsg(f'Already exported {fileCount} files')
 
-        # 提取所有今天创建的文件
-        files = get_today_files(path)
-        # 判断files的个数
-        if len(files) != 2:
-            printRedMsg(f"{product} 有错误的导出数量，为{len(files)}个")
-            continue
+            while fileCount < 2:
+                current_files = set(os.listdir(monitorPath))
+                new_files = current_files - known_files
+                known_files = current_files
 
-        for file in files:
-            # 读取文件
+                if not new_files:
+                    time.sleep(1)
+                    continue
 
-            print(f"path: {file}")
+                for file_name in new_files:
+                    file_path = os.path.join(monitorPath, file_name)
+                    try:
+                        # 假设文件是 CSV 格式
+                        saveAsUft8(file_path)
+                        df = pd.read_csv(file_path, encoding='utf-8')
 
-            saveAsUft8(file)
 
-            df = pd.read_csv(f"{file}", encoding='utf-8')
-            # 如果文件的表头有’成交‘二字，那么就是把这个文件重命名为transaction_YYYYMMDD.csv
-            if '成交合约' in df.columns:
-                # 先创建一个transaction_YYYYMMDD.csv
-                transaction_file = f"{path}/transaction_{today}.csv"
-                df.to_csv(transaction_file, index=False)
-                printGreenMsg(f"Transaction data exported to {transaction_file}")
+                        # 如果文件表头包含 '成交合约'，则重命名为交易文件
+                        if '成交合约' in df.columns:
+                            transaction_file = os.path.join(monitorPath, product, f"transaction_{today}.csv")
+                            df.to_csv(transaction_file, index=False)
+                            printGreenMsg(f"Transaction data exported to {transaction_file}")
+                            # 删除源文件
+                            os.remove(file_path)
+                            fileCount += 1
+                        # 如果文件表头包含 '持仓合约'，则重命名为持仓文件
+                        elif '持仓合约' in df.columns:
+                            holding_file = os.path.join(monitorPath, product, f"holding_{today}.csv")
+                            df.to_csv(holding_file, index=False)
+                            printGreenMsg(f"Holding data exported to {holding_file}")
+                            # 删除源文件
+                            os.remove(file_path)
+                            fileCount += 1
 
-            # 如果文件的表头有’持仓‘二字，那么就是把这个文件重命名为holding_YYYYMMDD.csv
-            if '持仓合约' in df.columns:
-                # 先创建一个holding_YYYYMMDD.csv
-                holding_file = f"{path}/holding_{today}.csv"
-                df.to_csv(holding_file, index=False)
-                printGreenMsg(f"Holding data exported to {holding_file}")
+                        # 当导出两个文件后，跳出循环生成 asset 文件
+                        if fileCount == 2:
+                            printGreenMsg(f"Exported all {fileCount} files for {product}")
+                            assetPath = os.path.join(monitorPath, product)
+                            generate_asset_file(assetPath, today)
+                            break
+                        else:
+                            printYellowMsg(f'Already exported {fileCount} files, left {2 - fileCount} files to export')
+                    except Exception as e:
+                        print(f"Error processing file '{file_name}': {e}")
 
-        # 先创建一个asset_YYYYMMDD.txt
-        asset_file = f"{path}/asset_{today}.txt"
+                # 更新已知文件列表
+                known_files = current_files
 
-        printCyanMsg(f'please copy asset information, end with \'q\'')
+    def generate_asset_file(path, today):
+        asset_file = os.path.join(path, f"asset_{today}.txt")
+        printCyanMsg(f'Please copy asset information, end with "q"')
+
         assetInfo = []
         while True:
             line = input()
-            if line.strip().lower() == "q":  # 用户输入 "q" 时结束输入
+            if line.strip().lower() == "q":
                 break
             assetInfo.append(line)
 
         with open(asset_file, 'w', encoding='utf-8') as f:
             f.write("\n".join(assetInfo))
+        printGreenMsg(f"Asset file saved to {asset_file}")
+
+    monitorPath = r'D:\TRADE\FuturesData'
+    futuresProducts = ['CF15', 'HT02']  # 期货产品列表
+    monitor_and_process_products(monitorPath, futuresProducts)
 
     print("=== End of futures data export ===")
     input("")
@@ -5690,10 +5739,7 @@ def afterMain():
 
 
         elif choice == "test":
-            # command = 'python -c "print(\'hello\')"'
-            # process = multiprocessing.Process(target=open_new_console, args=(command,))
-            # process.start()
-            # process.join()
+
 
 
 
@@ -5718,7 +5764,7 @@ def main():
     #
     # root.mainloop()
     global g_yesterday
-    temp = getYesterday()
+    temp = getDate('', -1)
     while 0:
         x = input("Wrong or Right? y/n \n")
         if x == "y" or "":
