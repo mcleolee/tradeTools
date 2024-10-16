@@ -23,8 +23,6 @@ import glob
 import math
 import multiprocessing
 
-import os
-import shutil
 import subprocess
 from datetime import datetime, timedelta
 import zipfile
@@ -53,7 +51,6 @@ from openpyxl.utils.dataframe import dataframe_to_rows
 from prettytable import PrettyTable
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-import pandas as pd
 import matplotlib.pyplot as plt
 
 # import seaborn as sns
@@ -62,7 +59,7 @@ import tushare as ts
 import numpy as np
 import cx_Oracle as co
 
-import chardet
+
 from tqdm import tqdm
 
 import baostock as bs
@@ -1327,32 +1324,7 @@ def get_today_files(directory):
     return today_files
 
 
-def saveAsUft8(input_file: str):
-    """
-    @brief Converts the input file to UTF-8 encoding and saves it to the output file.
-    @param input_file: The path to the input file.
-    @param output_file: The path to the output file.
-    @return: None
-    """
-    output_file = input_file
-    try:
-        # 检测文件编码
-        with open(input_file, 'rb') as infile:
-            raw_data = infile.read()
-            result = chardet.detect(raw_data)
-            encoding = result['encoding']
 
-        # 读取文件内容
-        with open(input_file, 'r', encoding=encoding) as infile:
-            content = infile.read()
-
-        # 写入到新的文件
-        with open(output_file, 'w', encoding='utf-8') as outfile:
-            outfile.write(content)
-
-        # print(f"Successfully converted {input_file} to UTF-8 and saved as {output_file}.")
-    except Exception as e:
-        print(f"An error occurred: {e} GDNXCT")
 
 
 # 上下文管理器
@@ -1887,6 +1859,12 @@ class plot:
         num_stocks = len(stock_min_max_latest)
         fig, axes = plt.subplots(nrows=1, ncols=num_stocks, figsize=(8, 6), sharey=False)
         fig.subplots_adjust(wspace=0.5, top=0.912, right=0.974, bottom=0.1)  # 设置子图之间的间隔为1英寸
+
+        # 处理axes，当只有一个子图时将其转换为列表
+        if num_stocks == 1:
+            axes = [axes]  # 将单个子图对象转换为列表
+            
+            
         # 绘制每个子图
         # 这一行遍历了stock_min_max_latest DataFrame 中的每一行，并返回行索引（index）和行数据（row）。enumerate() 函数用于同时获得行索引和行数据，并在每次循环中增加计数器 i。
         for i, (index, row) in enumerate(stock_min_max_latest.iterrows()):
@@ -5459,8 +5437,86 @@ def monitorFuturesSignal():
     """
     Monitor futures signals for multiple products and store the trading signals into dataframes.
     """
+
+    def read_latest_position_file(directory):
+        """
+        Read the latest position file in the given directory and return the data in a DataFrame.
+        读取最新的，文件名包含PositionFuture的文件
+        内容为：
+            "ticker","Numb.Short"
+            "IC2411.CFE",1
+            "IM2411.CFE",1
+            ""
+            "Margin",298710.72
+            "ExposPerc","54.8%"
+            ""
+            "PreparedCash",814184
+        提取其中的信息
+        """
+
+        def parsePosition(file_content):
+            """
+            @brief 解析文件内容并打印 ticker 和 Numb.Short 的值
+            @param file_content 文件内容（由 f.read() 传入）
+            """
+            lines = file_content.strip().splitlines()
+
+            # 读取第二行到空行之间的内容
+            for line in lines[1:]:
+                # 遇到空行或 "Margin" 停止
+                if line.strip() == "\" \"" or "Margin" in line:
+                    break
+                # 使用 .split(',') 解析，确保结果长度正确
+                parts = line.replace('"', '').split(',')
+                if len(parts) == 2:  # 确保有两个元素
+                    ticker, num_short = parts
+                    print(f'{ticker} -> {num_short}')
+                else:
+                    ...
+                    # print(f"Skipping line due to unexpected format: {line}")
+
+
+        # Step 1: Identify the latest file that contains 'PositionFuture' in the filename
+
+        latest_file = None
+        latest_time = None
+
+        for filename in os.listdir(directory):
+            if 'PositionFuture' in filename:
+                filepath = os.path.join(directory, filename)
+                file_time = os.path.getmtime(filepath)
+                if latest_time is None or file_time > latest_time:
+                    latest_time = file_time
+                    latest_file = filepath
+
+        # If no file is found, return an empty DataFrame
+        if latest_file is None:
+            prt.redMsg(f"No position file found in {directory}")
+
+        # print the whole file
+        with open(latest_file, 'r') as f:
+            content = f.read()
+            # 如果文字中有No Future 那么就输出NO POSITION CURRENTLY
+            if "No Future" in content:
+                printBlueMsg(f"NO POSTION CURRENTLY")
+            else:
+                # printBoldMsg(f"POSITION FILE: {latest_file}")
+                parsePosition(content)
+
+            f.seek(0)
+            lines = f.readlines()
+            for line in lines[-1:]:
+                # 把line解析，把,分割，提取后面的文本，转换为小数
+                prepared_cash = float(line.split(",")[1])
+                pc5 = prepared_cash * 0.05
+                printCyanMsg(f'Prepare Cash: {prepared_cash:.2f}     {pc5:.2f}')
+            return
+
+
+
+
     # 设置终端的大小
-    os.system('mode con cols=80 lines=21')
+    os.system('mode con cols=80 lines=30')
 
     # 产品及其对应的目录
     products = {
@@ -5483,42 +5539,47 @@ def monitorFuturesSignal():
         # within_monitoring_period = time(10, 5) <= current_time <= time(10, 20) or time(14, 30) <= current_time <= time(15, 42)
         within_monitoring_period = 1
         if within_monitoring_period:
-            # 在监控时间段内
-            t.sleep(waitSec)  # 每隔waitSec秒监控一次
-            os.system('cls')  # 清除控制台
-            print("\n\tMonitoring futures signals...\n")
+            try:
+                # 在监控时间段内
+                t.sleep(waitSec)  # 每隔waitSec秒监控一次
+                os.system('cls')  # 清除控制台
+                print("\n\tMonitoring futures signals...\n")
 
-            # 遍历每个产品
-            for product, directory in products.items():
+                # 遍历每个产品
+                for product, directory in products.items():
 
-                printPurpleMsg(f'-> {product} <-')
-                # 过滤出包含今天日期的文件
-                files = [f for f in os.listdir(directory) if today_str in f and 'Future' in f]
+                    printPurpleMsg(f'-> {product} <-')
+                    read_latest_position_file(directory)
+                    # 过滤出包含今天日期的文件
+                    files = [f for f in os.listdir(directory) if today_str in f and 'Future' in f]
 
-                for file in files:
-                    # 判断是否为交易信号
-                    if 'Trading' in file and 'No' not in file:
-                        # 有morning信号
-                        if 'morning' in file:
-                            last_morning_dfs[product] = pd.read_csv(os.path.join(directory, file))
-                            printGreenMsg(f"{product} Morning trading signal detected: {file}")
-                            printYellowMsg(last_morning_dfs[product])
-                        # 有afternoon信号
-                        elif 'afternoon' in file:
-                            last_afternoon_dfs[product] = pd.read_csv(os.path.join(directory, file))
-                            printGreenMsg(f"{product} Afternoon trading signal detected: {file}")
-                            printYellowMsg(last_afternoon_dfs[product])
-                        else:
-                            printRedMsg(f"Invalid trading signal file: {file}")
-                    elif 'No' in file and 'Trading' in file:
-                        # 没有morning信号
-                        if 'Morning' in file:
-                            printBlueMsg(f"{product} No morning trading signal detected: {file}")
-                        # 没有afternoon信号
-                        elif 'Afternoon' in file:
-                            printBlueMsg(f"{product} No afternoon trading signal detected: {file}")
-                        else:
-                            printRedMsg(f"Invalid trading signal file: {file}")
+                    for file in files:
+                        # 判断是否为交易信号
+                        if 'Trading' in file and 'No' not in file:
+                            # 有morning信号
+                            if 'morning' in file:
+                                last_morning_dfs[product] = pd.read_csv(os.path.join(directory, file))
+                                printGreenMsg(f"{product} Morning trading signal detected: {file}")
+                                printYellowMsg(last_morning_dfs[product])
+                            # 有afternoon信号
+                            elif 'afternoon' in file:
+                                last_afternoon_dfs[product] = pd.read_csv(os.path.join(directory, file))
+                                printGreenMsg(f"{product} Afternoon trading signal detected: {file}")
+                                printYellowMsg(last_afternoon_dfs[product])
+                            else:
+                                printRedMsg(f"Invalid trading signal file: {file}")
+                        elif 'No' in file and 'Trading' in file:
+                            # 没有morning信号
+                            if 'Morning' in file:
+                                printBlueMsg(f"{product} No morning trading signal detected: {file}")
+                            # 没有afternoon信号
+                            elif 'Afternoon' in file:
+                                printBlueMsg(f"{product} No afternoon trading signal detected: {file}")
+                            else:
+                                printRedMsg(f"Invalid trading signal file: {file}")
+
+            except Exception as e:
+                printRedMsg(f"Error occurred: {e}")
         else:
             # 不在监控时间段，显示最近一次的监控结果
             t.sleep(waitSec)  # 每隔waitSec秒显示一次结果
@@ -5551,7 +5612,7 @@ def futuresData():
     """
 
     def monitor_and_process_products(monitorPath, futuresProducts):
-        today = getDate('', -365)
+        today = getDate('')
         known_files = set(os.listdir(monitorPath))  # 已知文件列表
 
         for product in futuresProducts:
@@ -5572,7 +5633,7 @@ def futuresData():
                     file_path = os.path.join(monitorPath, file_name)
                     try:
                         # 假设文件是 CSV 格式
-                        saveAsUft8(file_path)
+                        file.saveAsUft8(file_path)
                         df = pd.read_csv(file_path, encoding='utf-8')
 
 
@@ -5628,6 +5689,168 @@ def futuresData():
 
     print("=== End of futures data export ===")
     input("")
+
+def monitorXYPosition():
+    ###################### 1.账户信息 #######################################
+    # 设置终端的大小
+    os.system('mode con cols=80 lines=40')
+    # 产品账号
+    def get_fundname(fund_account):
+        if fund_account == 1260016888:
+            fundname = 'FL'
+        elif fund_account == 480149909:
+            fundname = 'FL18'
+        elif fund_account == 480151137:
+            fundname = 'CF15'
+        elif fund_account == 480160777:
+            fundname = 'FL22SCA'
+        elif fund_account == 3050003937:
+            fundname = 'FL22SCB'
+        elif fund_account == 480167623:
+            fundname = 'HT02XY'
+
+        return fundname
+
+    ###################### 2.獲取資金情況 #######################################
+    current_data_path = "C:/Program Files/SmartTrader-Max/InsOrder"
+
+    while True:
+        try:
+            os.system('cls')
+            ReallySharePath = "C:/Program Files/SmartTrader-Max/InsOrder/asset.csv"
+            # print("ReallySharePath", ReallySharePath)
+            try:
+                assetData_total = pd.read_csv(ReallySharePath, encoding="gbk")
+            except:
+                assetData_total = pd.read_csv(ReallySharePath, encoding="utf-8")
+
+            fund_account_list = assetData_total['资金账户'].drop_duplicates().to_list()
+            # print(fund_account_list)
+            for account in fund_account_list:
+                print("\n")
+                fundname = get_fundname(account)
+                assetData = assetData_total[assetData_total['资金账户'] == account]
+                assetData = assetData.reset_index()
+                assetData = assetData.iloc[-1]
+                # print(assetData)
+
+                mv = assetData["S8"]  # 市值
+                tv = assetData["S5"]  # 总资产
+                am = assetData["S4"]  # 可用资金
+                FL_sp = mv / tv
+                print(f"-> {fundname}")
+                print(f"持仓比例:{FL_sp * 100:.2f}%   市值:{mv:.2f}   总资产:{tv:.2f}   可用资金:{am:.2f} ")
+                if FL_sp <= 0.85:
+                    fill_money = tv * 0.85 - mv  # am - 0.15 * tv
+                    printRedMsg(f"仓位资金缺口：{fill_money:.2f}")
+                    # fill_money = (int(fill_money / 10000) + 10) * 10000
+                    # print("买入ETF 510300 、 512100 、 510500")
+                    # common.logger.info("买入ETF 510300 512100 和 510500")
+                    # print(f"建议这两个ETF各自都买 {fill_money / 3}")
+                    # common.logger.info(f"建议这两个ETF各自都买 {fill_money / 3}")
+                    # input("press Enter to Continue")
+                else:
+                    printGreenMsg(f"{fundname}持仓大于85%")
+        except Exception as e:
+            printRedMsg(f"Error: {e}")
+
+        time.sleep(5)
+
+
+def dataCollector():
+    def erase_folder_contents(folder_path):
+        try:
+            # 获取文件夹中的所有文件
+            files = os.listdir(folder_path)
+
+            # 删除每个文件
+            for filename in files:
+                file_path = os.path.join(folder_path, filename)
+                os.remove(file_path)
+                print(f"Deleted file: {file_path}")
+        except Exception as e:
+            print(f"Failed to erase folder contents. Error: {e}")
+
+    def copy_latest_files(source_folder, destination_folder):
+        try:
+            # 获取源文件夹中按时间排序的文件列表
+            files = sorted(os.listdir(source_folder), key=lambda x: os.path.getmtime(os.path.join(source_folder, x)),
+                           reverse=True)
+
+            # 仅复制最新的四个文件
+            for file in files[:4]:
+                source_file = os.path.join(source_folder, file)
+                destination_file = os.path.join(destination_folder, file)
+
+                # 复制文件
+                shutil.copy2(source_file, destination_folder)
+                print(f"Copied: {source_file} to {destination_file}")
+        except Exception as e:
+            print(f"Failed to copy files. Error: {e}")
+
+        # try:
+        #     # 清空目标文件夹
+        #     for file in os.listdir(destination_folder):
+        #         destination_file = os.path.join(destination_folder, file)
+        #         os.remove(destination_file)
+        #         print(f"Deleted: {destination_file}")
+        # except Exception as e:
+        #     print(f"Failed to delete files. Error: {e}")
+    folder1 = r"C:\Users\progene12\share\dataCollector\GRID"
+    folder2 = r"C:\Users\progene12\share\dataCollector\PAHF"
+    folder3 = r"C:\Users\progene12\share\dataCollector\YL17"
+    erase_folder_contents(folder1)
+    erase_folder_contents(folder2)
+    erase_folder_contents(folder3)
+
+    # 示例用法
+    source_folder_1 = r"D:\TRADE\grid_trade\trade_data"
+    source_folder_2 = r"D:\TRADE\scan_trade_xt\PAHF\data"
+    source_folder_3 = r"D:\TRADE\scan_trade_xt\YL17YH\data"
+
+    destination_folder_1 = r"C:\Users\progene12\share\dataCollector\GRID"
+    destination_folder_2 = r"C:\Users\progene12\share\dataCollector\PAHF"
+    destination_folder_3 = r"C:\Users\progene12\share\dataCollector\YL17"
+
+    copy_latest_files(source_folder_1, destination_folder_1)
+    copy_latest_files(source_folder_2, destination_folder_2)
+    copy_latest_files(source_folder_3, destination_folder_3)
+
+    print("\n")
+    # os.system(".\\C:\\Users\\progene12\\share\\httpServer.bat")
+
+    # # 指定.bat文件的完整路径
+    bat_file_path = "C:\\Users\\progene12\\share\\httpServer.bat"
+    #
+    # # 构建命令列表，使用Popen运行.bat文件
+    # try:
+    #     # 启动进程
+    #     process = subprocess.Popen(bat_file_path, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    #     # 等待进程执行完成并获取输出结果
+    #     stdout, stderr = process.communicate()
+    #     # 打印输出结果
+    #     if stdout:
+    #         print("Output from the bat file:")
+    #         print(stdout.decode())
+    #         print("\nThe server is ONLINE\n")
+    #     # 如果有错误信息，打印错误信息
+    #     if stderr:
+    #         print("Error from the bat file:")
+    #         print(stderr.decode())
+    # except Exception as e:
+    #     print(f"An error occurred while trying to run the bat file: {e}")
+    print("\nThe server is ONLINE\n")
+    os.system(bat_file_path)
+
+    input("Press Enter to exit...")
+
+
+def orderETF():
+    ...
+#     print(order_format_st(480151137, 510300, ))
+
+
+
 
 def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
     ...
@@ -5736,6 +5959,17 @@ def afterMain():
         elif choice == 'fd':
             os.system('cls')
             futuresData()
+        elif choice == 'mp':
+            os.system('cls')
+            monitorXYPosition()
+
+        elif choice == 'dc':
+            dataCollector()
+        elif choice == 'oe':
+            os.system('cls')
+            orderETF()
+
+
 
 
         elif choice == "test":
@@ -5793,6 +6027,8 @@ def menu():
     print("  6. 监控期货信号")
 
     print(" fd. 期货数据处理")
+    print(" mp. 监控兴业扫单产品的持仓比例")
+    print(" oe. 下单ETF")
     # print("  7. 监控下单信号")
 
     # print("  8. 查询数据")
@@ -5822,6 +6058,7 @@ def menu():
     print(" cd. 复制数据")
     print(" ro. 运行 RunOracle 程序")
 
+    print(" dc. 数据收集(这是过时的功能)")
     # print("")
     # print(f"\033[33m已停用功能: \033[0m")
     # print(" rs. 重新调整窗口大小")
