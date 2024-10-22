@@ -1,6 +1,4 @@
-import os
-import pandas as pd
-from datetime import datetime, timedelta
+from generallib import *
 
 # 目标文件夹路径
 folder_path = r'C:\Users\progene12\share\FUTURES_DATA\IC_202210'
@@ -40,9 +38,12 @@ while current_date <= end_date:
 
     price = 0
     # 可选：添加一行示例数据，或者保持文件为空
-    df.loc[0] = [date_str, contract_code, None, None, None, None, None, None, None, None, None, None, None, None, None,
-                 None, None, None, None, None, '14:00:00', None, price, 1, price, 1, None, None, None, None, None,
-                 None, None, None, None, None, None, None, None, None, None, None, None, None]
+    df.loc[0] = [date_str, contract_code, None, None, None, None, None,
+                 None, None, None, None, None, None, None, None,
+                 None, None, None, None, None, '14:00:00', None,
+                 price, 1, price, 1, None, None, None, None,
+                 None, None, None, None, None, None, None,
+                 None, None, None, None, None, None, None]
 
     # 保存为CSV文件
     df.to_csv(file_path, index=False, encoding='gb2312')

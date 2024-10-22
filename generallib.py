@@ -1,5 +1,5 @@
 
-# VERSION 1.1
+# VERSION 1.2
 
 from datetime import datetime, timedelta, date
 import pandas as pd
@@ -7,7 +7,11 @@ import shutil
 import os
 import chardet
 import csv
+import threading
+from tqdm import tqdm
 
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
 
 def get_trade_date(year):
     """
@@ -162,6 +166,9 @@ class prt:
 
 
 class file:
+    def __init__(self, filePath):
+        self.filePath = filePath
+
     @staticmethod
     def saveAsUft8(input_file: str):
         """
@@ -175,7 +182,7 @@ class file:
             with open(input_file, 'rb') as infile:
                 raw_data = infile.read()
                 result = chardet.detect(raw_data)
-                encoding = result['encoding']
+                encoding = result['encoding'] if result['encoding'] else 'ISO-8859-1'  # 如果检测不到，使用默认编码
 
             # 读取文件内容
             with open(input_file, 'r', encoding=encoding) as infile:
@@ -188,6 +195,33 @@ class file:
             # print(f"Successfully converted {input_file} to UTF-8 and saved as {output_file}.")
         except Exception as e:
             print(f"An error occurred: {e} GDNXCT")
+            prt.redMsg(f'detect encoding: {encoding}')
+
+    @staticmethod
+    def convert_all_files_encoding_in_folder(folder_path, target_encoding='utf-8'):
+        """
+        Convert all files in a specified folder to the target encoding.
+
+        @param folder_path: Path to the folder containing the files.
+        @param target_encoding: Target encoding to save the files (default is UTF-8).
+        """
+        for filename in os.listdir(folder_path):
+            file_path = os.path.join(folder_path, filename)
+
+            # 只处理文件，跳过文件夹
+            if os.path.isfile(file_path):
+                try:
+                    # 读取文件内容
+                    with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                        content = f.read()
+
+                    # 以目标编码写入文件
+                    with open(file_path, 'w', encoding=target_encoding) as f:
+                        f.write(content)
+
+                    print(f"Converted '{filename}' to {target_encoding} encoding.")
+                except Exception as e:
+                    print(f"Error converting '{filename}': {e}")
 
     @staticmethod
     def merge_csv_files_as_dataframe(input_files: list) -> pd.DataFrame:
@@ -309,6 +343,57 @@ class file:
     #     """
     #     ...
 
+
+def format_to_datetime(value):
+    """
+    @brief Convert value to a datetime object if it is str, int, or date.
+    @param value, Value to be converted, can be str, int, date, or datetime.
+    @return datetime object.
+    """
+    if isinstance(value, datetime):
+        return value
+    if isinstance(value, date):
+        return datetime.combine(value, datetime.min.time())
+    if isinstance(value, int):
+        value_str = str(value)
+        if len(value_str) == 10:  # Unix timestamp
+            return datetime.fromtimestamp(value)
+        elif len(value_str) == 8:  # Assume YYYYMMDD format
+            return datetime.strptime(value_str, '%Y%m%d')
+        else:
+            raise ValueError(f"Integer '{value}' does not match known date formats.")
+    if isinstance(value, str):
+        formats = ['%Y-%m-%d', '%Y-%m-%d %H:%M:%S', '%Y-%m-%d %H:%M', '%H:%M:%S', '%H:%M']
+        for fmt in formats:
+            try:
+                return datetime.strptime(value, fmt)
+            except ValueError:
+                continue
+        raise ValueError(f"Value '{value}' does not match any known datetime format.")
+
+    raise TypeError(f"Unsupported type '{type(value)}' for datetime conversion.")
+
+def isDatetimeABeforeB(a, b):
+    """
+    @brief Check if datetime A is before datetime B.
+    @param a Start date or time, can be str, int, or datetime.
+    @param b End date or time, can be str, int, or datetime.
+    @return True if A is before B, False otherwise.
+    """
+    a_dt = format_to_datetime(a)
+    b_dt = format_to_datetime(b)
+    return a_dt < b_dt
+
+def isDatetimeAAfterB(a, b):
+    """
+    @brief Check if datetime A is after datetime B.
+    @param a Start date or time, can be str, int, or datetime.
+    @param b End date or time, can be str, int, or datetime.
+    @return True if A is after B, False otherwise.
+    """
+    a_dt = format_to_datetime(a)
+    b_dt = format_to_datetime(b)
+    return a_dt > b_dt
 
 def getNextTradeDateIfNotTradeDate(trade_dates: list, target_date: date) -> str:
     """
@@ -720,7 +805,12 @@ def get_formated_order_XY_single(fund_account, code, direction, quantity, date, 
 
     # 以上都不用
 
-
+def getTime(seperator: str=''):
+    """
+    @brief 获取当前时间
+    @return 当前时间字符串
+    """
+    return datetime.now().strftime(f"%H{seperator}%M{seperator}%S")
 
 ###############################################################################################
 #                                      OLD FUNCTIONS                                          #

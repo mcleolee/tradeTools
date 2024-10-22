@@ -1,0 +1,1935 @@
+2024-10-21 17:37:51,052 - INFO - Start backtesting.
+2024-10-21 17:37:51,479 - DEBUG - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0.
+2024-10-21 17:37:51,480 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
+2024-10-21 17:37:51,480 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniIta.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,480 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneralItalic.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,480 - DEBUG - findfont: score(<Font 'DejaVu Sans Display' (DejaVuSansDisplay.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,480 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneralBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,480 - DEBUG - findfont: score(<Font 'cmex10' (cmex10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,481 - DEBUG - findfont: score(<Font 'DejaVu Serif Display' (DejaVuSerifDisplay.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,481 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneralBolIta.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,481 - DEBUG - findfont: score(<Font 'cmsy10' (cmsy10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,481 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,481 - DEBUG - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,481 - DEBUG - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymReg.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,481 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,481 - DEBUG - findfont: score(<Font 'cmb10' (cmb10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,481 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
+2024-10-21 17:37:51,481 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2024-10-21 17:37:51,481 - DEBUG - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymReg.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,481 - DEBUG - findfont: score(<Font 'cmr10' (cmr10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,481 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneral.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,481 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,481 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,482 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUni.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,482 - DEBUG - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,482 - DEBUG - findfont: score(<Font 'cmmi10' (cmmi10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,482 - DEBUG - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,482 - DEBUG - findfont: score(<Font 'STIXSizeFiveSym' (STIXSizFiveSymReg.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,482 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBolIta.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,482 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,482 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
+2024-10-21 17:37:51,482 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
+2024-10-21 17:37:51,482 - DEBUG - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymReg.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,482 - DEBUG - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,482 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,482 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
+2024-10-21 17:37:51,482 - DEBUG - findfont: score(<Font 'cmtt10' (cmtt10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,483 - DEBUG - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymReg.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,483 - DEBUG - findfont: score(<Font 'cmss10' (cmss10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,483 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,483 - DEBUG - findfont: score(<Font 'Bookshelf Symbol 7' (BSSYM7.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,483 - DEBUG - findfont: score(<Font 'Myanmar Text' (mmrtextb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,483 - DEBUG - findfont: score(<Font 'Arial' (ARIALN.TTF) normal normal 400 condensed>) = 6.613636363636363
+2024-10-21 17:37:51,483 - DEBUG - findfont: score(<Font 'Lucida Console' (lucon.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,483 - DEBUG - findfont: score(<Font 'Symbol' (symbol.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,483 - DEBUG - findfont: score(<Font 'Arial' (ariali.ttf) italic normal 400 normal>) = 7.413636363636363
+2024-10-21 17:37:51,483 - DEBUG - findfont: score(<Font 'STFangsong' (STFANGSO.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,483 - DEBUG - findfont: score(<Font 'Segoe UI' (seguibli.ttf) italic normal 900 normal>) = 11.525
+2024-10-21 17:37:51,483 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeuil.ttf) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:51,483 - DEBUG - findfont: score(<Font 'FZYaoTi' (FZYTK.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,483 - DEBUG - findfont: score(<Font 'Arial' (arialbi.ttf) italic normal 700 normal>) = 7.698636363636363
+2024-10-21 17:37:51,483 - DEBUG - findfont: score(<Font 'MS Reference Specialty' (REFSPCL.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,484 - DEBUG - findfont: score(<Font 'SimSun-ExtB' (simsunb.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,484 - DEBUG - findfont: score(<Font 'Verdana' (verdanai.ttf) italic normal 400 normal>) = 4.6863636363636365
+2024-10-21 17:37:51,484 - DEBUG - findfont: score(<Font 'DengXian' (Deng.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,484 - DEBUG - findfont: score(<Font 'Segoe UI' (seguisbi.ttf) italic normal 600 normal>) = 11.24
+2024-10-21 17:37:51,484 - DEBUG - findfont: score(<Font 'Tahoma' (tahomabd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,484 - DEBUG - findfont: score(<Font 'Malgun Gothic' (malgun.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,484 - DEBUG - findfont: score(<Font 'Segoe UI Variable' (SegUIVar.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,484 - DEBUG - findfont: score(<Font 'Gabriola' (Gabriola.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,484 - DEBUG - findfont: score(<Font 'Courier New' (courbi.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,484 - DEBUG - findfont: score(<Font 'Leelawadee' (LEELAWDB.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,484 - DEBUG - findfont: score(<Font 'Candara' (Candarab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,484 - DEBUG - findfont: score(<Font 'Microsoft New Tai Lue' (ntailu.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,484 - DEBUG - findfont: score(<Font 'Wingdings 2' (WINGDNG2.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,484 - DEBUG - findfont: score(<Font 'Segoe MDL2 Assets' (segmdl2.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,484 - DEBUG - findfont: score(<Font 'Nirmala UI' (Nirmala.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,485 - DEBUG - findfont: score(<Font 'Garamond' (GARABD.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,485 - DEBUG - findfont: score(<Font 'Corbel' (corbeli.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,485 - DEBUG - findfont: score(<Font 'STLiti' (STLITI.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,485 - DEBUG - findfont: score(<Font 'STHupo' (STHUPO.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,485 - DEBUG - findfont: score(<Font 'Arial' (ARIALNB.TTF) normal normal 700 condensed>) = 6.8986363636363635
+2024-10-21 17:37:51,485 - DEBUG - findfont: score(<Font 'Gadugi' (gadugib.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,485 - DEBUG - findfont: score(<Font 'Yu Gothic' (YuGothR.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,485 - DEBUG - findfont: score(<Font 'Bookman Old Style' (BOOKOSB.TTF) normal normal 600 normal>) = 10.24
+2024-10-21 17:37:51,485 - DEBUG - findfont: score(<Font 'Century Gothic' (GOTHICBI.TTF) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,485 - DEBUG - findfont: score(<Font 'Franklin Gothic Medium' (framdit.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,485 - DEBUG - findfont: score(<Font 'Bahnschrift' (bahnschrift.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,485 - DEBUG - findfont: score(<Font 'LiSu' (SIMLI.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,485 - DEBUG - findfont: score(<Font 'Bookman Old Style' (BOOKOSBI.TTF) italic normal 600 normal>) = 11.24
+2024-10-21 17:37:51,485 - DEBUG - findfont: score(<Font 'Bookman Old Style' (BOOKOSI.TTF) italic normal 300 normal>) = 11.145
+2024-10-21 17:37:51,485 - DEBUG - findfont: score(<Font 'Times New Roman' (timesbi.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,485 - DEBUG - findfont: score(<Font 'HoloLens MDL2 Assets' (holomdl2.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,486 - DEBUG - findfont: score(<Font 'Corbel' (corbelb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,486 - DEBUG - findfont: score(<Font 'DengXian' (Dengb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,486 - DEBUG - findfont: score(<Font 'Corbel' (corbelz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,486 - DEBUG - findfont: score(<Font 'Webdings' (webdings.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,486 - DEBUG - findfont: score(<Font 'Segoe UI Symbol' (seguisym.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,486 - DEBUG - findfont: score(<Font 'Leelawadee UI' (LeelUIsl.ttf) normal normal 350 normal>) = 10.0975
+2024-10-21 17:37:51,486 - DEBUG - findfont: score(<Font 'Segoe UI' (seguisli.ttf) italic normal 350 normal>) = 11.0975
+2024-10-21 17:37:51,486 - DEBUG - findfont: score(<Font 'Dubai' (DUBAI-LIGHT.TTF) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:51,486 - DEBUG - findfont: score(<Font 'Microsoft Himalaya' (himalaya.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,486 - DEBUG - findfont: score(<Font 'MT Extra' (MTEXTRA.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,486 - DEBUG - findfont: score(<Font 'Comic Sans MS' (comic.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,486 - DEBUG - findfont: score(<Font 'Sitka' (SitkaVF.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,486 - DEBUG - findfont: score(<Font 'Candara' (Candarai.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,486 - DEBUG - findfont: score(<Font 'Yu Gothic' (YuGothL.ttc) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:51,486 - DEBUG - findfont: score(<Font 'Century Gothic' (GOTHICB.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,486 - DEBUG - findfont: score(<Font 'Trebuchet MS' (trebucbi.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,487 - DEBUG - findfont: score(<Font 'Mongolian Baiti' (monbaiti.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,487 - DEBUG - findfont: score(<Font 'Segoe Script' (segoescb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,487 - DEBUG - findfont: score(<Font 'Dubai' (DUBAI-BOLD.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,487 - DEBUG - findfont: score(<Font 'Ebrima' (ebrimabd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,487 - DEBUG - findfont: score(<Font 'Verdana' (verdana.ttf) normal normal 400 normal>) = 3.6863636363636365
+2024-10-21 17:37:51,487 - DEBUG - findfont: score(<Font 'STZhongsong' (STZHONGS.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,487 - DEBUG - findfont: score(<Font 'Microsoft Tai Le' (taile.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,487 - DEBUG - findfont: score(<Font 'Lucida Sans Unicode' (l_10646.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,487 - DEBUG - findfont: score(<Font 'Times New Roman' (timesi.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,487 - DEBUG - findfont: score(<Font 'Century' (CENTURY.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,487 - DEBUG - findfont: score(<Font 'Georgia' (georgiaz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,487 - DEBUG - findfont: score(<Font 'SimHei' (simhei.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,487 - DEBUG - findfont: score(<Font 'Leelawadee UI' (LeelaUIb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,487 - DEBUG - findfont: score(<Font 'Segoe UI Historic' (seguihis.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,487 - DEBUG - findfont: score(<Font 'Malgun Gothic' (malgunbd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,488 - DEBUG - findfont: score(<Font 'Nirmala UI' (NirmalaS.ttf) normal normal 350 normal>) = 10.0975
+2024-10-21 17:37:51,488 - DEBUG - findfont: score(<Font 'Book Antiqua' (ANTQUAB.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,488 - DEBUG - findfont: score(<Font 'Book Antiqua' (ANTQUABI.TTF) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,488 - DEBUG - findfont: score(<Font 'Garamond' (GARAIT.TTF) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,488 - DEBUG - findfont: score(<Font 'Microsoft JhengHei' (msjhl.ttc) normal normal 290 normal>) = 10.1545
+2024-10-21 17:37:51,488 - DEBUG - findfont: score(<Font 'Calibri' (calibril.ttf) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:51,488 - DEBUG - findfont: score(<Font 'Candara' (Candaral.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,488 - DEBUG - findfont: score(<Font 'Trebuchet MS' (trebucit.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,488 - DEBUG - findfont: score(<Font 'SimSun' (simsun.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,488 - DEBUG - findfont: score(<Font 'Gadugi' (gadugi.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,488 - DEBUG - findfont: score(<Font 'Palatino Linotype' (palab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,488 - DEBUG - findfont: score(<Font 'Corbel' (corbell.ttf) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:51,488 - DEBUG - findfont: score(<Font 'Consolas' (consolai.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,488 - DEBUG - findfont: score(<Font 'Candara' (Candara.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,488 - DEBUG - findfont: score(<Font 'Ebrima' (ebrima.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,488 - DEBUG - findfont: score(<Font 'Segoe UI' (seguili.ttf) italic normal 300 normal>) = 11.145
+2024-10-21 17:37:51,489 - DEBUG - findfont: score(<Font 'Segoe Fluent Icons' (SegoeIcons.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,489 - DEBUG - findfont: score(<Font 'KaiTi' (simkai.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,489 - DEBUG - findfont: score(<Font 'Ink Free' (Inkfree.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,489 - DEBUG - findfont: score(<Font 'Microsoft Uighur' (MSUIGHUR.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,489 - DEBUG - findfont: score(<Font 'Microsoft Tai Le' (taileb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,489 - DEBUG - findfont: score(<Font 'Calibri' (calibriz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,489 - DEBUG - findfont: score(<Font 'Garamond' (GARA.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,489 - DEBUG - findfont: score(<Font 'Courier New' (cour.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,489 - DEBUG - findfont: score(<Font 'MingLiU-ExtB' (mingliub.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,489 - DEBUG - findfont: score(<Font 'Arial' (ARIALNI.TTF) italic normal 400 condensed>) = 7.613636363636363
+2024-10-21 17:37:51,489 - DEBUG - findfont: score(<Font 'Wingdings' (wingding.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,489 - DEBUG - findfont: score(<Font 'Book Antiqua' (ANTQUAI.TTF) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,489 - DEBUG - findfont: score(<Font 'Georgia' (georgia.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,489 - DEBUG - findfont: score(<Font 'Consolas' (consola.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,489 - DEBUG - findfont: score(<Font 'Dubai' (DUBAI-MEDIUM.TTF) normal normal 500 normal>) = 10.145
+2024-10-21 17:37:51,490 - DEBUG - findfont: score(<Font 'Segoe UI Emoji' (seguiemj.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,490 - DEBUG - findfont: score(<Font 'Calibri' (calibrii.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,490 - DEBUG - findfont: score(<Font 'Georgia' (georgiai.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,490 - DEBUG - findfont: score(<Font 'Constantia' (constanz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,490 - DEBUG - findfont: score(<Font 'Segoe UI' (seguibl.ttf) normal normal 900 normal>) = 10.525
+2024-10-21 17:37:51,490 - DEBUG - findfont: score(<Font 'Malgun Gothic' (malgunsl.ttf) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:51,490 - DEBUG - findfont: score(<Font 'Leelawadee' (LEELAWAD.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,490 - DEBUG - findfont: score(<Font 'Comic Sans MS' (comici.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,490 - DEBUG - findfont: score(<Font 'Constantia' (constanb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,490 - DEBUG - findfont: score(<Font 'Arial' (arialbd.ttf) normal normal 700 normal>) = 6.698636363636363
+2024-10-21 17:37:51,490 - DEBUG - findfont: score(<Font 'STXingkai' (STXINGKA.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,490 - DEBUG - findfont: score(<Font 'Century Gothic' (GOTHIC.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,490 - DEBUG - findfont: score(<Font 'Calibri' (calibrib.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,490 - DEBUG - findfont: score(<Font 'Cambria' (cambriaz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,490 - DEBUG - findfont: score(<Font 'Consolas' (consolab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,490 - DEBUG - findfont: score(<Font 'Segoe Print' (segoeprb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,491 - DEBUG - findfont: score(<Font 'DengXian' (Dengl.ttf) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:51,491 - DEBUG - findfont: score(<Font 'Microsoft PhagsPa' (phagspab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,491 - DEBUG - findfont: score(<Font 'Microsoft YaHei' (msyhl.ttc) normal normal 290 normal>) = 10.1545
+2024-10-21 17:37:51,491 - DEBUG - findfont: score(<Font 'Microsoft New Tai Lue' (ntailub.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,491 - DEBUG - findfont: score(<Font 'Bookman Old Style' (BOOKOS.TTF) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:51,491 - DEBUG - findfont: score(<Font 'MS Gothic' (msgothic.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,491 - DEBUG - findfont: score(<Font 'Marlett' (marlett.ttf) normal normal 500 normal>) = 10.145
+2024-10-21 17:37:51,491 - DEBUG - findfont: score(<Font 'Sylfaen' (sylfaen.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,491 - DEBUG - findfont: score(<Font 'Calibri' (calibri.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,491 - DEBUG - findfont: score(<Font 'Sans Serif Collection' (SansSerifCollection.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,491 - DEBUG - findfont: score(<Font 'Microsoft YaHei' (msyh.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,491 - DEBUG - findfont: score(<Font 'Cambria' (cambriab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,491 - DEBUG - findfont: score(<Font 'Tahoma' (tahoma.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,491 - DEBUG - findfont: score(<Font 'FangSong' (simfang.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,491 - DEBUG - findfont: score(<Font 'Verdana' (verdanaz.ttf) italic normal 700 normal>) = 4.971363636363637
+2024-10-21 17:37:51,491 - DEBUG - findfont: score(<Font 'Calibri' (calibrili.ttf) italic normal 300 normal>) = 11.145
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'Microsoft Yi Baiti' (msyi.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'Book Antiqua' (BKANT.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'Cambria' (cambria.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'STXinwei' (STXINWEI.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'Impact' (impact.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'Arial' (ARIALNBI.TTF) italic normal 700 condensed>) = 7.8986363636363635
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'Constantia' (constani.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'Javanese Text' (javatext.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'Corbel' (corbelli.ttf) italic normal 300 normal>) = 11.145
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'Leelawadee UI' (LeelawUI.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'STSong' (STSONG.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeuiz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'STKaiti' (STKAITI.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'Comic Sans MS' (comicbd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'Palatino Linotype' (palai.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'Courier New' (couri.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'Segoe Script' (segoesc.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'Dubai' (DUBAI-REGULAR.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'Microsoft JhengHei' (msjhbd.ttc) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'Consolas' (consolaz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'Arial' (ariblk.ttf) normal normal 900 normal>) = 6.888636363636364
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'Verdana' (verdanab.ttf) normal normal 700 normal>) = 3.9713636363636367
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'Times New Roman' (times.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,492 - DEBUG - findfont: score(<Font 'Yu Gothic' (YuGothM.ttc) normal normal 500 normal>) = 10.145
+2024-10-21 17:37:51,493 - DEBUG - findfont: score(<Font 'Segoe Print' (segoepr.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,493 - DEBUG - findfont: score(<Font 'YouYuan' (SIMYOU.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,493 - DEBUG - findfont: score(<Font 'Palatino Linotype' (palabi.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,494 - DEBUG - findfont: score(<Font 'Century Gothic' (GOTHICI.TTF) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,494 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeui.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,494 - DEBUG - findfont: score(<Font 'Candara' (Candarali.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,494 - DEBUG - findfont: score(<Font 'Segoe UI' (seguisb.ttf) normal normal 600 normal>) = 10.24
+2024-10-21 17:37:51,494 - DEBUG - findfont: score(<Font 'MS Reference Sans Serif' (REFSAN.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,494 - DEBUG - findfont: score(<Font 'Yu Gothic' (YuGothB.ttc) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,494 - DEBUG - findfont: score(<Font 'Courier New' (courbd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,494 - DEBUG - findfont: score(<Font 'Monotype Corsiva' (MTCORSVA.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,494 - DEBUG - findfont: score(<Font 'Candara' (Candaraz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,494 - DEBUG - findfont: score(<Font 'Microsoft JhengHei' (msjh.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,494 - DEBUG - findfont: score(<Font 'Palatino Linotype' (pala.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,494 - DEBUG - findfont: score(<Font 'Myanmar Text' (mmrtext.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,494 - DEBUG - findfont: score(<Font 'Corbel' (corbel.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,494 - DEBUG - findfont: score(<Font 'Franklin Gothic Medium' (framd.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,494 - DEBUG - findfont: score(<Font 'Microsoft YaHei' (msyhbd.ttc) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,494 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeuisl.ttf) normal normal 350 normal>) = 10.0975
+2024-10-21 17:37:51,494 - DEBUG - findfont: score(<Font 'Wingdings 3' (WINGDNG3.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,495 - DEBUG - findfont: score(<Font 'Comic Sans MS' (comicz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,495 - DEBUG - findfont: score(<Font 'Times New Roman' (timesbd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,495 - DEBUG - findfont: score(<Font 'Cambria' (cambriai.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,495 - DEBUG - findfont: score(<Font 'STXihei' (STXIHEI.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,495 - DEBUG - findfont: score(<Font 'Nirmala UI' (NirmalaB.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,495 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeuii.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,495 - DEBUG - findfont: score(<Font 'MV Boli' (mvboli.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,495 - DEBUG - findfont: score(<Font 'STCaiyun' (STCAIYUN.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,495 - DEBUG - findfont: score(<Font 'Trebuchet MS' (trebucbd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,495 - DEBUG - findfont: score(<Font 'Microsoft PhagsPa' (phagspa.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,495 - DEBUG - findfont: score(<Font 'Microsoft Sans Serif' (micross.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,495 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeuib.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,495 - DEBUG - findfont: score(<Font 'Constantia' (constan.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,496 - DEBUG - findfont: score(<Font 'Trebuchet MS' (trebuc.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,496 - DEBUG - findfont: score(<Font 'Arial' (arial.ttf) normal normal 400 normal>) = 6.413636363636363
+2024-10-21 17:37:51,496 - DEBUG - findfont: score(<Font 'FZShuTi' (FZSTK.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,496 - DEBUG - findfont: score(<Font 'Microsoft Uighur' (MSUIGHUB.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,496 - DEBUG - findfont: score(<Font 'Sitka' (SitkaVF-Italic.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,496 - DEBUG - findfont: score(<Font 'Georgia' (georgiab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,496 - DEBUG - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0 to DejaVu Sans ('D:\\softwares\\python3.6.6\\lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSans.ttf') with score of 0.050000.
+2024-10-21 17:37:51,563 - DEBUG - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=12.0.
+2024-10-21 17:37:51,563 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
+2024-10-21 17:37:51,563 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniIta.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,563 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneralItalic.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,563 - DEBUG - findfont: score(<Font 'DejaVu Sans Display' (DejaVuSansDisplay.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,563 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneralBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,563 - DEBUG - findfont: score(<Font 'cmex10' (cmex10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,563 - DEBUG - findfont: score(<Font 'DejaVu Serif Display' (DejaVuSerifDisplay.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,563 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneralBolIta.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,564 - DEBUG - findfont: score(<Font 'cmsy10' (cmsy10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,564 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,564 - DEBUG - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,564 - DEBUG - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymReg.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,564 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,564 - DEBUG - findfont: score(<Font 'cmb10' (cmb10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,564 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
+2024-10-21 17:37:51,564 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2024-10-21 17:37:51,564 - DEBUG - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymReg.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,564 - DEBUG - findfont: score(<Font 'cmr10' (cmr10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,564 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneral.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,564 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,564 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,564 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUni.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,565 - DEBUG - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,565 - DEBUG - findfont: score(<Font 'cmmi10' (cmmi10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,565 - DEBUG - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,565 - DEBUG - findfont: score(<Font 'STIXSizeFiveSym' (STIXSizFiveSymReg.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,565 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBolIta.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,565 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,565 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
+2024-10-21 17:37:51,565 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
+2024-10-21 17:37:51,565 - DEBUG - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymReg.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,565 - DEBUG - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,565 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,565 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
+2024-10-21 17:37:51,565 - DEBUG - findfont: score(<Font 'cmtt10' (cmtt10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,566 - DEBUG - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymReg.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,566 - DEBUG - findfont: score(<Font 'cmss10' (cmss10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,566 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,566 - DEBUG - findfont: score(<Font 'Bookshelf Symbol 7' (BSSYM7.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,566 - DEBUG - findfont: score(<Font 'Myanmar Text' (mmrtextb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,566 - DEBUG - findfont: score(<Font 'Arial' (ARIALN.TTF) normal normal 400 condensed>) = 6.613636363636363
+2024-10-21 17:37:51,566 - DEBUG - findfont: score(<Font 'Lucida Console' (lucon.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,566 - DEBUG - findfont: score(<Font 'Symbol' (symbol.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,566 - DEBUG - findfont: score(<Font 'Arial' (ariali.ttf) italic normal 400 normal>) = 7.413636363636363
+2024-10-21 17:37:51,566 - DEBUG - findfont: score(<Font 'STFangsong' (STFANGSO.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,566 - DEBUG - findfont: score(<Font 'Segoe UI' (seguibli.ttf) italic normal 900 normal>) = 11.525
+2024-10-21 17:37:51,566 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeuil.ttf) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:51,566 - DEBUG - findfont: score(<Font 'FZYaoTi' (FZYTK.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,566 - DEBUG - findfont: score(<Font 'Arial' (arialbi.ttf) italic normal 700 normal>) = 7.698636363636363
+2024-10-21 17:37:51,566 - DEBUG - findfont: score(<Font 'MS Reference Specialty' (REFSPCL.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,567 - DEBUG - findfont: score(<Font 'SimSun-ExtB' (simsunb.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,567 - DEBUG - findfont: score(<Font 'Verdana' (verdanai.ttf) italic normal 400 normal>) = 4.6863636363636365
+2024-10-21 17:37:51,567 - DEBUG - findfont: score(<Font 'DengXian' (Deng.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,567 - DEBUG - findfont: score(<Font 'Segoe UI' (seguisbi.ttf) italic normal 600 normal>) = 11.24
+2024-10-21 17:37:51,567 - DEBUG - findfont: score(<Font 'Tahoma' (tahomabd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,567 - DEBUG - findfont: score(<Font 'Malgun Gothic' (malgun.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,567 - DEBUG - findfont: score(<Font 'Segoe UI Variable' (SegUIVar.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,567 - DEBUG - findfont: score(<Font 'Gabriola' (Gabriola.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,567 - DEBUG - findfont: score(<Font 'Courier New' (courbi.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,567 - DEBUG - findfont: score(<Font 'Leelawadee' (LEELAWDB.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,567 - DEBUG - findfont: score(<Font 'Candara' (Candarab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,567 - DEBUG - findfont: score(<Font 'Microsoft New Tai Lue' (ntailu.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,567 - DEBUG - findfont: score(<Font 'Wingdings 2' (WINGDNG2.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,567 - DEBUG - findfont: score(<Font 'Segoe MDL2 Assets' (segmdl2.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,568 - DEBUG - findfont: score(<Font 'Nirmala UI' (Nirmala.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,568 - DEBUG - findfont: score(<Font 'Garamond' (GARABD.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,568 - DEBUG - findfont: score(<Font 'Corbel' (corbeli.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,568 - DEBUG - findfont: score(<Font 'STLiti' (STLITI.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,568 - DEBUG - findfont: score(<Font 'STHupo' (STHUPO.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,568 - DEBUG - findfont: score(<Font 'Arial' (ARIALNB.TTF) normal normal 700 condensed>) = 6.8986363636363635
+2024-10-21 17:37:51,568 - DEBUG - findfont: score(<Font 'Gadugi' (gadugib.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,568 - DEBUG - findfont: score(<Font 'Yu Gothic' (YuGothR.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,568 - DEBUG - findfont: score(<Font 'Bookman Old Style' (BOOKOSB.TTF) normal normal 600 normal>) = 10.24
+2024-10-21 17:37:51,568 - DEBUG - findfont: score(<Font 'Century Gothic' (GOTHICBI.TTF) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,568 - DEBUG - findfont: score(<Font 'Franklin Gothic Medium' (framdit.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,568 - DEBUG - findfont: score(<Font 'Bahnschrift' (bahnschrift.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,568 - DEBUG - findfont: score(<Font 'LiSu' (SIMLI.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,568 - DEBUG - findfont: score(<Font 'Bookman Old Style' (BOOKOSBI.TTF) italic normal 600 normal>) = 11.24
+2024-10-21 17:37:51,568 - DEBUG - findfont: score(<Font 'Bookman Old Style' (BOOKOSI.TTF) italic normal 300 normal>) = 11.145
+2024-10-21 17:37:51,569 - DEBUG - findfont: score(<Font 'Times New Roman' (timesbi.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,569 - DEBUG - findfont: score(<Font 'HoloLens MDL2 Assets' (holomdl2.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,569 - DEBUG - findfont: score(<Font 'Corbel' (corbelb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,569 - DEBUG - findfont: score(<Font 'DengXian' (Dengb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,569 - DEBUG - findfont: score(<Font 'Corbel' (corbelz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,569 - DEBUG - findfont: score(<Font 'Webdings' (webdings.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,569 - DEBUG - findfont: score(<Font 'Segoe UI Symbol' (seguisym.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,569 - DEBUG - findfont: score(<Font 'Leelawadee UI' (LeelUIsl.ttf) normal normal 350 normal>) = 10.0975
+2024-10-21 17:37:51,570 - DEBUG - findfont: score(<Font 'Segoe UI' (seguisli.ttf) italic normal 350 normal>) = 11.0975
+2024-10-21 17:37:51,570 - DEBUG - findfont: score(<Font 'Dubai' (DUBAI-LIGHT.TTF) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:51,570 - DEBUG - findfont: score(<Font 'Microsoft Himalaya' (himalaya.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,570 - DEBUG - findfont: score(<Font 'MT Extra' (MTEXTRA.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,570 - DEBUG - findfont: score(<Font 'Comic Sans MS' (comic.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,570 - DEBUG - findfont: score(<Font 'Sitka' (SitkaVF.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,570 - DEBUG - findfont: score(<Font 'Candara' (Candarai.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,570 - DEBUG - findfont: score(<Font 'Yu Gothic' (YuGothL.ttc) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:51,570 - DEBUG - findfont: score(<Font 'Century Gothic' (GOTHICB.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,570 - DEBUG - findfont: score(<Font 'Trebuchet MS' (trebucbi.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,570 - DEBUG - findfont: score(<Font 'Mongolian Baiti' (monbaiti.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,570 - DEBUG - findfont: score(<Font 'Segoe Script' (segoescb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,570 - DEBUG - findfont: score(<Font 'Dubai' (DUBAI-BOLD.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,571 - DEBUG - findfont: score(<Font 'Ebrima' (ebrimabd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,571 - DEBUG - findfont: score(<Font 'Verdana' (verdana.ttf) normal normal 400 normal>) = 3.6863636363636365
+2024-10-21 17:37:51,571 - DEBUG - findfont: score(<Font 'STZhongsong' (STZHONGS.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,571 - DEBUG - findfont: score(<Font 'Microsoft Tai Le' (taile.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,571 - DEBUG - findfont: score(<Font 'Lucida Sans Unicode' (l_10646.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,571 - DEBUG - findfont: score(<Font 'Times New Roman' (timesi.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,571 - DEBUG - findfont: score(<Font 'Century' (CENTURY.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,571 - DEBUG - findfont: score(<Font 'Georgia' (georgiaz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,571 - DEBUG - findfont: score(<Font 'SimHei' (simhei.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,571 - DEBUG - findfont: score(<Font 'Leelawadee UI' (LeelaUIb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,571 - DEBUG - findfont: score(<Font 'Segoe UI Historic' (seguihis.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,571 - DEBUG - findfont: score(<Font 'Malgun Gothic' (malgunbd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,571 - DEBUG - findfont: score(<Font 'Nirmala UI' (NirmalaS.ttf) normal normal 350 normal>) = 10.0975
+2024-10-21 17:37:51,571 - DEBUG - findfont: score(<Font 'Book Antiqua' (ANTQUAB.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,572 - DEBUG - findfont: score(<Font 'Book Antiqua' (ANTQUABI.TTF) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,572 - DEBUG - findfont: score(<Font 'Garamond' (GARAIT.TTF) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,572 - DEBUG - findfont: score(<Font 'Microsoft JhengHei' (msjhl.ttc) normal normal 290 normal>) = 10.1545
+2024-10-21 17:37:51,572 - DEBUG - findfont: score(<Font 'Calibri' (calibril.ttf) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:51,572 - DEBUG - findfont: score(<Font 'Candara' (Candaral.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,572 - DEBUG - findfont: score(<Font 'Trebuchet MS' (trebucit.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,572 - DEBUG - findfont: score(<Font 'SimSun' (simsun.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,572 - DEBUG - findfont: score(<Font 'Gadugi' (gadugi.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,572 - DEBUG - findfont: score(<Font 'Palatino Linotype' (palab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,572 - DEBUG - findfont: score(<Font 'Corbel' (corbell.ttf) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:51,572 - DEBUG - findfont: score(<Font 'Consolas' (consolai.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,572 - DEBUG - findfont: score(<Font 'Candara' (Candara.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,572 - DEBUG - findfont: score(<Font 'Ebrima' (ebrima.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,572 - DEBUG - findfont: score(<Font 'Segoe UI' (seguili.ttf) italic normal 300 normal>) = 11.145
+2024-10-21 17:37:51,572 - DEBUG - findfont: score(<Font 'Segoe Fluent Icons' (SegoeIcons.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,572 - DEBUG - findfont: score(<Font 'KaiTi' (simkai.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,573 - DEBUG - findfont: score(<Font 'Ink Free' (Inkfree.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,573 - DEBUG - findfont: score(<Font 'Microsoft Uighur' (MSUIGHUR.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,573 - DEBUG - findfont: score(<Font 'Microsoft Tai Le' (taileb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,573 - DEBUG - findfont: score(<Font 'Calibri' (calibriz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,573 - DEBUG - findfont: score(<Font 'Garamond' (GARA.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,573 - DEBUG - findfont: score(<Font 'Courier New' (cour.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,573 - DEBUG - findfont: score(<Font 'MingLiU-ExtB' (mingliub.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,573 - DEBUG - findfont: score(<Font 'Arial' (ARIALNI.TTF) italic normal 400 condensed>) = 7.613636363636363
+2024-10-21 17:37:51,573 - DEBUG - findfont: score(<Font 'Wingdings' (wingding.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,573 - DEBUG - findfont: score(<Font 'Book Antiqua' (ANTQUAI.TTF) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,573 - DEBUG - findfont: score(<Font 'Georgia' (georgia.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,573 - DEBUG - findfont: score(<Font 'Consolas' (consola.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,573 - DEBUG - findfont: score(<Font 'Dubai' (DUBAI-MEDIUM.TTF) normal normal 500 normal>) = 10.145
+2024-10-21 17:37:51,573 - DEBUG - findfont: score(<Font 'Segoe UI Emoji' (seguiemj.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,573 - DEBUG - findfont: score(<Font 'Calibri' (calibrii.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,574 - DEBUG - findfont: score(<Font 'Georgia' (georgiai.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,574 - DEBUG - findfont: score(<Font 'Constantia' (constanz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,574 - DEBUG - findfont: score(<Font 'Segoe UI' (seguibl.ttf) normal normal 900 normal>) = 10.525
+2024-10-21 17:37:51,574 - DEBUG - findfont: score(<Font 'Malgun Gothic' (malgunsl.ttf) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:51,574 - DEBUG - findfont: score(<Font 'Leelawadee' (LEELAWAD.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,574 - DEBUG - findfont: score(<Font 'Comic Sans MS' (comici.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,574 - DEBUG - findfont: score(<Font 'Constantia' (constanb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,574 - DEBUG - findfont: score(<Font 'Arial' (arialbd.ttf) normal normal 700 normal>) = 6.698636363636363
+2024-10-21 17:37:51,574 - DEBUG - findfont: score(<Font 'STXingkai' (STXINGKA.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,574 - DEBUG - findfont: score(<Font 'Century Gothic' (GOTHIC.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,574 - DEBUG - findfont: score(<Font 'Calibri' (calibrib.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,574 - DEBUG - findfont: score(<Font 'Cambria' (cambriaz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,574 - DEBUG - findfont: score(<Font 'Consolas' (consolab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,574 - DEBUG - findfont: score(<Font 'Segoe Print' (segoeprb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,574 - DEBUG - findfont: score(<Font 'DengXian' (Dengl.ttf) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:51,574 - DEBUG - findfont: score(<Font 'Microsoft PhagsPa' (phagspab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,575 - DEBUG - findfont: score(<Font 'Microsoft YaHei' (msyhl.ttc) normal normal 290 normal>) = 10.1545
+2024-10-21 17:37:51,575 - DEBUG - findfont: score(<Font 'Microsoft New Tai Lue' (ntailub.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,575 - DEBUG - findfont: score(<Font 'Bookman Old Style' (BOOKOS.TTF) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:51,575 - DEBUG - findfont: score(<Font 'MS Gothic' (msgothic.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,575 - DEBUG - findfont: score(<Font 'Marlett' (marlett.ttf) normal normal 500 normal>) = 10.145
+2024-10-21 17:37:51,575 - DEBUG - findfont: score(<Font 'Sylfaen' (sylfaen.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,575 - DEBUG - findfont: score(<Font 'Calibri' (calibri.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,575 - DEBUG - findfont: score(<Font 'Sans Serif Collection' (SansSerifCollection.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,575 - DEBUG - findfont: score(<Font 'Microsoft YaHei' (msyh.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,575 - DEBUG - findfont: score(<Font 'Cambria' (cambriab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,575 - DEBUG - findfont: score(<Font 'Tahoma' (tahoma.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,575 - DEBUG - findfont: score(<Font 'FangSong' (simfang.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,575 - DEBUG - findfont: score(<Font 'Verdana' (verdanaz.ttf) italic normal 700 normal>) = 4.971363636363637
+2024-10-21 17:37:51,575 - DEBUG - findfont: score(<Font 'Calibri' (calibrili.ttf) italic normal 300 normal>) = 11.145
+2024-10-21 17:37:51,575 - DEBUG - findfont: score(<Font 'Microsoft Yi Baiti' (msyi.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,576 - DEBUG - findfont: score(<Font 'Book Antiqua' (BKANT.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,576 - DEBUG - findfont: score(<Font 'Cambria' (cambria.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,576 - DEBUG - findfont: score(<Font 'STXinwei' (STXINWEI.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,576 - DEBUG - findfont: score(<Font 'Impact' (impact.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,576 - DEBUG - findfont: score(<Font 'Arial' (ARIALNBI.TTF) italic normal 700 condensed>) = 7.8986363636363635
+2024-10-21 17:37:51,576 - DEBUG - findfont: score(<Font 'Constantia' (constani.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,576 - DEBUG - findfont: score(<Font 'Javanese Text' (javatext.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,576 - DEBUG - findfont: score(<Font 'Corbel' (corbelli.ttf) italic normal 300 normal>) = 11.145
+2024-10-21 17:37:51,576 - DEBUG - findfont: score(<Font 'Leelawadee UI' (LeelawUI.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,577 - DEBUG - findfont: score(<Font 'STSong' (STSONG.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,577 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeuiz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,577 - DEBUG - findfont: score(<Font 'STKaiti' (STKAITI.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,577 - DEBUG - findfont: score(<Font 'Comic Sans MS' (comicbd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,577 - DEBUG - findfont: score(<Font 'Palatino Linotype' (palai.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,577 - DEBUG - findfont: score(<Font 'Courier New' (couri.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,577 - DEBUG - findfont: score(<Font 'Segoe Script' (segoesc.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,577 - DEBUG - findfont: score(<Font 'Dubai' (DUBAI-REGULAR.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,577 - DEBUG - findfont: score(<Font 'Microsoft JhengHei' (msjhbd.ttc) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,577 - DEBUG - findfont: score(<Font 'Consolas' (consolaz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,577 - DEBUG - findfont: score(<Font 'Arial' (ariblk.ttf) normal normal 900 normal>) = 6.888636363636364
+2024-10-21 17:37:51,577 - DEBUG - findfont: score(<Font 'Verdana' (verdanab.ttf) normal normal 700 normal>) = 3.9713636363636367
+2024-10-21 17:37:51,577 - DEBUG - findfont: score(<Font 'Times New Roman' (times.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,577 - DEBUG - findfont: score(<Font 'Yu Gothic' (YuGothM.ttc) normal normal 500 normal>) = 10.145
+2024-10-21 17:37:51,577 - DEBUG - findfont: score(<Font 'Segoe Print' (segoepr.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,578 - DEBUG - findfont: score(<Font 'YouYuan' (SIMYOU.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,578 - DEBUG - findfont: score(<Font 'Palatino Linotype' (palabi.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,578 - DEBUG - findfont: score(<Font 'Century Gothic' (GOTHICI.TTF) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,578 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeui.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,578 - DEBUG - findfont: score(<Font 'Candara' (Candarali.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,578 - DEBUG - findfont: score(<Font 'Segoe UI' (seguisb.ttf) normal normal 600 normal>) = 10.24
+2024-10-21 17:37:51,578 - DEBUG - findfont: score(<Font 'MS Reference Sans Serif' (REFSAN.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,578 - DEBUG - findfont: score(<Font 'Yu Gothic' (YuGothB.ttc) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,578 - DEBUG - findfont: score(<Font 'Courier New' (courbd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,578 - DEBUG - findfont: score(<Font 'Monotype Corsiva' (MTCORSVA.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,579 - DEBUG - findfont: score(<Font 'Candara' (Candaraz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,579 - DEBUG - findfont: score(<Font 'Microsoft JhengHei' (msjh.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,579 - DEBUG - findfont: score(<Font 'Palatino Linotype' (pala.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,579 - DEBUG - findfont: score(<Font 'Myanmar Text' (mmrtext.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,579 - DEBUG - findfont: score(<Font 'Corbel' (corbel.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,579 - DEBUG - findfont: score(<Font 'Franklin Gothic Medium' (framd.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,579 - DEBUG - findfont: score(<Font 'Microsoft YaHei' (msyhbd.ttc) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,579 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeuisl.ttf) normal normal 350 normal>) = 10.0975
+2024-10-21 17:37:51,579 - DEBUG - findfont: score(<Font 'Wingdings 3' (WINGDNG3.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,579 - DEBUG - findfont: score(<Font 'Comic Sans MS' (comicz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:51,579 - DEBUG - findfont: score(<Font 'Times New Roman' (timesbd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,579 - DEBUG - findfont: score(<Font 'Cambria' (cambriai.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,579 - DEBUG - findfont: score(<Font 'STXihei' (STXIHEI.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,580 - DEBUG - findfont: score(<Font 'Nirmala UI' (NirmalaB.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,580 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeuii.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,580 - DEBUG - findfont: score(<Font 'MV Boli' (mvboli.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,580 - DEBUG - findfont: score(<Font 'STCaiyun' (STCAIYUN.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,580 - DEBUG - findfont: score(<Font 'Trebuchet MS' (trebucbd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,580 - DEBUG - findfont: score(<Font 'Microsoft PhagsPa' (phagspa.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,580 - DEBUG - findfont: score(<Font 'Microsoft Sans Serif' (micross.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,580 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeuib.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,580 - DEBUG - findfont: score(<Font 'Constantia' (constan.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,580 - DEBUG - findfont: score(<Font 'Trebuchet MS' (trebuc.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,580 - DEBUG - findfont: score(<Font 'Arial' (arial.ttf) normal normal 400 normal>) = 6.413636363636363
+2024-10-21 17:37:51,580 - DEBUG - findfont: score(<Font 'FZShuTi' (FZSTK.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:51,580 - DEBUG - findfont: score(<Font 'Microsoft Uighur' (MSUIGHUB.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,580 - DEBUG - findfont: score(<Font 'Sitka' (SitkaVF-Italic.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:51,580 - DEBUG - findfont: score(<Font 'Georgia' (georgiab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:51,581 - DEBUG - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=12.0 to DejaVu Sans ('D:\\softwares\\python3.6.6\\lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSans.ttf') with score of 0.050000.
+2024-10-21 17:37:59,152 - INFO - Getting data for contract IC2001 on 20200102 ZXCVJK
+2024-10-21 17:37:59,152 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202001\IC2001_20200102.csv CPIGOA
+2024-10-21 17:37:59,153 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:37:59,156 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:37:59,156 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:37:59,158 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:37:59,158 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:37:59,162 - DEBUG - utf-8 not active
+2024-10-21 17:37:59,163 - DEBUG - CP932 not active
+2024-10-21 17:37:59,163 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:37:59,163 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:37:59,163 - DEBUG - EUC-KR not active
+2024-10-21 17:37:59,163 - DEBUG - CP949 not active
+2024-10-21 17:37:59,163 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:37:59,163 - DEBUG - EUC-TW not active
+2024-10-21 17:37:59,163 - DEBUG - Johab not active
+2024-10-21 17:37:59,163 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:37:59,163 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:37:59,163 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:37:59,163 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:37:59,163 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:37:59,163 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:37:59,163 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:37:59,163 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:37:59,163 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:37:59,163 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:37:59,163 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:37:59,163 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:37:59,164 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:37:59,164 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:37:59,164 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:37:59,164 - DEBUG - utf-8 not active
+2024-10-21 17:37:59,164 - DEBUG - CP932 not active
+2024-10-21 17:37:59,164 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:37:59,164 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:37:59,164 - DEBUG - EUC-KR not active
+2024-10-21 17:37:59,164 - DEBUG - CP949 not active
+2024-10-21 17:37:59,164 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:37:59,164 - DEBUG - EUC-TW not active
+2024-10-21 17:37:59,164 - DEBUG - Johab not active
+2024-10-21 17:37:59,336 - INFO - Trade IC2001 at 5375.8 on 20200101 14:00:00 with 1 hand(s)
+2024-10-21 17:37:59,365 - INFO - Getting data for contract IC2001 on 20200113 ALQQQQ
+2024-10-21 17:37:59,365 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202001\IC2001_20200113.csv ASFKJV
+2024-10-21 17:37:59,525 - INFO - Trade IC2001 at 5533.9 on 20200113 14:00:00 with 1 hand(s)
+2024-10-21 17:37:59,541 - INFO - Getting data for contract IC2002 on 20200217 ZXCVJK
+2024-10-21 17:37:59,541 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202002\IC2002_20200217.csv CPIGOA
+2024-10-21 17:37:59,542 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:37:59,545 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:37:59,545 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:37:59,546 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:37:59,546 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:37:59,550 - DEBUG - utf-8 not active
+2024-10-21 17:37:59,550 - DEBUG - CP932 not active
+2024-10-21 17:37:59,550 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:37:59,550 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:37:59,550 - DEBUG - EUC-KR not active
+2024-10-21 17:37:59,550 - DEBUG - CP949 not active
+2024-10-21 17:37:59,550 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:37:59,550 - DEBUG - EUC-TW not active
+2024-10-21 17:37:59,550 - DEBUG - Johab not active
+2024-10-21 17:37:59,550 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:37:59,550 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:37:59,551 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:37:59,551 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:37:59,551 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:37:59,551 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:37:59,551 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:37:59,551 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:37:59,551 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:37:59,551 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:37:59,551 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:37:59,551 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:37:59,551 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:37:59,551 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:37:59,551 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:37:59,551 - DEBUG - utf-8 not active
+2024-10-21 17:37:59,551 - DEBUG - CP932 not active
+2024-10-21 17:37:59,551 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:37:59,552 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:37:59,552 - DEBUG - EUC-KR not active
+2024-10-21 17:37:59,552 - DEBUG - CP949 not active
+2024-10-21 17:37:59,552 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:37:59,552 - DEBUG - EUC-TW not active
+2024-10-21 17:37:59,552 - DEBUG - Johab not active
+2024-10-21 17:38:00,288 - INFO - Trade IC2001 at 5561.0 on 20200113 14:00:00 with 1 hand(s)
+2024-10-21 17:38:00,382 - INFO - Getting data for contract IC2002 on 20200217 ALQQQQ
+2024-10-21 17:38:00,382 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202002\IC2002_20200217.csv ASFKJV
+2024-10-21 17:38:01,199 - INFO - Trade IC2002 at 5561.6 on 20200217 14:00:00 with 1 hand(s)
+2024-10-21 17:38:01,246 - INFO - Getting data for contract IC2003 on 20200316 ZXCVJK
+2024-10-21 17:38:01,246 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202003\IC2003_20200316.csv CPIGOA
+2024-10-21 17:38:01,254 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:01,260 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:01,260 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:01,263 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:01,263 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:01,274 - DEBUG - utf-8 not active
+2024-10-21 17:38:01,274 - DEBUG - CP932 not active
+2024-10-21 17:38:01,275 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:01,275 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:01,275 - DEBUG - EUC-KR not active
+2024-10-21 17:38:01,275 - DEBUG - CP949 not active
+2024-10-21 17:38:01,275 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:01,275 - DEBUG - EUC-TW not active
+2024-10-21 17:38:01,275 - DEBUG - Johab not active
+2024-10-21 17:38:01,275 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:01,275 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:01,276 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:01,276 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:01,276 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:01,276 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:01,276 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:01,276 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:01,277 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:01,277 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:01,277 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:01,277 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:01,277 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:01,277 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:01,277 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:01,278 - DEBUG - utf-8 not active
+2024-10-21 17:38:01,278 - DEBUG - CP932 not active
+2024-10-21 17:38:01,278 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:01,278 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:01,278 - DEBUG - EUC-KR not active
+2024-10-21 17:38:01,278 - DEBUG - CP949 not active
+2024-10-21 17:38:01,278 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:01,278 - DEBUG - EUC-TW not active
+2024-10-21 17:38:01,279 - DEBUG - Johab not active
+2024-10-21 17:38:02,056 - INFO - Trade IC2002 at 5227.4 on 20200217 14:00:00 with 1 hand(s)
+2024-10-21 17:38:02,116 - INFO - Getting data for contract IC2003 on 20200316 ALQQQQ
+2024-10-21 17:38:02,116 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202003\IC2003_20200316.csv ASFKJV
+2024-10-21 17:38:02,856 - INFO - Trade IC2003 at 5227.9 on 20200316 14:00:00 with 1 hand(s)
+2024-10-21 17:38:02,904 - INFO - Getting data for contract IC2004 on 20200413 ZXCVJK
+2024-10-21 17:38:02,904 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202004\IC2004_20200413.csv CPIGOA
+2024-10-21 17:38:02,907 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:02,912 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:02,913 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:02,919 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:02,919 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:02,926 - DEBUG - utf-8 not active
+2024-10-21 17:38:02,926 - DEBUG - CP932 not active
+2024-10-21 17:38:02,926 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:02,926 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:02,926 - DEBUG - EUC-KR not active
+2024-10-21 17:38:02,927 - DEBUG - CP949 not active
+2024-10-21 17:38:02,927 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:02,927 - DEBUG - EUC-TW not active
+2024-10-21 17:38:02,927 - DEBUG - Johab not active
+2024-10-21 17:38:02,927 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:02,928 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:02,928 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:02,928 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:02,928 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:02,928 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:02,928 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:02,928 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:02,928 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:02,928 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:02,928 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:02,929 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:02,929 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:02,929 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:02,929 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:02,929 - DEBUG - utf-8 not active
+2024-10-21 17:38:02,929 - DEBUG - CP932 not active
+2024-10-21 17:38:02,929 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:02,929 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:02,929 - DEBUG - EUC-KR not active
+2024-10-21 17:38:02,929 - DEBUG - CP949 not active
+2024-10-21 17:38:02,930 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:02,930 - DEBUG - EUC-TW not active
+2024-10-21 17:38:02,930 - DEBUG - Johab not active
+2024-10-21 17:38:03,548 - INFO - Trade IC2003 at 5141.5 on 20200316 14:00:00 with 1 hand(s)
+2024-10-21 17:38:03,627 - INFO - Getting data for contract IC2004 on 20200413 ALQQQQ
+2024-10-21 17:38:03,627 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202004\IC2004_20200413.csv ASFKJV
+2024-10-21 17:38:04,066 - INFO - Trade IC2004 at 5141.9 on 20200413 14:00:00 with 1 hand(s)
+2024-10-21 17:38:04,088 - INFO - Getting data for contract IC2005 on 20200511 ZXCVJK
+2024-10-21 17:38:04,088 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202005\IC2005_20200511.csv CPIGOA
+2024-10-21 17:38:04,089 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:04,095 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:04,096 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:04,098 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:04,098 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:04,104 - DEBUG - utf-8 not active
+2024-10-21 17:38:04,104 - DEBUG - CP932 not active
+2024-10-21 17:38:04,105 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:04,105 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:04,105 - DEBUG - EUC-KR not active
+2024-10-21 17:38:04,105 - DEBUG - CP949 not active
+2024-10-21 17:38:04,105 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:04,105 - DEBUG - EUC-TW not active
+2024-10-21 17:38:04,105 - DEBUG - Johab not active
+2024-10-21 17:38:04,105 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:04,105 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:04,105 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:04,105 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:04,105 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:04,105 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:04,105 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:04,106 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:04,106 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:04,106 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:04,106 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:04,106 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:04,106 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:04,106 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:04,106 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:04,106 - DEBUG - utf-8 not active
+2024-10-21 17:38:04,106 - DEBUG - CP932 not active
+2024-10-21 17:38:04,106 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:04,106 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:04,106 - DEBUG - EUC-KR not active
+2024-10-21 17:38:04,106 - DEBUG - CP949 not active
+2024-10-21 17:38:04,106 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:04,106 - DEBUG - EUC-TW not active
+2024-10-21 17:38:04,106 - DEBUG - Johab not active
+2024-10-21 17:38:04,465 - INFO - Trade IC2004 at 5461.8 on 20200413 14:00:00 with 1 hand(s)
+2024-10-21 17:38:04,518 - INFO - Getting data for contract IC2005 on 20200511 ALQQQQ
+2024-10-21 17:38:04,518 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202005\IC2005_20200511.csv ASFKJV
+2024-10-21 17:38:04,753 - INFO - Trade IC2005 at 5462.3 on 20200511 14:00:00 with 1 hand(s)
+2024-10-21 17:38:04,770 - INFO - Getting data for contract IC2006 on 20200615 ZXCVJK
+2024-10-21 17:38:04,770 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202006\IC2006_20200615.csv CPIGOA
+2024-10-21 17:38:04,771 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:04,775 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:04,775 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:04,777 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:04,778 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:04,783 - DEBUG - utf-8 not active
+2024-10-21 17:38:04,783 - DEBUG - CP932 not active
+2024-10-21 17:38:04,783 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:04,784 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:04,784 - DEBUG - EUC-KR not active
+2024-10-21 17:38:04,784 - DEBUG - CP949 not active
+2024-10-21 17:38:04,784 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:04,784 - DEBUG - EUC-TW not active
+2024-10-21 17:38:04,784 - DEBUG - Johab not active
+2024-10-21 17:38:04,784 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:04,784 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:04,784 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:04,784 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:04,784 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:04,784 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:04,784 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:04,784 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:04,784 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:04,785 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:04,785 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:04,785 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:04,785 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:04,785 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:04,785 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:04,785 - DEBUG - utf-8 not active
+2024-10-21 17:38:04,785 - DEBUG - CP932 not active
+2024-10-21 17:38:04,785 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:04,785 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:04,785 - DEBUG - EUC-KR not active
+2024-10-21 17:38:04,785 - DEBUG - CP949 not active
+2024-10-21 17:38:04,785 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:04,785 - DEBUG - EUC-TW not active
+2024-10-21 17:38:04,785 - DEBUG - Johab not active
+2024-10-21 17:38:04,994 - INFO - Trade IC2005 at 5566.8 on 20200511 14:00:00 with 1 hand(s)
+2024-10-21 17:38:05,025 - INFO - Getting data for contract IC2006 on 20200615 ALQQQQ
+2024-10-21 17:38:05,025 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202006\IC2006_20200615.csv ASFKJV
+2024-10-21 17:38:05,197 - INFO - Trade IC2006 at 5567.7 on 20200615 14:00:00 with 1 hand(s)
+2024-10-21 17:38:05,208 - INFO - Getting data for contract IC2007 on 20200713 ZXCVJK
+2024-10-21 17:38:05,208 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202007\IC2007_20200713.csv CPIGOA
+2024-10-21 17:38:05,209 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:05,212 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:05,212 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:05,213 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:05,213 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:05,217 - DEBUG - utf-8 not active
+2024-10-21 17:38:05,217 - DEBUG - CP932 not active
+2024-10-21 17:38:05,217 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:05,217 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:05,217 - DEBUG - EUC-KR not active
+2024-10-21 17:38:05,217 - DEBUG - CP949 not active
+2024-10-21 17:38:05,217 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:05,217 - DEBUG - EUC-TW not active
+2024-10-21 17:38:05,217 - DEBUG - Johab not active
+2024-10-21 17:38:05,217 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:05,217 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:05,217 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:05,217 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:05,217 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:05,217 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:05,217 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:05,217 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:05,218 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:05,218 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:05,218 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:05,218 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:05,218 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:05,218 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:05,218 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:05,218 - DEBUG - utf-8 not active
+2024-10-21 17:38:05,218 - DEBUG - CP932 not active
+2024-10-21 17:38:05,218 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:05,218 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:05,218 - DEBUG - EUC-KR not active
+2024-10-21 17:38:05,218 - DEBUG - CP949 not active
+2024-10-21 17:38:05,218 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:05,218 - DEBUG - EUC-TW not active
+2024-10-21 17:38:05,218 - DEBUG - Johab not active
+2024-10-21 17:38:05,360 - INFO - Trade IC2006 at 6890.3 on 20200615 14:00:00 with 1 hand(s)
+2024-10-21 17:38:05,392 - INFO - Getting data for contract IC2007 on 20200713 ALQQQQ
+2024-10-21 17:38:05,392 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202007\IC2007_20200713.csv ASFKJV
+2024-10-21 17:38:05,574 - INFO - Trade IC2007 at 6891.2 on 20200713 14:00:00 with 1 hand(s)
+2024-10-21 17:38:05,586 - INFO - Getting data for contract IC2008 on 20200817 ZXCVJK
+2024-10-21 17:38:05,586 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202008\IC2008_20200817.csv CPIGOA
+2024-10-21 17:38:05,587 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:05,589 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:05,589 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:05,591 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:05,591 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:05,594 - DEBUG - utf-8 not active
+2024-10-21 17:38:05,594 - DEBUG - CP932 not active
+2024-10-21 17:38:05,594 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:05,594 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:05,594 - DEBUG - EUC-KR not active
+2024-10-21 17:38:05,594 - DEBUG - CP949 not active
+2024-10-21 17:38:05,594 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:05,594 - DEBUG - EUC-TW not active
+2024-10-21 17:38:05,596 - DEBUG - Johab not active
+2024-10-21 17:38:05,596 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:05,596 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:05,596 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:05,596 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:05,596 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:05,596 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:05,596 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:05,596 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:05,596 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:05,596 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:05,596 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:05,596 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:05,596 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:05,596 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:05,596 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:05,596 - DEBUG - utf-8 not active
+2024-10-21 17:38:05,596 - DEBUG - CP932 not active
+2024-10-21 17:38:05,596 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:05,596 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:05,596 - DEBUG - EUC-KR not active
+2024-10-21 17:38:05,596 - DEBUG - CP949 not active
+2024-10-21 17:38:05,597 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:05,597 - DEBUG - EUC-TW not active
+2024-10-21 17:38:05,597 - DEBUG - Johab not active
+2024-10-21 17:38:05,740 - INFO - Trade IC2007 at 6712.4 on 20200713 14:00:00 with 1 hand(s)
+2024-10-21 17:38:05,774 - INFO - Getting data for contract IC2008 on 20200817 ALQQQQ
+2024-10-21 17:38:05,774 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202008\IC2008_20200817.csv ASFKJV
+2024-10-21 17:38:05,908 - INFO - Trade IC2008 at 6713.3 on 20200817 14:00:00 with 1 hand(s)
+2024-10-21 17:38:05,919 - INFO - Getting data for contract IC2009 on 20200914 ZXCVJK
+2024-10-21 17:38:05,919 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202009\IC2009_20200914.csv CPIGOA
+2024-10-21 17:38:05,948 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:05,950 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:05,951 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:05,952 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:05,952 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:05,955 - DEBUG - utf-8 not active
+2024-10-21 17:38:05,955 - DEBUG - CP932 not active
+2024-10-21 17:38:05,955 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:05,955 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:05,955 - DEBUG - EUC-KR not active
+2024-10-21 17:38:05,956 - DEBUG - CP949 not active
+2024-10-21 17:38:05,956 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:05,956 - DEBUG - EUC-TW not active
+2024-10-21 17:38:05,956 - DEBUG - Johab not active
+2024-10-21 17:38:05,956 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:05,956 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:05,956 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:05,956 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:05,956 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:05,956 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:05,956 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:05,956 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:05,956 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:05,956 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:05,956 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:05,956 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:05,956 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:05,956 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:05,956 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:05,956 - DEBUG - utf-8 not active
+2024-10-21 17:38:05,956 - DEBUG - CP932 not active
+2024-10-21 17:38:05,956 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:05,957 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:05,957 - DEBUG - EUC-KR not active
+2024-10-21 17:38:05,957 - DEBUG - CP949 not active
+2024-10-21 17:38:05,957 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:05,957 - DEBUG - EUC-TW not active
+2024-10-21 17:38:05,957 - DEBUG - Johab not active
+2024-10-21 17:38:06,102 - INFO - Trade IC2008 at 6276.4 on 20200817 14:00:00 with 1 hand(s)
+2024-10-21 17:38:06,131 - INFO - Getting data for contract IC2009 on 20200914 ALQQQQ
+2024-10-21 17:38:06,131 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202009\IC2009_20200914.csv ASFKJV
+2024-10-21 17:38:06,276 - INFO - Trade IC2009 at 6277.3 on 20200914 14:00:00 with 1 hand(s)
+2024-10-21 17:38:06,292 - INFO - Getting data for contract IC2010 on 20201012 ZXCVJK
+2024-10-21 17:38:06,292 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202010\IC2010_20201012.csv CPIGOA
+2024-10-21 17:38:06,309 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:06,312 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:06,312 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:06,313 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:06,313 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:06,317 - DEBUG - utf-8 not active
+2024-10-21 17:38:06,317 - DEBUG - CP932 not active
+2024-10-21 17:38:06,317 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:06,317 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:06,317 - DEBUG - EUC-KR not active
+2024-10-21 17:38:06,317 - DEBUG - CP949 not active
+2024-10-21 17:38:06,317 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:06,317 - DEBUG - EUC-TW not active
+2024-10-21 17:38:06,317 - DEBUG - Johab not active
+2024-10-21 17:38:06,317 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:06,317 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:06,317 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:06,317 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:06,317 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:06,317 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:06,317 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:06,317 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:06,318 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:06,318 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:06,318 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:06,318 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:06,318 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:06,318 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:06,318 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:06,318 - DEBUG - utf-8 not active
+2024-10-21 17:38:06,318 - DEBUG - CP932 not active
+2024-10-21 17:38:06,318 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:06,318 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:06,318 - DEBUG - EUC-KR not active
+2024-10-21 17:38:06,318 - DEBUG - CP949 not active
+2024-10-21 17:38:06,318 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:06,318 - DEBUG - EUC-TW not active
+2024-10-21 17:38:06,318 - DEBUG - Johab not active
+2024-10-21 17:38:06,457 - INFO - Trade IC2009 at 6517.8 on 20200914 14:00:00 with 1 hand(s)
+2024-10-21 17:38:06,488 - INFO - Getting data for contract IC2010 on 20201012 ALQQQQ
+2024-10-21 17:38:06,488 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202010\IC2010_20201012.csv ASFKJV
+2024-10-21 17:38:06,629 - INFO - Trade IC2010 at 6518.7 on 20201012 14:00:00 with 1 hand(s)
+2024-10-21 17:38:06,641 - INFO - Getting data for contract IC2011 on 20201116 ZXCVJK
+2024-10-21 17:38:06,641 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202011\IC2011_20201116.csv CPIGOA
+2024-10-21 17:38:06,661 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:06,666 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:06,667 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:06,669 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:06,669 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:06,675 - DEBUG - utf-8 not active
+2024-10-21 17:38:06,675 - DEBUG - CP932 not active
+2024-10-21 17:38:06,675 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:06,675 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:06,675 - DEBUG - EUC-KR not active
+2024-10-21 17:38:06,675 - DEBUG - CP949 not active
+2024-10-21 17:38:06,676 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:06,676 - DEBUG - EUC-TW not active
+2024-10-21 17:38:06,676 - DEBUG - Johab not active
+2024-10-21 17:38:06,676 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:06,676 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:06,676 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:06,676 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:06,676 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:06,676 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:06,676 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:06,676 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:06,676 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:06,676 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:06,677 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:06,677 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:06,677 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:06,677 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:06,677 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:06,677 - DEBUG - utf-8 not active
+2024-10-21 17:38:06,677 - DEBUG - CP932 not active
+2024-10-21 17:38:06,677 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:06,678 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:06,678 - DEBUG - EUC-KR not active
+2024-10-21 17:38:06,678 - DEBUG - CP949 not active
+2024-10-21 17:38:06,678 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:06,678 - DEBUG - EUC-TW not active
+2024-10-21 17:38:06,678 - DEBUG - Johab not active
+2024-10-21 17:38:06,822 - INFO - Trade IC2010 at 6355.5 on 20201012 14:00:00 with 1 hand(s)
+2024-10-21 17:38:06,856 - INFO - Getting data for contract IC2011 on 20201116 ALQQQQ
+2024-10-21 17:38:06,856 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202011\IC2011_20201116.csv ASFKJV
+2024-10-21 17:38:07,006 - INFO - Trade IC2011 at 6357.0 on 20201116 14:00:00 with 1 hand(s)
+2024-10-21 17:38:07,017 - INFO - Getting data for contract IC2012 on 20201214 ZXCVJK
+2024-10-21 17:38:07,017 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202012\IC2012_20201214.csv CPIGOA
+2024-10-21 17:38:07,040 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:07,044 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:07,044 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:07,045 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:07,045 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:07,050 - DEBUG - utf-8 not active
+2024-10-21 17:38:07,050 - DEBUG - CP932 not active
+2024-10-21 17:38:07,050 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:07,050 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:07,050 - DEBUG - EUC-KR not active
+2024-10-21 17:38:07,051 - DEBUG - CP949 not active
+2024-10-21 17:38:07,051 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:07,051 - DEBUG - EUC-TW not active
+2024-10-21 17:38:07,051 - DEBUG - Johab not active
+2024-10-21 17:38:07,051 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:07,051 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:07,051 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:07,051 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:07,051 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:07,051 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:07,051 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:07,051 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:07,051 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:07,051 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:07,051 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:07,051 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:07,052 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:07,052 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:07,052 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:07,052 - DEBUG - utf-8 not active
+2024-10-21 17:38:07,052 - DEBUG - CP932 not active
+2024-10-21 17:38:07,052 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:07,052 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:07,052 - DEBUG - EUC-KR not active
+2024-10-21 17:38:07,052 - DEBUG - CP949 not active
+2024-10-21 17:38:07,052 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:07,052 - DEBUG - EUC-TW not active
+2024-10-21 17:38:07,052 - DEBUG - Johab not active
+2024-10-21 17:38:07,207 - INFO - Trade IC2011 at 6215.8 on 20201116 14:00:00 with 1 hand(s)
+2024-10-21 17:38:07,251 - INFO - Getting data for contract IC2012 on 20201214 ALQQQQ
+2024-10-21 17:38:07,251 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202012\IC2012_20201214.csv ASFKJV
+2024-10-21 17:38:07,406 - INFO - Trade IC2012 at 6216.7 on 20201214 14:00:00 with 1 hand(s)
+2024-10-21 17:38:07,417 - INFO - Getting data for contract IC2101 on 20210111 ZXCVJK
+2024-10-21 17:38:07,417 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202101\IC2101_20210111.csv CPIGOA
+2024-10-21 17:38:07,429 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:07,432 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:07,432 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:07,434 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:07,434 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:07,437 - DEBUG - utf-8 not active
+2024-10-21 17:38:07,437 - DEBUG - CP932 not active
+2024-10-21 17:38:07,437 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:07,437 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:07,437 - DEBUG - EUC-KR not active
+2024-10-21 17:38:07,437 - DEBUG - CP949 not active
+2024-10-21 17:38:07,437 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:07,437 - DEBUG - EUC-TW not active
+2024-10-21 17:38:07,437 - DEBUG - Johab not active
+2024-10-21 17:38:07,437 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:07,438 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:07,438 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:07,438 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:07,438 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:07,438 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:07,438 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:07,438 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:07,438 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:07,438 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:07,438 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:07,438 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:07,438 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:07,438 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:07,438 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:07,438 - DEBUG - utf-8 not active
+2024-10-21 17:38:07,438 - DEBUG - CP932 not active
+2024-10-21 17:38:07,438 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:07,438 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:07,438 - DEBUG - EUC-KR not active
+2024-10-21 17:38:07,438 - DEBUG - CP949 not active
+2024-10-21 17:38:07,438 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:07,438 - DEBUG - EUC-TW not active
+2024-10-21 17:38:07,439 - DEBUG - Johab not active
+2024-10-21 17:38:07,638 - INFO - Trade IC2012 at 6446.2 on 20201214 14:00:00 with 1 hand(s)
+2024-10-21 17:38:07,673 - INFO - Getting data for contract IC2101 on 20210111 ALQQQQ
+2024-10-21 17:38:07,673 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202101\IC2101_20210111.csv ASFKJV
+2024-10-21 17:38:07,856 - INFO - Trade IC2101 at 6448.1 on 20210111 14:00:00 with 1 hand(s)
+2024-10-21 17:38:07,875 - INFO - Getting data for contract IC2102 on 20210218 ZXCVJK
+2024-10-21 17:38:07,875 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202102\IC2102_20210218.csv CPIGOA
+2024-10-21 17:38:07,882 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:07,885 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:07,885 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:07,886 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:07,887 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:07,890 - DEBUG - utf-8 not active
+2024-10-21 17:38:07,890 - DEBUG - CP932 not active
+2024-10-21 17:38:07,890 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:07,890 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:07,890 - DEBUG - EUC-KR not active
+2024-10-21 17:38:07,890 - DEBUG - CP949 not active
+2024-10-21 17:38:07,891 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:07,891 - DEBUG - EUC-TW not active
+2024-10-21 17:38:07,891 - DEBUG - Johab not active
+2024-10-21 17:38:07,891 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:07,891 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:07,891 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:07,891 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:07,891 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:07,891 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:07,891 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:07,891 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:07,891 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:07,891 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:07,891 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:07,891 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:07,891 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:07,891 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:07,891 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:07,891 - DEBUG - utf-8 not active
+2024-10-21 17:38:07,891 - DEBUG - CP932 not active
+2024-10-21 17:38:07,891 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:07,892 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:07,892 - DEBUG - EUC-KR not active
+2024-10-21 17:38:07,892 - DEBUG - CP949 not active
+2024-10-21 17:38:07,892 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:07,892 - DEBUG - EUC-TW not active
+2024-10-21 17:38:07,892 - DEBUG - Johab not active
+2024-10-21 17:38:08,052 - INFO - Trade IC2101 at 6596.9 on 20210111 14:00:00 with 1 hand(s)
+2024-10-21 17:38:08,088 - INFO - Getting data for contract IC2102 on 20210218 ALQQQQ
+2024-10-21 17:38:08,088 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202102\IC2102_20210218.csv ASFKJV
+2024-10-21 17:38:08,242 - INFO - Trade IC2102 at 6598.3 on 20210218 14:00:00 with 1 hand(s)
+2024-10-21 17:38:08,257 - INFO - Getting data for contract IC2103 on 20210315 ZXCVJK
+2024-10-21 17:38:08,257 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202103\IC2103_20210315.csv CPIGOA
+2024-10-21 17:38:08,271 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:08,275 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:08,275 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:08,276 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:08,276 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:08,282 - DEBUG - utf-8 not active
+2024-10-21 17:38:08,282 - DEBUG - CP932 not active
+2024-10-21 17:38:08,282 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:08,282 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:08,282 - DEBUG - EUC-KR not active
+2024-10-21 17:38:08,282 - DEBUG - CP949 not active
+2024-10-21 17:38:08,282 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:08,282 - DEBUG - EUC-TW not active
+2024-10-21 17:38:08,282 - DEBUG - Johab not active
+2024-10-21 17:38:08,282 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:08,282 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:08,282 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:08,283 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:08,283 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:08,283 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:08,283 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:08,283 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:08,283 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:08,283 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:08,283 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:08,283 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:08,283 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:08,283 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:08,283 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:08,283 - DEBUG - utf-8 not active
+2024-10-21 17:38:08,283 - DEBUG - CP932 not active
+2024-10-21 17:38:08,283 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:08,283 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:08,283 - DEBUG - EUC-KR not active
+2024-10-21 17:38:08,283 - DEBUG - CP949 not active
+2024-10-21 17:38:08,283 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:08,284 - DEBUG - EUC-TW not active
+2024-10-21 17:38:08,284 - DEBUG - Johab not active
+2024-10-21 17:38:08,507 - INFO - Trade IC2102 at 6135.8 on 20210218 14:00:00 with 1 hand(s)
+2024-10-21 17:38:08,539 - INFO - Getting data for contract IC2103 on 20210315 ALQQQQ
+2024-10-21 17:38:08,539 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202103\IC2103_20210315.csv ASFKJV
+2024-10-21 17:38:08,681 - INFO - Trade IC2103 at 6136.6 on 20210315 14:00:00 with 1 hand(s)
+2024-10-21 17:38:08,692 - INFO - Getting data for contract IC2104 on 20210412 ZXCVJK
+2024-10-21 17:38:08,692 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202104\IC2104_20210412.csv CPIGOA
+2024-10-21 17:38:08,694 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:08,696 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:08,696 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:08,698 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:08,698 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:08,701 - DEBUG - utf-8 not active
+2024-10-21 17:38:08,701 - DEBUG - CP932 not active
+2024-10-21 17:38:08,701 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:08,701 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:08,702 - DEBUG - EUC-KR not active
+2024-10-21 17:38:08,702 - DEBUG - CP949 not active
+2024-10-21 17:38:08,702 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:08,702 - DEBUG - EUC-TW not active
+2024-10-21 17:38:08,702 - DEBUG - Johab not active
+2024-10-21 17:38:08,702 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:08,702 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:08,702 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:08,702 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:08,702 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:08,702 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:08,702 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:08,702 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:08,702 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:08,702 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:08,702 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:08,702 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:08,702 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:08,702 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:08,702 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:08,702 - DEBUG - utf-8 not active
+2024-10-21 17:38:08,702 - DEBUG - CP932 not active
+2024-10-21 17:38:08,703 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:08,703 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:08,703 - DEBUG - EUC-KR not active
+2024-10-21 17:38:08,703 - DEBUG - CP949 not active
+2024-10-21 17:38:08,703 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:08,703 - DEBUG - EUC-TW not active
+2024-10-21 17:38:08,703 - DEBUG - Johab not active
+2024-10-21 17:38:08,855 - INFO - Trade IC2103 at 6227.4 on 20210315 14:00:00 with 1 hand(s)
+2024-10-21 17:38:08,883 - INFO - Getting data for contract IC2104 on 20210412 ALQQQQ
+2024-10-21 17:38:08,883 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202104\IC2104_20210412.csv ASFKJV
+2024-10-21 17:38:09,023 - INFO - Trade IC2104 at 6228.6 on 20210412 14:00:00 with 1 hand(s)
+2024-10-21 17:38:09,034 - INFO - Getting data for contract IC2105 on 20210517 ZXCVJK
+2024-10-21 17:38:09,034 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202105\IC2105_20210517.csv CPIGOA
+2024-10-21 17:38:09,048 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:09,050 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:09,050 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:09,051 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:09,052 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:09,055 - DEBUG - utf-8 not active
+2024-10-21 17:38:09,055 - DEBUG - CP932 not active
+2024-10-21 17:38:09,055 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:09,055 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:09,055 - DEBUG - EUC-KR not active
+2024-10-21 17:38:09,055 - DEBUG - CP949 not active
+2024-10-21 17:38:09,055 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:09,055 - DEBUG - EUC-TW not active
+2024-10-21 17:38:09,055 - DEBUG - Johab not active
+2024-10-21 17:38:09,055 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:09,055 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:09,055 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:09,055 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:09,056 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:09,056 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:09,056 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:09,056 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:09,056 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:09,056 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:09,056 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:09,056 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:09,056 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:09,056 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:09,056 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:09,056 - DEBUG - utf-8 not active
+2024-10-21 17:38:09,056 - DEBUG - CP932 not active
+2024-10-21 17:38:09,056 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:09,056 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:09,056 - DEBUG - EUC-KR not active
+2024-10-21 17:38:09,056 - DEBUG - CP949 not active
+2024-10-21 17:38:09,056 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:09,056 - DEBUG - EUC-TW not active
+2024-10-21 17:38:09,056 - DEBUG - Johab not active
+2024-10-21 17:38:09,188 - INFO - Trade IC2104 at 6564.5 on 20210412 14:00:00 with 1 hand(s)
+2024-10-21 17:38:09,216 - INFO - Getting data for contract IC2105 on 20210517 ALQQQQ
+2024-10-21 17:38:09,216 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202105\IC2105_20210517.csv ASFKJV
+2024-10-21 17:38:09,351 - INFO - Trade IC2105 at 6565.6 on 20210517 14:00:00 with 1 hand(s)
+2024-10-21 17:38:09,361 - INFO - Getting data for contract IC2106 on 20210615 ZXCVJK
+2024-10-21 17:38:09,361 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202106\IC2106_20210615.csv CPIGOA
+2024-10-21 17:38:09,370 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:09,372 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:09,372 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:09,373 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:09,374 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:09,377 - DEBUG - utf-8 not active
+2024-10-21 17:38:09,377 - DEBUG - CP932 not active
+2024-10-21 17:38:09,377 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:09,377 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:09,377 - DEBUG - EUC-KR not active
+2024-10-21 17:38:09,377 - DEBUG - CP949 not active
+2024-10-21 17:38:09,377 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:09,377 - DEBUG - EUC-TW not active
+2024-10-21 17:38:09,377 - DEBUG - Johab not active
+2024-10-21 17:38:09,377 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:09,377 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:09,377 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:09,377 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:09,378 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:09,378 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:09,378 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:09,378 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:09,378 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:09,378 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:09,378 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:09,378 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:09,378 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:09,378 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:09,378 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:09,378 - DEBUG - utf-8 not active
+2024-10-21 17:38:09,378 - DEBUG - CP932 not active
+2024-10-21 17:38:09,378 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:09,378 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:09,378 - DEBUG - EUC-KR not active
+2024-10-21 17:38:09,378 - DEBUG - CP949 not active
+2024-10-21 17:38:09,378 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:09,378 - DEBUG - EUC-TW not active
+2024-10-21 17:38:09,378 - DEBUG - Johab not active
+2024-10-21 17:38:09,524 - INFO - Trade IC2105 at 6665.3 on 20210517 14:00:00 with 1 hand(s)
+2024-10-21 17:38:09,554 - INFO - Getting data for contract IC2106 on 20210615 ALQQQQ
+2024-10-21 17:38:09,554 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202106\IC2106_20210615.csv ASFKJV
+2024-10-21 17:38:09,688 - INFO - Trade IC2106 at 6666.6 on 20210615 14:00:00 with 1 hand(s)
+2024-10-21 17:38:09,698 - INFO - Getting data for contract IC2107 on 20210712 ZXCVJK
+2024-10-21 17:38:09,699 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202107\IC2107_20210712.csv CPIGOA
+2024-10-21 17:38:09,708 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:09,711 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:09,711 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:09,712 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:09,712 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:09,716 - DEBUG - utf-8 not active
+2024-10-21 17:38:09,716 - DEBUG - CP932 not active
+2024-10-21 17:38:09,716 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:09,716 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:09,716 - DEBUG - EUC-KR not active
+2024-10-21 17:38:09,716 - DEBUG - CP949 not active
+2024-10-21 17:38:09,716 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:09,716 - DEBUG - EUC-TW not active
+2024-10-21 17:38:09,716 - DEBUG - Johab not active
+2024-10-21 17:38:09,716 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:09,716 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:09,716 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:09,717 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:09,717 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:09,717 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:09,717 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:09,717 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:09,717 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:09,717 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:09,717 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:09,717 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:09,717 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:09,717 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:09,717 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:09,717 - DEBUG - utf-8 not active
+2024-10-21 17:38:09,717 - DEBUG - CP932 not active
+2024-10-21 17:38:09,717 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:09,717 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:09,717 - DEBUG - EUC-KR not active
+2024-10-21 17:38:09,717 - DEBUG - CP949 not active
+2024-10-21 17:38:09,717 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:09,717 - DEBUG - EUC-TW not active
+2024-10-21 17:38:09,718 - DEBUG - Johab not active
+2024-10-21 17:38:09,875 - INFO - Trade IC2106 at 6869.6 on 20210615 14:00:00 with 1 hand(s)
+2024-10-21 17:38:09,912 - INFO - Getting data for contract IC2107 on 20210712 ALQQQQ
+2024-10-21 17:38:09,912 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202107\IC2107_20210712.csv ASFKJV
+2024-10-21 17:38:10,048 - INFO - Trade IC2107 at 6870.6 on 20210712 14:00:00 with 1 hand(s)
+2024-10-21 17:38:10,058 - INFO - Getting data for contract IC2108 on 20210816 ZXCVJK
+2024-10-21 17:38:10,058 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202108\IC2108_20210816.csv CPIGOA
+2024-10-21 17:38:10,068 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:10,070 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:10,070 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:10,071 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:10,071 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:10,075 - DEBUG - utf-8 not active
+2024-10-21 17:38:10,075 - DEBUG - CP932 not active
+2024-10-21 17:38:10,075 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:10,075 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:10,076 - DEBUG - EUC-KR not active
+2024-10-21 17:38:10,076 - DEBUG - CP949 not active
+2024-10-21 17:38:10,076 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:10,076 - DEBUG - EUC-TW not active
+2024-10-21 17:38:10,076 - DEBUG - Johab not active
+2024-10-21 17:38:10,076 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:10,076 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:10,076 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:10,076 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:10,076 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:10,076 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:10,076 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:10,076 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:10,076 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:10,076 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:10,076 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:10,076 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:10,076 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:10,076 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:10,076 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:10,076 - DEBUG - utf-8 not active
+2024-10-21 17:38:10,077 - DEBUG - CP932 not active
+2024-10-21 17:38:10,077 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:10,077 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:10,077 - DEBUG - EUC-KR not active
+2024-10-21 17:38:10,077 - DEBUG - CP949 not active
+2024-10-21 17:38:10,077 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:10,077 - DEBUG - EUC-TW not active
+2024-10-21 17:38:10,077 - DEBUG - Johab not active
+2024-10-21 17:38:10,216 - INFO - Trade IC2107 at 7041.0 on 20210712 14:00:00 with 1 hand(s)
+2024-10-21 17:38:10,246 - INFO - Getting data for contract IC2108 on 20210816 ALQQQQ
+2024-10-21 17:38:10,246 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202108\IC2108_20210816.csv ASFKJV
+2024-10-21 17:38:10,393 - INFO - Trade IC2108 at 7041.6 on 20210816 14:00:00 with 1 hand(s)
+2024-10-21 17:38:10,404 - INFO - Getting data for contract IC2109 on 20210913 ZXCVJK
+2024-10-21 17:38:10,404 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202109\IC2109_20210913.csv CPIGOA
+2024-10-21 17:38:10,415 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:10,417 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:10,418 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:10,419 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:10,419 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:10,422 - DEBUG - utf-8 not active
+2024-10-21 17:38:10,423 - DEBUG - CP932 not active
+2024-10-21 17:38:10,423 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:10,423 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:10,423 - DEBUG - EUC-KR not active
+2024-10-21 17:38:10,423 - DEBUG - CP949 not active
+2024-10-21 17:38:10,423 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:10,423 - DEBUG - EUC-TW not active
+2024-10-21 17:38:10,423 - DEBUG - Johab not active
+2024-10-21 17:38:10,423 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:10,423 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:10,423 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:10,423 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:10,423 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:10,423 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:10,423 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:10,423 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:10,423 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:10,423 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:10,423 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:10,423 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:10,424 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:10,424 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:10,424 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:10,424 - DEBUG - utf-8 not active
+2024-10-21 17:38:10,424 - DEBUG - CP932 not active
+2024-10-21 17:38:10,424 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:10,424 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:10,424 - DEBUG - EUC-KR not active
+2024-10-21 17:38:10,424 - DEBUG - CP949 not active
+2024-10-21 17:38:10,424 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:10,424 - DEBUG - EUC-TW not active
+2024-10-21 17:38:10,424 - DEBUG - Johab not active
+2024-10-21 17:38:10,572 - INFO - Trade IC2108 at 7602.4 on 20210816 14:00:00 with 1 hand(s)
+2024-10-21 17:38:10,609 - INFO - Getting data for contract IC2109 on 20210913 ALQQQQ
+2024-10-21 17:38:10,609 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202109\IC2109_20210913.csv ASFKJV
+2024-10-21 17:38:10,749 - INFO - Trade IC2109 at 7603.4 on 20210913 14:00:00 with 1 hand(s)
+2024-10-21 17:38:10,762 - INFO - Getting data for contract IC2110 on 20211011 ZXCVJK
+2024-10-21 17:38:10,762 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202110\IC2110_20211011.csv CPIGOA
+2024-10-21 17:38:10,771 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:10,774 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:10,774 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:10,775 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:10,775 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:10,778 - DEBUG - utf-8 not active
+2024-10-21 17:38:10,779 - DEBUG - CP932 not active
+2024-10-21 17:38:10,779 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:10,779 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:10,779 - DEBUG - EUC-KR not active
+2024-10-21 17:38:10,779 - DEBUG - CP949 not active
+2024-10-21 17:38:10,779 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:10,779 - DEBUG - EUC-TW not active
+2024-10-21 17:38:10,779 - DEBUG - Johab not active
+2024-10-21 17:38:10,779 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:10,779 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:10,779 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:10,779 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:10,779 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:10,779 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:10,779 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:10,779 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:10,779 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:10,779 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:10,779 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:10,779 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:10,779 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:10,779 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:10,779 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:10,780 - DEBUG - utf-8 not active
+2024-10-21 17:38:10,780 - DEBUG - CP932 not active
+2024-10-21 17:38:10,780 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:10,780 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:10,780 - DEBUG - EUC-KR not active
+2024-10-21 17:38:10,780 - DEBUG - CP949 not active
+2024-10-21 17:38:10,780 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:10,780 - DEBUG - EUC-TW not active
+2024-10-21 17:38:10,780 - DEBUG - Johab not active
+2024-10-21 17:38:10,944 - INFO - Trade IC2109 at 7081.2 on 20210913 14:00:00 with 1 hand(s)
+2024-10-21 17:38:10,976 - INFO - Getting data for contract IC2110 on 20211011 ALQQQQ
+2024-10-21 17:38:10,976 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202110\IC2110_20211011.csv ASFKJV
+2024-10-21 17:38:11,110 - INFO - Trade IC2110 at 7082.1 on 20211011 14:00:00 with 1 hand(s)
+2024-10-21 17:38:11,123 - INFO - Getting data for contract IC2111 on 20211115 ZXCVJK
+2024-10-21 17:38:11,123 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202111\IC2111_20211115.csv CPIGOA
+2024-10-21 17:38:11,133 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:11,136 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:11,137 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:11,138 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:11,138 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:11,142 - DEBUG - utf-8 not active
+2024-10-21 17:38:11,142 - DEBUG - CP932 not active
+2024-10-21 17:38:11,142 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:11,143 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:11,143 - DEBUG - EUC-KR not active
+2024-10-21 17:38:11,143 - DEBUG - CP949 not active
+2024-10-21 17:38:11,143 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:11,143 - DEBUG - EUC-TW not active
+2024-10-21 17:38:11,143 - DEBUG - Johab not active
+2024-10-21 17:38:11,143 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:11,143 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:11,143 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:11,143 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:11,143 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:11,143 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:11,143 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:11,143 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:11,143 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:11,143 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:11,143 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:11,143 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:11,143 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:11,143 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:11,143 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:11,144 - DEBUG - utf-8 not active
+2024-10-21 17:38:11,144 - DEBUG - CP932 not active
+2024-10-21 17:38:11,144 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:11,144 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:11,144 - DEBUG - EUC-KR not active
+2024-10-21 17:38:11,144 - DEBUG - CP949 not active
+2024-10-21 17:38:11,144 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:11,144 - DEBUG - EUC-TW not active
+2024-10-21 17:38:11,144 - DEBUG - Johab not active
+2024-10-21 17:38:11,313 - INFO - Trade IC2110 at 7100.2 on 20211011 14:00:00 with 1 hand(s)
+2024-10-21 17:38:11,350 - INFO - Getting data for contract IC2111 on 20211115 ALQQQQ
+2024-10-21 17:38:11,351 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202111\IC2111_20211115.csv ASFKJV
+2024-10-21 17:38:11,533 - INFO - Trade IC2111 at 7100.9 on 20211115 14:00:00 with 1 hand(s)
+2024-10-21 17:38:11,551 - INFO - Getting data for contract IC2112 on 20211213 ZXCVJK
+2024-10-21 17:38:11,551 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202112\IC2112_20211213.csv CPIGOA
+2024-10-21 17:38:11,569 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:11,573 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:11,573 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:11,574 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:11,574 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:11,578 - DEBUG - utf-8 not active
+2024-10-21 17:38:11,578 - DEBUG - CP932 not active
+2024-10-21 17:38:11,578 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:11,578 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:11,578 - DEBUG - EUC-KR not active
+2024-10-21 17:38:11,578 - DEBUG - CP949 not active
+2024-10-21 17:38:11,578 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:11,578 - DEBUG - EUC-TW not active
+2024-10-21 17:38:11,578 - DEBUG - Johab not active
+2024-10-21 17:38:11,578 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:11,578 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:11,578 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:11,578 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:11,578 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:11,578 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:11,579 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:11,579 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:11,579 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:11,579 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:11,579 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:11,579 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:11,579 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:11,579 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:11,579 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:11,579 - DEBUG - utf-8 not active
+2024-10-21 17:38:11,579 - DEBUG - CP932 not active
+2024-10-21 17:38:11,579 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:11,579 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:11,579 - DEBUG - EUC-KR not active
+2024-10-21 17:38:11,579 - DEBUG - CP949 not active
+2024-10-21 17:38:11,579 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:11,579 - DEBUG - EUC-TW not active
+2024-10-21 17:38:11,579 - DEBUG - Johab not active
+2024-10-21 17:38:11,722 - INFO - Trade IC2111 at 7356.7 on 20211115 14:00:00 with 1 hand(s)
+2024-10-21 17:38:11,751 - INFO - Getting data for contract IC2112 on 20211213 ALQQQQ
+2024-10-21 17:38:11,751 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202112\IC2112_20211213.csv ASFKJV
+2024-10-21 17:38:11,881 - INFO - Trade IC2112 at 7357.3 on 20211213 14:00:00 with 1 hand(s)
+2024-10-21 17:38:11,892 - INFO - Getting data for contract IC2201 on 20220117 ZXCVJK
+2024-10-21 17:38:11,892 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202201\IC2201_20220117.csv CPIGOA
+2024-10-21 17:38:11,904 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:11,906 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:11,907 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:11,908 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:11,908 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:11,911 - DEBUG - utf-8 not active
+2024-10-21 17:38:11,911 - DEBUG - CP932 not active
+2024-10-21 17:38:11,911 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:11,911 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:11,911 - DEBUG - EUC-KR not active
+2024-10-21 17:38:11,911 - DEBUG - CP949 not active
+2024-10-21 17:38:11,911 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:11,911 - DEBUG - EUC-TW not active
+2024-10-21 17:38:11,911 - DEBUG - Johab not active
+2024-10-21 17:38:11,911 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:11,912 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:11,912 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:11,912 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:11,912 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:11,912 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:11,912 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:11,912 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:11,912 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:11,912 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:11,912 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:11,912 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:11,912 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:11,912 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:11,912 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:11,912 - DEBUG - utf-8 not active
+2024-10-21 17:38:11,912 - DEBUG - CP932 not active
+2024-10-21 17:38:11,912 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:11,912 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:11,912 - DEBUG - EUC-KR not active
+2024-10-21 17:38:11,912 - DEBUG - CP949 not active
+2024-10-21 17:38:11,912 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:11,912 - DEBUG - EUC-TW not active
+2024-10-21 17:38:11,913 - DEBUG - Johab not active
+2024-10-21 17:38:12,079 - INFO - Trade IC2112 at 7180.3 on 20211213 14:00:00 with 1 hand(s)
+2024-10-21 17:38:12,107 - INFO - Getting data for contract IC2201 on 20220117 ALQQQQ
+2024-10-21 17:38:12,107 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202201\IC2201_20220117.csv ASFKJV
+2024-10-21 17:38:12,234 - INFO - Trade IC2201 at 7180.5 on 20220117 14:00:00 with 1 hand(s)
+2024-10-21 17:38:12,245 - INFO - Getting data for contract IC2202 on 20220214 ZXCVJK
+2024-10-21 17:38:12,245 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202202\IC2202_20220214.csv CPIGOA
+2024-10-21 17:38:12,265 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:12,267 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:12,268 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:12,269 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:12,269 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:12,272 - DEBUG - utf-8 not active
+2024-10-21 17:38:12,272 - DEBUG - CP932 not active
+2024-10-21 17:38:12,272 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:12,272 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:12,272 - DEBUG - EUC-KR not active
+2024-10-21 17:38:12,272 - DEBUG - CP949 not active
+2024-10-21 17:38:12,272 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:12,272 - DEBUG - EUC-TW not active
+2024-10-21 17:38:12,272 - DEBUG - Johab not active
+2024-10-21 17:38:12,272 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:12,273 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:12,273 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:12,273 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:12,273 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:12,273 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:12,273 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:12,273 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:12,273 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:12,273 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:12,273 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:12,273 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:12,273 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:12,273 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:12,273 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:12,273 - DEBUG - utf-8 not active
+2024-10-21 17:38:12,273 - DEBUG - CP932 not active
+2024-10-21 17:38:12,273 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:12,273 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:12,273 - DEBUG - EUC-KR not active
+2024-10-21 17:38:12,273 - DEBUG - CP949 not active
+2024-10-21 17:38:12,273 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:12,273 - DEBUG - EUC-TW not active
+2024-10-21 17:38:12,273 - DEBUG - Johab not active
+2024-10-21 17:38:12,420 - INFO - Trade IC2201 at 6696.3 on 20220117 14:00:00 with 1 hand(s)
+2024-10-21 17:38:12,448 - INFO - Getting data for contract IC2202 on 20220214 ALQQQQ
+2024-10-21 17:38:12,448 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202202\IC2202_20220214.csv ASFKJV
+2024-10-21 17:38:12,602 - INFO - Trade IC2202 at 6696.9 on 20220214 14:00:00 with 1 hand(s)
+2024-10-21 17:38:12,613 - INFO - Getting data for contract IC2203 on 20220314 ZXCVJK
+2024-10-21 17:38:12,613 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202203\IC2203_20220314.csv CPIGOA
+2024-10-21 17:38:12,627 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:12,629 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:12,630 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:12,631 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:12,631 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:12,634 - DEBUG - utf-8 not active
+2024-10-21 17:38:12,634 - DEBUG - CP932 not active
+2024-10-21 17:38:12,635 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:12,635 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:12,635 - DEBUG - EUC-KR not active
+2024-10-21 17:38:12,635 - DEBUG - CP949 not active
+2024-10-21 17:38:12,635 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:12,635 - DEBUG - EUC-TW not active
+2024-10-21 17:38:12,635 - DEBUG - Johab not active
+2024-10-21 17:38:12,635 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:12,635 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:12,635 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:12,635 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:12,635 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:12,635 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:12,635 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:12,635 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:12,635 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:12,635 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:12,635 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:12,635 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:12,636 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:12,636 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:12,636 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:12,636 - DEBUG - utf-8 not active
+2024-10-21 17:38:12,636 - DEBUG - CP932 not active
+2024-10-21 17:38:12,636 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:12,636 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:12,636 - DEBUG - EUC-KR not active
+2024-10-21 17:38:12,636 - DEBUG - CP949 not active
+2024-10-21 17:38:12,636 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:12,636 - DEBUG - EUC-TW not active
+2024-10-21 17:38:12,636 - DEBUG - Johab not active
+2024-10-21 17:38:12,844 - INFO - Trade IC2202 at 6374.2 on 20220214 14:00:00 with 1 hand(s)
+2024-10-21 17:38:12,878 - INFO - Getting data for contract IC2203 on 20220314 ALQQQQ
+2024-10-21 17:38:12,878 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202203\IC2203_20220314.csv ASFKJV
+2024-10-21 17:38:13,152 - INFO - Trade IC2203 at 6375.6 on 20220314 14:00:00 with 1 hand(s)
+2024-10-21 17:38:13,165 - INFO - Getting data for contract IC2204 on 20220411 ZXCVJK
+2024-10-21 17:38:13,165 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202204\IC2204_20220411.csv CPIGOA
+2024-10-21 17:38:13,181 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:13,184 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:13,184 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:13,186 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:13,186 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:13,190 - DEBUG - utf-8 not active
+2024-10-21 17:38:13,190 - DEBUG - CP932 not active
+2024-10-21 17:38:13,190 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:13,190 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:13,190 - DEBUG - EUC-KR not active
+2024-10-21 17:38:13,190 - DEBUG - CP949 not active
+2024-10-21 17:38:13,190 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:13,190 - DEBUG - EUC-TW not active
+2024-10-21 17:38:13,190 - DEBUG - Johab not active
+2024-10-21 17:38:13,190 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:13,190 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:13,190 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:13,190 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:13,190 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:13,190 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:13,190 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:13,191 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:13,191 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:13,191 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:13,191 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:13,191 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:13,191 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:13,191 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:13,191 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:13,191 - DEBUG - utf-8 not active
+2024-10-21 17:38:13,191 - DEBUG - CP932 not active
+2024-10-21 17:38:13,191 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:13,191 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:13,191 - DEBUG - EUC-KR not active
+2024-10-21 17:38:13,191 - DEBUG - CP949 not active
+2024-10-21 17:38:13,191 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:13,191 - DEBUG - EUC-TW not active
+2024-10-21 17:38:13,191 - DEBUG - Johab not active
+2024-10-21 17:38:13,364 - INFO - Trade IC2203 at 6072.1 on 20220314 14:00:00 with 1 hand(s)
+2024-10-21 17:38:13,395 - INFO - Getting data for contract IC2204 on 20220411 ALQQQQ
+2024-10-21 17:38:13,395 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202204\IC2204_20220411.csv ASFKJV
+2024-10-21 17:38:13,588 - INFO - Trade IC2204 at 6072.9 on 20220411 14:00:00 with 1 hand(s)
+2024-10-21 17:38:13,602 - INFO - Getting data for contract IC2205 on 20220516 ZXCVJK
+2024-10-21 17:38:13,602 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202205\IC2205_20220516.csv CPIGOA
+2024-10-21 17:38:13,604 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:13,608 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:13,608 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:13,609 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:13,609 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:13,612 - DEBUG - utf-8 not active
+2024-10-21 17:38:13,612 - DEBUG - CP932 not active
+2024-10-21 17:38:13,613 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:13,613 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:13,613 - DEBUG - EUC-KR not active
+2024-10-21 17:38:13,613 - DEBUG - CP949 not active
+2024-10-21 17:38:13,613 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:13,613 - DEBUG - EUC-TW not active
+2024-10-21 17:38:13,613 - DEBUG - Johab not active
+2024-10-21 17:38:13,613 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:13,613 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:13,613 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:13,613 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:13,613 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:13,613 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:13,613 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:13,613 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:13,613 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:13,613 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:13,613 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:13,613 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:13,613 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:13,613 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:13,614 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:13,614 - DEBUG - utf-8 not active
+2024-10-21 17:38:13,614 - DEBUG - CP932 not active
+2024-10-21 17:38:13,614 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:13,614 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:13,614 - DEBUG - EUC-KR not active
+2024-10-21 17:38:13,614 - DEBUG - CP949 not active
+2024-10-21 17:38:13,614 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:13,614 - DEBUG - EUC-TW not active
+2024-10-21 17:38:13,614 - DEBUG - Johab not active
+2024-10-21 17:38:13,764 - INFO - Trade IC2204 at 5770.7 on 20220411 14:00:00 with 1 hand(s)
+2024-10-21 17:38:13,798 - INFO - Getting data for contract IC2205 on 20220516 ALQQQQ
+2024-10-21 17:38:13,798 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202205\IC2205_20220516.csv ASFKJV
+2024-10-21 17:38:13,934 - INFO - Trade IC2205 at 5772.2 on 20220516 14:00:00 with 1 hand(s)
+2024-10-21 17:38:13,945 - INFO - Getting data for contract IC2206 on 20220613 ZXCVJK
+2024-10-21 17:38:13,946 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202206\IC2206_20220613.csv CPIGOA
+2024-10-21 17:38:13,997 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:14,001 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:14,001 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:14,002 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:14,002 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:14,007 - DEBUG - utf-8 not active
+2024-10-21 17:38:14,007 - DEBUG - CP932 not active
+2024-10-21 17:38:14,007 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:14,008 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:14,008 - DEBUG - EUC-KR not active
+2024-10-21 17:38:14,008 - DEBUG - CP949 not active
+2024-10-21 17:38:14,008 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:14,008 - DEBUG - EUC-TW not active
+2024-10-21 17:38:14,008 - DEBUG - Johab not active
+2024-10-21 17:38:14,008 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:14,008 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:14,008 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:14,008 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:14,008 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:14,008 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:14,008 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:14,008 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:14,008 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:14,008 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:14,009 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:14,009 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:14,009 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:14,009 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:14,009 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:14,009 - DEBUG - utf-8 not active
+2024-10-21 17:38:14,009 - DEBUG - CP932 not active
+2024-10-21 17:38:14,009 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:14,009 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:14,009 - DEBUG - EUC-KR not active
+2024-10-21 17:38:14,009 - DEBUG - CP949 not active
+2024-10-21 17:38:14,009 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:14,009 - DEBUG - EUC-TW not active
+2024-10-21 17:38:14,009 - DEBUG - Johab not active
+2024-10-21 17:38:14,183 - INFO - Trade IC2205 at 6186.3 on 20220516 14:00:00 with 1 hand(s)
+2024-10-21 17:38:14,213 - INFO - Getting data for contract IC2206 on 20220613 ALQQQQ
+2024-10-21 17:38:14,213 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202206\IC2206_20220613.csv ASFKJV
+2024-10-21 17:38:14,371 - INFO - Trade IC2206 at 6186.5 on 20220613 14:00:00 with 1 hand(s)
+2024-10-21 17:38:14,383 - INFO - Getting data for contract IC2207 on 20220711 ZXCVJK
+2024-10-21 17:38:14,384 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202207\IC2207_20220711.csv CPIGOA
+2024-10-21 17:38:14,404 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:14,408 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:14,408 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:14,409 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:14,409 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:14,412 - DEBUG - utf-8 not active
+2024-10-21 17:38:14,413 - DEBUG - CP932 not active
+2024-10-21 17:38:14,413 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:14,413 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:14,413 - DEBUG - EUC-KR not active
+2024-10-21 17:38:14,413 - DEBUG - CP949 not active
+2024-10-21 17:38:14,413 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:14,413 - DEBUG - EUC-TW not active
+2024-10-21 17:38:14,413 - DEBUG - Johab not active
+2024-10-21 17:38:14,413 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:14,413 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:14,413 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:14,413 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:14,413 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:14,413 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:14,413 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:14,413 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:14,413 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:14,413 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:14,413 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:14,413 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:14,414 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:14,414 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:14,414 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:14,414 - DEBUG - utf-8 not active
+2024-10-21 17:38:14,414 - DEBUG - CP932 not active
+2024-10-21 17:38:14,414 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:14,414 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:14,414 - DEBUG - EUC-KR not active
+2024-10-21 17:38:14,414 - DEBUG - CP949 not active
+2024-10-21 17:38:14,414 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:14,414 - DEBUG - EUC-TW not active
+2024-10-21 17:38:14,414 - DEBUG - Johab not active
+2024-10-21 17:38:14,586 - INFO - Trade IC2206 at 6265.8 on 20220613 14:00:00 with 1 hand(s)
+2024-10-21 17:38:14,615 - INFO - Getting data for contract IC2207 on 20220711 ALQQQQ
+2024-10-21 17:38:14,615 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202207\IC2207_20220711.csv ASFKJV
+2024-10-21 17:38:14,807 - INFO - Trade IC2207 at 6267.7 on 20220711 14:00:00 with 1 hand(s)
+2024-10-21 17:38:14,825 - INFO - Getting data for contract IC2208 on 20220815 ZXCVJK
+2024-10-21 17:38:14,825 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202208\IC2208_20220815.csv CPIGOA
+2024-10-21 17:38:14,852 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:14,854 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:14,854 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:14,856 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:14,856 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:14,859 - DEBUG - utf-8 not active
+2024-10-21 17:38:14,859 - DEBUG - CP932 not active
+2024-10-21 17:38:14,859 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:14,859 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:14,859 - DEBUG - EUC-KR not active
+2024-10-21 17:38:14,859 - DEBUG - CP949 not active
+2024-10-21 17:38:14,859 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:14,859 - DEBUG - EUC-TW not active
+2024-10-21 17:38:14,859 - DEBUG - Johab not active
+2024-10-21 17:38:14,859 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:14,860 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:14,860 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:14,860 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:14,860 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:14,860 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:14,860 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:14,860 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:14,860 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:14,860 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:14,860 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:14,860 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:14,860 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:14,860 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:14,860 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:14,860 - DEBUG - utf-8 not active
+2024-10-21 17:38:14,860 - DEBUG - CP932 not active
+2024-10-21 17:38:14,860 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:14,860 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:14,860 - DEBUG - EUC-KR not active
+2024-10-21 17:38:14,860 - DEBUG - CP949 not active
+2024-10-21 17:38:14,860 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:14,860 - DEBUG - EUC-TW not active
+2024-10-21 17:38:14,860 - DEBUG - Johab not active
+2024-10-21 17:38:15,003 - INFO - Trade IC2207 at 6450.2 on 20220711 14:00:00 with 1 hand(s)
+2024-10-21 17:38:15,036 - INFO - Getting data for contract IC2208 on 20220815 ALQQQQ
+2024-10-21 17:38:15,036 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202208\IC2208_20220815.csv ASFKJV
+2024-10-21 17:38:15,174 - INFO - Trade IC2208 at 6450.7 on 20220815 14:00:00 with 1 hand(s)
+2024-10-21 17:38:15,187 - INFO - Getting data for contract IC2209 on 20220913 ZXCVJK
+2024-10-21 17:38:15,187 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202209\IC2209_20220913.csv CPIGOA
+2024-10-21 17:38:15,212 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:38:15,215 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:38:15,215 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:38:15,216 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:38:15,216 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:38:15,220 - DEBUG - utf-8 not active
+2024-10-21 17:38:15,220 - DEBUG - CP932 not active
+2024-10-21 17:38:15,220 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:15,220 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:15,220 - DEBUG - EUC-KR not active
+2024-10-21 17:38:15,220 - DEBUG - CP949 not active
+2024-10-21 17:38:15,220 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:15,220 - DEBUG - EUC-TW not active
+2024-10-21 17:38:15,220 - DEBUG - Johab not active
+2024-10-21 17:38:15,220 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:38:15,220 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:38:15,220 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:38:15,221 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:38:15,221 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:38:15,221 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:38:15,221 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:38:15,221 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:38:15,221 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:38:15,221 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:38:15,221 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:38:15,221 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:38:15,221 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:15,221 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:38:15,221 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:38:15,221 - DEBUG - utf-8 not active
+2024-10-21 17:38:15,221 - DEBUG - CP932 not active
+2024-10-21 17:38:15,221 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:38:15,221 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:38:15,221 - DEBUG - EUC-KR not active
+2024-10-21 17:38:15,221 - DEBUG - CP949 not active
+2024-10-21 17:38:15,221 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:38:15,221 - DEBUG - EUC-TW not active
+2024-10-21 17:38:15,221 - DEBUG - Johab not active
+2024-10-21 17:38:15,370 - INFO - Trade IC2208 at 6305.4 on 20220815 14:00:00 with 1 hand(s)
+2024-10-21 17:38:15,400 - INFO - Getting data for contract IC2209 on 20220913 ALQQQQ
+2024-10-21 17:38:15,400 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202209\IC2209_20220913.csv ASFKJV
+2024-10-21 17:38:15,554 - INFO - Trade IC2209 at 6306.1 on 20220913 14:00:00 with 1 hand(s)
+2024-10-21 17:38:15,564 - INFO - Getting data for contract IC2210 on 20221017 ZXCVJK
+2024-10-21 17:38:15,564 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202210\IC2210_20221017.csv CPIGOA

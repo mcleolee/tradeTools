@@ -1,0 +1,1519 @@
+2024-10-22 10:02:58,007 - INFO - Start backtesting.
+2024-10-22 10:02:58,119 - INFO - Getting data for contract IC2001 on 20200102 ZXCVJK
+2024-10-22 10:02:58,119 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202001\IC2001_20200102.csv CPIGOA
+2024-10-22 10:02:58,120 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:02:58,123 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:02:58,123 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:02:58,124 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:02:58,125 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:02:58,130 - DEBUG - utf-8 not active
+2024-10-22 10:02:58,130 - DEBUG - CP932 not active
+2024-10-22 10:02:58,130 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:02:58,130 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:02:58,130 - DEBUG - EUC-KR not active
+2024-10-22 10:02:58,130 - DEBUG - CP949 not active
+2024-10-22 10:02:58,130 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:02:58,130 - DEBUG - EUC-TW not active
+2024-10-22 10:02:58,130 - DEBUG - Johab not active
+2024-10-22 10:02:58,130 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:02:58,130 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:02:58,131 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:02:58,131 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:02:58,131 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:02:58,131 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:02:58,131 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:02:58,131 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:02:58,131 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:02:58,131 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:02:58,131 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:02:58,131 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:02:58,131 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:02:58,131 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:02:58,131 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:02:58,131 - DEBUG - utf-8 not active
+2024-10-22 10:02:58,131 - DEBUG - CP932 not active
+2024-10-22 10:02:58,131 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:02:58,131 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:02:58,131 - DEBUG - EUC-KR not active
+2024-10-22 10:02:58,131 - DEBUG - CP949 not active
+2024-10-22 10:02:58,131 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:02:58,131 - DEBUG - EUC-TW not active
+2024-10-22 10:02:58,131 - DEBUG - Johab not active
+2024-10-22 10:02:58,358 - INFO - Trade IC2001 at 5375.8 on 20200101 14:00:00 with 1 hand(s)
+2024-10-22 10:02:58,420 - INFO - Getting data for contract IC2001 on 20200113 ALQQQQ
+2024-10-22 10:02:58,420 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202001\IC2001_20200113.csv ASFKJV
+2024-10-22 10:02:58,604 - INFO - Trade IC2001 at 5533.9 on 20200113 14:00:00 with 1 hand(s)
+2024-10-22 10:02:58,626 - INFO - Getting data for contract IC2002 on 20200217 ZXCVJK
+2024-10-22 10:02:58,627 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202002\IC2002_20200217.csv CPIGOA
+2024-10-22 10:02:58,628 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:02:58,631 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:02:58,631 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:02:58,632 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:02:58,632 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:02:58,637 - DEBUG - utf-8 not active
+2024-10-22 10:02:58,637 - DEBUG - CP932 not active
+2024-10-22 10:02:58,637 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:02:58,637 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:02:58,637 - DEBUG - EUC-KR not active
+2024-10-22 10:02:58,638 - DEBUG - CP949 not active
+2024-10-22 10:02:58,638 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:02:58,638 - DEBUG - EUC-TW not active
+2024-10-22 10:02:58,638 - DEBUG - Johab not active
+2024-10-22 10:02:58,638 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:02:58,638 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:02:58,638 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:02:58,638 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:02:58,638 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:02:58,638 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:02:58,638 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:02:58,638 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:02:58,638 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:02:58,638 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:02:58,638 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:02:58,639 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:02:58,639 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:02:58,639 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:02:58,639 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:02:58,639 - DEBUG - utf-8 not active
+2024-10-22 10:02:58,639 - DEBUG - CP932 not active
+2024-10-22 10:02:58,639 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:02:58,639 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:02:58,639 - DEBUG - EUC-KR not active
+2024-10-22 10:02:58,639 - DEBUG - CP949 not active
+2024-10-22 10:02:58,639 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:02:58,639 - DEBUG - EUC-TW not active
+2024-10-22 10:02:58,639 - DEBUG - Johab not active
+2024-10-22 10:02:58,906 - INFO - Trade IC2001 at 5561.0 on 20200113 14:00:00 with 1 hand(s)
+2024-10-22 10:02:58,912 - INFO - Contract: [IC2002]: 
+ends at [2020-02-21], roll over date is [2020-02-17], settlement date is [2020-02-24], contract type is [main]
+2024-10-22 10:02:58,937 - INFO - Getting data for contract IC2002 on 20200217 ALQQQQ
+2024-10-22 10:02:58,937 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202002\IC2002_20200217.csv ASFKJV
+2024-10-22 10:02:59,113 - INFO - Trade IC2002 at 5561.6 on 20200217 14:00:00 with 1 hand(s)
+2024-10-22 10:02:59,127 - INFO - Getting data for contract IC2003 on 20200316 ZXCVJK
+2024-10-22 10:02:59,127 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202003\IC2003_20200316.csv CPIGOA
+2024-10-22 10:02:59,128 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:02:59,131 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:02:59,131 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:02:59,132 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:02:59,132 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:02:59,137 - DEBUG - utf-8 not active
+2024-10-22 10:02:59,137 - DEBUG - CP932 not active
+2024-10-22 10:02:59,137 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:02:59,138 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:02:59,138 - DEBUG - EUC-KR not active
+2024-10-22 10:02:59,138 - DEBUG - CP949 not active
+2024-10-22 10:02:59,138 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:02:59,138 - DEBUG - EUC-TW not active
+2024-10-22 10:02:59,138 - DEBUG - Johab not active
+2024-10-22 10:02:59,138 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:02:59,138 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:02:59,138 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:02:59,138 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:02:59,138 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:02:59,138 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:02:59,138 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:02:59,138 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:02:59,138 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:02:59,138 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:02:59,138 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:02:59,138 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:02:59,138 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:02:59,139 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:02:59,139 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:02:59,139 - DEBUG - utf-8 not active
+2024-10-22 10:02:59,139 - DEBUG - CP932 not active
+2024-10-22 10:02:59,139 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:02:59,139 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:02:59,139 - DEBUG - EUC-KR not active
+2024-10-22 10:02:59,139 - DEBUG - CP949 not active
+2024-10-22 10:02:59,139 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:02:59,139 - DEBUG - EUC-TW not active
+2024-10-22 10:02:59,139 - DEBUG - Johab not active
+2024-10-22 10:02:59,321 - INFO - Trade IC2002 at 5227.4 on 20200217 14:00:00 with 1 hand(s)
+2024-10-22 10:02:59,327 - INFO - Contract: [IC2003]: 
+ends at [2020-03-20], roll over date is [2020-03-16], settlement date is [2020-03-23], contract type is [main]
+2024-10-22 10:02:59,351 - INFO - Getting data for contract IC2003 on 20200316 ALQQQQ
+2024-10-22 10:02:59,351 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202003\IC2003_20200316.csv ASFKJV
+2024-10-22 10:02:59,512 - INFO - Trade IC2003 at 5227.9 on 20200316 14:00:00 with 1 hand(s)
+2024-10-22 10:02:59,522 - INFO - Getting data for contract IC2004 on 20200413 ZXCVJK
+2024-10-22 10:02:59,522 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202004\IC2004_20200413.csv CPIGOA
+2024-10-22 10:02:59,523 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:02:59,527 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:02:59,527 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:02:59,529 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:02:59,529 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:02:59,532 - DEBUG - utf-8 not active
+2024-10-22 10:02:59,532 - DEBUG - CP932 not active
+2024-10-22 10:02:59,532 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:02:59,532 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:02:59,532 - DEBUG - EUC-KR not active
+2024-10-22 10:02:59,532 - DEBUG - CP949 not active
+2024-10-22 10:02:59,532 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:02:59,532 - DEBUG - EUC-TW not active
+2024-10-22 10:02:59,532 - DEBUG - Johab not active
+2024-10-22 10:02:59,532 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:02:59,532 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:02:59,532 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:02:59,532 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:02:59,532 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:02:59,532 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:02:59,532 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:02:59,532 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:02:59,533 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:02:59,533 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:02:59,533 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:02:59,533 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:02:59,533 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:02:59,533 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:02:59,534 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:02:59,534 - DEBUG - utf-8 not active
+2024-10-22 10:02:59,534 - DEBUG - CP932 not active
+2024-10-22 10:02:59,534 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:02:59,534 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:02:59,534 - DEBUG - EUC-KR not active
+2024-10-22 10:02:59,534 - DEBUG - CP949 not active
+2024-10-22 10:02:59,534 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:02:59,534 - DEBUG - EUC-TW not active
+2024-10-22 10:02:59,534 - DEBUG - Johab not active
+2024-10-22 10:02:59,698 - INFO - Trade IC2003 at 5141.5 on 20200316 14:00:00 with 1 hand(s)
+2024-10-22 10:02:59,705 - INFO - Contract: [IC2004]: 
+ends at [2020-04-17], roll over date is [2020-04-13], settlement date is [2020-04-20], contract type is [main]
+2024-10-22 10:02:59,730 - INFO - Getting data for contract IC2004 on 20200413 ALQQQQ
+2024-10-22 10:02:59,730 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202004\IC2004_20200413.csv ASFKJV
+2024-10-22 10:02:59,896 - INFO - Trade IC2004 at 5141.9 on 20200413 14:00:00 with 1 hand(s)
+2024-10-22 10:02:59,906 - INFO - Getting data for contract IC2005 on 20200511 ZXCVJK
+2024-10-22 10:02:59,906 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202005\IC2005_20200511.csv CPIGOA
+2024-10-22 10:02:59,907 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:02:59,910 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:02:59,910 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:02:59,911 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:02:59,912 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:02:59,916 - DEBUG - utf-8 not active
+2024-10-22 10:02:59,916 - DEBUG - CP932 not active
+2024-10-22 10:02:59,916 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:02:59,916 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:02:59,916 - DEBUG - EUC-KR not active
+2024-10-22 10:02:59,916 - DEBUG - CP949 not active
+2024-10-22 10:02:59,916 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:02:59,916 - DEBUG - EUC-TW not active
+2024-10-22 10:02:59,916 - DEBUG - Johab not active
+2024-10-22 10:02:59,916 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:02:59,916 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:02:59,916 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:02:59,916 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:02:59,916 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:02:59,916 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:02:59,916 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:02:59,916 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:02:59,917 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:02:59,917 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:02:59,917 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:02:59,917 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:02:59,917 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:02:59,917 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:02:59,917 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:02:59,917 - DEBUG - utf-8 not active
+2024-10-22 10:02:59,917 - DEBUG - CP932 not active
+2024-10-22 10:02:59,917 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:02:59,917 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:02:59,917 - DEBUG - EUC-KR not active
+2024-10-22 10:02:59,917 - DEBUG - CP949 not active
+2024-10-22 10:02:59,917 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:02:59,917 - DEBUG - EUC-TW not active
+2024-10-22 10:02:59,917 - DEBUG - Johab not active
+2024-10-22 10:03:00,080 - INFO - Trade IC2004 at 5461.8 on 20200413 14:00:00 with 1 hand(s)
+2024-10-22 10:03:00,090 - INFO - Contract: [IC2005]: 
+ends at [2020-05-15], roll over date is [2020-05-11], settlement date is [2020-05-18], contract type is [main]
+2024-10-22 10:03:00,115 - INFO - Getting data for contract IC2005 on 20200511 ALQQQQ
+2024-10-22 10:03:00,115 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202005\IC2005_20200511.csv ASFKJV
+2024-10-22 10:03:00,314 - INFO - Trade IC2005 at 5462.3 on 20200511 14:00:00 with 1 hand(s)
+2024-10-22 10:03:00,331 - INFO - Getting data for contract IC2006 on 20200615 ZXCVJK
+2024-10-22 10:03:00,331 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202006\IC2006_20200615.csv CPIGOA
+2024-10-22 10:03:00,332 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:00,334 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:00,335 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:00,336 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:00,337 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:00,340 - DEBUG - utf-8 not active
+2024-10-22 10:03:00,340 - DEBUG - CP932 not active
+2024-10-22 10:03:00,340 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:00,340 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:00,340 - DEBUG - EUC-KR not active
+2024-10-22 10:03:00,340 - DEBUG - CP949 not active
+2024-10-22 10:03:00,340 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:00,340 - DEBUG - EUC-TW not active
+2024-10-22 10:03:00,340 - DEBUG - Johab not active
+2024-10-22 10:03:00,341 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:00,341 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:00,341 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:00,341 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:00,341 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:00,341 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:00,341 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:00,341 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:00,341 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:00,341 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:00,341 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:00,341 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:00,341 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:00,341 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:00,341 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:00,341 - DEBUG - utf-8 not active
+2024-10-22 10:03:00,341 - DEBUG - CP932 not active
+2024-10-22 10:03:00,341 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:00,341 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:00,341 - DEBUG - EUC-KR not active
+2024-10-22 10:03:00,342 - DEBUG - CP949 not active
+2024-10-22 10:03:00,342 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:00,342 - DEBUG - EUC-TW not active
+2024-10-22 10:03:00,342 - DEBUG - Johab not active
+2024-10-22 10:03:00,507 - INFO - Trade IC2005 at 5566.8 on 20200511 14:00:00 with 1 hand(s)
+2024-10-22 10:03:00,514 - INFO - Contract: [IC2006]: 
+ends at [2020-06-19], roll over date is [2020-06-15], settlement date is [2020-06-22], contract type is [main]
+2024-10-22 10:03:00,537 - INFO - Getting data for contract IC2006 on 20200615 ALQQQQ
+2024-10-22 10:03:00,537 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202006\IC2006_20200615.csv ASFKJV
+2024-10-22 10:03:00,691 - INFO - Trade IC2006 at 5567.7 on 20200615 14:00:00 with 1 hand(s)
+2024-10-22 10:03:00,702 - INFO - Getting data for contract IC2007 on 20200713 ZXCVJK
+2024-10-22 10:03:00,702 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202007\IC2007_20200713.csv CPIGOA
+2024-10-22 10:03:00,703 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:00,705 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:00,706 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:00,707 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:00,707 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:00,710 - DEBUG - utf-8 not active
+2024-10-22 10:03:00,710 - DEBUG - CP932 not active
+2024-10-22 10:03:00,710 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:00,710 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:00,710 - DEBUG - EUC-KR not active
+2024-10-22 10:03:00,710 - DEBUG - CP949 not active
+2024-10-22 10:03:00,710 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:00,710 - DEBUG - EUC-TW not active
+2024-10-22 10:03:00,710 - DEBUG - Johab not active
+2024-10-22 10:03:00,711 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:00,711 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:00,711 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:00,711 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:00,711 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:00,711 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:00,711 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:00,711 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:00,711 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:00,711 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:00,711 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:00,711 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:00,711 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:00,711 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:00,711 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:00,711 - DEBUG - utf-8 not active
+2024-10-22 10:03:00,711 - DEBUG - CP932 not active
+2024-10-22 10:03:00,711 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:00,711 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:00,711 - DEBUG - EUC-KR not active
+2024-10-22 10:03:00,711 - DEBUG - CP949 not active
+2024-10-22 10:03:00,711 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:00,712 - DEBUG - EUC-TW not active
+2024-10-22 10:03:00,712 - DEBUG - Johab not active
+2024-10-22 10:03:00,910 - INFO - Trade IC2006 at 6890.3 on 20200615 14:00:00 with 1 hand(s)
+2024-10-22 10:03:00,916 - INFO - Contract: [IC2007]: 
+ends at [2020-07-17], roll over date is [2020-07-13], settlement date is [2020-07-20], contract type is [main]
+2024-10-22 10:03:00,940 - INFO - Getting data for contract IC2007 on 20200713 ALQQQQ
+2024-10-22 10:03:00,941 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202007\IC2007_20200713.csv ASFKJV
+2024-10-22 10:03:01,103 - INFO - Trade IC2007 at 6891.2 on 20200713 14:00:00 with 1 hand(s)
+2024-10-22 10:03:01,114 - INFO - Getting data for contract IC2008 on 20200817 ZXCVJK
+2024-10-22 10:03:01,114 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202008\IC2008_20200817.csv CPIGOA
+2024-10-22 10:03:01,115 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:01,118 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:01,118 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:01,119 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:01,119 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:01,123 - DEBUG - utf-8 not active
+2024-10-22 10:03:01,123 - DEBUG - CP932 not active
+2024-10-22 10:03:01,123 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:01,123 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:01,123 - DEBUG - EUC-KR not active
+2024-10-22 10:03:01,123 - DEBUG - CP949 not active
+2024-10-22 10:03:01,123 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:01,123 - DEBUG - EUC-TW not active
+2024-10-22 10:03:01,124 - DEBUG - Johab not active
+2024-10-22 10:03:01,124 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:01,124 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:01,124 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:01,124 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:01,124 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:01,124 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:01,124 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:01,124 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:01,124 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:01,124 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:01,124 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:01,124 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:01,124 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:01,124 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:01,124 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:01,124 - DEBUG - utf-8 not active
+2024-10-22 10:03:01,124 - DEBUG - CP932 not active
+2024-10-22 10:03:01,125 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:01,125 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:01,125 - DEBUG - EUC-KR not active
+2024-10-22 10:03:01,125 - DEBUG - CP949 not active
+2024-10-22 10:03:01,125 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:01,125 - DEBUG - EUC-TW not active
+2024-10-22 10:03:01,125 - DEBUG - Johab not active
+2024-10-22 10:03:01,307 - INFO - Trade IC2007 at 6712.4 on 20200713 14:00:00 with 1 hand(s)
+2024-10-22 10:03:01,313 - INFO - Contract: [IC2008]: 
+ends at [2020-08-21], roll over date is [2020-08-17], settlement date is [2020-08-24], contract type is [main]
+2024-10-22 10:03:01,341 - INFO - Getting data for contract IC2008 on 20200817 ALQQQQ
+2024-10-22 10:03:01,341 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202008\IC2008_20200817.csv ASFKJV
+2024-10-22 10:03:01,493 - INFO - Trade IC2008 at 6713.3 on 20200817 14:00:00 with 1 hand(s)
+2024-10-22 10:03:01,504 - INFO - Getting data for contract IC2009 on 20200914 ZXCVJK
+2024-10-22 10:03:01,504 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202009\IC2009_20200914.csv CPIGOA
+2024-10-22 10:03:01,505 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:01,507 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:01,508 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:01,509 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:01,509 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:01,512 - DEBUG - utf-8 not active
+2024-10-22 10:03:01,512 - DEBUG - CP932 not active
+2024-10-22 10:03:01,512 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:01,512 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:01,512 - DEBUG - EUC-KR not active
+2024-10-22 10:03:01,512 - DEBUG - CP949 not active
+2024-10-22 10:03:01,512 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:01,512 - DEBUG - EUC-TW not active
+2024-10-22 10:03:01,512 - DEBUG - Johab not active
+2024-10-22 10:03:01,512 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:01,513 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:01,513 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:01,513 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:01,513 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:01,513 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:01,513 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:01,513 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:01,513 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:01,513 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:01,513 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:01,513 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:01,514 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:01,514 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:01,514 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:01,514 - DEBUG - utf-8 not active
+2024-10-22 10:03:01,514 - DEBUG - CP932 not active
+2024-10-22 10:03:01,514 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:01,514 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:01,514 - DEBUG - EUC-KR not active
+2024-10-22 10:03:01,514 - DEBUG - CP949 not active
+2024-10-22 10:03:01,514 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:01,514 - DEBUG - EUC-TW not active
+2024-10-22 10:03:01,514 - DEBUG - Johab not active
+2024-10-22 10:03:01,692 - INFO - Trade IC2008 at 6276.4 on 20200817 14:00:00 with 1 hand(s)
+2024-10-22 10:03:01,698 - INFO - Contract: [IC2009]: 
+ends at [2020-09-18], roll over date is [2020-09-14], settlement date is [2020-09-21], contract type is [main]
+2024-10-22 10:03:01,722 - INFO - Getting data for contract IC2009 on 20200914 ALQQQQ
+2024-10-22 10:03:01,722 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202009\IC2009_20200914.csv ASFKJV
+2024-10-22 10:03:01,923 - INFO - Trade IC2009 at 6277.3 on 20200914 14:00:00 with 1 hand(s)
+2024-10-22 10:03:01,935 - INFO - Getting data for contract IC2010 on 20201012 ZXCVJK
+2024-10-22 10:03:01,935 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202010\IC2010_20201012.csv CPIGOA
+2024-10-22 10:03:01,936 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:01,939 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:01,939 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:01,940 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:01,941 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:01,944 - DEBUG - utf-8 not active
+2024-10-22 10:03:01,944 - DEBUG - CP932 not active
+2024-10-22 10:03:01,944 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:01,944 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:01,944 - DEBUG - EUC-KR not active
+2024-10-22 10:03:01,944 - DEBUG - CP949 not active
+2024-10-22 10:03:01,944 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:01,944 - DEBUG - EUC-TW not active
+2024-10-22 10:03:01,944 - DEBUG - Johab not active
+2024-10-22 10:03:01,944 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:01,945 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:01,945 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:01,945 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:01,945 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:01,945 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:01,945 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:01,945 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:01,945 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:01,945 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:01,945 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:01,945 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:01,945 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:01,945 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:01,945 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:01,945 - DEBUG - utf-8 not active
+2024-10-22 10:03:01,945 - DEBUG - CP932 not active
+2024-10-22 10:03:01,945 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:01,945 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:01,945 - DEBUG - EUC-KR not active
+2024-10-22 10:03:01,946 - DEBUG - CP949 not active
+2024-10-22 10:03:01,946 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:01,946 - DEBUG - EUC-TW not active
+2024-10-22 10:03:01,946 - DEBUG - Johab not active
+2024-10-22 10:03:02,114 - INFO - Trade IC2009 at 6517.8 on 20200914 14:00:00 with 1 hand(s)
+2024-10-22 10:03:02,121 - INFO - Contract: [IC2010]: 
+ends at [2020-10-16], roll over date is [2020-10-12], settlement date is [2020-10-19], contract type is [main]
+2024-10-22 10:03:02,144 - INFO - Getting data for contract IC2010 on 20201012 ALQQQQ
+2024-10-22 10:03:02,145 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202010\IC2010_20201012.csv ASFKJV
+2024-10-22 10:03:02,294 - INFO - Trade IC2010 at 6518.7 on 20201012 14:00:00 with 1 hand(s)
+2024-10-22 10:03:02,308 - INFO - Getting data for contract IC2011 on 20201116 ZXCVJK
+2024-10-22 10:03:02,309 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202011\IC2011_20201116.csv CPIGOA
+2024-10-22 10:03:02,310 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:02,312 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:02,312 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:02,313 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:02,314 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:02,317 - DEBUG - utf-8 not active
+2024-10-22 10:03:02,317 - DEBUG - CP932 not active
+2024-10-22 10:03:02,317 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:02,317 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:02,318 - DEBUG - EUC-KR not active
+2024-10-22 10:03:02,318 - DEBUG - CP949 not active
+2024-10-22 10:03:02,318 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:02,318 - DEBUG - EUC-TW not active
+2024-10-22 10:03:02,318 - DEBUG - Johab not active
+2024-10-22 10:03:02,318 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:02,318 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:02,318 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:02,318 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:02,318 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:02,318 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:02,318 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:02,318 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:02,318 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:02,318 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:02,318 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:02,318 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:02,318 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:02,318 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:02,318 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:02,318 - DEBUG - utf-8 not active
+2024-10-22 10:03:02,319 - DEBUG - CP932 not active
+2024-10-22 10:03:02,319 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:02,319 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:02,319 - DEBUG - EUC-KR not active
+2024-10-22 10:03:02,319 - DEBUG - CP949 not active
+2024-10-22 10:03:02,319 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:02,319 - DEBUG - EUC-TW not active
+2024-10-22 10:03:02,319 - DEBUG - Johab not active
+2024-10-22 10:03:02,528 - INFO - Trade IC2010 at 6355.5 on 20201012 14:00:00 with 1 hand(s)
+2024-10-22 10:03:02,535 - INFO - Contract: [IC2011]: 
+ends at [2020-11-20], roll over date is [2020-11-16], settlement date is [2020-11-23], contract type is [main]
+2024-10-22 10:03:02,563 - INFO - Getting data for contract IC2011 on 20201116 ALQQQQ
+2024-10-22 10:03:02,563 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202011\IC2011_20201116.csv ASFKJV
+2024-10-22 10:03:02,793 - INFO - Trade IC2011 at 6357.0 on 20201116 14:00:00 with 1 hand(s)
+2024-10-22 10:03:02,804 - INFO - Getting data for contract IC2012 on 20201214 ZXCVJK
+2024-10-22 10:03:02,804 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202012\IC2012_20201214.csv CPIGOA
+2024-10-22 10:03:02,805 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:02,808 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:02,808 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:02,809 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:02,809 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:02,813 - DEBUG - utf-8 not active
+2024-10-22 10:03:02,813 - DEBUG - CP932 not active
+2024-10-22 10:03:02,813 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:02,813 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:02,813 - DEBUG - EUC-KR not active
+2024-10-22 10:03:02,813 - DEBUG - CP949 not active
+2024-10-22 10:03:02,813 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:02,813 - DEBUG - EUC-TW not active
+2024-10-22 10:03:02,813 - DEBUG - Johab not active
+2024-10-22 10:03:02,813 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:02,813 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:02,814 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:02,814 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:02,814 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:02,814 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:02,814 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:02,814 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:02,814 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:02,814 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:02,814 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:02,814 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:02,814 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:02,814 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:02,814 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:02,814 - DEBUG - utf-8 not active
+2024-10-22 10:03:02,814 - DEBUG - CP932 not active
+2024-10-22 10:03:02,814 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:02,814 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:02,814 - DEBUG - EUC-KR not active
+2024-10-22 10:03:02,814 - DEBUG - CP949 not active
+2024-10-22 10:03:02,814 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:02,814 - DEBUG - EUC-TW not active
+2024-10-22 10:03:02,814 - DEBUG - Johab not active
+2024-10-22 10:03:03,057 - INFO - Trade IC2011 at 6215.8 on 20201116 14:00:00 with 1 hand(s)
+2024-10-22 10:03:03,064 - INFO - Contract: [IC2012]: 
+ends at [2020-12-18], roll over date is [2020-12-14], settlement date is [2020-12-21], contract type is [main]
+2024-10-22 10:03:03,085 - INFO - Getting data for contract IC2012 on 20201214 ALQQQQ
+2024-10-22 10:03:03,085 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202012\IC2012_20201214.csv ASFKJV
+2024-10-22 10:03:03,243 - INFO - Trade IC2012 at 6216.7 on 20201214 14:00:00 with 1 hand(s)
+2024-10-22 10:03:03,256 - INFO - Getting data for contract IC2101 on 20210111 ZXCVJK
+2024-10-22 10:03:03,256 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202101\IC2101_20210111.csv CPIGOA
+2024-10-22 10:03:03,257 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:03,260 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:03,260 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:03,261 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:03,261 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:03,264 - DEBUG - utf-8 not active
+2024-10-22 10:03:03,264 - DEBUG - CP932 not active
+2024-10-22 10:03:03,264 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:03,265 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:03,265 - DEBUG - EUC-KR not active
+2024-10-22 10:03:03,265 - DEBUG - CP949 not active
+2024-10-22 10:03:03,265 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:03,265 - DEBUG - EUC-TW not active
+2024-10-22 10:03:03,265 - DEBUG - Johab not active
+2024-10-22 10:03:03,265 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:03,265 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:03,265 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:03,265 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:03,265 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:03,265 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:03,265 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:03,265 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:03,265 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:03,265 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:03,265 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:03,265 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:03,265 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:03,265 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:03,265 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:03,265 - DEBUG - utf-8 not active
+2024-10-22 10:03:03,265 - DEBUG - CP932 not active
+2024-10-22 10:03:03,266 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:03,266 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:03,266 - DEBUG - EUC-KR not active
+2024-10-22 10:03:03,266 - DEBUG - CP949 not active
+2024-10-22 10:03:03,266 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:03,266 - DEBUG - EUC-TW not active
+2024-10-22 10:03:03,266 - DEBUG - Johab not active
+2024-10-22 10:03:03,446 - INFO - Trade IC2012 at 6446.2 on 20201214 14:00:00 with 1 hand(s)
+2024-10-22 10:03:03,453 - INFO - Contract: [IC2101]: 
+ends at [2021-01-15], roll over date is [2021-01-11], settlement date is [2021-01-18], contract type is [main]
+2024-10-22 10:03:03,488 - INFO - Getting data for contract IC2101 on 20210111 ALQQQQ
+2024-10-22 10:03:03,488 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202101\IC2101_20210111.csv ASFKJV
+2024-10-22 10:03:03,689 - INFO - Trade IC2101 at 6448.1 on 20210111 14:00:00 with 1 hand(s)
+2024-10-22 10:03:03,701 - INFO - Getting data for contract IC2102 on 20210218 ZXCVJK
+2024-10-22 10:03:03,701 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202102\IC2102_20210218.csv CPIGOA
+2024-10-22 10:03:03,701 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:03,704 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:03,704 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:03,706 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:03,706 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:03,710 - DEBUG - utf-8 not active
+2024-10-22 10:03:03,710 - DEBUG - CP932 not active
+2024-10-22 10:03:03,710 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:03,710 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:03,710 - DEBUG - EUC-KR not active
+2024-10-22 10:03:03,710 - DEBUG - CP949 not active
+2024-10-22 10:03:03,710 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:03,710 - DEBUG - EUC-TW not active
+2024-10-22 10:03:03,710 - DEBUG - Johab not active
+2024-10-22 10:03:03,710 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:03,710 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:03,710 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:03,710 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:03,710 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:03,711 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:03,711 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:03,711 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:03,711 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:03,711 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:03,711 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:03,711 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:03,711 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:03,711 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:03,711 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:03,711 - DEBUG - utf-8 not active
+2024-10-22 10:03:03,711 - DEBUG - CP932 not active
+2024-10-22 10:03:03,711 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:03,711 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:03,711 - DEBUG - EUC-KR not active
+2024-10-22 10:03:03,711 - DEBUG - CP949 not active
+2024-10-22 10:03:03,711 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:03,711 - DEBUG - EUC-TW not active
+2024-10-22 10:03:03,711 - DEBUG - Johab not active
+2024-10-22 10:03:03,853 - INFO - Trade IC2101 at 6596.9 on 20210111 14:00:00 with 1 hand(s)
+2024-10-22 10:03:03,859 - INFO - Contract: [IC2102]: 
+ends at [2021-02-19], roll over date is [2021-02-18], settlement date is [2021-02-22], contract type is [main]
+2024-10-22 10:03:03,881 - INFO - Getting data for contract IC2102 on 20210218 ALQQQQ
+2024-10-22 10:03:03,881 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202102\IC2102_20210218.csv ASFKJV
+2024-10-22 10:03:04,018 - INFO - Trade IC2102 at 6598.3 on 20210218 14:00:00 with 1 hand(s)
+2024-10-22 10:03:04,030 - INFO - Getting data for contract IC2103 on 20210315 ZXCVJK
+2024-10-22 10:03:04,030 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202103\IC2103_20210315.csv CPIGOA
+2024-10-22 10:03:04,032 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:04,034 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:04,034 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:04,035 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:04,035 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:04,039 - DEBUG - utf-8 not active
+2024-10-22 10:03:04,039 - DEBUG - CP932 not active
+2024-10-22 10:03:04,039 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:04,039 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:04,039 - DEBUG - EUC-KR not active
+2024-10-22 10:03:04,039 - DEBUG - CP949 not active
+2024-10-22 10:03:04,039 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:04,039 - DEBUG - EUC-TW not active
+2024-10-22 10:03:04,039 - DEBUG - Johab not active
+2024-10-22 10:03:04,039 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:04,039 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:04,039 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:04,039 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:04,039 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:04,040 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:04,040 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:04,040 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:04,040 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:04,040 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:04,040 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:04,040 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:04,040 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:04,040 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:04,040 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:04,040 - DEBUG - utf-8 not active
+2024-10-22 10:03:04,040 - DEBUG - CP932 not active
+2024-10-22 10:03:04,040 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:04,040 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:04,040 - DEBUG - EUC-KR not active
+2024-10-22 10:03:04,040 - DEBUG - CP949 not active
+2024-10-22 10:03:04,040 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:04,040 - DEBUG - EUC-TW not active
+2024-10-22 10:03:04,040 - DEBUG - Johab not active
+2024-10-22 10:03:04,186 - INFO - Trade IC2102 at 6135.8 on 20210218 14:00:00 with 1 hand(s)
+2024-10-22 10:03:04,192 - INFO - Contract: [IC2103]: 
+ends at [2021-03-19], roll over date is [2021-03-15], settlement date is [2021-03-22], contract type is [main]
+2024-10-22 10:03:04,213 - INFO - Getting data for contract IC2103 on 20210315 ALQQQQ
+2024-10-22 10:03:04,213 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202103\IC2103_20210315.csv ASFKJV
+2024-10-22 10:03:04,407 - INFO - Trade IC2103 at 6136.6 on 20210315 14:00:00 with 1 hand(s)
+2024-10-22 10:03:04,426 - INFO - Getting data for contract IC2104 on 20210412 ZXCVJK
+2024-10-22 10:03:04,427 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202104\IC2104_20210412.csv CPIGOA
+2024-10-22 10:03:04,428 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:04,432 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:04,434 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:04,436 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:04,436 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:04,440 - DEBUG - utf-8 not active
+2024-10-22 10:03:04,440 - DEBUG - CP932 not active
+2024-10-22 10:03:04,440 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:04,440 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:04,440 - DEBUG - EUC-KR not active
+2024-10-22 10:03:04,440 - DEBUG - CP949 not active
+2024-10-22 10:03:04,440 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:04,440 - DEBUG - EUC-TW not active
+2024-10-22 10:03:04,440 - DEBUG - Johab not active
+2024-10-22 10:03:04,440 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:04,440 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:04,440 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:04,440 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:04,441 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:04,441 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:04,441 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:04,441 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:04,441 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:04,441 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:04,441 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:04,441 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:04,441 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:04,441 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:04,441 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:04,441 - DEBUG - utf-8 not active
+2024-10-22 10:03:04,441 - DEBUG - CP932 not active
+2024-10-22 10:03:04,441 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:04,441 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:04,441 - DEBUG - EUC-KR not active
+2024-10-22 10:03:04,441 - DEBUG - CP949 not active
+2024-10-22 10:03:04,441 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:04,441 - DEBUG - EUC-TW not active
+2024-10-22 10:03:04,441 - DEBUG - Johab not active
+2024-10-22 10:03:04,597 - INFO - Trade IC2103 at 6227.4 on 20210315 14:00:00 with 1 hand(s)
+2024-10-22 10:03:04,603 - INFO - Contract: [IC2104]: 
+ends at [2021-04-16], roll over date is [2021-04-12], settlement date is [2021-04-19], contract type is [main]
+2024-10-22 10:03:04,624 - INFO - Getting data for contract IC2104 on 20210412 ALQQQQ
+2024-10-22 10:03:04,624 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202104\IC2104_20210412.csv ASFKJV
+2024-10-22 10:03:04,778 - INFO - Trade IC2104 at 6228.6 on 20210412 14:00:00 with 1 hand(s)
+2024-10-22 10:03:04,790 - INFO - Getting data for contract IC2105 on 20210517 ZXCVJK
+2024-10-22 10:03:04,790 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202105\IC2105_20210517.csv CPIGOA
+2024-10-22 10:03:04,791 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:04,793 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:04,793 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:04,794 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:04,794 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:04,798 - DEBUG - utf-8 not active
+2024-10-22 10:03:04,798 - DEBUG - CP932 not active
+2024-10-22 10:03:04,798 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:04,798 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:04,798 - DEBUG - EUC-KR not active
+2024-10-22 10:03:04,798 - DEBUG - CP949 not active
+2024-10-22 10:03:04,798 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:04,798 - DEBUG - EUC-TW not active
+2024-10-22 10:03:04,798 - DEBUG - Johab not active
+2024-10-22 10:03:04,798 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:04,798 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:04,798 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:04,798 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:04,798 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:04,798 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:04,798 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:04,799 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:04,799 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:04,799 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:04,799 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:04,799 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:04,799 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:04,799 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:04,799 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:04,799 - DEBUG - utf-8 not active
+2024-10-22 10:03:04,799 - DEBUG - CP932 not active
+2024-10-22 10:03:04,799 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:04,799 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:04,799 - DEBUG - EUC-KR not active
+2024-10-22 10:03:04,799 - DEBUG - CP949 not active
+2024-10-22 10:03:04,799 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:04,800 - DEBUG - EUC-TW not active
+2024-10-22 10:03:04,800 - DEBUG - Johab not active
+2024-10-22 10:03:04,945 - INFO - Trade IC2104 at 6564.5 on 20210412 14:00:00 with 1 hand(s)
+2024-10-22 10:03:04,952 - INFO - Contract: [IC2105]: 
+ends at [2021-05-21], roll over date is [2021-05-17], settlement date is [2021-05-24], contract type is [main]
+2024-10-22 10:03:04,974 - INFO - Getting data for contract IC2105 on 20210517 ALQQQQ
+2024-10-22 10:03:04,974 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202105\IC2105_20210517.csv ASFKJV
+2024-10-22 10:03:05,119 - INFO - Trade IC2105 at 6565.6 on 20210517 14:00:00 with 1 hand(s)
+2024-10-22 10:03:05,129 - INFO - Getting data for contract IC2106 on 20210615 ZXCVJK
+2024-10-22 10:03:05,129 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202106\IC2106_20210615.csv CPIGOA
+2024-10-22 10:03:05,129 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:05,132 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:05,132 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:05,134 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:05,134 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:05,137 - DEBUG - utf-8 not active
+2024-10-22 10:03:05,137 - DEBUG - CP932 not active
+2024-10-22 10:03:05,137 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:05,137 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:05,137 - DEBUG - EUC-KR not active
+2024-10-22 10:03:05,137 - DEBUG - CP949 not active
+2024-10-22 10:03:05,137 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:05,137 - DEBUG - EUC-TW not active
+2024-10-22 10:03:05,137 - DEBUG - Johab not active
+2024-10-22 10:03:05,137 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:05,138 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:05,138 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:05,138 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:05,138 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:05,138 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:05,138 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:05,138 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:05,138 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:05,138 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:05,138 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:05,138 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:05,138 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:05,138 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:05,138 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:05,138 - DEBUG - utf-8 not active
+2024-10-22 10:03:05,138 - DEBUG - CP932 not active
+2024-10-22 10:03:05,138 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:05,138 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:05,138 - DEBUG - EUC-KR not active
+2024-10-22 10:03:05,138 - DEBUG - CP949 not active
+2024-10-22 10:03:05,138 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:05,138 - DEBUG - EUC-TW not active
+2024-10-22 10:03:05,139 - DEBUG - Johab not active
+2024-10-22 10:03:05,305 - INFO - Trade IC2105 at 6665.3 on 20210517 14:00:00 with 1 hand(s)
+2024-10-22 10:03:05,312 - INFO - Contract: [IC2106]: 
+ends at [2021-06-18], roll over date is [2021-06-15], settlement date is [2021-06-21], contract type is [main]
+2024-10-22 10:03:05,338 - INFO - Getting data for contract IC2106 on 20210615 ALQQQQ
+2024-10-22 10:03:05,338 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202106\IC2106_20210615.csv ASFKJV
+2024-10-22 10:03:05,503 - INFO - Trade IC2106 at 6666.6 on 20210615 14:00:00 with 1 hand(s)
+2024-10-22 10:03:05,513 - INFO - Getting data for contract IC2107 on 20210712 ZXCVJK
+2024-10-22 10:03:05,513 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202107\IC2107_20210712.csv CPIGOA
+2024-10-22 10:03:05,514 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:05,517 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:05,517 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:05,518 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:05,518 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:05,522 - DEBUG - utf-8 not active
+2024-10-22 10:03:05,522 - DEBUG - CP932 not active
+2024-10-22 10:03:05,522 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:05,522 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:05,522 - DEBUG - EUC-KR not active
+2024-10-22 10:03:05,522 - DEBUG - CP949 not active
+2024-10-22 10:03:05,522 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:05,522 - DEBUG - EUC-TW not active
+2024-10-22 10:03:05,522 - DEBUG - Johab not active
+2024-10-22 10:03:05,522 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:05,522 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:05,522 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:05,522 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:05,522 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:05,522 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:05,522 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:05,522 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:05,522 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:05,522 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:05,523 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:05,523 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:05,523 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:05,523 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:05,523 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:05,523 - DEBUG - utf-8 not active
+2024-10-22 10:03:05,523 - DEBUG - CP932 not active
+2024-10-22 10:03:05,523 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:05,523 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:05,523 - DEBUG - EUC-KR not active
+2024-10-22 10:03:05,523 - DEBUG - CP949 not active
+2024-10-22 10:03:05,523 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:05,523 - DEBUG - EUC-TW not active
+2024-10-22 10:03:05,523 - DEBUG - Johab not active
+2024-10-22 10:03:05,682 - INFO - Trade IC2106 at 6869.6 on 20210615 14:00:00 with 1 hand(s)
+2024-10-22 10:03:05,688 - INFO - Contract: [IC2107]: 
+ends at [2021-07-16], roll over date is [2021-07-12], settlement date is [2021-07-19], contract type is [main]
+2024-10-22 10:03:05,710 - INFO - Getting data for contract IC2107 on 20210712 ALQQQQ
+2024-10-22 10:03:05,710 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202107\IC2107_20210712.csv ASFKJV
+2024-10-22 10:03:05,850 - INFO - Trade IC2107 at 6870.6 on 20210712 14:00:00 with 1 hand(s)
+2024-10-22 10:03:05,859 - INFO - Getting data for contract IC2108 on 20210816 ZXCVJK
+2024-10-22 10:03:05,859 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202108\IC2108_20210816.csv CPIGOA
+2024-10-22 10:03:05,861 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:05,865 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:05,865 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:05,866 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:05,866 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:05,872 - DEBUG - utf-8 not active
+2024-10-22 10:03:05,872 - DEBUG - CP932 not active
+2024-10-22 10:03:05,872 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:05,872 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:05,872 - DEBUG - EUC-KR not active
+2024-10-22 10:03:05,872 - DEBUG - CP949 not active
+2024-10-22 10:03:05,872 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:05,872 - DEBUG - EUC-TW not active
+2024-10-22 10:03:05,872 - DEBUG - Johab not active
+2024-10-22 10:03:05,872 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:05,872 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:05,872 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:05,872 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:05,872 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:05,873 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:05,873 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:05,873 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:05,873 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:05,873 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:05,873 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:05,873 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:05,873 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:05,873 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:05,873 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:05,873 - DEBUG - utf-8 not active
+2024-10-22 10:03:05,873 - DEBUG - CP932 not active
+2024-10-22 10:03:05,873 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:05,873 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:05,873 - DEBUG - EUC-KR not active
+2024-10-22 10:03:05,873 - DEBUG - CP949 not active
+2024-10-22 10:03:05,873 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:05,873 - DEBUG - EUC-TW not active
+2024-10-22 10:03:05,873 - DEBUG - Johab not active
+2024-10-22 10:03:06,033 - INFO - Trade IC2107 at 7041.0 on 20210712 14:00:00 with 1 hand(s)
+2024-10-22 10:03:06,040 - INFO - Contract: [IC2108]: 
+ends at [2021-08-20], roll over date is [2021-08-16], settlement date is [2021-08-23], contract type is [main]
+2024-10-22 10:03:06,063 - INFO - Getting data for contract IC2108 on 20210816 ALQQQQ
+2024-10-22 10:03:06,063 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202108\IC2108_20210816.csv ASFKJV
+2024-10-22 10:03:06,212 - INFO - Trade IC2108 at 7041.6 on 20210816 14:00:00 with 1 hand(s)
+2024-10-22 10:03:06,223 - INFO - Getting data for contract IC2109 on 20210913 ZXCVJK
+2024-10-22 10:03:06,223 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202109\IC2109_20210913.csv CPIGOA
+2024-10-22 10:03:06,224 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:06,227 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:06,227 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:06,228 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:06,228 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:06,231 - DEBUG - utf-8 not active
+2024-10-22 10:03:06,231 - DEBUG - CP932 not active
+2024-10-22 10:03:06,231 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:06,231 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:06,231 - DEBUG - EUC-KR not active
+2024-10-22 10:03:06,231 - DEBUG - CP949 not active
+2024-10-22 10:03:06,232 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:06,232 - DEBUG - EUC-TW not active
+2024-10-22 10:03:06,232 - DEBUG - Johab not active
+2024-10-22 10:03:06,232 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:06,232 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:06,232 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:06,232 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:06,232 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:06,232 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:06,232 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:06,232 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:06,232 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:06,232 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:06,232 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:06,232 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:06,232 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:06,232 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:06,232 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:06,232 - DEBUG - utf-8 not active
+2024-10-22 10:03:06,232 - DEBUG - CP932 not active
+2024-10-22 10:03:06,232 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:06,233 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:06,233 - DEBUG - EUC-KR not active
+2024-10-22 10:03:06,233 - DEBUG - CP949 not active
+2024-10-22 10:03:06,233 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:06,233 - DEBUG - EUC-TW not active
+2024-10-22 10:03:06,233 - DEBUG - Johab not active
+2024-10-22 10:03:06,379 - INFO - Trade IC2108 at 7602.4 on 20210816 14:00:00 with 1 hand(s)
+2024-10-22 10:03:06,386 - INFO - Contract: [IC2109]: 
+ends at [2021-09-17], roll over date is [2021-09-13], settlement date is [2021-09-22], contract type is [main]
+2024-10-22 10:03:06,411 - INFO - Getting data for contract IC2109 on 20210913 ALQQQQ
+2024-10-22 10:03:06,411 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202109\IC2109_20210913.csv ASFKJV
+2024-10-22 10:03:06,585 - INFO - Trade IC2109 at 7603.4 on 20210913 14:00:00 with 1 hand(s)
+2024-10-22 10:03:06,595 - INFO - Getting data for contract IC2110 on 20211011 ZXCVJK
+2024-10-22 10:03:06,595 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202110\IC2110_20211011.csv CPIGOA
+2024-10-22 10:03:06,596 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:06,598 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:06,598 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:06,600 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:06,600 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:06,604 - DEBUG - utf-8 not active
+2024-10-22 10:03:06,605 - DEBUG - CP932 not active
+2024-10-22 10:03:06,606 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:06,606 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:06,606 - DEBUG - EUC-KR not active
+2024-10-22 10:03:06,606 - DEBUG - CP949 not active
+2024-10-22 10:03:06,606 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:06,606 - DEBUG - EUC-TW not active
+2024-10-22 10:03:06,607 - DEBUG - Johab not active
+2024-10-22 10:03:06,607 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:06,607 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:06,607 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:06,607 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:06,607 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:06,607 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:06,607 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:06,607 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:06,607 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:06,607 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:06,607 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:06,607 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:06,607 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:06,607 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:06,607 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:06,608 - DEBUG - utf-8 not active
+2024-10-22 10:03:06,608 - DEBUG - CP932 not active
+2024-10-22 10:03:06,608 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:06,608 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:06,608 - DEBUG - EUC-KR not active
+2024-10-22 10:03:06,608 - DEBUG - CP949 not active
+2024-10-22 10:03:06,608 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:06,608 - DEBUG - EUC-TW not active
+2024-10-22 10:03:06,608 - DEBUG - Johab not active
+2024-10-22 10:03:06,763 - INFO - Trade IC2109 at 7081.2 on 20210913 14:00:00 with 1 hand(s)
+2024-10-22 10:03:06,772 - INFO - Contract: [IC2110]: 
+ends at [2021-10-15], roll over date is [2021-10-11], settlement date is [2021-10-18], contract type is [main]
+2024-10-22 10:03:06,799 - INFO - Getting data for contract IC2110 on 20211011 ALQQQQ
+2024-10-22 10:03:06,799 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202110\IC2110_20211011.csv ASFKJV
+2024-10-22 10:03:06,942 - INFO - Trade IC2110 at 7082.1 on 20211011 14:00:00 with 1 hand(s)
+2024-10-22 10:03:06,953 - INFO - Getting data for contract IC2111 on 20211115 ZXCVJK
+2024-10-22 10:03:06,953 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202111\IC2111_20211115.csv CPIGOA
+2024-10-22 10:03:06,954 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:06,957 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:06,957 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:06,958 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:06,958 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:06,962 - DEBUG - utf-8 not active
+2024-10-22 10:03:06,962 - DEBUG - CP932 not active
+2024-10-22 10:03:06,962 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:06,962 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:06,962 - DEBUG - EUC-KR not active
+2024-10-22 10:03:06,962 - DEBUG - CP949 not active
+2024-10-22 10:03:06,962 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:06,962 - DEBUG - EUC-TW not active
+2024-10-22 10:03:06,962 - DEBUG - Johab not active
+2024-10-22 10:03:06,962 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:06,962 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:06,962 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:06,962 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:06,963 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:06,963 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:06,963 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:06,963 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:06,963 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:06,963 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:06,963 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:06,963 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:06,963 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:06,963 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:06,963 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:06,963 - DEBUG - utf-8 not active
+2024-10-22 10:03:06,963 - DEBUG - CP932 not active
+2024-10-22 10:03:06,963 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:06,963 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:06,963 - DEBUG - EUC-KR not active
+2024-10-22 10:03:06,963 - DEBUG - CP949 not active
+2024-10-22 10:03:06,963 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:06,963 - DEBUG - EUC-TW not active
+2024-10-22 10:03:06,963 - DEBUG - Johab not active
+2024-10-22 10:03:07,117 - INFO - Trade IC2110 at 7100.2 on 20211011 14:00:00 with 1 hand(s)
+2024-10-22 10:03:07,127 - INFO - Contract: [IC2111]: 
+ends at [2021-11-19], roll over date is [2021-11-15], settlement date is [2021-11-22], contract type is [main]
+2024-10-22 10:03:07,154 - INFO - Getting data for contract IC2111 on 20211115 ALQQQQ
+2024-10-22 10:03:07,154 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202111\IC2111_20211115.csv ASFKJV
+2024-10-22 10:03:07,288 - INFO - Trade IC2111 at 7100.9 on 20211115 14:00:00 with 1 hand(s)
+2024-10-22 10:03:07,298 - INFO - Getting data for contract IC2112 on 20211213 ZXCVJK
+2024-10-22 10:03:07,298 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202112\IC2112_20211213.csv CPIGOA
+2024-10-22 10:03:07,299 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:07,301 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:07,302 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:07,303 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:07,303 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:07,306 - DEBUG - utf-8 not active
+2024-10-22 10:03:07,306 - DEBUG - CP932 not active
+2024-10-22 10:03:07,306 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:07,306 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:07,306 - DEBUG - EUC-KR not active
+2024-10-22 10:03:07,306 - DEBUG - CP949 not active
+2024-10-22 10:03:07,306 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:07,306 - DEBUG - EUC-TW not active
+2024-10-22 10:03:07,306 - DEBUG - Johab not active
+2024-10-22 10:03:07,307 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:07,307 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:07,307 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:07,307 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:07,307 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:07,307 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:07,307 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:07,307 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:07,307 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:07,307 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:07,307 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:07,307 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:07,307 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:07,307 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:07,307 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:07,307 - DEBUG - utf-8 not active
+2024-10-22 10:03:07,307 - DEBUG - CP932 not active
+2024-10-22 10:03:07,307 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:07,307 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:07,307 - DEBUG - EUC-KR not active
+2024-10-22 10:03:07,307 - DEBUG - CP949 not active
+2024-10-22 10:03:07,308 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:07,308 - DEBUG - EUC-TW not active
+2024-10-22 10:03:07,308 - DEBUG - Johab not active
+2024-10-22 10:03:07,452 - INFO - Trade IC2111 at 7356.7 on 20211115 14:00:00 with 1 hand(s)
+2024-10-22 10:03:07,458 - INFO - Contract: [IC2112]: 
+ends at [2021-12-17], roll over date is [2021-12-13], settlement date is [2021-12-20], contract type is [main]
+2024-10-22 10:03:07,487 - INFO - Getting data for contract IC2112 on 20211213 ALQQQQ
+2024-10-22 10:03:07,487 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202112\IC2112_20211213.csv ASFKJV
+2024-10-22 10:03:07,631 - INFO - Trade IC2112 at 7357.3 on 20211213 14:00:00 with 1 hand(s)
+2024-10-22 10:03:07,641 - INFO - Getting data for contract IC2201 on 20220117 ZXCVJK
+2024-10-22 10:03:07,641 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202201\IC2201_20220117.csv CPIGOA
+2024-10-22 10:03:07,642 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:07,644 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:07,644 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:07,646 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:07,646 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:07,649 - DEBUG - utf-8 not active
+2024-10-22 10:03:07,649 - DEBUG - CP932 not active
+2024-10-22 10:03:07,649 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:07,649 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:07,649 - DEBUG - EUC-KR not active
+2024-10-22 10:03:07,649 - DEBUG - CP949 not active
+2024-10-22 10:03:07,649 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:07,649 - DEBUG - EUC-TW not active
+2024-10-22 10:03:07,649 - DEBUG - Johab not active
+2024-10-22 10:03:07,649 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:07,649 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:07,649 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:07,650 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:07,650 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:07,650 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:07,650 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:07,650 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:07,650 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:07,650 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:07,650 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:07,650 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:07,650 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:07,650 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:07,650 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:07,650 - DEBUG - utf-8 not active
+2024-10-22 10:03:07,650 - DEBUG - CP932 not active
+2024-10-22 10:03:07,650 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:07,650 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:07,650 - DEBUG - EUC-KR not active
+2024-10-22 10:03:07,650 - DEBUG - CP949 not active
+2024-10-22 10:03:07,650 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:07,650 - DEBUG - EUC-TW not active
+2024-10-22 10:03:07,650 - DEBUG - Johab not active
+2024-10-22 10:03:07,785 - INFO - Trade IC2112 at 7180.3 on 20211213 14:00:00 with 1 hand(s)
+2024-10-22 10:03:07,791 - INFO - Contract: [IC2201]: 
+ends at [2022-01-21], roll over date is [2022-01-17], settlement date is [2022-01-24], contract type is [main]
+2024-10-22 10:03:07,813 - INFO - Getting data for contract IC2201 on 20220117 ALQQQQ
+2024-10-22 10:03:07,813 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202201\IC2201_20220117.csv ASFKJV
+2024-10-22 10:03:07,963 - INFO - Trade IC2201 at 7180.5 on 20220117 14:00:00 with 1 hand(s)
+2024-10-22 10:03:07,973 - INFO - Getting data for contract IC2202 on 20220214 ZXCVJK
+2024-10-22 10:03:07,973 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202202\IC2202_20220214.csv CPIGOA
+2024-10-22 10:03:07,974 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:07,977 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:07,977 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:07,978 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:07,978 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:07,982 - DEBUG - utf-8 not active
+2024-10-22 10:03:07,982 - DEBUG - CP932 not active
+2024-10-22 10:03:07,982 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:07,983 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:07,983 - DEBUG - EUC-KR not active
+2024-10-22 10:03:07,983 - DEBUG - CP949 not active
+2024-10-22 10:03:07,983 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:07,983 - DEBUG - EUC-TW not active
+2024-10-22 10:03:07,983 - DEBUG - Johab not active
+2024-10-22 10:03:07,983 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:07,983 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:07,983 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:07,983 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:07,983 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:07,983 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:07,983 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:07,983 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:07,983 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:07,983 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:07,983 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:07,983 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:07,984 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:07,984 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:07,984 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:07,984 - DEBUG - utf-8 not active
+2024-10-22 10:03:07,984 - DEBUG - CP932 not active
+2024-10-22 10:03:07,984 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:07,984 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:07,984 - DEBUG - EUC-KR not active
+2024-10-22 10:03:07,984 - DEBUG - CP949 not active
+2024-10-22 10:03:07,984 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:07,984 - DEBUG - EUC-TW not active
+2024-10-22 10:03:07,984 - DEBUG - Johab not active
+2024-10-22 10:03:08,168 - INFO - Trade IC2201 at 6696.3 on 20220117 14:00:00 with 1 hand(s)
+2024-10-22 10:03:08,175 - INFO - Contract: [IC2202]: 
+ends at [2022-02-18], roll over date is [2022-02-14], settlement date is [2022-02-21], contract type is [main]
+2024-10-22 10:03:08,197 - INFO - Getting data for contract IC2202 on 20220214 ALQQQQ
+2024-10-22 10:03:08,197 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202202\IC2202_20220214.csv ASFKJV
+2024-10-22 10:03:08,341 - INFO - Trade IC2202 at 6696.9 on 20220214 14:00:00 with 1 hand(s)
+2024-10-22 10:03:08,351 - INFO - Getting data for contract IC2203 on 20220314 ZXCVJK
+2024-10-22 10:03:08,351 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202203\IC2203_20220314.csv CPIGOA
+2024-10-22 10:03:08,352 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:08,356 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:08,356 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:08,357 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:08,357 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:08,361 - DEBUG - utf-8 not active
+2024-10-22 10:03:08,361 - DEBUG - CP932 not active
+2024-10-22 10:03:08,361 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:08,361 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:08,361 - DEBUG - EUC-KR not active
+2024-10-22 10:03:08,361 - DEBUG - CP949 not active
+2024-10-22 10:03:08,361 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:08,361 - DEBUG - EUC-TW not active
+2024-10-22 10:03:08,361 - DEBUG - Johab not active
+2024-10-22 10:03:08,361 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:08,362 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:08,362 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:08,362 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:08,362 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:08,362 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:08,362 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:08,362 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:08,362 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:08,362 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:08,362 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:08,362 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:08,362 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:08,362 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:08,362 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:08,362 - DEBUG - utf-8 not active
+2024-10-22 10:03:08,362 - DEBUG - CP932 not active
+2024-10-22 10:03:08,362 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:08,362 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:08,362 - DEBUG - EUC-KR not active
+2024-10-22 10:03:08,362 - DEBUG - CP949 not active
+2024-10-22 10:03:08,363 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:08,363 - DEBUG - EUC-TW not active
+2024-10-22 10:03:08,363 - DEBUG - Johab not active
+2024-10-22 10:03:08,525 - INFO - Trade IC2202 at 6374.2 on 20220214 14:00:00 with 1 hand(s)
+2024-10-22 10:03:08,531 - INFO - Contract: [IC2203]: 
+ends at [2022-03-18], roll over date is [2022-03-14], settlement date is [2022-03-21], contract type is [main]
+2024-10-22 10:03:08,553 - INFO - Getting data for contract IC2203 on 20220314 ALQQQQ
+2024-10-22 10:03:08,555 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202203\IC2203_20220314.csv ASFKJV
+2024-10-22 10:03:08,706 - INFO - Trade IC2203 at 6375.6 on 20220314 14:00:00 with 1 hand(s)
+2024-10-22 10:03:08,719 - INFO - Getting data for contract IC2204 on 20220411 ZXCVJK
+2024-10-22 10:03:08,719 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202204\IC2204_20220411.csv CPIGOA
+2024-10-22 10:03:08,720 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:08,723 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:08,723 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:08,724 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:08,724 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:08,727 - DEBUG - utf-8 not active
+2024-10-22 10:03:08,727 - DEBUG - CP932 not active
+2024-10-22 10:03:08,728 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:08,728 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:08,728 - DEBUG - EUC-KR not active
+2024-10-22 10:03:08,728 - DEBUG - CP949 not active
+2024-10-22 10:03:08,728 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:08,728 - DEBUG - EUC-TW not active
+2024-10-22 10:03:08,728 - DEBUG - Johab not active
+2024-10-22 10:03:08,728 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:08,728 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:08,728 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:08,728 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:08,728 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:08,728 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:08,728 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:08,728 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:08,728 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:08,728 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:08,728 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:08,728 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:08,728 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:08,728 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:08,729 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:08,729 - DEBUG - utf-8 not active
+2024-10-22 10:03:08,729 - DEBUG - CP932 not active
+2024-10-22 10:03:08,729 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:08,729 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:08,729 - DEBUG - EUC-KR not active
+2024-10-22 10:03:08,729 - DEBUG - CP949 not active
+2024-10-22 10:03:08,729 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:08,729 - DEBUG - EUC-TW not active
+2024-10-22 10:03:08,729 - DEBUG - Johab not active
+2024-10-22 10:03:08,878 - INFO - Trade IC2203 at 6072.1 on 20220314 14:00:00 with 1 hand(s)
+2024-10-22 10:03:08,884 - INFO - Contract: [IC2204]: 
+ends at [2022-04-15], roll over date is [2022-04-11], settlement date is [2022-04-18], contract type is [main]
+2024-10-22 10:03:08,912 - INFO - Getting data for contract IC2204 on 20220411 ALQQQQ
+2024-10-22 10:03:08,912 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202204\IC2204_20220411.csv ASFKJV
+2024-10-22 10:03:09,047 - INFO - Trade IC2204 at 6072.9 on 20220411 14:00:00 with 1 hand(s)
+2024-10-22 10:03:09,057 - INFO - Getting data for contract IC2205 on 20220516 ZXCVJK
+2024-10-22 10:03:09,057 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202205\IC2205_20220516.csv CPIGOA
+2024-10-22 10:03:09,058 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:09,061 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:09,061 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:09,062 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:09,062 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:09,066 - DEBUG - utf-8 not active
+2024-10-22 10:03:09,066 - DEBUG - CP932 not active
+2024-10-22 10:03:09,066 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:09,066 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:09,066 - DEBUG - EUC-KR not active
+2024-10-22 10:03:09,066 - DEBUG - CP949 not active
+2024-10-22 10:03:09,066 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:09,066 - DEBUG - EUC-TW not active
+2024-10-22 10:03:09,066 - DEBUG - Johab not active
+2024-10-22 10:03:09,066 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:09,066 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:09,066 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:09,066 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:09,066 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:09,066 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:09,066 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:09,066 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:09,067 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:09,067 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:09,067 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:09,067 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:09,067 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:09,067 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:09,067 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:09,067 - DEBUG - utf-8 not active
+2024-10-22 10:03:09,067 - DEBUG - CP932 not active
+2024-10-22 10:03:09,067 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:09,067 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:09,067 - DEBUG - EUC-KR not active
+2024-10-22 10:03:09,067 - DEBUG - CP949 not active
+2024-10-22 10:03:09,067 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:09,067 - DEBUG - EUC-TW not active
+2024-10-22 10:03:09,067 - DEBUG - Johab not active
+2024-10-22 10:03:09,239 - INFO - Trade IC2204 at 5770.7 on 20220411 14:00:00 with 1 hand(s)
+2024-10-22 10:03:09,246 - INFO - Contract: [IC2205]: 
+ends at [2022-05-20], roll over date is [2022-05-16], settlement date is [2022-05-23], contract type is [main]
+2024-10-22 10:03:09,267 - INFO - Getting data for contract IC2205 on 20220516 ALQQQQ
+2024-10-22 10:03:09,267 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202205\IC2205_20220516.csv ASFKJV
+2024-10-22 10:03:09,403 - INFO - Trade IC2205 at 5772.2 on 20220516 14:00:00 with 1 hand(s)
+2024-10-22 10:03:09,413 - INFO - Getting data for contract IC2206 on 20220613 ZXCVJK
+2024-10-22 10:03:09,413 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202206\IC2206_20220613.csv CPIGOA
+2024-10-22 10:03:09,414 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:09,417 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:09,417 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:09,418 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:09,418 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:09,421 - DEBUG - utf-8 not active
+2024-10-22 10:03:09,422 - DEBUG - CP932 not active
+2024-10-22 10:03:09,422 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:09,422 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:09,422 - DEBUG - EUC-KR not active
+2024-10-22 10:03:09,422 - DEBUG - CP949 not active
+2024-10-22 10:03:09,422 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:09,422 - DEBUG - EUC-TW not active
+2024-10-22 10:03:09,422 - DEBUG - Johab not active
+2024-10-22 10:03:09,422 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:09,422 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:09,422 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:09,422 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:09,422 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:09,422 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:09,422 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:09,422 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:09,422 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:09,422 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:09,422 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:09,422 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:09,422 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:09,423 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:09,423 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:09,423 - DEBUG - utf-8 not active
+2024-10-22 10:03:09,423 - DEBUG - CP932 not active
+2024-10-22 10:03:09,423 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:09,423 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:09,423 - DEBUG - EUC-KR not active
+2024-10-22 10:03:09,423 - DEBUG - CP949 not active
+2024-10-22 10:03:09,423 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:09,423 - DEBUG - EUC-TW not active
+2024-10-22 10:03:09,423 - DEBUG - Johab not active
+2024-10-22 10:03:09,571 - INFO - Trade IC2205 at 6186.3 on 20220516 14:00:00 with 1 hand(s)
+2024-10-22 10:03:09,582 - INFO - Contract: [IC2206]: 
+ends at [2022-06-17], roll over date is [2022-06-13], settlement date is [2022-06-20], contract type is [main]
+2024-10-22 10:03:09,605 - INFO - Getting data for contract IC2206 on 20220613 ALQQQQ
+2024-10-22 10:03:09,606 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202206\IC2206_20220613.csv ASFKJV
+2024-10-22 10:03:09,745 - INFO - Trade IC2206 at 6186.5 on 20220613 14:00:00 with 1 hand(s)
+2024-10-22 10:03:09,759 - INFO - Getting data for contract IC2207 on 20220711 ZXCVJK
+2024-10-22 10:03:09,759 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202207\IC2207_20220711.csv CPIGOA
+2024-10-22 10:03:09,760 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:09,763 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:09,763 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:09,764 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:09,764 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:09,768 - DEBUG - utf-8 not active
+2024-10-22 10:03:09,768 - DEBUG - CP932 not active
+2024-10-22 10:03:09,768 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:09,768 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:09,768 - DEBUG - EUC-KR not active
+2024-10-22 10:03:09,768 - DEBUG - CP949 not active
+2024-10-22 10:03:09,768 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:09,768 - DEBUG - EUC-TW not active
+2024-10-22 10:03:09,768 - DEBUG - Johab not active
+2024-10-22 10:03:09,768 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:09,768 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:09,768 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:09,768 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:09,768 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:09,768 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:09,768 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:09,768 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:09,768 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:09,769 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:09,769 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:09,769 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:09,769 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:09,769 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:09,769 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:09,769 - DEBUG - utf-8 not active
+2024-10-22 10:03:09,769 - DEBUG - CP932 not active
+2024-10-22 10:03:09,769 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:09,769 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:09,769 - DEBUG - EUC-KR not active
+2024-10-22 10:03:09,769 - DEBUG - CP949 not active
+2024-10-22 10:03:09,769 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:09,769 - DEBUG - EUC-TW not active
+2024-10-22 10:03:09,769 - DEBUG - Johab not active
+2024-10-22 10:03:09,911 - INFO - Trade IC2206 at 6265.8 on 20220613 14:00:00 with 1 hand(s)
+2024-10-22 10:03:09,918 - INFO - Contract: [IC2207]: 
+ends at [2022-07-15], roll over date is [2022-07-11], settlement date is [2022-07-18], contract type is [main]
+2024-10-22 10:03:09,942 - INFO - Getting data for contract IC2207 on 20220711 ALQQQQ
+2024-10-22 10:03:09,942 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202207\IC2207_20220711.csv ASFKJV
+2024-10-22 10:03:10,084 - INFO - Trade IC2207 at 6267.7 on 20220711 14:00:00 with 1 hand(s)
+2024-10-22 10:03:10,098 - INFO - Getting data for contract IC2208 on 20220815 ZXCVJK
+2024-10-22 10:03:10,098 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202208\IC2208_20220815.csv CPIGOA
+2024-10-22 10:03:10,099 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:10,102 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:10,102 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:10,103 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:10,103 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:10,106 - DEBUG - utf-8 not active
+2024-10-22 10:03:10,107 - DEBUG - CP932 not active
+2024-10-22 10:03:10,107 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:10,107 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:10,107 - DEBUG - EUC-KR not active
+2024-10-22 10:03:10,107 - DEBUG - CP949 not active
+2024-10-22 10:03:10,107 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:10,107 - DEBUG - EUC-TW not active
+2024-10-22 10:03:10,107 - DEBUG - Johab not active
+2024-10-22 10:03:10,107 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:10,107 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:10,107 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:10,107 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:10,107 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:10,107 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:10,108 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:10,108 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:10,108 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:10,108 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:10,108 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:10,108 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:10,108 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:10,108 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:10,108 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:10,108 - DEBUG - utf-8 not active
+2024-10-22 10:03:10,108 - DEBUG - CP932 not active
+2024-10-22 10:03:10,108 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:10,108 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:10,108 - DEBUG - EUC-KR not active
+2024-10-22 10:03:10,108 - DEBUG - CP949 not active
+2024-10-22 10:03:10,108 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:10,108 - DEBUG - EUC-TW not active
+2024-10-22 10:03:10,108 - DEBUG - Johab not active
+2024-10-22 10:03:10,257 - INFO - Trade IC2207 at 6450.2 on 20220711 14:00:00 with 1 hand(s)
+2024-10-22 10:03:10,264 - INFO - Contract: [IC2208]: 
+ends at [2022-08-19], roll over date is [2022-08-15], settlement date is [2022-08-22], contract type is [main]
+2024-10-22 10:03:10,287 - INFO - Getting data for contract IC2208 on 20220815 ALQQQQ
+2024-10-22 10:03:10,287 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202208\IC2208_20220815.csv ASFKJV
+2024-10-22 10:03:10,444 - INFO - Trade IC2208 at 6450.7 on 20220815 14:00:00 with 1 hand(s)
+2024-10-22 10:03:10,455 - INFO - Getting data for contract IC2209 on 20220913 ZXCVJK
+2024-10-22 10:03:10,455 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202209\IC2209_20220913.csv CPIGOA
+2024-10-22 10:03:10,456 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-22 10:03:10,458 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-22 10:03:10,458 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-22 10:03:10,460 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-22 10:03:10,460 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-22 10:03:10,463 - DEBUG - utf-8 not active
+2024-10-22 10:03:10,463 - DEBUG - CP932 not active
+2024-10-22 10:03:10,463 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:10,463 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:10,463 - DEBUG - EUC-KR not active
+2024-10-22 10:03:10,463 - DEBUG - CP949 not active
+2024-10-22 10:03:10,464 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:10,464 - DEBUG - EUC-TW not active
+2024-10-22 10:03:10,464 - DEBUG - Johab not active
+2024-10-22 10:03:10,464 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-22 10:03:10,464 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-22 10:03:10,464 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-22 10:03:10,464 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-22 10:03:10,464 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-22 10:03:10,464 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-22 10:03:10,464 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-22 10:03:10,464 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-22 10:03:10,464 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-22 10:03:10,464 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-22 10:03:10,464 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-22 10:03:10,464 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-22 10:03:10,464 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:10,464 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-22 10:03:10,464 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-22 10:03:10,464 - DEBUG - utf-8 not active
+2024-10-22 10:03:10,464 - DEBUG - CP932 not active
+2024-10-22 10:03:10,464 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-22 10:03:10,465 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-22 10:03:10,465 - DEBUG - EUC-KR not active
+2024-10-22 10:03:10,465 - DEBUG - CP949 not active
+2024-10-22 10:03:10,465 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-22 10:03:10,465 - DEBUG - EUC-TW not active
+2024-10-22 10:03:10,465 - DEBUG - Johab not active
+2024-10-22 10:03:10,649 - INFO - Trade IC2208 at 6305.4 on 20220815 14:00:00 with 1 hand(s)
+2024-10-22 10:03:10,661 - INFO - Contract: [IC2209]: 
+ends at [2022-09-16], roll over date is [2022-09-13], settlement date is [2022-09-19], contract type is [main]
+2024-10-22 10:03:10,690 - INFO - Getting data for contract IC2209 on 20220913 ALQQQQ
+2024-10-22 10:03:10,690 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202209\IC2209_20220913.csv ASFKJV
+2024-10-22 10:03:10,850 - INFO - Trade IC2209 at 6306.1 on 20220913 14:00:00 with 1 hand(s)
+2024-10-22 10:03:10,860 - INFO - Getting data for contract IC2210 on 20221017 ZXCVJK
+2024-10-22 10:03:10,861 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202210\IC2210_20221017.csv CPIGOA

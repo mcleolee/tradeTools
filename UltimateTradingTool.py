@@ -5850,6 +5850,38 @@ def orderETF():
 #     print(order_format_st(480151137, 510300, ))
 
 
+def convertFileEncoding():
+    def convert_files_encoding(folder_path, target_encoding='utf-8'):
+        """
+        Convert all files in a specified folder to the target encoding.
+
+        @param folder_path: Path to the folder containing the files.
+        @param target_encoding: Target encoding to save the files (default is UTF-8).
+        """
+        for filename in os.listdir(folder_path):
+            file_path = os.path.join(folder_path, filename)
+
+            # 只处理文件，跳过文件夹
+            if os.path.isfile(file_path):
+                try:
+                    # 读取文件内容
+                    with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                        content = f.read()
+
+                    # 以目标编码写入文件
+                    with open(file_path, 'w', encoding=target_encoding) as f:
+                        f.write(content)
+
+                    prt.greenMsg(f"Converted '{filename}' to {target_encoding} encoding.")
+                except Exception as e:
+                    prt.redMsg(f"Error converting '{filename}': {e}")
+
+    folder_path = input("Drag the folder here:\n")
+    target_encoding = input("Enter the target encoding (default is UTF-8):\n") or 'utf-8'
+    convert_files_encoding(folder_path, target_encoding)
+
+    input("")
+
 
 
 def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
@@ -5969,6 +6001,10 @@ def afterMain():
             os.system('cls')
             orderETF()
 
+        elif choice == 'cfe':
+            os.system('cls')
+            convertFileEncoding()
+
 
 
 
@@ -6059,6 +6095,7 @@ def menu():
     print(" ro. 运行 RunOracle 程序")
 
     print(" dc. 数据收集(这是过时的功能)")
+    print(" cfe. 转换文件夹中所有文件编码")
     # print("")
     # print(f"\033[33m已停用功能: \033[0m")
     # print(" rs. 重新调整窗口大小")

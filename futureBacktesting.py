@@ -1,4 +1,5 @@
 from generallib import *
+import logging
 
 prt.headlineMsg("THIS IS A FUTURE BACKTESTING SOFTWARE")
 
@@ -69,35 +70,106 @@ class Contract:
 
 
 class Trade:
-    def __init__(self, contract, price, quantity, direction, date, time, start_money):
+    def __init__(self, contract, start_money, saveDataPath):
         self.contract = contract
+        self.startContract = contract
+        self.price = 0
+        self.quantity = 0
+        self.direction = 0
+        self.date = None
+        self.time = None
+        self.start_money = start_money
+        self.profit_loss = 0
+
+        self.cash = start_money
+        self.multiplier = 200  # 合约乘数
+        # 保证金费率
+        self.margin_rate = 0.12
+        # 手续费率
+        self.commission_rate = 0.000023
+
+        self.currentCommission = 0
+        self.currentDeltaCash = 0
+        self.currentMargin = 0
+
+        self.saveDataPath = saveDataPath
+
+        self.transaction = pd.DataFrame(
+            columns=['code', 'date', 'time', 'price', 'quantity', 'direction', 'profit_loss', 'current_cash', 'currentCommission', 'currentMargin', 'contract_type'])
+        self.asset = pd.DataFrame(
+            columns=['date', 'time', 'cash', 'delta'])
+
+    def __str__(self):
+        ...
+
+    def trade(self, currentContract, price, quantity, direction, date, time):
+        # prt.blackMsg(f'Trade {self.contract.code} at {price} on {date} {time} with {quantity} hand(s)')
+        logging.info(f'Trade {self.contract.code} at {price} on {date} {time} with {quantity} hand(s)')
+        self.contract = currentContract
+
         self.price = price
         self.quantity = quantity
         self.direction = direction
         self.date = date
         self.time = time
-        self.start_money = start_money
-        self.profit_loss = self.calculate_profit_loss()
-        self.transaction = pd.DataFrame(columns=['code', 'date', 'time', 'price', 'quantity', 'direction', 'profit_loss', 'contract_type'])
-        self.asset = pd.DataFrame(columns=['cash', 'delta'])
 
-    def __str__(self):
-        ...
+        # 有方向的现金流，未计入手续费和保证金费率
+        self.currentDeltaCash = self.price * self.quantity * self.multiplier * (1 if self.direction == 1 else -1)
+        # 手续费
+        self.currentCommission = self.price * self.quantity * self.multiplier * self.commission_rate
+        # 保证金
+        self.currentMargin = self.price * self.quantity * self.multiplier * self.margin_rate
 
-    def trade(self):
-        ...
+        # 现在的现金就是之前的现金减去手续费和保证金
+        self.cash -= self.currentMargin + self.currentCommission
 
-    def append_transaction(self, price, quantity):
-        self.transaction.append({}, ignore_index=True)
+        # print(f"Current Delta Cash: {self.currentDeltaCash}, direction: {self.direction}")
+        self.append_transaction(self.price, self.quantity, self.direction, self.date, self.time)
+        # self.append_asset(self.date, self.time)
 
-    def append_asset(self, date, asset):
-        self.asset.append({'date': date , 'asset': asset}, ignore_index=True)
+    def append_transaction(self, price, quantity, direction, date, time):
+        self.transaction = self.transaction.append({
+                                'code': self.contract.code,
+                                 'date': date,
+                                 'time': time,
+                                 'price': price,
+                                 'quantity': quantity,
+                                 'direction': direction,
+                                 'profit_loss': self.calculate_profit_loss(price, quantity, direction),
+                                 'current_cash': self.cash,
+                                    'currentCommission': self.currentCommission,
+                                    'currentMargin': self.currentMargin,
+                                 'contract_type': self.contract.contract_type
+                                 }, ignore_index=True)
+        # 保存交易数据，文件名是起始的合约代码，不会为了每次换仓而更改
+        savePathTemp = self.saveDataPath + f'\\{self.startContract.code}_{self.startContract.contract_type}_transaction.csv'
+        try:
+            self.transaction.to_csv(savePathTemp, index=False)
+            # prt.greenMsg(f"Transaction data saved to {savePathTemp} KDVBJK")
+        except Exception as e:
+            prt.redMsg(f"Error when saving transaction data to {savePathTemp}: {e}")
+
+    def append_asset(self, date, time):
+        self.asset.append({'date': date,
+                           'time': time,
+
+                           }, ignore_index=True)
+        savePathTemp = self.saveDataPath + f'\\{self.startContract.code}_{self.startContract.contract_type}_asset.csv'
+        try:
+            self.asset.to_csv(savePathTemp, index=False)
+            prt.greenMsg(f"Asset data saved to {savePathTemp}")
+        except Exception as e:
+            prt.redMsg(f"Error when saving asset data to {savePathTemp}: {e}")
 
 
-
-    def calculate_profit_loss(self):
-        ...
-        # return (self.exit_price - self.entry_price) * self.quantity
+    def calculate_profit_loss(self, price, quantity, direction):
+        abs_profit_loss = abs(price - self.price) * quantity * self.multiplier
+        if direction == 1:
+            return abs_profit_loss
+        elif direction == 2:
+            return -abs_profit_loss
+        else:
+            raise ValueError("Direction should be 1 or 2")
 
 
 class Backtest:
@@ -109,6 +181,7 @@ class Backtest:
         :param start_date: 回测开始日期 yyyyMMdd int
         :param end_date:   回测结束日期 yyyyMMdd int
         :param vol_at_establishing_position: 建仓时的手数,一般为1,不排除有多数量的情况，可能会比较复杂 int
+                                             而且，程序是默认在每次换仓的时候，都是以建仓时的手数进行换仓的
         需要注意，如果回测开始日期和结束日期不在合约的交易日期范围内，会提示，然后调整为合约的交易日期范围
 
         '''
@@ -116,10 +189,6 @@ class Backtest:
         self.start_date = start_date
         self.end_date = end_date
         self.vol_at_establishing_position = vol_at_establishing_position
-
-
-
-
 
     def execute(self):
         # 回测的主要逻辑
@@ -131,10 +200,9 @@ class Backtest:
                 continue
             else:
                 prt.boldMsg(f"This contract is the [{contract.contract_type}] contract, now start backtesting.")
-                self.execute_(contract) # 执行回测
+                self.execute_(contract)  # 执行回测
 
             print('\n', contract)
-
 
     def execute_(self, contract):
         '''
@@ -142,35 +210,86 @@ class Backtest:
         :return:
         '''
         # 0. 初始化
-        dm = DataManager()
+        dataManager = DataManager()
+        tradeSim = Trade(contract, 10000000, rf'D:\TRADE\backtestingForFutures')  # 交易模拟器, 这个路径是保存路径 PARAS
 
-        # 1. 建仓
+        # 1. 画图
+        # def plot_job():
+        #     dataManager.plot_dynamic(tradeSim.transaction, ['current_cash']) # 画图
+        # # 创建并启动后台线程
+        # plot_thread = threading.Thread(target=plot_job)
+        # plot_thread.daemon = True  # 设置为守护线程，当主程序退出时它也会退出
+        # plot_thread.start()
+
+
+        # 2. 建仓
         # 在 contract.startDate 买入 vol_at_establishing_position 手
-        dm.get_1400_avg_buy_1_price(contract.code, self.start_date)
-        # trade = Trade(contract, dm.get_1400_avg_buy_1_price(contract.code, self.start_date), self.vol_at_establishing_position, 'buy', contract.startDate, '14:00:00', 10000000)
+        startPrice = dataManager.get_1400_avg_buy_1_price(contract.code, self.start_date)
+        tradeSim.trade(contract, startPrice, 1, 1, self.start_date, '14:00:00')
 
+        # 3. 第一次换月
+        currentContract = contract
+        progress_bar = tqdm(total=self.estimate_iterations_for_contract(currentContract), desc="Backtesting Progress")
 
+        while isDatetimeABeforeB(currentContract.rollOverDate, self.end_date): # GSAXZZ
+            try:
+                nextContract = currentContract.get_next_contract()
 
-        # 读取数据
+                # 以 换仓日 当天1400点的平均卖一价 卖出 vol_at_establishing_position 手 currentContract
+                tradeSim.trade(currentContract,
+                    dataManager.get_1400_avg_sell_1_price(currentContract.code, int(currentContract.rollOverDate.replace('-', ''))),
+                                1, 2, currentContract.rollOverDate.replace('-', ''), '14:00:00')
+                # 同时在当天的 1400 的平均买一价，买入 vol_at_establishing_position 手 nextContract
+                tradeSim.trade(nextContract,
+                    dataManager.get_1400_avg_buy_1_price(nextContract.code, int(nextContract.rollOverDate.replace('-', ''))),
+                                1, 1, currentContract.rollOverDate.replace('-', ''), '14:00:00')
 
-        df_1400 = dm.get_one_day_data_for_contract(contract.code, contract.rollOverDate)
-
-        avg_order_buy_price_1 = df_1400['申买价一'].mean().round(2)
-        avg_order_buy_volume_1 = df_1400['申买量一'].mean().round(0)
-        avg_order_sell_price_1 = df_1400['申卖价一'].mean().round(2)
-        avg_order_sell_volume_1 = df_1400['申卖量一'].mean().round(0)
-        current_price = df_1400['最新价'].mean().round(2)
-
-        prt.blueMsg(
-            f"Current Price: [{current_price}], Average Order Buy Price 1: [{avg_order_buy_price_1}], Average Order Buy Volume 1: [{avg_order_buy_volume_1}], Average Order Sell Price 1: [{avg_order_sell_price_1}], Average Order Sell Volume 1:[{avg_order_sell_volume_1}]")
-
-
-
-
+                currentContract = nextContract
+                logging.info(currentContract)
+            except Exception as e:
+                prt.redMsg(f"Error: {e}\n可能是：\n"
+                           f"1. 合约的更换日期不在交易日范围内，请检查\n"
+                           f"2. 合约的更换日期不在回测的时间范围内 GSAXZZ\n")
+                break
+            progress_bar.update(1)
+        progress_bar.close()
     def generate_report(self):
         total_profit_loss = sum(trade.profit_loss for trade in self.trades)
         print(f'Total Profit/Loss: {total_profit_loss}')
 
+    def estimate_iterations_for_contract(self, contract: Contract):
+        """
+        @brief Estimate the number of iterations needed for backtesting based on contract type.
+        @param contract, Contract object containing contract type and code.
+        @return Estimated number of iterations for backtesting.
+        """
+        # 结束日期格式 YYYYMMDD, 转换为年和月
+        end_year = int(str(self.end_date)[:4])
+        end_month = int(str(self.end_date)[4:6])
+
+        # 合约代码格式 IC2001, 解析为年和月
+        contract_year = 2000 + int(contract.code[2:4])  # 例如 2001 -> 2020年
+        contract_month = int(contract.code[4:])  # 例如 01 -> 1月
+
+        # 根据不同合约类型计算换月频率
+        if contract.contract_type == 'main':
+            # 每个月换一次
+            return (end_year - contract_year) * 12 + (end_month - contract_month)
+
+        if contract.contract_type == 'sub':
+            # 假设次主力合约也是每月换一次
+            return (end_year - contract_year) * 12 + (end_month - contract_month)
+
+        if contract.contract_type == 'currentSeason':
+            # 每个季度换一次（3个月）
+            return ((end_year - contract_year) * 12 + (end_month - contract_month)) // 3
+
+        if contract.contract_type == 'nextSeason':
+            # 每个季度换一次（3个月），次季节合约
+            return ((end_year - contract_year) * 12 + (end_month - contract_month)) // 3
+
+        else:
+            raise ValueError("Unknown contract type")
 
 
 # @brief DataManager负责管理和处理期货数据
@@ -189,7 +308,7 @@ class DataManager:
         :param endDate:
         :return:
         '''
-        print(f"Getting data for contract {contractName} from {startDate} to {endDate}")
+        # print(f"Getting data for contract {contractName} from {startDate} to {endDate} YUBNAQ")
 
     def get_one_day_data_for_contract(self, contractName, date):
         '''
@@ -202,11 +321,11 @@ class DataManager:
         # 把yyyy-mm-dd格式的日期转换为yyyymmdd
         date = date.replace('-', '')
 
-        print(f"Getting data for contract {contractName} on {date}")
+        # print(f"Getting data for contract {contractName} on {date} LALDSA")
         filePath = rf'{self.dataPath}\{contractName[0:2]}_{date[0:6]}\{contractName}_{date}.csv'
-        print("File Path: ", filePath)
-        file.saveAsUft8(filePath)
-        df = pd.read_csv(filePath)
+        # print("File Path: ", filePath, 'VJKLZK')
+        # file.saveAsUft8(filePath)
+        df = pd.read_csv(filePath, encoding='GB2312')
         # 提取 最后修改时间 列为14:00:00的数据
         df_1400 = df[df['最后修改时间'].str.contains('14:00:00')]
         # print(df_1400)
@@ -222,18 +341,19 @@ class DataManager:
         '''
 
         # 下面这段代码是为了确保date是交易日，并把传入的int类型的日期转换为正确str类型的日期
-        date_with_separator = format_YYYYMMDD_with_separator(str(date), '-') # str 2020-01-02
-        date = str(date) # str 20200102
-        date_with_date_type = format_YYYYMMDD_to_date(date) # date 2020-01-02
-        date = getNextTradeDateIfNotTradeDate(get_trade_date(date[0:4]), date_with_date_type) # str 20200102
-        date = date.replace('-', '') # str 20200102
+        date_with_separator = format_YYYYMMDD_with_separator(str(date), '-')  # str 2020-01-02
+        date = str(date)  # str 20200102
+        date_with_date_type = format_YYYYMMDD_to_date(date)  # date 2020-01-02
+        date = getNextTradeDateIfNotTradeDate(get_trade_date(date[0:4]), date_with_date_type)  # str 20200102
+        date = date.replace('-', '')  # str 20200102
 
-        print(f"Getting data for contract {contractName} on {date}")
+        logging.info(f"Getting data for contract {contractName} on {str(date)} ZXCVJK")
         # 应是 "C:\Users\progene12\share\FUTURES_DATA\IC_202001\IC2001_20200102.csv"
         filePath = rf'{self.dataPath}\{contractName[0:2]}_{date[0:6]}\{contractName}_{date}.csv'
-        print("File Path: ", filePath)
-        file.saveAsUft8(filePath)
-        df = pd.read_csv(filePath)
+        logging.info(f"File Path: {filePath} CPIGOA")
+        file.get_encoding(filePath)
+        # file.saveAsUft8(filePath)
+        df = pd.read_csv(filePath, encoding='GB2312')
         # 提取 最后修改时间 列为14:00:00的数据
         df_1400 = df[df['最后修改时间'].str.contains('14:00:00')]
         avg_order_buy_price_1 = df_1400['申买价一'].mean().round(2)
@@ -242,23 +362,56 @@ class DataManager:
 
     def get_1400_avg_sell_1_price(self, contractName: str, date: int) -> float:
         # 下面这段代码是为了确保date是交易日，并把传入的int类型的日期转换为正确str类型的日期
-        date_with_separator = format_YYYYMMDD_with_separator(str(date), '-') # str 2020-01-02
-        date = str(date) # str 20200102
-        date_with_date_type = format_YYYYMMDD_to_date(date) # date 2020-01-02
-        date = getNextTradeDateIfNotTradeDate(get_trade_date(date[0:4]), date_with_date_type) # str 20200102
-        date = date.replace('-', '') # str 20200102
+        date_with_separator = format_YYYYMMDD_with_separator(str(date), '-')  # str 2020-01-02
+        date = str(date)  # str 20200102
+        date_with_date_type = format_YYYYMMDD_to_date(date)  # date 2020-01-02
+        date = getNextTradeDateIfNotTradeDate(get_trade_date(date[0:4]), date_with_date_type)  # str 20200102
+        date = date.replace('-', '')  # str 20200102
 
-
-        print(f"Getting data for contract {contractName} on {date}")
+        logging.info(f"Getting data for contract {contractName} on {str(date)} ALQQQQ")
         filePath = rf'{self.dataPath}\{contractName[0:2]}_{date[0:6]}\{contractName}_{date}.csv'
-        print("File Path: ", filePath)
-        file.saveAsUft8(filePath)
-        df = pd.read_csv(filePath)
+        logging.info(f"File Path: {filePath} ASFKJV")
+        # file.saveAsUft8(filePath)
+        df = pd.read_csv(filePath, encoding='GB2312')
         # 提取 最后修改时间 列为14:00:00的数据
         df_1400 = df[df['最后修改时间'].str.contains('14:00:00')]
         avg_order_sell_price_1 = df_1400['申卖价一'].mean().round(2)
 
         return avg_order_sell_price_1
+
+
+    # @brief 动态更新图像
+    # @param df 传入的数据，包含日期和目标列
+    # @param target_columns 需要绘制的列，可以是一个或两个
+    # @param interval 刷新间隔时间（以毫秒为单位），默认为5000ms
+    # @return 动态更新的图像
+    # plot_dynamic(df, ['col1', 'col2'])
+    @staticmethod
+    # def draw_plot_in_thread(df, target_columns, interval=3000):
+    def plot_dynamic(df, target_columns, interval=3000):
+
+        # 保证target_columns为列表形式
+        if isinstance(target_columns, str):
+            target_columns = [target_columns]
+
+        # 初始化绘图
+        fig, ax = plt.subplots()
+
+        def update(frame):
+            ax.clear()  # 清空当前的绘图
+            ax.set_xlabel("Date")
+            ax.set_ylabel("Value")
+            ax.set_title("Dynamic Plot")
+
+            for col in target_columns:
+                ax.plot(df['date'], df[col], label=col)
+
+            ax.legend()
+            ax.tick_params(axis='x', rotation=45)  # 旋转x轴刻度
+
+        ani = FuncAnimation(fig, update, interval=interval)
+        plt.show()
+
 
 
 
@@ -275,17 +428,22 @@ def create_next_contracts(initial_contract, num_contracts):
 
 
 if __name__ == '__main__':
+    # 初始化 logging. 文件中有DEBUG级别信息，是其他模块的，这里只有INFO级别的信息
+    logging.basicConfig(filename=f'./log/{getToday()}_{getTime()}_futuresBacktesting.log', level=logging.DEBUG,
+                        format='%(asctime)s - %(levelname)s - %(message)s')
+
+    logging.info("Start backtesting.")
+
+    debugContract = Contract("IC2209", "main")
+
     IC2001_MAIN = Contract("IC2001", "main")
     IC2002_SUB = Contract("IC2002", "sub")
     IC2003_CURRENTSEASON = Contract("IC2003", "currentSeason")
     IC2006_NEXTSEASON = Contract("IC2006", "nextSeason")
 
+    # backtest = Backtest([IC2003_CURRENTSEASON], 20200101, 20241012, 1)
     backtest = Backtest([IC2001_MAIN], 20200101, 20241012, 1)
     backtest.execute()
 
     IC2001_MAIN.get_next_contract()
-    # print(IC2102_MAIN)
-    # backtest.contracts.append(IC2102_MAIN)
-    # backtest.execute()
-
 

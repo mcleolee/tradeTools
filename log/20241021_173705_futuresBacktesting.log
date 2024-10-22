@@ -1,0 +1,829 @@
+2024-10-21 17:37:05,798 - INFO - Start backtesting.
+2024-10-21 17:37:06,191 - DEBUG - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0.
+2024-10-21 17:37:06,191 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
+2024-10-21 17:37:06,192 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniIta.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,192 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneralItalic.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,192 - DEBUG - findfont: score(<Font 'DejaVu Sans Display' (DejaVuSansDisplay.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,192 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneralBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,192 - DEBUG - findfont: score(<Font 'cmex10' (cmex10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,192 - DEBUG - findfont: score(<Font 'DejaVu Serif Display' (DejaVuSerifDisplay.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,192 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneralBolIta.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,192 - DEBUG - findfont: score(<Font 'cmsy10' (cmsy10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,192 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,192 - DEBUG - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,192 - DEBUG - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymReg.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,193 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,193 - DEBUG - findfont: score(<Font 'cmb10' (cmb10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,193 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
+2024-10-21 17:37:06,193 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2024-10-21 17:37:06,193 - DEBUG - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymReg.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,193 - DEBUG - findfont: score(<Font 'cmr10' (cmr10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,193 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneral.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,193 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,193 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,193 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUni.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,193 - DEBUG - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,193 - DEBUG - findfont: score(<Font 'cmmi10' (cmmi10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,193 - DEBUG - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,194 - DEBUG - findfont: score(<Font 'STIXSizeFiveSym' (STIXSizFiveSymReg.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,194 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBolIta.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,194 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,194 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
+2024-10-21 17:37:06,194 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
+2024-10-21 17:37:06,194 - DEBUG - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymReg.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,194 - DEBUG - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,194 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,194 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
+2024-10-21 17:37:06,194 - DEBUG - findfont: score(<Font 'cmtt10' (cmtt10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,195 - DEBUG - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymReg.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,195 - DEBUG - findfont: score(<Font 'cmss10' (cmss10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,195 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,195 - DEBUG - findfont: score(<Font 'Bookshelf Symbol 7' (BSSYM7.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,195 - DEBUG - findfont: score(<Font 'Myanmar Text' (mmrtextb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,195 - DEBUG - findfont: score(<Font 'Arial' (ARIALN.TTF) normal normal 400 condensed>) = 6.613636363636363
+2024-10-21 17:37:06,195 - DEBUG - findfont: score(<Font 'Lucida Console' (lucon.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,195 - DEBUG - findfont: score(<Font 'Symbol' (symbol.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,195 - DEBUG - findfont: score(<Font 'Arial' (ariali.ttf) italic normal 400 normal>) = 7.413636363636363
+2024-10-21 17:37:06,195 - DEBUG - findfont: score(<Font 'STFangsong' (STFANGSO.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,195 - DEBUG - findfont: score(<Font 'Segoe UI' (seguibli.ttf) italic normal 900 normal>) = 11.525
+2024-10-21 17:37:06,195 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeuil.ttf) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:06,195 - DEBUG - findfont: score(<Font 'FZYaoTi' (FZYTK.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,196 - DEBUG - findfont: score(<Font 'Arial' (arialbi.ttf) italic normal 700 normal>) = 7.698636363636363
+2024-10-21 17:37:06,196 - DEBUG - findfont: score(<Font 'MS Reference Specialty' (REFSPCL.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,196 - DEBUG - findfont: score(<Font 'SimSun-ExtB' (simsunb.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,196 - DEBUG - findfont: score(<Font 'Verdana' (verdanai.ttf) italic normal 400 normal>) = 4.6863636363636365
+2024-10-21 17:37:06,196 - DEBUG - findfont: score(<Font 'DengXian' (Deng.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,196 - DEBUG - findfont: score(<Font 'Segoe UI' (seguisbi.ttf) italic normal 600 normal>) = 11.24
+2024-10-21 17:37:06,196 - DEBUG - findfont: score(<Font 'Tahoma' (tahomabd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,196 - DEBUG - findfont: score(<Font 'Malgun Gothic' (malgun.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,196 - DEBUG - findfont: score(<Font 'Segoe UI Variable' (SegUIVar.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,196 - DEBUG - findfont: score(<Font 'Gabriola' (Gabriola.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,196 - DEBUG - findfont: score(<Font 'Courier New' (courbi.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,196 - DEBUG - findfont: score(<Font 'Leelawadee' (LEELAWDB.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,196 - DEBUG - findfont: score(<Font 'Candara' (Candarab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,196 - DEBUG - findfont: score(<Font 'Microsoft New Tai Lue' (ntailu.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,196 - DEBUG - findfont: score(<Font 'Wingdings 2' (WINGDNG2.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,196 - DEBUG - findfont: score(<Font 'Segoe MDL2 Assets' (segmdl2.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,197 - DEBUG - findfont: score(<Font 'Nirmala UI' (Nirmala.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,197 - DEBUG - findfont: score(<Font 'Garamond' (GARABD.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,197 - DEBUG - findfont: score(<Font 'Corbel' (corbeli.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,197 - DEBUG - findfont: score(<Font 'STLiti' (STLITI.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,197 - DEBUG - findfont: score(<Font 'STHupo' (STHUPO.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,197 - DEBUG - findfont: score(<Font 'Arial' (ARIALNB.TTF) normal normal 700 condensed>) = 6.8986363636363635
+2024-10-21 17:37:06,197 - DEBUG - findfont: score(<Font 'Gadugi' (gadugib.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,197 - DEBUG - findfont: score(<Font 'Yu Gothic' (YuGothR.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,197 - DEBUG - findfont: score(<Font 'Bookman Old Style' (BOOKOSB.TTF) normal normal 600 normal>) = 10.24
+2024-10-21 17:37:06,197 - DEBUG - findfont: score(<Font 'Century Gothic' (GOTHICBI.TTF) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,197 - DEBUG - findfont: score(<Font 'Franklin Gothic Medium' (framdit.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,197 - DEBUG - findfont: score(<Font 'Bahnschrift' (bahnschrift.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,197 - DEBUG - findfont: score(<Font 'LiSu' (SIMLI.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,197 - DEBUG - findfont: score(<Font 'Bookman Old Style' (BOOKOSBI.TTF) italic normal 600 normal>) = 11.24
+2024-10-21 17:37:06,197 - DEBUG - findfont: score(<Font 'Bookman Old Style' (BOOKOSI.TTF) italic normal 300 normal>) = 11.145
+2024-10-21 17:37:06,198 - DEBUG - findfont: score(<Font 'Times New Roman' (timesbi.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,198 - DEBUG - findfont: score(<Font 'HoloLens MDL2 Assets' (holomdl2.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,198 - DEBUG - findfont: score(<Font 'Corbel' (corbelb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,198 - DEBUG - findfont: score(<Font 'DengXian' (Dengb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,198 - DEBUG - findfont: score(<Font 'Corbel' (corbelz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,198 - DEBUG - findfont: score(<Font 'Webdings' (webdings.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,198 - DEBUG - findfont: score(<Font 'Segoe UI Symbol' (seguisym.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,198 - DEBUG - findfont: score(<Font 'Leelawadee UI' (LeelUIsl.ttf) normal normal 350 normal>) = 10.0975
+2024-10-21 17:37:06,199 - DEBUG - findfont: score(<Font 'Segoe UI' (seguisli.ttf) italic normal 350 normal>) = 11.0975
+2024-10-21 17:37:06,199 - DEBUG - findfont: score(<Font 'Dubai' (DUBAI-LIGHT.TTF) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:06,199 - DEBUG - findfont: score(<Font 'Microsoft Himalaya' (himalaya.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,199 - DEBUG - findfont: score(<Font 'MT Extra' (MTEXTRA.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,199 - DEBUG - findfont: score(<Font 'Comic Sans MS' (comic.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,199 - DEBUG - findfont: score(<Font 'Sitka' (SitkaVF.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,199 - DEBUG - findfont: score(<Font 'Candara' (Candarai.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,199 - DEBUG - findfont: score(<Font 'Yu Gothic' (YuGothL.ttc) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:06,199 - DEBUG - findfont: score(<Font 'Century Gothic' (GOTHICB.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,199 - DEBUG - findfont: score(<Font 'Trebuchet MS' (trebucbi.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,199 - DEBUG - findfont: score(<Font 'Mongolian Baiti' (monbaiti.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,199 - DEBUG - findfont: score(<Font 'Segoe Script' (segoescb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,199 - DEBUG - findfont: score(<Font 'Dubai' (DUBAI-BOLD.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,199 - DEBUG - findfont: score(<Font 'Ebrima' (ebrimabd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,199 - DEBUG - findfont: score(<Font 'Verdana' (verdana.ttf) normal normal 400 normal>) = 3.6863636363636365
+2024-10-21 17:37:06,199 - DEBUG - findfont: score(<Font 'STZhongsong' (STZHONGS.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,200 - DEBUG - findfont: score(<Font 'Microsoft Tai Le' (taile.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,200 - DEBUG - findfont: score(<Font 'Lucida Sans Unicode' (l_10646.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,200 - DEBUG - findfont: score(<Font 'Times New Roman' (timesi.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,200 - DEBUG - findfont: score(<Font 'Century' (CENTURY.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,200 - DEBUG - findfont: score(<Font 'Georgia' (georgiaz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,200 - DEBUG - findfont: score(<Font 'SimHei' (simhei.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,200 - DEBUG - findfont: score(<Font 'Leelawadee UI' (LeelaUIb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,200 - DEBUG - findfont: score(<Font 'Segoe UI Historic' (seguihis.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,200 - DEBUG - findfont: score(<Font 'Malgun Gothic' (malgunbd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,200 - DEBUG - findfont: score(<Font 'Nirmala UI' (NirmalaS.ttf) normal normal 350 normal>) = 10.0975
+2024-10-21 17:37:06,200 - DEBUG - findfont: score(<Font 'Book Antiqua' (ANTQUAB.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,200 - DEBUG - findfont: score(<Font 'Book Antiqua' (ANTQUABI.TTF) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,200 - DEBUG - findfont: score(<Font 'Garamond' (GARAIT.TTF) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,200 - DEBUG - findfont: score(<Font 'Microsoft JhengHei' (msjhl.ttc) normal normal 290 normal>) = 10.1545
+2024-10-21 17:37:06,200 - DEBUG - findfont: score(<Font 'Calibri' (calibril.ttf) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:06,200 - DEBUG - findfont: score(<Font 'Candara' (Candaral.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,201 - DEBUG - findfont: score(<Font 'Trebuchet MS' (trebucit.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,201 - DEBUG - findfont: score(<Font 'SimSun' (simsun.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,201 - DEBUG - findfont: score(<Font 'Gadugi' (gadugi.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,201 - DEBUG - findfont: score(<Font 'Palatino Linotype' (palab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,201 - DEBUG - findfont: score(<Font 'Corbel' (corbell.ttf) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:06,201 - DEBUG - findfont: score(<Font 'Consolas' (consolai.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,201 - DEBUG - findfont: score(<Font 'Candara' (Candara.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,201 - DEBUG - findfont: score(<Font 'Ebrima' (ebrima.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,201 - DEBUG - findfont: score(<Font 'Segoe UI' (seguili.ttf) italic normal 300 normal>) = 11.145
+2024-10-21 17:37:06,201 - DEBUG - findfont: score(<Font 'Segoe Fluent Icons' (SegoeIcons.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,201 - DEBUG - findfont: score(<Font 'KaiTi' (simkai.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,201 - DEBUG - findfont: score(<Font 'Ink Free' (Inkfree.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,201 - DEBUG - findfont: score(<Font 'Microsoft Uighur' (MSUIGHUR.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,201 - DEBUG - findfont: score(<Font 'Microsoft Tai Le' (taileb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,201 - DEBUG - findfont: score(<Font 'Calibri' (calibriz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,202 - DEBUG - findfont: score(<Font 'Garamond' (GARA.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,202 - DEBUG - findfont: score(<Font 'Courier New' (cour.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,202 - DEBUG - findfont: score(<Font 'MingLiU-ExtB' (mingliub.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,202 - DEBUG - findfont: score(<Font 'Arial' (ARIALNI.TTF) italic normal 400 condensed>) = 7.613636363636363
+2024-10-21 17:37:06,202 - DEBUG - findfont: score(<Font 'Wingdings' (wingding.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,202 - DEBUG - findfont: score(<Font 'Book Antiqua' (ANTQUAI.TTF) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,202 - DEBUG - findfont: score(<Font 'Georgia' (georgia.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,202 - DEBUG - findfont: score(<Font 'Consolas' (consola.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,202 - DEBUG - findfont: score(<Font 'Dubai' (DUBAI-MEDIUM.TTF) normal normal 500 normal>) = 10.145
+2024-10-21 17:37:06,202 - DEBUG - findfont: score(<Font 'Segoe UI Emoji' (seguiemj.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,202 - DEBUG - findfont: score(<Font 'Calibri' (calibrii.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,202 - DEBUG - findfont: score(<Font 'Georgia' (georgiai.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,202 - DEBUG - findfont: score(<Font 'Constantia' (constanz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,202 - DEBUG - findfont: score(<Font 'Segoe UI' (seguibl.ttf) normal normal 900 normal>) = 10.525
+2024-10-21 17:37:06,202 - DEBUG - findfont: score(<Font 'Malgun Gothic' (malgunsl.ttf) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:06,203 - DEBUG - findfont: score(<Font 'Leelawadee' (LEELAWAD.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,203 - DEBUG - findfont: score(<Font 'Comic Sans MS' (comici.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,203 - DEBUG - findfont: score(<Font 'Constantia' (constanb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,203 - DEBUG - findfont: score(<Font 'Arial' (arialbd.ttf) normal normal 700 normal>) = 6.698636363636363
+2024-10-21 17:37:06,203 - DEBUG - findfont: score(<Font 'STXingkai' (STXINGKA.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,203 - DEBUG - findfont: score(<Font 'Century Gothic' (GOTHIC.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,203 - DEBUG - findfont: score(<Font 'Calibri' (calibrib.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,203 - DEBUG - findfont: score(<Font 'Cambria' (cambriaz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,203 - DEBUG - findfont: score(<Font 'Consolas' (consolab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,203 - DEBUG - findfont: score(<Font 'Segoe Print' (segoeprb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,203 - DEBUG - findfont: score(<Font 'DengXian' (Dengl.ttf) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:06,203 - DEBUG - findfont: score(<Font 'Microsoft PhagsPa' (phagspab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,203 - DEBUG - findfont: score(<Font 'Microsoft YaHei' (msyhl.ttc) normal normal 290 normal>) = 10.1545
+2024-10-21 17:37:06,203 - DEBUG - findfont: score(<Font 'Microsoft New Tai Lue' (ntailub.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,203 - DEBUG - findfont: score(<Font 'Bookman Old Style' (BOOKOS.TTF) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:06,203 - DEBUG - findfont: score(<Font 'MS Gothic' (msgothic.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,204 - DEBUG - findfont: score(<Font 'Marlett' (marlett.ttf) normal normal 500 normal>) = 10.145
+2024-10-21 17:37:06,204 - DEBUG - findfont: score(<Font 'Sylfaen' (sylfaen.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,204 - DEBUG - findfont: score(<Font 'Calibri' (calibri.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,204 - DEBUG - findfont: score(<Font 'Sans Serif Collection' (SansSerifCollection.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,204 - DEBUG - findfont: score(<Font 'Microsoft YaHei' (msyh.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,204 - DEBUG - findfont: score(<Font 'Cambria' (cambriab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,204 - DEBUG - findfont: score(<Font 'Tahoma' (tahoma.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,204 - DEBUG - findfont: score(<Font 'FangSong' (simfang.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,204 - DEBUG - findfont: score(<Font 'Verdana' (verdanaz.ttf) italic normal 700 normal>) = 4.971363636363637
+2024-10-21 17:37:06,204 - DEBUG - findfont: score(<Font 'Calibri' (calibrili.ttf) italic normal 300 normal>) = 11.145
+2024-10-21 17:37:06,204 - DEBUG - findfont: score(<Font 'Microsoft Yi Baiti' (msyi.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,204 - DEBUG - findfont: score(<Font 'Book Antiqua' (BKANT.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,204 - DEBUG - findfont: score(<Font 'Cambria' (cambria.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,204 - DEBUG - findfont: score(<Font 'STXinwei' (STXINWEI.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,204 - DEBUG - findfont: score(<Font 'Impact' (impact.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,204 - DEBUG - findfont: score(<Font 'Arial' (ARIALNBI.TTF) italic normal 700 condensed>) = 7.8986363636363635
+2024-10-21 17:37:06,205 - DEBUG - findfont: score(<Font 'Constantia' (constani.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,205 - DEBUG - findfont: score(<Font 'Javanese Text' (javatext.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,205 - DEBUG - findfont: score(<Font 'Corbel' (corbelli.ttf) italic normal 300 normal>) = 11.145
+2024-10-21 17:37:06,205 - DEBUG - findfont: score(<Font 'Leelawadee UI' (LeelawUI.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,205 - DEBUG - findfont: score(<Font 'STSong' (STSONG.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,205 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeuiz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,205 - DEBUG - findfont: score(<Font 'STKaiti' (STKAITI.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,205 - DEBUG - findfont: score(<Font 'Comic Sans MS' (comicbd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,205 - DEBUG - findfont: score(<Font 'Palatino Linotype' (palai.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,205 - DEBUG - findfont: score(<Font 'Courier New' (couri.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,205 - DEBUG - findfont: score(<Font 'Segoe Script' (segoesc.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,205 - DEBUG - findfont: score(<Font 'Dubai' (DUBAI-REGULAR.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,205 - DEBUG - findfont: score(<Font 'Microsoft JhengHei' (msjhbd.ttc) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,205 - DEBUG - findfont: score(<Font 'Consolas' (consolaz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,205 - DEBUG - findfont: score(<Font 'Arial' (ariblk.ttf) normal normal 900 normal>) = 6.888636363636364
+2024-10-21 17:37:06,206 - DEBUG - findfont: score(<Font 'Verdana' (verdanab.ttf) normal normal 700 normal>) = 3.9713636363636367
+2024-10-21 17:37:06,206 - DEBUG - findfont: score(<Font 'Times New Roman' (times.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,206 - DEBUG - findfont: score(<Font 'Yu Gothic' (YuGothM.ttc) normal normal 500 normal>) = 10.145
+2024-10-21 17:37:06,206 - DEBUG - findfont: score(<Font 'Segoe Print' (segoepr.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,206 - DEBUG - findfont: score(<Font 'YouYuan' (SIMYOU.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,206 - DEBUG - findfont: score(<Font 'Palatino Linotype' (palabi.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,206 - DEBUG - findfont: score(<Font 'Century Gothic' (GOTHICI.TTF) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,206 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeui.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,206 - DEBUG - findfont: score(<Font 'Candara' (Candarali.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,206 - DEBUG - findfont: score(<Font 'Segoe UI' (seguisb.ttf) normal normal 600 normal>) = 10.24
+2024-10-21 17:37:06,206 - DEBUG - findfont: score(<Font 'MS Reference Sans Serif' (REFSAN.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,206 - DEBUG - findfont: score(<Font 'Yu Gothic' (YuGothB.ttc) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,206 - DEBUG - findfont: score(<Font 'Courier New' (courbd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,206 - DEBUG - findfont: score(<Font 'Monotype Corsiva' (MTCORSVA.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,206 - DEBUG - findfont: score(<Font 'Candara' (Candaraz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,206 - DEBUG - findfont: score(<Font 'Microsoft JhengHei' (msjh.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,207 - DEBUG - findfont: score(<Font 'Palatino Linotype' (pala.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,207 - DEBUG - findfont: score(<Font 'Myanmar Text' (mmrtext.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,207 - DEBUG - findfont: score(<Font 'Corbel' (corbel.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,207 - DEBUG - findfont: score(<Font 'Franklin Gothic Medium' (framd.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,207 - DEBUG - findfont: score(<Font 'Microsoft YaHei' (msyhbd.ttc) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,207 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeuisl.ttf) normal normal 350 normal>) = 10.0975
+2024-10-21 17:37:06,207 - DEBUG - findfont: score(<Font 'Wingdings 3' (WINGDNG3.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,207 - DEBUG - findfont: score(<Font 'Comic Sans MS' (comicz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,207 - DEBUG - findfont: score(<Font 'Times New Roman' (timesbd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,207 - DEBUG - findfont: score(<Font 'Cambria' (cambriai.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,207 - DEBUG - findfont: score(<Font 'STXihei' (STXIHEI.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,207 - DEBUG - findfont: score(<Font 'Nirmala UI' (NirmalaB.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,207 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeuii.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,207 - DEBUG - findfont: score(<Font 'MV Boli' (mvboli.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,207 - DEBUG - findfont: score(<Font 'STCaiyun' (STCAIYUN.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,208 - DEBUG - findfont: score(<Font 'Trebuchet MS' (trebucbd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,208 - DEBUG - findfont: score(<Font 'Microsoft PhagsPa' (phagspa.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,208 - DEBUG - findfont: score(<Font 'Microsoft Sans Serif' (micross.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,208 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeuib.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,208 - DEBUG - findfont: score(<Font 'Constantia' (constan.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,208 - DEBUG - findfont: score(<Font 'Trebuchet MS' (trebuc.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,208 - DEBUG - findfont: score(<Font 'Arial' (arial.ttf) normal normal 400 normal>) = 6.413636363636363
+2024-10-21 17:37:06,208 - DEBUG - findfont: score(<Font 'FZShuTi' (FZSTK.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,208 - DEBUG - findfont: score(<Font 'Microsoft Uighur' (MSUIGHUB.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,208 - DEBUG - findfont: score(<Font 'Sitka' (SitkaVF-Italic.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,208 - DEBUG - findfont: score(<Font 'Georgia' (georgiab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,209 - DEBUG - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0 to DejaVu Sans ('D:\\softwares\\python3.6.6\\lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSans.ttf') with score of 0.050000.
+2024-10-21 17:37:06,378 - DEBUG - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=12.0.
+2024-10-21 17:37:06,379 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
+2024-10-21 17:37:06,379 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniIta.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,379 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneralItalic.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,379 - DEBUG - findfont: score(<Font 'DejaVu Sans Display' (DejaVuSansDisplay.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,379 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneralBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,379 - DEBUG - findfont: score(<Font 'cmex10' (cmex10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,379 - DEBUG - findfont: score(<Font 'DejaVu Serif Display' (DejaVuSerifDisplay.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,380 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneralBolIta.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,380 - DEBUG - findfont: score(<Font 'cmsy10' (cmsy10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,380 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,380 - DEBUG - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,380 - DEBUG - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymReg.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,380 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,380 - DEBUG - findfont: score(<Font 'cmb10' (cmb10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,380 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
+2024-10-21 17:37:06,380 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2024-10-21 17:37:06,380 - DEBUG - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymReg.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,380 - DEBUG - findfont: score(<Font 'cmr10' (cmr10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,380 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneral.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,380 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,380 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,380 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUni.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,381 - DEBUG - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,381 - DEBUG - findfont: score(<Font 'cmmi10' (cmmi10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,381 - DEBUG - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,381 - DEBUG - findfont: score(<Font 'STIXSizeFiveSym' (STIXSizFiveSymReg.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,381 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBolIta.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,381 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,381 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
+2024-10-21 17:37:06,381 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
+2024-10-21 17:37:06,381 - DEBUG - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymReg.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,381 - DEBUG - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymBol.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,381 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,381 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
+2024-10-21 17:37:06,381 - DEBUG - findfont: score(<Font 'cmtt10' (cmtt10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,381 - DEBUG - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymReg.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,381 - DEBUG - findfont: score(<Font 'cmss10' (cmss10.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,382 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,382 - DEBUG - findfont: score(<Font 'Bookshelf Symbol 7' (BSSYM7.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,382 - DEBUG - findfont: score(<Font 'Myanmar Text' (mmrtextb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,382 - DEBUG - findfont: score(<Font 'Arial' (ARIALN.TTF) normal normal 400 condensed>) = 6.613636363636363
+2024-10-21 17:37:06,382 - DEBUG - findfont: score(<Font 'Lucida Console' (lucon.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,382 - DEBUG - findfont: score(<Font 'Symbol' (symbol.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,382 - DEBUG - findfont: score(<Font 'Arial' (ariali.ttf) italic normal 400 normal>) = 7.413636363636363
+2024-10-21 17:37:06,382 - DEBUG - findfont: score(<Font 'STFangsong' (STFANGSO.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,382 - DEBUG - findfont: score(<Font 'Segoe UI' (seguibli.ttf) italic normal 900 normal>) = 11.525
+2024-10-21 17:37:06,382 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeuil.ttf) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:06,382 - DEBUG - findfont: score(<Font 'FZYaoTi' (FZYTK.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,382 - DEBUG - findfont: score(<Font 'Arial' (arialbi.ttf) italic normal 700 normal>) = 7.698636363636363
+2024-10-21 17:37:06,382 - DEBUG - findfont: score(<Font 'MS Reference Specialty' (REFSPCL.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,382 - DEBUG - findfont: score(<Font 'SimSun-ExtB' (simsunb.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,382 - DEBUG - findfont: score(<Font 'Verdana' (verdanai.ttf) italic normal 400 normal>) = 4.6863636363636365
+2024-10-21 17:37:06,383 - DEBUG - findfont: score(<Font 'DengXian' (Deng.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,383 - DEBUG - findfont: score(<Font 'Segoe UI' (seguisbi.ttf) italic normal 600 normal>) = 11.24
+2024-10-21 17:37:06,383 - DEBUG - findfont: score(<Font 'Tahoma' (tahomabd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,383 - DEBUG - findfont: score(<Font 'Malgun Gothic' (malgun.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,383 - DEBUG - findfont: score(<Font 'Segoe UI Variable' (SegUIVar.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,383 - DEBUG - findfont: score(<Font 'Gabriola' (Gabriola.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,383 - DEBUG - findfont: score(<Font 'Courier New' (courbi.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,383 - DEBUG - findfont: score(<Font 'Leelawadee' (LEELAWDB.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,383 - DEBUG - findfont: score(<Font 'Candara' (Candarab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,383 - DEBUG - findfont: score(<Font 'Microsoft New Tai Lue' (ntailu.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,383 - DEBUG - findfont: score(<Font 'Wingdings 2' (WINGDNG2.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,383 - DEBUG - findfont: score(<Font 'Segoe MDL2 Assets' (segmdl2.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,383 - DEBUG - findfont: score(<Font 'Nirmala UI' (Nirmala.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,383 - DEBUG - findfont: score(<Font 'Garamond' (GARABD.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,383 - DEBUG - findfont: score(<Font 'Corbel' (corbeli.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,383 - DEBUG - findfont: score(<Font 'STLiti' (STLITI.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,384 - DEBUG - findfont: score(<Font 'STHupo' (STHUPO.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,384 - DEBUG - findfont: score(<Font 'Arial' (ARIALNB.TTF) normal normal 700 condensed>) = 6.8986363636363635
+2024-10-21 17:37:06,384 - DEBUG - findfont: score(<Font 'Gadugi' (gadugib.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,384 - DEBUG - findfont: score(<Font 'Yu Gothic' (YuGothR.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,384 - DEBUG - findfont: score(<Font 'Bookman Old Style' (BOOKOSB.TTF) normal normal 600 normal>) = 10.24
+2024-10-21 17:37:06,384 - DEBUG - findfont: score(<Font 'Century Gothic' (GOTHICBI.TTF) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,384 - DEBUG - findfont: score(<Font 'Franklin Gothic Medium' (framdit.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,384 - DEBUG - findfont: score(<Font 'Bahnschrift' (bahnschrift.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,384 - DEBUG - findfont: score(<Font 'LiSu' (SIMLI.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,384 - DEBUG - findfont: score(<Font 'Bookman Old Style' (BOOKOSBI.TTF) italic normal 600 normal>) = 11.24
+2024-10-21 17:37:06,384 - DEBUG - findfont: score(<Font 'Bookman Old Style' (BOOKOSI.TTF) italic normal 300 normal>) = 11.145
+2024-10-21 17:37:06,384 - DEBUG - findfont: score(<Font 'Times New Roman' (timesbi.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,384 - DEBUG - findfont: score(<Font 'HoloLens MDL2 Assets' (holomdl2.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,384 - DEBUG - findfont: score(<Font 'Corbel' (corbelb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,384 - DEBUG - findfont: score(<Font 'DengXian' (Dengb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,384 - DEBUG - findfont: score(<Font 'Corbel' (corbelz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,385 - DEBUG - findfont: score(<Font 'Webdings' (webdings.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,385 - DEBUG - findfont: score(<Font 'Segoe UI Symbol' (seguisym.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,385 - DEBUG - findfont: score(<Font 'Leelawadee UI' (LeelUIsl.ttf) normal normal 350 normal>) = 10.0975
+2024-10-21 17:37:06,385 - DEBUG - findfont: score(<Font 'Segoe UI' (seguisli.ttf) italic normal 350 normal>) = 11.0975
+2024-10-21 17:37:06,385 - DEBUG - findfont: score(<Font 'Dubai' (DUBAI-LIGHT.TTF) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:06,385 - DEBUG - findfont: score(<Font 'Microsoft Himalaya' (himalaya.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,385 - DEBUG - findfont: score(<Font 'MT Extra' (MTEXTRA.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,385 - DEBUG - findfont: score(<Font 'Comic Sans MS' (comic.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,385 - DEBUG - findfont: score(<Font 'Sitka' (SitkaVF.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,385 - DEBUG - findfont: score(<Font 'Candara' (Candarai.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,385 - DEBUG - findfont: score(<Font 'Yu Gothic' (YuGothL.ttc) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:06,385 - DEBUG - findfont: score(<Font 'Century Gothic' (GOTHICB.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,385 - DEBUG - findfont: score(<Font 'Trebuchet MS' (trebucbi.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,385 - DEBUG - findfont: score(<Font 'Mongolian Baiti' (monbaiti.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,385 - DEBUG - findfont: score(<Font 'Segoe Script' (segoescb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,386 - DEBUG - findfont: score(<Font 'Dubai' (DUBAI-BOLD.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,386 - DEBUG - findfont: score(<Font 'Ebrima' (ebrimabd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,386 - DEBUG - findfont: score(<Font 'Verdana' (verdana.ttf) normal normal 400 normal>) = 3.6863636363636365
+2024-10-21 17:37:06,386 - DEBUG - findfont: score(<Font 'STZhongsong' (STZHONGS.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,386 - DEBUG - findfont: score(<Font 'Microsoft Tai Le' (taile.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,386 - DEBUG - findfont: score(<Font 'Lucida Sans Unicode' (l_10646.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,386 - DEBUG - findfont: score(<Font 'Times New Roman' (timesi.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,386 - DEBUG - findfont: score(<Font 'Century' (CENTURY.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,386 - DEBUG - findfont: score(<Font 'Georgia' (georgiaz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,386 - DEBUG - findfont: score(<Font 'SimHei' (simhei.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,386 - DEBUG - findfont: score(<Font 'Leelawadee UI' (LeelaUIb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,386 - DEBUG - findfont: score(<Font 'Segoe UI Historic' (seguihis.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,386 - DEBUG - findfont: score(<Font 'Malgun Gothic' (malgunbd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,386 - DEBUG - findfont: score(<Font 'Nirmala UI' (NirmalaS.ttf) normal normal 350 normal>) = 10.0975
+2024-10-21 17:37:06,386 - DEBUG - findfont: score(<Font 'Book Antiqua' (ANTQUAB.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,386 - DEBUG - findfont: score(<Font 'Book Antiqua' (ANTQUABI.TTF) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,387 - DEBUG - findfont: score(<Font 'Garamond' (GARAIT.TTF) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,387 - DEBUG - findfont: score(<Font 'Microsoft JhengHei' (msjhl.ttc) normal normal 290 normal>) = 10.1545
+2024-10-21 17:37:06,387 - DEBUG - findfont: score(<Font 'Calibri' (calibril.ttf) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:06,387 - DEBUG - findfont: score(<Font 'Candara' (Candaral.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,387 - DEBUG - findfont: score(<Font 'Trebuchet MS' (trebucit.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,387 - DEBUG - findfont: score(<Font 'SimSun' (simsun.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,387 - DEBUG - findfont: score(<Font 'Gadugi' (gadugi.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,387 - DEBUG - findfont: score(<Font 'Palatino Linotype' (palab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,387 - DEBUG - findfont: score(<Font 'Corbel' (corbell.ttf) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:06,387 - DEBUG - findfont: score(<Font 'Consolas' (consolai.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,387 - DEBUG - findfont: score(<Font 'Candara' (Candara.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,387 - DEBUG - findfont: score(<Font 'Ebrima' (ebrima.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,387 - DEBUG - findfont: score(<Font 'Segoe UI' (seguili.ttf) italic normal 300 normal>) = 11.145
+2024-10-21 17:37:06,387 - DEBUG - findfont: score(<Font 'Segoe Fluent Icons' (SegoeIcons.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,387 - DEBUG - findfont: score(<Font 'KaiTi' (simkai.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,387 - DEBUG - findfont: score(<Font 'Ink Free' (Inkfree.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,388 - DEBUG - findfont: score(<Font 'Microsoft Uighur' (MSUIGHUR.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,388 - DEBUG - findfont: score(<Font 'Microsoft Tai Le' (taileb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,388 - DEBUG - findfont: score(<Font 'Calibri' (calibriz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,388 - DEBUG - findfont: score(<Font 'Garamond' (GARA.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,388 - DEBUG - findfont: score(<Font 'Courier New' (cour.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,388 - DEBUG - findfont: score(<Font 'MingLiU-ExtB' (mingliub.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,388 - DEBUG - findfont: score(<Font 'Arial' (ARIALNI.TTF) italic normal 400 condensed>) = 7.613636363636363
+2024-10-21 17:37:06,388 - DEBUG - findfont: score(<Font 'Wingdings' (wingding.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,388 - DEBUG - findfont: score(<Font 'Book Antiqua' (ANTQUAI.TTF) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,388 - DEBUG - findfont: score(<Font 'Georgia' (georgia.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,388 - DEBUG - findfont: score(<Font 'Consolas' (consola.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,388 - DEBUG - findfont: score(<Font 'Dubai' (DUBAI-MEDIUM.TTF) normal normal 500 normal>) = 10.145
+2024-10-21 17:37:06,388 - DEBUG - findfont: score(<Font 'Segoe UI Emoji' (seguiemj.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,388 - DEBUG - findfont: score(<Font 'Calibri' (calibrii.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,388 - DEBUG - findfont: score(<Font 'Georgia' (georgiai.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,388 - DEBUG - findfont: score(<Font 'Constantia' (constanz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,389 - DEBUG - findfont: score(<Font 'Segoe UI' (seguibl.ttf) normal normal 900 normal>) = 10.525
+2024-10-21 17:37:06,389 - DEBUG - findfont: score(<Font 'Malgun Gothic' (malgunsl.ttf) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:06,389 - DEBUG - findfont: score(<Font 'Leelawadee' (LEELAWAD.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,389 - DEBUG - findfont: score(<Font 'Comic Sans MS' (comici.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,389 - DEBUG - findfont: score(<Font 'Constantia' (constanb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,389 - DEBUG - findfont: score(<Font 'Arial' (arialbd.ttf) normal normal 700 normal>) = 6.698636363636363
+2024-10-21 17:37:06,389 - DEBUG - findfont: score(<Font 'STXingkai' (STXINGKA.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,389 - DEBUG - findfont: score(<Font 'Century Gothic' (GOTHIC.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,389 - DEBUG - findfont: score(<Font 'Calibri' (calibrib.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,389 - DEBUG - findfont: score(<Font 'Cambria' (cambriaz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,389 - DEBUG - findfont: score(<Font 'Consolas' (consolab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,389 - DEBUG - findfont: score(<Font 'Segoe Print' (segoeprb.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,389 - DEBUG - findfont: score(<Font 'DengXian' (Dengl.ttf) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:06,389 - DEBUG - findfont: score(<Font 'Microsoft PhagsPa' (phagspab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,389 - DEBUG - findfont: score(<Font 'Microsoft YaHei' (msyhl.ttc) normal normal 290 normal>) = 10.1545
+2024-10-21 17:37:06,389 - DEBUG - findfont: score(<Font 'Microsoft New Tai Lue' (ntailub.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,389 - DEBUG - findfont: score(<Font 'Bookman Old Style' (BOOKOS.TTF) normal normal 300 normal>) = 10.145
+2024-10-21 17:37:06,390 - DEBUG - findfont: score(<Font 'MS Gothic' (msgothic.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,390 - DEBUG - findfont: score(<Font 'Marlett' (marlett.ttf) normal normal 500 normal>) = 10.145
+2024-10-21 17:37:06,390 - DEBUG - findfont: score(<Font 'Sylfaen' (sylfaen.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,390 - DEBUG - findfont: score(<Font 'Calibri' (calibri.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,390 - DEBUG - findfont: score(<Font 'Sans Serif Collection' (SansSerifCollection.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,390 - DEBUG - findfont: score(<Font 'Microsoft YaHei' (msyh.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,390 - DEBUG - findfont: score(<Font 'Cambria' (cambriab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,390 - DEBUG - findfont: score(<Font 'Tahoma' (tahoma.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,390 - DEBUG - findfont: score(<Font 'FangSong' (simfang.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,390 - DEBUG - findfont: score(<Font 'Verdana' (verdanaz.ttf) italic normal 700 normal>) = 4.971363636363637
+2024-10-21 17:37:06,390 - DEBUG - findfont: score(<Font 'Calibri' (calibrili.ttf) italic normal 300 normal>) = 11.145
+2024-10-21 17:37:06,390 - DEBUG - findfont: score(<Font 'Microsoft Yi Baiti' (msyi.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,390 - DEBUG - findfont: score(<Font 'Book Antiqua' (BKANT.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,390 - DEBUG - findfont: score(<Font 'Cambria' (cambria.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,390 - DEBUG - findfont: score(<Font 'STXinwei' (STXINWEI.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,390 - DEBUG - findfont: score(<Font 'Impact' (impact.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,391 - DEBUG - findfont: score(<Font 'Arial' (ARIALNBI.TTF) italic normal 700 condensed>) = 7.8986363636363635
+2024-10-21 17:37:06,391 - DEBUG - findfont: score(<Font 'Constantia' (constani.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,391 - DEBUG - findfont: score(<Font 'Javanese Text' (javatext.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,391 - DEBUG - findfont: score(<Font 'Corbel' (corbelli.ttf) italic normal 300 normal>) = 11.145
+2024-10-21 17:37:06,391 - DEBUG - findfont: score(<Font 'Leelawadee UI' (LeelawUI.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,391 - DEBUG - findfont: score(<Font 'STSong' (STSONG.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,391 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeuiz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,391 - DEBUG - findfont: score(<Font 'STKaiti' (STKAITI.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,391 - DEBUG - findfont: score(<Font 'Comic Sans MS' (comicbd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,391 - DEBUG - findfont: score(<Font 'Palatino Linotype' (palai.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,391 - DEBUG - findfont: score(<Font 'Courier New' (couri.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,391 - DEBUG - findfont: score(<Font 'Segoe Script' (segoesc.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,391 - DEBUG - findfont: score(<Font 'Dubai' (DUBAI-REGULAR.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,391 - DEBUG - findfont: score(<Font 'Microsoft JhengHei' (msjhbd.ttc) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,391 - DEBUG - findfont: score(<Font 'Consolas' (consolaz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,391 - DEBUG - findfont: score(<Font 'Arial' (ariblk.ttf) normal normal 900 normal>) = 6.888636363636364
+2024-10-21 17:37:06,392 - DEBUG - findfont: score(<Font 'Verdana' (verdanab.ttf) normal normal 700 normal>) = 3.9713636363636367
+2024-10-21 17:37:06,392 - DEBUG - findfont: score(<Font 'Times New Roman' (times.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,392 - DEBUG - findfont: score(<Font 'Yu Gothic' (YuGothM.ttc) normal normal 500 normal>) = 10.145
+2024-10-21 17:37:06,392 - DEBUG - findfont: score(<Font 'Segoe Print' (segoepr.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,392 - DEBUG - findfont: score(<Font 'YouYuan' (SIMYOU.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,392 - DEBUG - findfont: score(<Font 'Palatino Linotype' (palabi.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,392 - DEBUG - findfont: score(<Font 'Century Gothic' (GOTHICI.TTF) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,392 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeui.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,392 - DEBUG - findfont: score(<Font 'Candara' (Candarali.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,392 - DEBUG - findfont: score(<Font 'Segoe UI' (seguisb.ttf) normal normal 600 normal>) = 10.24
+2024-10-21 17:37:06,392 - DEBUG - findfont: score(<Font 'MS Reference Sans Serif' (REFSAN.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,392 - DEBUG - findfont: score(<Font 'Yu Gothic' (YuGothB.ttc) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,392 - DEBUG - findfont: score(<Font 'Courier New' (courbd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,392 - DEBUG - findfont: score(<Font 'Monotype Corsiva' (MTCORSVA.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,392 - DEBUG - findfont: score(<Font 'Candara' (Candaraz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,393 - DEBUG - findfont: score(<Font 'Microsoft JhengHei' (msjh.ttc) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,393 - DEBUG - findfont: score(<Font 'Palatino Linotype' (pala.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,393 - DEBUG - findfont: score(<Font 'Myanmar Text' (mmrtext.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,393 - DEBUG - findfont: score(<Font 'Corbel' (corbel.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,393 - DEBUG - findfont: score(<Font 'Franklin Gothic Medium' (framd.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,393 - DEBUG - findfont: score(<Font 'Microsoft YaHei' (msyhbd.ttc) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,393 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeuisl.ttf) normal normal 350 normal>) = 10.0975
+2024-10-21 17:37:06,393 - DEBUG - findfont: score(<Font 'Wingdings 3' (WINGDNG3.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,393 - DEBUG - findfont: score(<Font 'Comic Sans MS' (comicz.ttf) italic normal 700 normal>) = 11.335
+2024-10-21 17:37:06,393 - DEBUG - findfont: score(<Font 'Times New Roman' (timesbd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,393 - DEBUG - findfont: score(<Font 'Cambria' (cambriai.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,393 - DEBUG - findfont: score(<Font 'STXihei' (STXIHEI.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,393 - DEBUG - findfont: score(<Font 'Nirmala UI' (NirmalaB.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,393 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeuii.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,393 - DEBUG - findfont: score(<Font 'MV Boli' (mvboli.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,393 - DEBUG - findfont: score(<Font 'STCaiyun' (STCAIYUN.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,394 - DEBUG - findfont: score(<Font 'Trebuchet MS' (trebucbd.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,394 - DEBUG - findfont: score(<Font 'Microsoft PhagsPa' (phagspa.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,394 - DEBUG - findfont: score(<Font 'Microsoft Sans Serif' (micross.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,394 - DEBUG - findfont: score(<Font 'Segoe UI' (segoeuib.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,394 - DEBUG - findfont: score(<Font 'Constantia' (constan.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,394 - DEBUG - findfont: score(<Font 'Trebuchet MS' (trebuc.ttf) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,394 - DEBUG - findfont: score(<Font 'Arial' (arial.ttf) normal normal 400 normal>) = 6.413636363636363
+2024-10-21 17:37:06,394 - DEBUG - findfont: score(<Font 'FZShuTi' (FZSTK.TTF) normal normal 400 normal>) = 10.05
+2024-10-21 17:37:06,394 - DEBUG - findfont: score(<Font 'Microsoft Uighur' (MSUIGHUB.TTF) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,394 - DEBUG - findfont: score(<Font 'Sitka' (SitkaVF-Italic.ttf) italic normal 400 normal>) = 11.05
+2024-10-21 17:37:06,394 - DEBUG - findfont: score(<Font 'Georgia' (georgiab.ttf) normal normal 700 normal>) = 10.335
+2024-10-21 17:37:06,394 - DEBUG - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=12.0 to DejaVu Sans ('D:\\softwares\\python3.6.6\\lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSans.ttf') with score of 0.050000.
+2024-10-21 17:37:09,133 - INFO - Getting data for contract IC2001 on 20200102 ZXCVJK
+2024-10-21 17:37:09,134 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202001\IC2001_20200102.csv CPIGOA
+2024-10-21 17:37:09,156 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:37:09,159 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:37:09,159 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:37:09,160 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:37:09,160 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:37:09,165 - DEBUG - utf-8 not active
+2024-10-21 17:37:09,165 - DEBUG - CP932 not active
+2024-10-21 17:37:09,165 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:37:09,165 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:37:09,165 - DEBUG - EUC-KR not active
+2024-10-21 17:37:09,165 - DEBUG - CP949 not active
+2024-10-21 17:37:09,165 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:37:09,165 - DEBUG - EUC-TW not active
+2024-10-21 17:37:09,165 - DEBUG - Johab not active
+2024-10-21 17:37:09,166 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:37:09,166 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:37:09,166 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:37:09,166 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:37:09,166 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:37:09,166 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:37:09,166 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:37:09,166 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:37:09,166 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:37:09,166 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:37:09,166 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:37:09,166 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:37:09,166 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:37:09,166 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:37:09,166 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:37:09,166 - DEBUG - utf-8 not active
+2024-10-21 17:37:09,166 - DEBUG - CP932 not active
+2024-10-21 17:37:09,166 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:37:09,166 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:37:09,166 - DEBUG - EUC-KR not active
+2024-10-21 17:37:09,166 - DEBUG - CP949 not active
+2024-10-21 17:37:09,166 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:37:09,167 - DEBUG - EUC-TW not active
+2024-10-21 17:37:09,167 - DEBUG - Johab not active
+2024-10-21 17:37:09,402 - INFO - Trade IC2001 at 5375.8 on 20200101 14:00:00 with 1 hand(s)
+2024-10-21 17:37:09,461 - INFO - Getting data for contract IC2001 on 20200113 ALQQQQ
+2024-10-21 17:37:09,461 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202001\IC2001_20200113.csv ASFKJV
+2024-10-21 17:37:09,679 - INFO - Trade IC2001 at 5533.9 on 20200113 14:00:00 with 1 hand(s)
+2024-10-21 17:37:09,693 - INFO - Getting data for contract IC2002 on 20200217 ZXCVJK
+2024-10-21 17:37:09,694 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202002\IC2002_20200217.csv CPIGOA
+2024-10-21 17:37:09,696 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:37:09,699 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:37:09,699 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:37:09,701 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:37:09,701 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:37:09,707 - DEBUG - utf-8 not active
+2024-10-21 17:37:09,708 - DEBUG - CP932 not active
+2024-10-21 17:37:09,708 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:37:09,708 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:37:09,708 - DEBUG - EUC-KR not active
+2024-10-21 17:37:09,708 - DEBUG - CP949 not active
+2024-10-21 17:37:09,708 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:37:09,708 - DEBUG - EUC-TW not active
+2024-10-21 17:37:09,708 - DEBUG - Johab not active
+2024-10-21 17:37:09,708 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:37:09,708 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:37:09,708 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:37:09,708 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:37:09,709 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:37:09,709 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:37:09,709 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:37:09,709 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:37:09,709 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:37:09,709 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:37:09,709 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:37:09,709 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:37:09,709 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:37:09,709 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:37:09,709 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:37:09,709 - DEBUG - utf-8 not active
+2024-10-21 17:37:09,710 - DEBUG - CP932 not active
+2024-10-21 17:37:09,710 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:37:09,710 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:37:09,710 - DEBUG - EUC-KR not active
+2024-10-21 17:37:09,710 - DEBUG - CP949 not active
+2024-10-21 17:37:09,710 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:37:09,710 - DEBUG - EUC-TW not active
+2024-10-21 17:37:09,710 - DEBUG - Johab not active
+2024-10-21 17:37:09,965 - INFO - Trade IC2001 at 5561.0 on 20200113 14:00:00 with 1 hand(s)
+2024-10-21 17:37:10,094 - INFO - Getting data for contract IC2002 on 20200217 ALQQQQ
+2024-10-21 17:37:10,094 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202002\IC2002_20200217.csv ASFKJV
+2024-10-21 17:37:11,062 - INFO - Trade IC2002 at 5561.6 on 20200217 14:00:00 with 1 hand(s)
+2024-10-21 17:37:11,116 - INFO - Getting data for contract IC2003 on 20200316 ZXCVJK
+2024-10-21 17:37:11,117 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202003\IC2003_20200316.csv CPIGOA
+2024-10-21 17:37:11,145 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:37:11,150 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:37:11,150 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:37:11,152 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:37:11,152 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:37:11,166 - DEBUG - utf-8 not active
+2024-10-21 17:37:11,166 - DEBUG - CP932 not active
+2024-10-21 17:37:11,167 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:37:11,167 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:37:11,167 - DEBUG - EUC-KR not active
+2024-10-21 17:37:11,167 - DEBUG - CP949 not active
+2024-10-21 17:37:11,167 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:37:11,167 - DEBUG - EUC-TW not active
+2024-10-21 17:37:11,167 - DEBUG - Johab not active
+2024-10-21 17:37:11,167 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:37:11,167 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:37:11,167 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:37:11,167 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:37:11,167 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:37:11,167 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:37:11,167 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:37:11,167 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:37:11,167 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:37:11,167 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:37:11,167 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:37:11,168 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:37:11,168 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:37:11,168 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:37:11,168 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:37:11,168 - DEBUG - utf-8 not active
+2024-10-21 17:37:11,168 - DEBUG - CP932 not active
+2024-10-21 17:37:11,168 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:37:11,168 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:37:11,168 - DEBUG - EUC-KR not active
+2024-10-21 17:37:11,168 - DEBUG - CP949 not active
+2024-10-21 17:37:11,168 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:37:11,168 - DEBUG - EUC-TW not active
+2024-10-21 17:37:11,168 - DEBUG - Johab not active
+2024-10-21 17:37:12,485 - INFO - Trade IC2002 at 5227.4 on 20200217 14:00:00 with 1 hand(s)
+2024-10-21 17:37:12,700 - INFO - Getting data for contract IC2003 on 20200316 ALQQQQ
+2024-10-21 17:37:12,700 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202003\IC2003_20200316.csv ASFKJV
+2024-10-21 17:37:13,319 - INFO - Trade IC2003 at 5227.9 on 20200316 14:00:00 with 1 hand(s)
+2024-10-21 17:37:13,351 - INFO - Getting data for contract IC2004 on 20200413 ZXCVJK
+2024-10-21 17:37:13,351 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202004\IC2004_20200413.csv CPIGOA
+2024-10-21 17:37:13,371 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:37:13,375 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:37:13,375 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:37:13,377 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:37:13,379 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:37:13,392 - DEBUG - utf-8 not active
+2024-10-21 17:37:13,393 - DEBUG - CP932 not active
+2024-10-21 17:37:13,394 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:37:13,394 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:37:13,394 - DEBUG - EUC-KR not active
+2024-10-21 17:37:13,394 - DEBUG - CP949 not active
+2024-10-21 17:37:13,394 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:37:13,394 - DEBUG - EUC-TW not active
+2024-10-21 17:37:13,395 - DEBUG - Johab not active
+2024-10-21 17:37:13,395 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:37:13,395 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:37:13,395 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:37:13,395 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:37:13,395 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:37:13,395 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:37:13,395 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:37:13,395 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:37:13,395 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:37:13,395 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:37:13,395 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:37:13,395 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:37:13,395 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:37:13,395 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:37:13,396 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:37:13,396 - DEBUG - utf-8 not active
+2024-10-21 17:37:13,396 - DEBUG - CP932 not active
+2024-10-21 17:37:13,396 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:37:13,396 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:37:13,396 - DEBUG - EUC-KR not active
+2024-10-21 17:37:13,396 - DEBUG - CP949 not active
+2024-10-21 17:37:13,396 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:37:13,396 - DEBUG - EUC-TW not active
+2024-10-21 17:37:13,396 - DEBUG - Johab not active
+2024-10-21 17:37:13,750 - INFO - Trade IC2003 at 5141.5 on 20200316 14:00:00 with 1 hand(s)
+2024-10-21 17:37:13,782 - INFO - Getting data for contract IC2004 on 20200413 ALQQQQ
+2024-10-21 17:37:13,782 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202004\IC2004_20200413.csv ASFKJV
+2024-10-21 17:37:13,949 - INFO - Trade IC2004 at 5141.9 on 20200413 14:00:00 with 1 hand(s)
+2024-10-21 17:37:13,960 - INFO - Getting data for contract IC2005 on 20200511 ZXCVJK
+2024-10-21 17:37:13,960 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202005\IC2005_20200511.csv CPIGOA
+2024-10-21 17:37:13,962 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:37:13,965 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:37:13,965 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:37:13,966 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:37:13,966 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:37:13,970 - DEBUG - utf-8 not active
+2024-10-21 17:37:13,970 - DEBUG - CP932 not active
+2024-10-21 17:37:13,970 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:37:13,970 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:37:13,970 - DEBUG - EUC-KR not active
+2024-10-21 17:37:13,970 - DEBUG - CP949 not active
+2024-10-21 17:37:13,970 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:37:13,970 - DEBUG - EUC-TW not active
+2024-10-21 17:37:13,970 - DEBUG - Johab not active
+2024-10-21 17:37:13,970 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:37:13,970 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:37:13,970 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:37:13,970 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:37:13,970 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:37:13,971 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:37:13,971 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:37:13,971 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:37:13,971 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:37:13,971 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:37:13,971 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:37:13,971 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:37:13,971 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:37:13,971 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:37:13,971 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:37:13,971 - DEBUG - utf-8 not active
+2024-10-21 17:37:13,971 - DEBUG - CP932 not active
+2024-10-21 17:37:13,971 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:37:13,971 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:37:13,971 - DEBUG - EUC-KR not active
+2024-10-21 17:37:13,971 - DEBUG - CP949 not active
+2024-10-21 17:37:13,971 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:37:13,971 - DEBUG - EUC-TW not active
+2024-10-21 17:37:13,972 - DEBUG - Johab not active
+2024-10-21 17:37:14,127 - INFO - Trade IC2004 at 5461.8 on 20200413 14:00:00 with 1 hand(s)
+2024-10-21 17:37:14,156 - INFO - Getting data for contract IC2005 on 20200511 ALQQQQ
+2024-10-21 17:37:14,156 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202005\IC2005_20200511.csv ASFKJV
+2024-10-21 17:37:14,308 - INFO - Trade IC2005 at 5462.3 on 20200511 14:00:00 with 1 hand(s)
+2024-10-21 17:37:14,319 - INFO - Getting data for contract IC2006 on 20200615 ZXCVJK
+2024-10-21 17:37:14,319 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202006\IC2006_20200615.csv CPIGOA
+2024-10-21 17:37:14,322 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:37:14,325 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:37:14,325 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:37:14,326 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:37:14,326 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:37:14,330 - DEBUG - utf-8 not active
+2024-10-21 17:37:14,331 - DEBUG - CP932 not active
+2024-10-21 17:37:14,331 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:37:14,331 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:37:14,331 - DEBUG - EUC-KR not active
+2024-10-21 17:37:14,331 - DEBUG - CP949 not active
+2024-10-21 17:37:14,331 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:37:14,331 - DEBUG - EUC-TW not active
+2024-10-21 17:37:14,331 - DEBUG - Johab not active
+2024-10-21 17:37:14,331 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:37:14,331 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:37:14,331 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:37:14,331 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:37:14,331 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:37:14,331 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:37:14,331 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:37:14,331 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:37:14,331 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:37:14,331 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:37:14,331 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:37:14,331 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:37:14,331 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:37:14,332 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:37:14,332 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:37:14,332 - DEBUG - utf-8 not active
+2024-10-21 17:37:14,332 - DEBUG - CP932 not active
+2024-10-21 17:37:14,332 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:37:14,332 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:37:14,332 - DEBUG - EUC-KR not active
+2024-10-21 17:37:14,332 - DEBUG - CP949 not active
+2024-10-21 17:37:14,332 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:37:14,332 - DEBUG - EUC-TW not active
+2024-10-21 17:37:14,332 - DEBUG - Johab not active
+2024-10-21 17:37:14,498 - INFO - Trade IC2005 at 5566.8 on 20200511 14:00:00 with 1 hand(s)
+2024-10-21 17:37:14,529 - INFO - Getting data for contract IC2006 on 20200615 ALQQQQ
+2024-10-21 17:37:14,529 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202006\IC2006_20200615.csv ASFKJV
+2024-10-21 17:37:14,675 - INFO - Trade IC2006 at 5567.7 on 20200615 14:00:00 with 1 hand(s)
+2024-10-21 17:37:14,689 - INFO - Getting data for contract IC2007 on 20200713 ZXCVJK
+2024-10-21 17:37:14,689 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202007\IC2007_20200713.csv CPIGOA
+2024-10-21 17:37:14,703 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:37:14,707 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:37:14,707 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:37:14,709 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:37:14,709 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:37:14,712 - DEBUG - utf-8 not active
+2024-10-21 17:37:14,713 - DEBUG - CP932 not active
+2024-10-21 17:37:14,713 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:37:14,713 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:37:14,713 - DEBUG - EUC-KR not active
+2024-10-21 17:37:14,713 - DEBUG - CP949 not active
+2024-10-21 17:37:14,713 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:37:14,713 - DEBUG - EUC-TW not active
+2024-10-21 17:37:14,713 - DEBUG - Johab not active
+2024-10-21 17:37:14,713 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:37:14,713 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:37:14,713 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:37:14,713 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:37:14,713 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:37:14,713 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:37:14,713 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:37:14,713 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:37:14,713 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:37:14,713 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:37:14,713 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:37:14,714 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:37:14,714 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:37:14,714 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:37:14,714 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:37:14,714 - DEBUG - utf-8 not active
+2024-10-21 17:37:14,714 - DEBUG - CP932 not active
+2024-10-21 17:37:14,714 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:37:14,714 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:37:14,714 - DEBUG - EUC-KR not active
+2024-10-21 17:37:14,714 - DEBUG - CP949 not active
+2024-10-21 17:37:14,714 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:37:14,715 - DEBUG - EUC-TW not active
+2024-10-21 17:37:14,715 - DEBUG - Johab not active
+2024-10-21 17:37:14,876 - INFO - Trade IC2006 at 6890.3 on 20200615 14:00:00 with 1 hand(s)
+2024-10-21 17:37:14,909 - INFO - Getting data for contract IC2007 on 20200713 ALQQQQ
+2024-10-21 17:37:14,909 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202007\IC2007_20200713.csv ASFKJV
+2024-10-21 17:37:15,129 - INFO - Trade IC2007 at 6891.2 on 20200713 14:00:00 with 1 hand(s)
+2024-10-21 17:37:15,140 - INFO - Getting data for contract IC2008 on 20200817 ZXCVJK
+2024-10-21 17:37:15,140 - INFO - File Path: C:\Users\progene12\share\FUTURES_DATA\IC_202008\IC2008_20200817.csv CPIGOA
+2024-10-21 17:37:15,145 - DEBUG - CP932 Japanese prober hit error at byte 15
+2024-10-21 17:37:15,147 - DEBUG - EUC-KR Korean prober hit error at byte 53
+2024-10-21 17:37:15,147 - DEBUG - CP949 Korean prober hit error at byte 53
+2024-10-21 17:37:15,148 - DEBUG - EUC-TW Taiwan prober hit error at byte 0
+2024-10-21 17:37:15,149 - DEBUG - Johab Korean prober hit error at byte 9
+2024-10-21 17:37:15,152 - DEBUG - utf-8 not active
+2024-10-21 17:37:15,152 - DEBUG - CP932 not active
+2024-10-21 17:37:15,152 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:37:15,152 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:37:15,152 - DEBUG - EUC-KR not active
+2024-10-21 17:37:15,152 - DEBUG - CP949 not active
+2024-10-21 17:37:15,152 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:37:15,152 - DEBUG - EUC-TW not active
+2024-10-21 17:37:15,153 - DEBUG - Johab not active
+2024-10-21 17:37:15,153 - DEBUG - windows-1251 Russian confidence = 0.03606135997972582
+2024-10-21 17:37:15,153 - DEBUG - KOI8-R Russian confidence = 0.1768362965301264
+2024-10-21 17:37:15,153 - DEBUG - ISO-8859-5 Russian confidence = 0.0498066496360359
+2024-10-21 17:37:15,153 - DEBUG - MacCyrillic Russian confidence = 0.01
+2024-10-21 17:37:15,153 - DEBUG - IBM866 Russian confidence = 0.01
+2024-10-21 17:37:15,153 - DEBUG - IBM855 Russian confidence = 0.08913208052962746
+2024-10-21 17:37:15,153 - DEBUG - ISO-8859-7 Greek confidence = 0.02989113413268779
+2024-10-21 17:37:15,153 - DEBUG - windows-1253 Greek confidence = 0.03183457822627647
+2024-10-21 17:37:15,153 - DEBUG - ISO-8859-5 Bulgarian confidence = 0.07193313433438452
+2024-10-21 17:37:15,153 - DEBUG - windows-1251 Bulgarian confidence = 0.0260002979151737
+2024-10-21 17:37:15,153 - DEBUG - TIS-620 Thai confidence = 0.06519992748987367
+2024-10-21 17:37:15,153 - DEBUG - ISO-8859-9 Turkish confidence = 0.0
+2024-10-21 17:37:15,153 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:37:15,153 - DEBUG - ISO-8859-8 Hebrew confidence = 0.0
+2024-10-21 17:37:15,153 - DEBUG - ISO-8859-8 Hebrew confidence = 0.016578039194678092
+2024-10-21 17:37:15,153 - DEBUG - utf-8 not active
+2024-10-21 17:37:15,153 - DEBUG - CP932 not active
+2024-10-21 17:37:15,153 - DEBUG - EUC-JP Japanese confidence = 0.01364522417153996
+2024-10-21 17:37:15,153 - DEBUG - GB2312 Chinese confidence = 0.99
+2024-10-21 17:37:15,153 - DEBUG - EUC-KR not active
+2024-10-21 17:37:15,153 - DEBUG - CP949 not active
+2024-10-21 17:37:15,153 - DEBUG - Big5 Chinese confidence = 0.01
+2024-10-21 17:37:15,154 - DEBUG - EUC-TW not active
+2024-10-21 17:37:15,154 - DEBUG - Johab not active
