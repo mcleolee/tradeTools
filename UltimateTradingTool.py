@@ -55,7 +55,7 @@ import matplotlib.pyplot as plt
 
 # import seaborn as sns
 
-import tushare as ts
+
 import numpy as np
 import cx_Oracle as co
 
@@ -69,9 +69,7 @@ from contextlib import contextmanager
 from WindPy import w
 
 from pathlib import Path
-TUSHARE_TOKEN = "d5b0e880343ac5de428f0216b29739fd91174ab03a9e96c61e9c737f"
-ts.set_token(TUSHARE_TOKEN)
-pro = ts.pro_api()
+
 
 DEBUG_MODE = 1
 
@@ -137,6 +135,9 @@ trade_data_path = rf"C:\Users\Administrator\Desktop\grid_trade\trade_data"
 
 # 获取文档文件夹路径
 documents_path = os.path.join(os.environ['USERPROFILE'], 'Documents')
+
+ins_order_path = rf"C:/Program Files/SmartTrader-Max/InsOrder"
+scanTradePath = rf"C:\Users\Administrator\Desktop\兴业证券多账户交易"
 
 
 # ====================================================================================================================
@@ -2004,6 +2005,23 @@ class grid:
         return df
 
 
+def get_fundname(fund_account):
+    if fund_account == 1260016888:
+        fundname = 'FL'
+    elif fund_account == 480149909:
+        fundname = 'FL18'
+    elif fund_account == 480151137:
+        fundname = 'CF15'
+    elif fund_account == 480160777:
+        fundname = 'FL22SCA'
+    elif fund_account == 3050003937:
+        fundname = 'FL22SCB'
+    elif fund_account == 480167623:
+        fundname = 'HT02XY'
+
+    return fundname
+
+
 def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
     ...
 
@@ -2473,36 +2491,35 @@ def dataCollectorOn40():
 
 
 # 收盘拆分的导出数据的检查
+import time
+
 def checkExportData():
-    ...
     today = getDate('')
     print(f'today is {today}')
-    # 检查有没有导出数据
     printYellowMsg("now checking if smt_data exist...")
-    # input("")
+    
     smtData = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\smt_data"
     asset = rf"{smtData}\asset_{today}.csv"
     trans = rf"{smtData}\transaction_{today}.csv"
     order = rf"{smtData}\order_{today}.csv"
     holdin = rf"{smtData}\holding_{today}.csv"
-    smtDataExist = ifExist(asset) and ifExist(trans) and ifExist(order) and ifExist(holdin)
-    if not smtDataExist:
-        printRedMsg("smtData is NOT exist, returning to main menu...")
-        input("")
-        return
-    else:
-        printGreenMsg("smtData is exist.")
-        # input("")
+
+    # 循环检查文件是否存在
+    while True:
+        smtDataExist = ifExist(asset) and ifExist(trans) and ifExist(order) and ifExist(holdin)
+        if smtDataExist:
+            printGreenMsg("smtData is exist.")
+            break
+        else:
+            printRedMsg("smtData is NOT exist, checking again in 1 second...")
+            time.sleep(0.2)
 
     printYellowMsg(f"NOW RUNNING {smart_divide_path}...")
 
     thread = threading.Thread(target=run_python_file, args=(smart_divide_path,))
     thread.start()
-    # 等待线程结束
     thread.join()
     printGreenMsg("Data divide program is finished.")
-
-    # input("")
 
     # 检查是否拆分完毕
     cf15 = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\CF15\data", today)
@@ -2512,9 +2529,9 @@ def checkExportData():
     fl22xz = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCB\data", today)
     print(cf15, fl18, ht02zs, fl22sc, fl22xz)
 
-    # 完成
     printGreenMsg("process done, returning to main menu")
     input("")
+
 
 
 def downloadDataFromServer40():
@@ -5610,6 +5627,7 @@ def futuresData():
 
     :return:
     """
+    
 
     def monitor_and_process_products(monitorPath, futuresProducts):
         today = getDate('')
@@ -5695,24 +5713,10 @@ def monitorXYPosition():
     # 设置终端的大小
     os.system('mode con cols=80 lines=40')
     # 产品账号
-    def get_fundname(fund_account):
-        if fund_account == 1260016888:
-            fundname = 'FL'
-        elif fund_account == 480149909:
-            fundname = 'FL18'
-        elif fund_account == 480151137:
-            fundname = 'CF15'
-        elif fund_account == 480160777:
-            fundname = 'FL22SCA'
-        elif fund_account == 3050003937:
-            fundname = 'FL22SCB'
-        elif fund_account == 480167623:
-            fundname = 'HT02XY'
 
-        return fundname
 
     ###################### 2.獲取資金情況 #######################################
-    current_data_path = "C:/Program Files/SmartTrader-Max/InsOrder"
+    current_data_path = ins_order_path
 
     while True:
         try:
@@ -5872,17 +5876,80 @@ def convertFileEncoding():
                     with open(file_path, 'w', encoding=target_encoding) as f:
                         f.write(content)
 
-                    prt.greenMsg(f"Converted '{filename}' to {target_encoding} encoding.")
+                    printGreenMsg(f"Converted '{filename}' to {target_encoding} encoding.")
                 except Exception as e:
-                    prt.redMsg(f"Error converting '{filename}': {e}")
-
-    folder_path = input("Drag the folder here:\n")
-    target_encoding = input("Enter the target encoding (default is UTF-8):\n") or 'utf-8'
-    convert_files_encoding(folder_path, target_encoding)
-
+                    printRedMsg(f"Error converting '{filename}': {e}")
+    try:
+        printYellowMsg(f"该功能将文件夹中的所有文件转换保存为指定的编码格式。")
+        folder_path = input("Drag the folder here:\n")
+        target_encoding = input("Enter the target encoding (default is UTF-8):\n") or 'utf-8'
+        convert_files_encoding(folder_path, target_encoding)
+    except Exception as e:
+        printRedMsg(f"Error occurred: {e} MVLMLZ")
     input("")
 
+def orderMonitor():
+    # 用于检查
 
+    # 委托状态
+    # 0  未报
+    # 1  待报
+    # 2  已报
+    # 3  已报待撤
+    # 4  部成待撤
+    # 5  部撤
+    # 6  已撤
+    # 7  部成
+    # 8  已成
+    # 9  废单
+
+    # orders的表头：
+    # #指令编号  委托时间 	委托编号  	账户类型 	资金账号   	证券代码 	证券名称 	证券市场 	委托数量 	委托价格 	委托类别 	买卖方向 	委托属性 	成交数量      	成交均价    	撤单数量 	委托状态 	错误信息  当前时间
+
+    # task的表头 
+    # #指令编号	下单指令	账户类型	资金账户	证券代码	市场	委托数量	买卖方向	委托价格	委托类别	委托属性	委托编号	本地报单时间
+    os.system('mode con cols=80 lines=90')
+
+
+    CF15 = ScanTrade('CF15')
+    FL18 = ScanTrade('FL18')
+    HT02XY = ScanTrade('HT02XY')
+    FL22SCA = ScanTrade('FL22SCA')
+    FL22SCB = ScanTrade('FL22SCB')
+    FL = ScanTrade('FL')
+
+    products = [CF15, FL18, HT02XY, FL22SCA, FL22SCB, FL]
+    for product in products:
+        print("-" * 40)
+        print(product)
+        # print(product.signal_list)
+
+    
+
+
+    # while True:
+    #     try:
+    #         os.system('cls')
+    #         ordersPath = current_data_path + "/orders.csv"
+    #         taskPath = current_data_path + "/Task.csv"
+    #         # print("ReallySharePath", ReallySharePath)
+    #         try:
+    #             ordersDf = pd.read_csv(ordersPath, encoding="gbk")
+    #             taskDf = pd.read_csv(taskPath, encoding="gbk")
+    #         except:
+    #             ordersDf = pd.read_csv(ordersPath, encoding="utf-8")
+    #             taskDf = pd.read_csv(taskPath, encoding="utf-8")
+
+    #         # print(fund_account_list)
+    #         for account in fund_account_list:
+    #             print("\n")
+    #             fundname = get_fundname(account)
+    #     except Exception as e:
+    #         printRedMsg(f"Error: {e}")
+# 
+        # time.sleep(5)
+
+    input("press Enter to exit")
 
 def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
     ...
@@ -5990,6 +6057,8 @@ def afterMain():
             runRO()
         elif choice == 'fd':
             os.system('cls')
+            os.system("mode con cols=200 lines=120")
+            # print("期货数据处理")
             futuresData()
         elif choice == 'mp':
             os.system('cls')
@@ -6004,6 +6073,10 @@ def afterMain():
         elif choice == 'cfe':
             os.system('cls')
             convertFileEncoding()
+
+        elif choice == 'om':
+            os.system('cls')
+            orderMonitor()
 
 
 
@@ -6065,6 +6138,7 @@ def menu():
     print(" fd. 期货数据处理")
     print(" mp. 监控兴业扫单产品的持仓比例")
     print(" oe. 下单ETF")
+    print(" om. 监控订单")
     # print("  7. 监控下单信号")
 
     # print("  8. 查询数据")

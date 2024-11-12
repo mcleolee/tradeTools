@@ -1,17 +1,41 @@
 
-# VERSION 1.2
+# VERSION 1.4.1
 
 from datetime import datetime, timedelta, date
 import pandas as pd
 import shutil
 import os
 import chardet
+import time
 import csv
 import threading
 from tqdm import tqdm
 
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
+
+import tushare as ts
+
+TUSHARE_TOKEN = "d5b0e880343ac5de428f0216b29739fd91174ab03a9e96c61e9c737f"
+ts.set_token(TUSHARE_TOKEN)
+pro = ts.pro_api()
+
+signalSyncOn15Path = rf'C:\Users\progene12\Desktop\Start Trading\signal'  # 在我的电脑15上的信号文件夹
+debug = 0
+
+def appendToListIfNotExists(list, item):
+    if item not in list:
+        list.append(item)
+
+def clear_screen():
+    """
+    @brief 清屏函数，根据操作系统执行相应命令
+    """
+    if os.name == 'nt':  # Windows
+        os.system('cls')
+    else:  # Linux 或 macOS
+        os.system('clear')
+
 
 def get_trade_date(year):
     """
@@ -24,7 +48,7 @@ def get_trade_date(year):
         documents_folder = os.path.expanduser("~/Documents")
         # 构造交易日文件名
         trade_dates_file = os.path.join(documents_folder, f"{year}_tradeDates.csv")
-        file.saveAsUft8(trade_dates_file)
+        # file.saveAsUft8(trade_dates_file)
         # 读取交易日文件
         if os.path.isfile(trade_dates_file):
             trade_dates_df = pd.read_csv(trade_dates_file)
@@ -164,6 +188,13 @@ class prt:
         print(f"\033[1m{msg}\033[0m")
         return f"\033[1m{msg}\033[0m"
 
+    @staticmethod
+    def fileEncoding(filePath, chunk_size=1024):
+        with open(filePath, 'rb') as f:
+            raw_data = f.read(chunk_size)  # 只读取前1024字节
+            result = chardet.detect(raw_data)
+            # print(f'encoding: {result["encoding"]}')
+            return f'encoding: {result["encoding"]}'
 
 class file:
     def __init__(self, filePath):
@@ -195,6 +226,34 @@ class file:
             # print(f"Successfully converted {input_file} to UTF-8 and saved as {output_file}.")
         except Exception as e:
             print(f"An error occurred: {e} GDNXCT")
+            prt.redMsg(f'detect encoding: {encoding}')
+
+    @staticmethod
+    def saveAsGBK(input_file: str):
+        """
+        @brief Converts the input file to GBK encoding and saves it to the output file.
+        @param input_file: The path to the input file.
+        @return: None
+        """
+        output_file = input_file
+        try:
+            # 检测文件编码
+            with open(input_file, 'rb') as infile:
+                raw_data = infile.read()
+                result = chardet.detect(raw_data)
+                encoding = result['encoding'] if result['encoding'] else 'ISO-8859-1'  # 如果检测不到，使用默认编码
+
+            # 读取文件内容
+            with open(input_file, 'r', encoding=encoding) as infile:
+                content = infile.read()
+
+            # 写入到新的文件
+            with open(output_file, 'w', encoding='gbk') as outfile:
+                outfile.write(content)
+
+            # print(f"Successfully converted {input_file} to UTF-8 and saved as {output_file}.")
+        except Exception as e:
+            print(f"An error occurred: {e} GDNXCG")
             prt.redMsg(f'detect encoding: {encoding}')
 
     @staticmethod
@@ -266,6 +325,81 @@ class file:
             return pd.DataFrame()  # 如果发生错误，返回空DataFrame
 
         return merged_df
+
+    @staticmethod
+    def isFileExist(filePath):
+        return os.path.exists(filePath)
+
+    @staticmethod
+    def sync_folders_incremental(pathSyncFrom, pathSyncTo, gapSec):
+        """
+        @brief 增量同步文件夹内容，不删除已有内容
+        @param pathSyncFrom: 源文件夹路径
+        @param pathSyncTo: 目标文件夹路径
+        @param gapSec: 同步间隔秒数
+        """
+
+        def sync_dir(src_dir, dst_dir):
+            if not os.path.exists(dst_dir):
+                os.makedirs(dst_dir)
+
+            for item in os.listdir(src_dir):
+                src_path = os.path.join(src_dir, item)
+                dst_path = os.path.join(dst_dir, item)
+
+                if os.path.isdir(src_path):
+                    sync_dir(src_path, dst_path)
+                else:
+                    # 文件不存在或源文件更新时进行复制
+                    if not os.path.exists(dst_path) or os.path.getmtime(src_path) > os.path.getmtime(dst_path):
+                        shutil.copy2(src_path, dst_path)
+                        print(f"Copied file {src_path} to {dst_path}")
+
+        while True:
+            sync_dir(pathSyncFrom, pathSyncTo)
+            print(f"Synchronized from {pathSyncFrom} to {pathSyncTo}")
+            time.sleep(gapSec)
+
+    def sync_folders_incremental_visual(pathSyncFrom, pathSyncTo, gapSec):
+        """
+        @brief 增量同步文件夹内容，不删除已有内容
+        @param pathSyncFrom: 源文件夹路径
+        @param pathSyncTo: 目标文件夹路径
+        @param gapSec: 同步间隔秒数
+        """
+
+        def sync_dir(src_dir, dst_dir):
+            if not os.path.exists(dst_dir):
+                os.makedirs(dst_dir)
+
+            for item in os.listdir(src_dir):
+                src_path = os.path.join(src_dir, item)
+                dst_path = os.path.join(dst_dir, item)
+
+                if os.path.isdir(src_path):
+                    sync_dir(src_path, dst_path)
+                else:
+                    if not os.path.exists(dst_path) or os.path.getmtime(src_path) > os.path.getmtime(dst_path):
+                        shutil.copy2(src_path, dst_path)
+
+        last_sync_time = None
+
+        print("")
+
+        while True:
+            current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            sync_dir(pathSyncFrom, pathSyncTo)
+
+            # 更新上一次同步成功的时间
+            last_sync_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+            # 在同一行更新输出
+            print(f"\rCurrent time: {current_time} | Last sync: {last_sync_time}", end="")
+
+            time.sleep(gapSec)
+
+    # 示例调用
+    # sync_folders_incremental("path/to/source", "path/to/destination", 3600)
 
     # @staticmethod
     # def get_latest_modified_file(dir):
@@ -343,6 +477,190 @@ class file:
     #     """
     #     ...
 
+class ScanTrade:
+    '''
+    self.signalPath = rf"{self.syncPath}\Sell_Buy_List_{self.product}" 下有今天的信号文件，
+    命名规则是：
+    SellOrderListCF15_20241031.csv JinRiChiCangCF15_20241031.csv BuyOrderListCF15_20241031.csv
+    这是三个原始信号，20241031是今天的日期，为self.today
+    然后有4个实时信号，
+    SellOrderListCF15morning_20241031.csv
+    SellOrderListCF15morning2Two_20241031.csv
+    SellOrderListCF15afternoon_20241031.csv
+    BuyOrderListCF15afternoon2Two_20241031.csv
+    其中每次实时信号都带有一个jrcc文件，如
+    JinRiChiCangCF15morning_20241031.csv
+    4个实时信号可能有，如果有信号那就是上面四个格式；如果没有，那就会是一个txt文件：
+    NoSellingMorning_20241031.txt
+    NoSellingMorning2Two_20241031.txt
+    NoSellingAfternoon_20241031.txt
+    NoBuyingAfternoon2Two_20241031.txt
+    '''
+
+    def __init__(self, product, projectPath=None, syncPath=None, insOrderPath=None, today=None):
+        self.today = getDate('')
+        self.projectPath = rf"C:\Users\Administrator\Desktop\兴业证券多账户交易"  # PARAS
+        self.syncPath = rf"E:\BaiduSyncdisk"  # PARAS
+        self.insOrderPath = rf"C:/Program Files/SmartTrader-Max/InsOrder"  # PARAS
+        self.product = product
+
+        # 如果产品名包含 HT02，FL22，那么就是分帐户的产品
+        if 'HT02' in product or 'FL22' in product:
+            self.isDividedAccount = True
+        else:
+            self.isDividedAccount = False
+
+
+        self.twapPath = rf"{self.projectPath}\{product}\{product}_Orders/{self.today}"
+        self.signalPath = rf"{self.syncPath}\Sell_Buy_List_{self.product}"
+        self.ordersPath = rf"{self.insOrderPath}\orders.csv"
+        self.assetPath = rf"{self.insOrderPath}\asset.csv"
+        self.taskPath = rf"{self.insOrderPath}\Task.csv"
+
+        # twap 的分单
+        self.twap_1_buy  = self.load_order_data("BuyOrderList1")
+        self.twap_2_buy  = self.load_order_data("BuyOrderList2")
+        self.twap_3_buy  = self.load_order_data("BuyOrderList3")
+        self.twap_4_buy  = self.load_order_data("BuyOrderList4")
+        self.twap_5_buy  = self.load_order_data("BuyOrderList5")
+        self.twap_6_buy  = self.load_order_data("BuyOrderList6")
+        self.twap_1_sell = self.load_order_data("SellOrderList1")
+        self.twap_2_sell = self.load_order_data("SellOrderList2")
+        self.twap_3_sell = self.load_order_data("SellOrderList3")
+        self.twap_4_sell = self.load_order_data("SellOrderList4")
+        self.twap_5_sell = self.load_order_data("SellOrderList5")
+        self.twap_6_sell = self.load_order_data("SellOrderList6")
+
+        self.twap_list = [self.twap_1_buy, self.twap_2_buy, self.twap_3_buy,
+                          self.twap_4_buy, self.twap_5_buy, self.twap_6_buy,
+                          self.twap_1_sell, self.twap_2_sell, self.twap_3_sell,
+                          self.twap_4_sell, self.twap_5_sell, self.twap_6_sell]
+
+        # self.todaySignalList =
+
+        # 信号数据
+        self.signal_list = []
+        # 有信号：morning
+        # 无信号：Morning
+        self.sellOrderList = self.load_signal_data_sell()
+        self.buyOrderList = self.load_signal_data_buy()
+        self.jrcc = self.load_signal_data("JinRiChiCang")
+        self.morning_1 = self.load_signal_data("morning")
+        self.morning_2 = self.load_signal_data("morning2Two")
+        self.afternoon_1 = self.load_signal_data("afternoon")
+        self.afternoon_2 = self.load_signal_data("afternoon2Two")
+
+
+
+        self.isTwapDataReady = self.checkDataReady()
+
+    def __str__(self):
+        return f"ScanTrade product: {self.product}, Data is ready: {self.isTwapDataReady}, Divided Account: {self.isDividedAccount}"
+
+    def load_signal_data_sell(self):
+        filePath = rf"D:\TRADE\RTrade\signal\Sell_Buy_List_{self.product}\SellOrderList{self.product}_{self.today}.csv"
+        if os.path.exists(filePath):
+            return pd.read_csv(filePath, encoding='utf-8')
+        else:
+            return pd.DataFrame()
+
+    def load_signal_data_buy(self):
+        filePath = rf"D:\TRADE\RTrade\signal\Sell_Buy_List_{self.product}\BuyOrderList{self.product}_{self.today}.csv"
+        if os.path.exists(filePath):
+            return pd.read_csv(filePath, encoding='utf-8')
+        else:
+            return pd.DataFrame()
+
+
+
+
+    def load_order_data(self, order_type):
+        """
+        @brief 读取指定类型的订单数据，若文件不存在或读取失败则返回空DataFrame
+        @param order_type: 订单类型名称
+        @return DataFrame: 订单数据
+        """
+        file_path = rf"{self.twapPath}/{order_type}_{self.today}.csv"
+        try:
+            if os.path.exists(file_path):
+                return pd.read_csv(file_path, encoding='utf-8')
+
+            else:
+                prt.yellowMsg(f"Warning: {file_path} does not exist.")
+                return pd.DataFrame()  # 返回空DataFrame
+        except Exception as e:
+            prt.redMsg(f"Error reading {file_path}: {e}")
+            return pd.DataFrame()  # 返回空DataFrame
+
+    def load_signal_data(self, signal_type):
+        """
+        @brief 读取信号数据，若文件不存在或读取失败则返回空列表
+        @param signal_type: 信号类型（如SellOrderList, BuyOrderList, JinRiChiCang, morning等）
+        @return List: 包含每个信号文件路径的列表
+        TODO 如果是分帐户的还要单独搞
+        """
+        patterns = {
+            "SellOrderList": [f"SellOrderList{self.product}_{self.today}.csv"],
+            "BuyOrderList": [f"BuyOrderList{self.product}_{self.today}.csv"],
+            "JinRiChiCang": [f"JinRiChiCang{self.product}_{self.today}.csv"],
+            "morning": [f"SellOrderList{self.product}morning_{self.today}.csv",
+                        f"JinRiChiCang{self.product}morning_{self.today}.csv"],
+            "morning2Two": [f"SellOrderList{self.product}morning2Two_{self.today}.csv",
+                            f"JinRiChiCang{self.product}morning2Two_{self.today}.csv"],
+            "afternoon": [f"SellOrderList{self.product}afternoon_{self.today}.csv",
+                          f"JinRiChiCang{self.product}afternoon_{self.today}.csv"],
+            "afternoon2Two": [f"BuyOrderList{self.product}afternoon2Two_{self.today}.csv",
+                              f"JinRiChiCang{self.product}afternoon2Two_{self.today}.csv"]
+        }
+
+        # 检查信号文件存在性
+        for pattern in patterns.get(signal_type, []):
+            file_path = os.path.join(self.signalPath, pattern)
+            if os.path.exists(file_path):
+                self.signal_list.append(file_path)
+            else:
+                # 检查无信号的txt文件，判断是Selling还是Buying
+                no_signal_file = f"No{'Buying' if 'afternoon2Two' in signal_type else 'Selling'}{signal_type.capitalize()}_{self.today}.txt"
+                no_signal_path = os.path.join(self.signalPath, no_signal_file)
+                if os.path.exists(no_signal_path):
+                    print(f"Info: No {signal_type} signal for {self.today}")
+                    self.signal_list.append(no_signal_path)
+                    break
+
+        # return self.signal_list
+
+    def getOrderNumber(self):
+        return len(self.twap_1_buy)
+
+    def checkDataReady(self):
+        for twap in self.twap_list:
+            if twap.empty:
+                return False
+        return True
+
+    def update_twap_data(self):
+        self.twap_1_buy  = self.load_order_data("BuyOrderList1")
+        self.twap_2_buy  = self.load_order_data("BuyOrderList2")
+        self.twap_3_buy  = self.load_order_data("BuyOrderList3")
+        self.twap_4_buy  = self.load_order_data("BuyOrderList4")
+        self.twap_5_buy  = self.load_order_data("BuyOrderList5")
+        self.twap_6_buy  = self.load_order_data("BuyOrderList6")
+        self.twap_1_sell = self.load_order_data("SellOrderList1")
+        self.twap_2_sell = self.load_order_data("SellOrderList2")
+        self.twap_3_sell = self.load_order_data("SellOrderList3")
+        self.twap_4_sell = self.load_order_data("SellOrderList4")
+        self.twap_5_sell = self.load_order_data("SellOrderList5")
+        self.twap_6_sell = self.load_order_data("SellOrderList6")
+
+        self.twap_list = [self.twap_1_buy, self.twap_2_buy, self.twap_3_buy,
+                          self.twap_4_buy, self.twap_5_buy, self.twap_6_buy,
+                          self.twap_1_sell, self.twap_2_sell, self.twap_3_sell,
+                          self.twap_4_sell, self.twap_5_sell, self.twap_6_sell]
+
+        self.isTwapDataReady = self.checkDataReady()
+
+
+
 
 def format_to_datetime(value):
     """
@@ -373,6 +691,7 @@ def format_to_datetime(value):
 
     raise TypeError(f"Unsupported type '{type(value)}' for datetime conversion.")
 
+
 def isDatetimeABeforeB(a, b):
     """
     @brief Check if datetime A is before datetime B.
@@ -384,6 +703,7 @@ def isDatetimeABeforeB(a, b):
     b_dt = format_to_datetime(b)
     return a_dt < b_dt
 
+
 def isDatetimeAAfterB(a, b):
     """
     @brief Check if datetime A is after datetime B.
@@ -394,6 +714,7 @@ def isDatetimeAAfterB(a, b):
     a_dt = format_to_datetime(a)
     b_dt = format_to_datetime(b)
     return a_dt > b_dt
+
 
 def getNextTradeDateIfNotTradeDate(trade_dates: list, target_date: date) -> str:
     """
@@ -427,6 +748,7 @@ def getNextTradeDate(target_date: str) -> str:
     trade_dates = get_trade_date(year)
 
     # 将交易日字符串转换为日期对象
+    # TODO 似乎用了太多时间
     trade_dates_obj = [datetime.strptime(date_str, '%Y-%m-%d').date() for date_str in trade_dates]
 
     # 找到下一个交易日
@@ -484,12 +806,14 @@ def get_third_friday_date(year: int, month: int) -> str:
 
     return third_week_last_trade_date
 
+
 def get_first_trade_date_of_week(target_date: date) -> str:
     """
     @brief 找到某个日期所在周的第一个交易日
     @param trade_dates: 交易日列表，格式为 YYYY-MM-DD
     @param target_date: 要查找的日期所在周
     @return 该周的第一个交易日
+    # IC2403的当季合约换月这里返回了None
     """
     # 找到target_date所在周的第一个交易日
     trade_dates = get_trade_date(target_date.year)
@@ -498,7 +822,10 @@ def get_first_trade_date_of_week(target_date: date) -> str:
         trade_date_obj = datetime.strptime(trade_date, '%Y-%m-%d').date()
         if start_of_week <= trade_date_obj <= target_date:
             return trade_date
-    return None
+        # 若没有找到所在周的第一个交易日，则调用 getNextTradeDateIfNotTradeDate 查找下一个交易日
+    return getNextTradeDateIfNotTradeDate(trade_dates, start_of_week)
+
+
 
 def get_third_week_first_trade_date(year: int, month: int) -> str:
     """
@@ -517,6 +844,7 @@ def get_third_week_first_trade_date(year: int, month: int) -> str:
     # 找到该周的第一个交易日
     return get_first_trade_date_of_week(third_monday)
 
+
 def get_first_trade_date_of_month(year: int, month: int) -> str:
     """
     @brief 找到指定月份的第一个交易日
@@ -531,6 +859,7 @@ def get_first_trade_date_of_month(year: int, month: int) -> str:
         if trade_date_obj.year == year and trade_date_obj.month == month:
             return trade_date  # 返回该月的第一个交易日
     return None
+
 
 def get_all_trade_dates_of_month(year: int, month: int) -> list:
     """
@@ -573,6 +902,7 @@ def getContractStartDate(yearMonth: int) -> str:
 
     return contract_start_date
 
+
 def getContractEndDate(yearMonth: int) -> str:
     """
     @brief 获取主力合约的结束日期，找到合约到期月份的第三个星期的最后一个交易日
@@ -588,12 +918,13 @@ def getContractEndDate(yearMonth: int) -> str:
 
     return contract_end_date
 
+
 def getMainContractRolloverDate(yearMonth: int) -> str:
     """
     @brief 获取主力合约换月日期，是到期日当周第一个交易日
     @param yearMonth: 年月，例如 2201 表示 2022 年 1 月
     @return 主力合约换月日期，格式为 YYYY-MM-DD
-    TODO IC2402 会报错，因为很特殊
+    TODo IC2402 会报错，因为很特殊; 已解决
     """
 
     # 将两位数年份转换为四位数年份，假设年份 >= 2000
@@ -613,10 +944,25 @@ def getMainContractRolloverDate(yearMonth: int) -> str:
     rollover_date = get_first_trade_date_of_week(third_friday)
 
     # 确保换月日期是交易日
-    rollover_trade_date = getNextTradeDateIfNotTradeDate(trade_dates,
+    if rollover_date is not None:
+        rollover_trade_date = getNextTradeDateIfNotTradeDate(trade_dates,
                                                          datetime.strptime(rollover_date, '%Y-%m-%d').date())
+    else:  # 如果找不到第三个周五所在周的第一个交易日，就用第三个周五的下一个交易日
+        rollover_trade_date = third_friday_trade_date
+
+
+    if debug:
+        print(f"yearMonth: {yearMonth}")
+        print(f"year: {year}")
+        print(f"month: {month}")
+        # print(f"trade_dates: {trade_dates}")
+        print(f"third_friday: {third_friday}")
+        # print(f"third_friday_trade_date: {third_friday_trade_date}")
+        print(f"rollover_date: {rollover_date}")
+        print(f"rollover_trade_date: {rollover_trade_date}")
 
     return rollover_trade_date
+
 
 def getSubContractRolloverDate(yearMonth: int) -> str:
     '''
@@ -625,13 +971,26 @@ def getSubContractRolloverDate(yearMonth: int) -> str:
     :param yearMonth:
     :return:
     '''
+    # 计算对应的主力合约
     # 如果yearMonth是1月份，那么主力合约就是上一年的12月份
     if yearMonth % 100 == 1:
         yearMonth -= 89
     else:
         yearMonth -= 1
 
-    return getNextTradeDate(getContractEndDate(yearMonth))
+    rolloverDate = getNextTradeDate(getContractEndDate(yearMonth))
+
+    if rolloverDate is None:
+        rolloverDate = getNextTradeDateIfNotTradeDate(get_trade_date(yearMonth // 100 + 2000), getContractEndDate(yearMonth))
+
+    if debug:
+        print(f"==============================================")
+        print(f"= Now is sub contract")
+        print(f"= main contract: yearMonth: {yearMonth}")
+        print(f"= rolloverDate: {rolloverDate}")
+        print(f"==============================================")
+
+    return rolloverDate
 
 def getCurrentAndNextSeasonRolloverDate(yearMonth: int) -> str:
     '''
@@ -654,9 +1013,27 @@ def getCurrentAndNextSeasonRolloverDate(yearMonth: int) -> str:
     rollover_date = date(rollover_year, rollover_month, expiry_date.day)
 
     # 获取倒推一个月后的第三个星期的第一个交易日
+    # IC2403的当季合约换月这里返回了None
     rollover_first_trade_date = get_first_trade_date_of_week(rollover_date)
 
+    if rollover_date is None:
+        rollover_date = getNextTradeDateIfNotTradeDate(get_trade_date(rollover_year), rollover_date)
+
+    if debug:
+        print(f"yearMonth: {yearMonth}")
+        print(f"year: {year}")
+        print(f"month: {month}")
+        print(f"expiry_date_str: {expiry_date_str}")
+        print(f"rollover_first_trade_date: {rollover_first_trade_date}")
+        # print(f"trade_dates: {trade_dates}")
+        # print(f"third_friday: {third_friday}")
+        # print(f"third_friday_trade_date: {third_friday_trade_date}")
+        print(f"rollover_date: {rollover_date}")
+        # print(f"rollover_trade_date: {rollover_trade_date}")
+
+
     return rollover_first_trade_date
+
 
 def format_dateString_to_YYYYMMDD(date_str):
     """
@@ -673,6 +1050,7 @@ def format_dateString_to_YYYYMMDD(date_str):
     else:
         raise ValueError("Invalid date format")
 
+
 def format_YYYYMMDD_to_date(date_str) -> date:
     """
     @brief Formats a date string in YYYYMMDD format to a date object.
@@ -680,6 +1058,7 @@ def format_YYYYMMDD_to_date(date_str) -> date:
     @return: A date object.
     """
     return datetime.strptime(date_str, '%Y%m%d').date()
+
 
 def format_YYYYMMDD_with_separator(date_str, separator=''):
     """ @brief 给YYYYMMDD格式的日期加上分隔符
@@ -700,6 +1079,7 @@ def getDate(seperator: str, deltaDays: int = 0) -> str:
     return target_date.strftime(f"%Y{seperator}%m{seperator}%d")
 
 def get_formated_order_XY_single(fund_account, code, direction, quantity, date, s_index, is_init=False, limit_price=None):
+
 
     def order_format_st(fund_account, df_divide_order, date, s_index, is_init=False, limit_price=None):
         """
@@ -805,12 +1185,14 @@ def get_formated_order_XY_single(fund_account, code, direction, quantity, date, 
 
     # 以上都不用
 
-def getTime(seperator: str=''):
+
+def getTime(seperator: str = ''):
     """
     @brief 获取当前时间
     @return 当前时间字符串
     """
     return datetime.now().strftime(f"%H{seperator}%M{seperator}%S")
+
 
 ###############################################################################################
 #                                      OLD FUNCTIONS                                          #
@@ -892,3 +1274,8 @@ def get_the_date_before_20_days():
     today = datetime.now()
     the_date_before_20_days = today - timedelta(days=20)
     return the_date_before_20_days.strftime('%Y-%m-%d')
+
+
+
+# ==============================TEST================================
+# print(getMainContractRolloverDate(2402))
