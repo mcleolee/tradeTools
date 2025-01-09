@@ -2011,7 +2011,9 @@ def get_fundname(fund_account):
     elif fund_account == 480149909:
         fundname = 'FL18'
     elif fund_account == 480151137:
-        fundname = 'CF15'
+        fundname = 'CF15SC'
+    elif fund_account == 3050005040:
+        fundname = 'CF15XZ'
     elif fund_account == 480160777:
         fundname = 'FL22SCA'
     elif fund_account == 3050003937:
@@ -2020,6 +2022,21 @@ def get_fundname(fund_account):
         fundname = 'HT02XY'
 
     return fundname
+
+def get_chineseFundname(fund_account):
+    if fund_account == 1260016888:
+        return "中天飞泸 2 号"
+    elif fund_account == 480149909:
+        return "中天飞泸私募投资基金"
+    elif fund_account == 480151137 or fund_account == 3050005040:
+        return "中天乘风私募"
+    elif fund_account == 480160777 or fund_account == 3050003937:
+        return "中天飞泸 1 号"
+    elif fund_account == 480167623:
+        return "中天宏图 2 号"
+    else:
+        return "Unknown fund account"
+        
 
 
 def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
@@ -5702,7 +5719,7 @@ def futuresData():
         printGreenMsg(f"Asset file saved to {asset_file}")
 
     monitorPath = r'D:\TRADE\FuturesData'
-    futuresProducts = ['CF15', 'HT02']  # 期货产品列表
+    futuresProducts = ['HT02']  # 期货产品列表
     monitor_and_process_products(monitorPath, futuresProducts)
 
     print("=== End of futures data export ===")
@@ -5711,16 +5728,16 @@ def futuresData():
 def monitorXYPosition():
     ###################### 1.账户信息 #######################################
     # 设置终端的大小
-    os.system('mode con cols=80 lines=40')
+    os.system('mode con cols=80 lines=43')
     # 产品账号
-
 
     ###################### 2.獲取資金情況 #######################################
     current_data_path = ins_order_path
-
+    desired_order = ['CF15XZ', 'CF15SC', 'FL18', 'HT02XY', 'FL22SCA', 'FL22SCB', 'FL']
     while True:
         try:
             os.system('cls')
+            # print("")
             ReallySharePath = "C:/Program Files/SmartTrader-Max/InsOrder/asset.csv"
             # print("ReallySharePath", ReallySharePath)
             try:
@@ -5730,9 +5747,18 @@ def monitorXYPosition():
 
             fund_account_list = assetData_total['资金账户'].drop_duplicates().to_list()
             # print(fund_account_list)
+            
+            # 根据 desired_order 对 fund_account_list 进行排序
+            # 使用 get_fundname 将号码映射为基金名称，然后根据 desired_order 排序
+            fund_account_list = sorted(
+                fund_account_list,
+                key=lambda x: desired_order.index(get_fundname(x)) if get_fundname(x) in desired_order else len(desired_order)
+            )
+            
             for account in fund_account_list:
                 print("\n")
                 fundname = get_fundname(account)
+                chineseFundname = get_chineseFundname(account)
                 assetData = assetData_total[assetData_total['资金账户'] == account]
                 assetData = assetData.reset_index()
                 assetData = assetData.iloc[-1]
@@ -5742,7 +5768,7 @@ def monitorXYPosition():
                 tv = assetData["S5"]  # 总资产
                 am = assetData["S4"]  # 可用资金
                 FL_sp = mv / tv
-                print(f"-> {fundname}")
+                print(f"-> {fundname}  \t [{account}] \t {chineseFundname}")
                 print(f"持仓比例:{FL_sp * 100:.2f}%   市值:{mv:.2f}   总资产:{tv:.2f}   可用资金:{am:.2f} ")
                 if FL_sp <= 0.85:
                     fill_money = tv * 0.85 - mv  # am - 0.15 * tv
@@ -5758,7 +5784,8 @@ def monitorXYPosition():
         except Exception as e:
             printRedMsg(f"Error: {e}")
 
-        time.sleep(5)
+        time.sleep(2)
+
 
 
 def dataCollector():

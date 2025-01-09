@@ -1,5 +1,5 @@
 
-# VERSION 1.4.1
+# VERSION 1.4.2
 
 from datetime import datetime, timedelta, date
 import pandas as pd
@@ -21,6 +21,7 @@ ts.set_token(TUSHARE_TOKEN)
 pro = ts.pro_api()
 
 signalSyncOn15Path = rf'C:\Users\progene12\Desktop\Start Trading\signal'  # 在我的电脑15上的信号文件夹
+
 debug = 0
 
 def appendToListIfNotExists(list, item):
@@ -660,7 +661,26 @@ class ScanTrade:
         self.isTwapDataReady = self.checkDataReady()
 
 
-
+def reverseDf(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    UNDONE
+    @brief 转置 DataFrame，将原表头换到左侧第一列，原第一列内容替换为表头。
+    @param df 原始 DataFrame。
+    @return 处理后的 DataFrame。
+    """
+    # 记录原表头
+    original_headers = df.columns.tolist()
+    
+    # 倒置 DataFrame
+    df_transposed = df.T
+    
+    # 将原来的表头添加为新列，并将其设置为第一列
+    df_transposed.insert(0, 'Original_Header', original_headers)
+    
+    # 重新定义列名
+    df_transposed.columns = ['Column_{}'.format(i) for i in range(len(df_transposed.columns))]
+    
+    return df_transposed
 
 def format_to_datetime(value):
     """
