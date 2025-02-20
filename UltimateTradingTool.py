@@ -81,8 +81,9 @@ is_oracle_init = 0
 HTTP_SERVER = 0
 server40addr = "http://192.168.1.40:8000/"
 smart_divide_path = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\projects\smart_data_divide.py"
-diff_excel_path = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\projects\mergeAllDiffIntoExcelFile.py"
+diff_excel_path = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\projects\detecahed_compare_holding.py"
 grid_data_analysis_path = r'C:\Users\Administrator\Desktop\网格数据分析\grid_data_analysis_v1.1.py'
+abnormal_data_manager_path = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\projects\abnormalStockManager.py"
 
 os.system("mode con cols=200 lines=70")
 
@@ -5468,11 +5469,102 @@ def monitorFuturesSignal():
     from datetime import datetime, time
     import time as t
 
+    from datetime import datetime, timedelta
+
+    '''
+    检查今天是否是这个月的第三个周五，或者其前三天或后三天
+    '''
+    def is_third_friday_or_surrounding_days():
+        # 获取今天的日期
+        today = datetime.now()
+        # 获取本月的第一天
+        first_day_of_month = today.replace(day=1)
+        # 获取本月第一天是星期几
+        first_day_weekday = first_day_of_month.weekday()
+
+        # 计算本月的第三个周五的日期
+        # 周五是4，所以如果本月的第一天是周一，则第三个周五是21号
+        days_to_third_friday = (4 - first_day_weekday + 7 * 2) % 7  # 计算第三个周五相对于1号的偏移天数
+        third_friday = first_day_of_month + timedelta(days=days_to_third_friday)
+        
+        # 计算前三天和后三天的日期范围
+        before_three_days = third_friday - timedelta(days=3)
+        after_three_days = third_friday + timedelta(days=3)
+
+        # 检查今天是否在这个范围内
+        if today.date() == third_friday.date() or today.date() == before_three_days.date() or today.date() == after_three_days.date():
+            return True
+        
+        return False
+
+
+    '''
+    ...
+    '''
+    def read_prepareCash_from_original_signal_file(product) -> float:
+        today_str = datetime.now().strftime('%Y%m%d')
+        signalPath = rf'E:\BaiduSyncdisk\Sell_Buy_List_{product}\JinRiChiCang{product}_{today_str}.csv'
+        # 读取signalPath文件的最后一行的第一个英文逗号后面的数字
+        with open(signalPath, 'r') as f:
+            lines = f.readlines()
+            last_line = lines[-1]
+            prepared_cash = float(last_line.split(",")[1])
+            return prepared_cash
+        
+
+    '''
+    读取最新也就是昨日的期货资产
+    '''
+    def read_lastest_future_asset(product):
+        today_str = datetime.now().strftime('%Y%m%d')
+        assetPath_today = rf'E:\dataForFutures\{product}\asset_{today_str}.txt'
+        
+        # 尝试读取今天的文件
+        def read_asset_from_file(assetPath):
+            try:
+                with open(assetPath, 'r', encoding='utf-8') as f:
+                    for line in f:
+                        # 查找包含“动态权益”字样的行
+                        if "动态权益" in line:
+                            # 分割这一行，假设数字是在“动态权益”后面
+                            parts = line.split("动态权益：")
+                            if len(parts) > 1:
+                                # 获取“动态权益”后面的内容，去掉空格并转换成float
+                                equity_str = parts[1].strip()
+                                return float(equity_str)
+                # 如果没有找到匹配的内容，返回None
+                return None
+            except FileNotFoundError:
+                # print(f"Error: The file {assetPath} was not found.")
+                return None
+            except Exception as e:
+                print(f"Error: {e}")
+                return None
+        
+        # 尝试读取今天的文件
+        asset = read_asset_from_file(assetPath_today)
+        if asset is not None:
+            return asset
+
+        # 如果今天的文件找不到，尝试读取昨天的文件
+        yesterday_str = (datetime.now() - timedelta(days=1)).strftime('%Y%m%d')
+        assetPath_yesterday = rf'E:\dataForFutures\{product}\asset_{yesterday_str}.txt'
+        
+        asset = read_asset_from_file(assetPath_yesterday)
+        if asset is not None:
+            return asset
+
+        # 如果今天和昨天的文件都找不到，返回0
+        return 0
+            
+
+
+
+
     """
     Monitor futures signals for multiple products and store the trading signals into dataframes.
     """
-
-    def read_latest_position_file(directory):
+    def read_latest_position_file(directory, product):
         """
         Read the latest position file in the given directory and return the data in a DataFrame.
         读取最新的，文件名包含PositionFuture的文件
@@ -5540,10 +5632,37 @@ def monitorFuturesSignal():
             f.seek(0)
             lines = f.readlines()
             for line in lines[-1:]:
-                # 把line解析，把,分割，提取后面的文本，转换为小数
                 prepared_cash = float(line.split(",")[1])
-                pc5 = prepared_cash * 0.05
-                printCyanMsg(f'Prepare Cash: {prepared_cash:.2f}     {pc5:.2f}')
+                
+                # 读取期货资产
+                lastest_asset_in_futures = read_lastest_future_asset(product)
+                
+                # 计算 delta_cash
+                delta_cash = lastest_asset_in_futures - prepared_cash
+                delta_percentage = abs(delta_cash) / prepared_cash * 100
+                
+                # 判断早上10点之前
+                if datetime.now().time() < time(10, 0):
+                    # 早上10点之前读取原始信号
+                    prepared_cash = read_prepareCash_from_original_signal_file(product)
+                    delta_cash = lastest_asset_in_futures - prepared_cash
+                    delta_percentage = abs(delta_cash) / prepared_cash * 100
+                    early_prefix = 'Early '
+                else:
+                    early_prefix = ''
+                
+                # 根据 delta_percentage 确定打印颜色
+                if delta_percentage > 10:
+                    color_code = '31'  # 红色
+                elif delta_percentage > 5:
+                    color_code = '33'  # 橙色
+                else:
+                    color_code = '32'  # 绿色
+                
+                # 打印消息
+                print(f"\033[36m{early_prefix}PreparedCash: {prepared_cash:.2f}     {lastest_asset_in_futures:.2f}     \033[{color_code}m{delta_cash:.2f}\033[0m")
+
+                
             return
 
 
@@ -5556,10 +5675,11 @@ def monitorFuturesSignal():
     products = {
         'YL17': r'E:\BaiduSyncdisk\Sell_Buy_List_YL17',
         'CF15': r'E:\BaiduSyncdisk\Sell_Buy_List_CF15',
-        'HT02': r'E:\BaiduSyncdisk\Sell_Buy_List_HT02'
+        'HT02': r'E:\BaiduSyncdisk\Sell_Buy_List_HT02',
+        'FL18': r'E:\BaiduSyncdisk\Sell_Buy_List_FL18'
     }
 
-    printGreenMsg("\n\n\t\t\t Booting up the futures signal monitor...\n\n")
+    printGreenMsg("\n\n\t\t\t\t Booting up the futures signal monitor...\n\n")
     waitSec = 3
 
 
@@ -5583,7 +5703,7 @@ def monitorFuturesSignal():
                 for product, directory in products.items():
 
                     printPurpleMsg(f'-> {product} <-')
-                    read_latest_position_file(directory)
+                    read_latest_position_file(directory, product)
                     # 过滤出包含今天日期的文件
                     files = [f for f in os.listdir(directory) if today_str in f and 'Future' in f]
 
@@ -5718,8 +5838,8 @@ def futuresData():
             f.write("\n".join(assetInfo))
         printGreenMsg(f"Asset file saved to {asset_file}")
 
-    monitorPath = r'D:\TRADE\FuturesData'
-    futuresProducts = ['HT02']  # 期货产品列表
+    monitorPath = r'E:\dataForFutures'
+    futuresProducts = ['HT02','CF15']  # 期货产品列表
     monitor_and_process_products(monitorPath, futuresProducts)
 
     print("=== End of futures data export ===")
@@ -5978,11 +6098,26 @@ def orderMonitor():
 
     input("press Enter to exit")
 
+def launchAbnormalStockManager():
+    today = getDate('')
+    print(f'today is {today}')
+    printYellowMsg(f"NOW RUNNING {abnormal_data_manager_path}")
+    
+    # input("Press enter to continue...")
+
+    thread = threading.Thread(target=run_python_file, args=(abnormal_data_manager_path,))
+    thread.start()
+
+    thread.join()
+
+
+
+
 def iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii():
     ...
 
 
-def afterMain():
+def afterMain_old():
     while True:
         os.system("cls")
         menu()
@@ -6119,6 +6254,65 @@ def afterMain():
             input("\n")
             os.system("cls")
 
+def afterMain():
+    # 使用字典映射选项和对应的函数
+    options = {
+        "1": checkYesterdayDataTo37,
+        "2": diffGenerateAndCheck,
+        "3": checkExportData,
+        "4": printAllAccountInfo,
+        "5": reverseRepo,
+        "6": monitorFuturesSignal,
+        "7": simpleRiseTopTxt,
+        "8": findData,
+        "9": before0920processFL22SC,
+        "10": lambda: (realTimeSignalMoveForFL22SC(), realTimeSignalMoveForHT02()),
+        "11": baiduToScan,
+        "12": copYesterdayData,
+        "13": dataCollectorOn40,
+        "0": lambda: (clear_screen(), print("See you tmr.\n"), print("\n"), printName(), input("")),
+        "g": gridDataInsight,
+        "ts": getMonitorGridStockInfo,
+        "ga": getAllStockInfo,
+        "gsp": getGridStockPool,
+        "gda": gridDataAnalysis,
+        "gdm": lambda: (clear_screen(), gridDataModify()),
+        "gc": lambda: (clear_screen(), grid_holding_calculate()),
+        "gc -f": lambda: (clear_screen(), grid_holding_calculate_free()),
+        "evc": lambda: (clear_screen(), extremeValueCalculate()),
+        "mmc": lambda: (clear_screen(), min_max_value_calculate()),
+        "mf": monitorFile,
+        "sbr": lambda: (clear_screen(), summaryBacktestResults()),
+        "dld": lambda: (clear_screen(), downloadLimitpriceData()),
+        "pyi": lambda: (clear_screen(), pyinstaller()),
+        "ce": lambda: (clear_screen(), checkFileEncoding()),
+        "gtt": lambda: (clear_screen(), gridTradeTimes()),
+        "cwd": countWeekdays,
+        "cd": lambda: (clear_screen(), copyData()),
+        "ro": runRO,
+        "fd": lambda: (clear_screen(), os.system("mode con cols=200 lines=120"), futuresData()),
+        "mp": lambda: (clear_screen(), monitorXYPosition()),
+        "dc": dataCollector,
+        "oe": lambda: (clear_screen(), orderETF()),
+        "cfe": lambda: (clear_screen(), convertFileEncoding()),
+        "om": lambda: (clear_screen(), orderMonitor()),
+        "test": lambda: input(""),
+        "asm": lambda: (clear_screen(), launchAbnormalStockManager())
+    }
+
+    while True:
+        clear_screen()
+        menu()
+        choice = input("请输入选项数字：")
+
+        if choice in options:
+            options[choice]()
+            if choice == "0":  # 退出循环
+                break
+        else:
+            printRedMsg("无效的选项，请重新输入！")
+            input("\n")
+            clear_screen()
 
 def main():
     # global root
@@ -6161,7 +6355,8 @@ def menu():
     print("  4. 查看各个账号密码")
     print("  5. 逆回购下单")
     print("  6. 监控期货信号")
-
+    print("")
+    print("asm. 启动异常股票数据库管理器")
     print(" fd. 期货数据处理")
     print(" mp. 监控兴业扫单产品的持仓比例")
     print(" oe. 下单ETF")
