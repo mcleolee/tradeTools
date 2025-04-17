@@ -87,6 +87,15 @@ abnormal_data_manager_path = r"C:\Users\Administrator\Desktop\兴业证券多账
 
 os.system("mode con cols=200 lines=70")
 
+futuresProducts_export = ['HT02', 'CF15']  # 期货产品列表
+
+futuresProducts = {
+    'YL17': r'E:\BaiduSyncdisk\Sell_Buy_List_YL17',
+    'CF15': r'E:\BaiduSyncdisk\Sell_Buy_List_CF15',
+    'HT02': r'E:\BaiduSyncdisk\Sell_Buy_List_HT02',
+    'FL18': r'E:\BaiduSyncdisk\Sell_Buy_List_FL18'
+}
+
 product_fund_dict = {
     "CF15": "480151137",
     "FL18": "480149909",
@@ -425,13 +434,15 @@ def create_folder(folder_path):
         printRedMsg(f"Failed to create folder. Error: {e}")
 
 
-def ifExist(path):
+def ifExist(path, prt=True):
     if os.path.exists(path):
-        print(f"The file {path} exists.")
+        if prt:
+            print(f"The file {path} exists.")
         return True
     else:
         notExist = "not exist"
-        print(f"The file {path} does \033[33m{notExist}\033[0m.")
+        if prt:
+            print(f"The file {path} does \033[33m{notExist}\033[0m.")
         return False
 
 
@@ -2512,42 +2523,226 @@ def dataCollectorOn40():
 import time
 
 def checkExportData():
-    today = getDate('')
-    print(f'today is {today}')
-    printYellowMsg("now checking if smt_data exist...")
-    
-    smtData = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\smt_data"
-    asset = rf"{smtData}\asset_{today}.csv"
-    trans = rf"{smtData}\transaction_{today}.csv"
-    order = rf"{smtData}\order_{today}.csv"
-    holdin = rf"{smtData}\holding_{today}.csv"
+    """检查今天的四个数据文件是否下载完成，并展示下载状态"""
 
-    # 循环检查文件是否存在
+    clear_screen()
+    today = getDate('')
+    yesterday = getDate("", -1)
+    print(f'Today is {today}')
+    printYellowMsg("Checking if smt_data exists...")
+
+    smtData = r"C:\Users\Administrator\Desktop\兴业证券多账户交易\smt_data"
+    file_paths = {
+        f"asset_{today}.csv": rf"{smtData}\asset_{today}.csv",
+        f"transaction_{today}.csv": rf"{smtData}\transaction_{today}.csv",
+        f"order_{today}.csv": rf"{smtData}\order_{today}.csv",
+        f"holding_{today}.csv": rf"{smtData}\holding_{today}.csv",
+        f"transaction-{today}.csv":rf"C:\Users\Administrator\Desktop\银河证券账户\YL17YH\data\transaction-{today}.csv"
+    }
+
+    def printFileStatus():
+        """以表格方式展示文件下载状态"""
+        print("\n" + "=" * 40)
+        print(f"{'File Name':<25} {'Status':<10}")
+        print("-" * 40)
+        for file, path in file_paths.items():
+            color_func = printGreenMsg if os.path.exists(path) else printYellowMsg
+            color_func(f"{file:<25} {'Downloaded' if os.path.exists(path) else 'Waiting'}")
+        print("=" * 40)
+
+    last_status = {file: False for file in file_paths}  # 记录上一次的状态，避免重复刷新
     while True:
-        smtDataExist = ifExist(asset) and ifExist(trans) and ifExist(order) and ifExist(holdin)
-        if smtDataExist:
-            printGreenMsg("smtData is exist.")
+        current_status = {file: os.path.exists(path) for file, path in file_paths.items()}
+        if current_status != last_status:
+            clear_screen()
+            printFileStatus()
+            last_status = current_status
+        
+        if all(current_status.values()):
+            printGreenMsg("\nAll files have been downloaded.")
+            break
+
+        time.sleep(0.1)  # 避免过快轮询
+
+    # 读取兴业文件数据
+    asset = pd.read_csv(file_paths[f"asset_{today}.csv"])
+    trans = pd.read_csv(file_paths[f"transaction_{today}.csv"])
+    order = pd.read_csv(file_paths[f"order_{today}.csv"])
+    holding = pd.read_csv(file_paths[f"holding_{today}.csv"])
+    trans_yh = pd.read_csv(file_paths[f"transaction-{today}.csv"], encoding='gbk')
+
+
+
+
+    
+    # 检查文件完整性
+    
+
+    ## 读取每个今日信号
+    ### 设置根目录路径
+    baiduPath = r'E:\BaiduSyncdisk'
+
+    ### 获取今天的日期字符串（格式：YYYYMMDD）
+    today_str = datetime.now().strftime('%Y%m%d')
+
+    ### 存放匹配文件路径
+    buy_files = []
+    sell_files = []
+
+    ### 遍历整个文件夹（包含子目录）
+    for root, _, files in os.walk(baiduPath):
+        for f in files:
+            lower_f = f.lower()
+            # if 'morning' in lower_f or 'afternoon' in lower_f:
+            #     continue  ### 排除带 morning 或 afternoon 的文件
+
+            full_path = os.path.join(root, f)
+
+            if 'BuyOrderList' in f and today_str in f:
+                buy_files.append(full_path)
+            if 'SellOrderList' in f and today_str in f:
+                sell_files.append(full_path)
+
+    ### 打印BuyOrderList文件
+    print("\033[92m\nFound BuyOrderList files:\033[0m")
+    for path in buy_files:
+        print(os.path.basename(path), end=" >>> ")
+
+    ### 打印SellOrderList文件
+    print("\033[92m\nFound SellOrderList files:\033[0m")
+    for path in sell_files:
+        print(os.path.basename(path), end=" >>> ")
+
+    ### 读取Buy文件，求Quantity总和
+    buy_total = 0
+    for path in buy_files:
+        try:
+            df = pd.read_csv(path)
+            if 'Quantity' in df.columns:
+                buy_total += df['Quantity'].sum()
+            else:
+                print(f"\033[93mWarning: 'Quantity' not in columns of {path}\033[0m")
+        except Exception as e:
+            print(f"\033[91mError reading {path}: {e}\033[0m")
+
+    ### 读取Sell文件，求Quantity总和
+    sell_total = 0
+    for path in sell_files:
+        try:
+            df = pd.read_csv(path)
+            if 'Quantity' in df.columns:
+                sell_total += df['Quantity'].sum()
+            else:
+                print(f"\033[93mWarning: 'Quantity' not in columns of {path}\033[0m")
+        except Exception as e:
+            print(f"\033[91mError reading {path}: {e}\033[0m")
+
+    
+    volume_total = buy_total + sell_total
+
+    ## holding 中，算出'市值'列的总值
+    try:
+        holding_sum_market_value = holding['市值'].sum()
+        # printBlueMsg(f"Holding 总市值: {holding_sum_market_value}\n")
+    except Exception as e:
+        printRedMsg(f"[ERROR] Failed to calculate holding market value: {e}\n")
+
+    ## asset 中，算出‘证券市值’的总值
+    try:
+        asset_sum_market_value = asset['证券市值'].sum()
+        # printBlueMsg(f"Asset 总证券市值: {asset_sum_market_value}\n")
+    except Exception as e:
+        printRedMsg(f"[ERROR] Failed to calculate asset market value: {e}\n")
+
+    ## trans 中，算出‘成交数量’的总值；
+    ### 读取兴业的持仓
+    try:
+        trans_sum_volume = trans['成交数量'].sum()
+        # printBlueMsg(f"Transaction 成交总数量: {trans_sum_volume}\n")
+    except Exception as e:
+        printRedMsg(f"[ERROR] Failed to calculate transaction volume: {e}\n")
+
+    ### 读取银河的成交
+    try:
+        trans_yh_sum_volume = trans_yh['成交数量'].sum()
+        print("")
+    except Exception as e:
+        printRedMsg(f"[ERROR] Failed to calculate transaction (YH) volume: {e}\n")
+
+    # 读取今日差异的总数量
+    today_diff_df = pd.read_csv(rf"C:\Users\Administrator\Desktop\startTrade\diff_volume\ticker_specific_data_{today}.csv")  
+    # 筛选操作列为'无操作'的行，并计算Quantity的绝对值总和
+    diff_volume = today_diff_df[today_diff_df['操作'] == '无操作']['Quantity'].abs().sum()
+    printBlueMsg(f"\n'无操作'差异的Quantity绝对值总和: {diff_volume}")
+
+    # 读取昨日差异，算出会影响今日差异的数量；具体来说，如果昨天有差异需要今天操作，那这个操作是没有在需要成交的数据里的
+    # yesterday_diff_df = pd.read_csv(rf"C:\Users\Administrator\Desktop\startTrade\diff_volume\ticker_specific_data_{yesterday}.csv")  
+    # === 设置初始参数 ===
+    folder = r"C:\Users\Administrator\Desktop\startTrade\diff_volume"
+    prefix = "ticker_specific_data_"
+
+    # === 转换为日期对象并开始回溯查找 ===
+    date_obj = datetime.strptime(yesterday, "%Y%m%d")
+
+    while True:
+        date_str = date_obj.strftime("%Y%m%d")
+        file_path = os.path.join(folder, f"{prefix}{date_str}.csv")
+        
+        if os.path.exists(file_path):
+            printBlueMsg(f"Found file: {file_path}\n")
+            yesterday_diff_df = pd.read_csv(file_path)
             break
         else:
-            printRedMsg("smtData is NOT exist, checking again in 1 second...")
-            time.sleep(0.2)
+            # printRedMsg(f"File not found for {date_str}, trying previous day...\n")
+            date_obj -= timedelta(days=1)
+    diff_volume_yesterday = yesterday_diff_df[yesterday_diff_df['操作'] != '无操作']['Quantity'].abs().sum()
+    printBlueMsg(f"昨日'有操作'差异的Quantity绝对值总和: {diff_volume_yesterday}")
 
-    printYellowMsg(f"NOW RUNNING {smart_divide_path}...")
+
+    # 打印结果
+    printBlueMsg(f"Total Buy Quantity : {buy_total}")
+    printBlueMsg(f"Total Sell Quantity: {sell_total}")
+    print("\n\033[96m================ Summary ================\033[0m")
+    ## 对比每日成交量
+    if volume_total == trans_sum_volume + trans_yh_sum_volume + diff_volume - diff_volume_yesterday:
+        printGreenMsg(f'每日成交量 {volume_total} 无误')
+    else:
+        trans_volume_total = trans_sum_volume + trans_yh_sum_volume + diff_volume - diff_volume_yesterday
+        printRedMsg(f"每日成交量 {volume_total} 和 真实成交量[{trans_sum_volume} + {trans_yh_sum_volume}] + 持仓差异[{diff_volume}] - 今日单独处理的差异[{diff_volume_yesterday}] = {trans_volume_total} 不匹配")
+        printRedMsg(f"差额 [{volume_total - trans_sum_volume - trans_yh_sum_volume - diff_volume + diff_volume_yesterday}]\n请重新导出数据或者检查 transaction 文件，或者是因为持仓差异\n今日持仓差异为{diff_volume}")
+
+
+    if holding_sum_market_value == asset_sum_market_value:
+        printGreenMsg(f'总持仓市值 {holding_sum_market_value} 无误')
+    else:
+        printRedMsg(f"持仓文件中市值 {holding_sum_market_value} 和 资产文件中市值 {asset_sum_market_value} 不匹配\n请重新导出数据或者检查 asset 和 holding 文件\n")    
+    
+    
+    # 启动数据拆分程序
+    printYellowMsg(f"\nRunning {smart_divide_path}...")
 
     thread = threading.Thread(target=run_python_file, args=(smart_divide_path,))
     thread.start()
     thread.join()
     printGreenMsg("Data divide program is finished.")
 
-    # 检查是否拆分完毕
-    cf15 = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\CF15\data", today)
-    fl18 = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL18\data", today)
-    ht02zs = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\HT02XY\data", today)
-    fl22sc = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCA\data", today)
-    fl22xz = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCB\data", today)
-    print(cf15, fl18, ht02zs, fl22sc, fl22xz)
+    # 检查拆分文件
+    cf15sc_count = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\CF15SC\data", today)
+    cf15xz_count = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\CF15XZ\data", today)
+    fl18_count = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL18\data", today)
+    ht02zs_count = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\HT02XY\data", today)
+    fl22sc_count = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCA\data", today)
+    fl22xz_count = count_files_with_target_field(r"C:\Users\Administrator\Desktop\兴业证券多账户交易\FL22SCB\data", today)
 
-    printGreenMsg("process done, returning to main menu")
+    if all(count == 3 for count in [
+        cf15sc_count,
+        cf15xz_count,
+        fl18_count,
+        ht02zs_count,
+        fl22sc_count,
+        fl22xz_count
+    ]):
+        printGreenMsg("Process done, returning to main menu.")
     input("")
 
 
@@ -5483,16 +5678,20 @@ def monitorFuturesSignal():
         first_day_weekday = first_day_of_month.weekday()
 
         # 计算本月的第三个周五的日期
-        # 周五是4，所以如果本月的第一天是周一，则第三个周五是21号
-        days_to_third_friday = (4 - first_day_weekday + 7 * 2) % 7  # 计算第三个周五相对于1号的偏移天数
-        third_friday = first_day_of_month + timedelta(days=days_to_third_friday)
+        # 计算从第一天到第一个周五的天数
+        days_to_first_friday = (4 - first_day_weekday + 7) % 7  # 4是周五，weekday()返回0-6
+        first_friday = first_day_of_month + timedelta(days=days_to_first_friday)
+        
+        # 计算第三个周五的日期
+        third_friday = first_friday + timedelta(weeks=2)  # 从第一个周五开始，计算两周后即第三个周五
         
         # 计算前三天和后三天的日期范围
         before_three_days = third_friday - timedelta(days=3)
         after_three_days = third_friday + timedelta(days=3)
 
-        # 检查今天是否在这个范围内
-        if today.date() == third_friday.date() or today.date() == before_three_days.date() or today.date() == after_three_days.date():
+        
+        # 优化：检查今天是否在前三天到后三天的范围内
+        if before_three_days.date() <= today.date() <= after_three_days.date():
             return True
         
         return False
@@ -5672,20 +5871,15 @@ def monitorFuturesSignal():
     os.system('mode con cols=80 lines=30')
 
     # 产品及其对应的目录
-    products = {
-        'YL17': r'E:\BaiduSyncdisk\Sell_Buy_List_YL17',
-        'CF15': r'E:\BaiduSyncdisk\Sell_Buy_List_CF15',
-        'HT02': r'E:\BaiduSyncdisk\Sell_Buy_List_HT02',
-        'FL18': r'E:\BaiduSyncdisk\Sell_Buy_List_FL18'
-    }
+
 
     printGreenMsg("\n\n\t\t\t\t Booting up the futures signal monitor...\n\n")
     waitSec = 3
 
 
     # 初始化每个产品的信号DataFrame
-    last_morning_dfs = {product: pd.DataFrame() for product in products}
-    last_afternoon_dfs = {product: pd.DataFrame() for product in products}
+    last_morning_dfs = {product: pd.DataFrame() for product in futuresProducts}
+    last_afternoon_dfs = {product: pd.DataFrame() for product in futuresProducts}
 
     while True:
         today_str = datetime.now().strftime('%Y%m%d')
@@ -5697,10 +5891,12 @@ def monitorFuturesSignal():
                 # 在监控时间段内
                 t.sleep(waitSec)  # 每隔waitSec秒监控一次
                 os.system('cls')  # 清除控制台
-                print("\n\tMonitoring futures signals...\n")
+                print("\n\t\t\t  MONITORING FUTURES SIGNALS\n")
+                if is_third_friday_or_surrounding_days():
+                    printYellowMsg("     > The futures contracts are approaching the rollover date recently <")
 
                 # 遍历每个产品
-                for product, directory in products.items():
+                for product, directory in futuresProducts.items():
 
                     printPurpleMsg(f'-> {product} <-')
                     read_latest_position_file(directory, product)
@@ -5713,22 +5909,22 @@ def monitorFuturesSignal():
                             # 有morning信号
                             if 'morning' in file:
                                 last_morning_dfs[product] = pd.read_csv(os.path.join(directory, file))
-                                printGreenMsg(f"{product} Morning trading signal detected: {file}")
+                                printGreenMsg(f"Morning trading signal detected: {file}")
                                 printYellowMsg(last_morning_dfs[product])
                             # 有afternoon信号
                             elif 'afternoon' in file:
                                 last_afternoon_dfs[product] = pd.read_csv(os.path.join(directory, file))
-                                printGreenMsg(f"{product} Afternoon trading signal detected: {file}")
+                                printGreenMsg(f"Afternoon trading signal detected: {file}")
                                 printYellowMsg(last_afternoon_dfs[product])
                             else:
                                 printRedMsg(f"Invalid trading signal file: {file}")
                         elif 'No' in file and 'Trading' in file:
                             # 没有morning信号
                             if 'Morning' in file:
-                                printBlueMsg(f"{product} No morning trading signal detected: {file}")
+                                printBlueMsg(f"No morning trading signal detected: {file}")
                             # 没有afternoon信号
                             elif 'Afternoon' in file:
-                                printBlueMsg(f"{product} No afternoon trading signal detected: {file}")
+                                printBlueMsg(f"No afternoon trading signal detected: {file}")
                             else:
                                 printRedMsg(f"Invalid trading signal file: {file}")
 
@@ -5741,7 +5937,7 @@ def monitorFuturesSignal():
             print("\n\tNot within monitoring period. Showing the last detected signals...\n")
 
             # 显示每个产品的最后一次信号
-            for product in products:
+            for product in futuresProducts:
                 if not last_morning_dfs[product].empty:
                     printYellowMsg(f"Last {product} morning trading signal:")
                     printYellowMsg(last_morning_dfs[product])
@@ -5839,8 +6035,8 @@ def futuresData():
         printGreenMsg(f"Asset file saved to {asset_file}")
 
     monitorPath = r'E:\dataForFutures'
-    futuresProducts = ['HT02','CF15']  # 期货产品列表
-    monitor_and_process_products(monitorPath, futuresProducts)
+    
+    monitor_and_process_products(monitorPath, futuresProducts_export)
 
     print("=== End of futures data export ===")
     input("")
